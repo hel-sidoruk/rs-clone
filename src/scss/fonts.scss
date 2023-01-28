@@ -13,3 +13,11 @@
   font-weight: bold;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'CamingoCode';
+  src: url('./assets/fonts/CamingoCode.woff2') format("woff2"),
+  url('./assets/fonts/CamingoCode.woff') format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
