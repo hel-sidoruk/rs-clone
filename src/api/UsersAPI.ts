@@ -7,6 +7,7 @@ export class UsersAPI {
     const data = await response.json();
     return data;
   }
+
   static async fetchOneUser(id: string) {
     const response = await fetch(`${API_URL}/user/${id}`);
     const data = await response.json();
@@ -20,6 +21,17 @@ export class UsersAPI {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(user),
+    });
+    return response;
+  }
+
+  static async updateUser(id: number, data: Partial<Omit<UserInterface, 'id' | 'username'>>) {
+    const response = await fetch(`${API_URL}/user/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
     });
     return response;
   }
