@@ -1,15 +1,15 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
+import { useCaretPosition } from '../../hooks/useCaretPosition';
 
 export const Code = ({ functionName }: { functionName: string }) => {
   const [value, setValue] = useState(`function ${functionName}(){
 
 }
   `);
-  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const [textAreaRef, updateCaret, setCaretPosition] = useCaretPosition();
   const [rowsCount, setRowsCount] = useState(3);
   const [isNewBlock, setIsNewBlock] = useState(false);
 
-  const [caretPosition, setCaretPosition] = useState(0);
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     switch (e.key) {
       case 'Tab':
@@ -75,17 +75,6 @@ export const Code = ({ functionName }: { functionName: string }) => {
     updateCaret();
   };
 
-  const updateCaret = useCallback(() => {
-    if (textAreaRef.current) {
-      const { selectionStart } = textAreaRef.current;
-
-      setCaretPosition(selectionStart);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (textAreaRef.current) textAreaRef.current.setSelectionRange(caretPosition, caretPosition);
-  });
   return (
     <div className="code">
       <div className="code__line-counter">
