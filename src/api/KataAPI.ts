@@ -2,19 +2,19 @@ import { API_URL } from '.';
 import { KataInterface } from '../types/kata';
 
 export class KataAPI {
-  static async fetchAllKata(): Promise<KataInterface[]> {
+  static async getAll(): Promise<KataInterface[]> {
     const response = await fetch(`${API_URL}/kata`);
     const data = await response.json();
     return data;
   }
 
-  static async fetchOneKata(id: string): Promise<KataInterface> {
+  static async getOne(id: string): Promise<KataInterface> {
     const response = await fetch(`${API_URL}/kata/${id}`);
     const data = await response.json();
     return data;
   }
 
-  static async createKata(kata: KataInterface): Promise<KataInterface> {
+  static async create(kata: KataInterface): Promise<KataInterface> {
     const response = await fetch(`${API_URL}/kata/`, {
       method: 'POST',
       headers: {

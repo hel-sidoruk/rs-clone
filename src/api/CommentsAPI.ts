@@ -14,7 +14,7 @@ export class CommentsAPI {
     return data;
   }
 
-  static async createComment(
+  static async create(
     id: string,
     comment: Omit<CommentInterface, 'id' | 'kataId' | 'votes' | 'createdAt' | 'spoiler'>
   ): Promise<CommentInterface[]> {
@@ -29,7 +29,7 @@ export class CommentsAPI {
     return data;
   }
 
-  static async updateComment(id: string, commentId: number, comment: CommentUpdates) {
+  static async update(id: string, commentId: number, comment: CommentUpdates) {
     const response = await fetch(`${API_URL}/kata/${id}/discuss/${commentId}`, {
       method: 'PATCH',
       headers: {
