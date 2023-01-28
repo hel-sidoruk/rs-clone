@@ -12,7 +12,7 @@ export default function AppRouter() {
       <Route path="/kata/:id" element={<Kata />} />
       <Route path="/kata/:id/train" element={<KataTrain />} />
       <Route path="/users/:id" element={<UserProfile />} />
-      <Route path="/users/leaderbord" element={<Leaderboard />} />
+      <Route path="/users/leaderboard" element={<Leaderboard />} />
     </Routes>
   );
 }
