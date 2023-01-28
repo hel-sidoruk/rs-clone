@@ -16,10 +16,7 @@ body {
   overflow-x: hidden;
   min-height: 100vh;
   min-width: 320px;
-  font-family: sans-serif;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  font-family: 'Lato', sans-serif;
 }
 
 button {
