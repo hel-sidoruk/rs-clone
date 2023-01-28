@@ -2,19 +2,19 @@ import { API_URL } from '.';
 import { UserInterface } from '../types/user';
 
 export class UsersAPI {
-  static async fetchAllUsers() {
+  static async fetchAllUsers(): Promise<UserInterface[]> {
     const response = await fetch(`${API_URL}/user`);
     const data = await response.json();
     return data;
   }
 
-  static async fetchOneUser(id: string) {
+  static async fetchOneUser(id: string): Promise<UserInterface> {
     const response = await fetch(`${API_URL}/user/${id}`);
     const data = await response.json();
     return data;
   }
 
-  static async createUser(user: UserInterface) {
+  static async createUser(user: UserInterface): Promise<UserInterface> {
     const response = await fetch(`${API_URL}/user/`, {
       method: 'POST',
       headers: {
@@ -22,7 +22,8 @@ export class UsersAPI {
       },
       body: JSON.stringify(user),
     });
-    return response;
+    const data = await response.json();
+    return data;
   }
 
   static async updateUser(id: number, data: Partial<Omit<UserInterface, 'id' | 'username'>>) {
