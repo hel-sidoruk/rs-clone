@@ -1,72 +1,41 @@
 import React, { useState } from 'react';
 import { useCaretPosition } from '../../hooks/useCaretPosition';
+import { useDoubleKey } from '../../hooks/useDoubleKey';
+import { getBlocksCount, getInitialFunction } from '../../utils';
+import { CodeLineCounter } from './CodeLineCounter';
 
-export const Code = ({ functionName }: { functionName: string }) => {
-  const [value, setValue] = useState(`function ${functionName}(){
-
-}
-  `);
+export const Code = ({ functionName, fnArgs }: { functionName: string; fnArgs: string }) => {
+  const [value, setValue] = useState(getInitialFunction(functionName, fnArgs));
   const [textAreaRef, updateCaret, setCaretPosition] = useCaretPosition();
   const [rowsCount, setRowsCount] = useState(3);
   const [isNewBlock, setIsNewBlock] = useState(false);
+  const [doubleKey] = useDoubleKey(textAreaRef, value, setValue, setCaretPosition);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    switch (e.key) {
-      case 'Tab':
-        e.preventDefault();
-        if (textAreaRef.current) {
-          const { selectionStart, selectionEnd } = textAreaRef.current as HTMLTextAreaElement;
-          const newValue =
-            value.substring(0, selectionStart) + '  ' + value.substring(selectionEnd);
-          setValue(newValue);
-          setCaretPosition(selectionStart + 2);
-        }
-        break;
-      case 'Enter':
-        e.preventDefault();
-        setRowsCount((state) => state + (isNewBlock ? 2 : 1));
-        if (textAreaRef.current) {
-          const { selectionStart, selectionEnd } = textAreaRef.current as HTMLTextAreaElement;
+    if (['Tab', 'Enter', '{', '(', '[', '"', "'", '`'].includes(e.key)) {
+      e.preventDefault();
+      e.key !== 'Enter' && doubleKey(e.key);
+      e.key === '{' && setIsNewBlock(true);
+    }
 
-          const blocksCount = value
-            .substring(selectionEnd)
-            .split('')
-            .filter((el) => el === '}').length;
+    if (e.key === 'Enter') {
+      setRowsCount((state) => state + (isNewBlock ? 2 : 1));
+      if (textAreaRef.current) {
+        const { selectionStart, selectionEnd } = textAreaRef.current as HTMLTextAreaElement;
 
-          const newValue =
-            value.substring(0, selectionStart) +
-            '\n' +
-            '  '.repeat(blocksCount) +
-            (isNewBlock ? '\n' + '  '.repeat(blocksCount > 0 ? blocksCount - 1 : 0) : '') +
-            value.substring(selectionEnd);
-          if (isNewBlock) setIsNewBlock(false);
-          setValue(newValue);
-          setCaretPosition(selectionStart + 1 + 2 * blocksCount);
-        }
-        break;
-      case '{':
-        setIsNewBlock(true);
-        e.preventDefault();
-        if (textAreaRef.current) {
-          const { selectionStart, selectionEnd } = textAreaRef.current as HTMLTextAreaElement;
-          const newValue =
-            value.substring(0, selectionStart) + '{}' + value.substring(selectionEnd);
-          setValue(newValue);
-          setCaretPosition(selectionStart + 1);
-        }
+        const blocksCount = getBlocksCount(value, selectionEnd);
 
-        break;
-      case '(':
-        e.preventDefault();
-        if (textAreaRef.current) {
-          const { selectionStart, selectionEnd } = textAreaRef.current as HTMLTextAreaElement;
-          const newValue =
-            value.substring(0, selectionStart) + '()' + value.substring(selectionEnd);
-          setValue(newValue);
-          setCaretPosition(selectionStart + 1);
-        }
+        const newValue =
+          value.substring(0, selectionStart) +
+          '\n' +
+          '  '.repeat(blocksCount) +
+          (isNewBlock ? '\n' + '  '.repeat(blocksCount ? blocksCount - 1 : 0) : '') +
+          value.substring(selectionEnd);
 
-        break;
+        if (isNewBlock) setIsNewBlock(false);
+        setValue(newValue);
+        setCaretPosition(selectionStart + 1 + 2 * blocksCount);
+      }
     }
   };
 
@@ -77,13 +46,7 @@ export const Code = ({ functionName }: { functionName: string }) => {
 
   return (
     <div className="code">
-      <div className="code__line-counter">
-        {Array(rowsCount)
-          .fill(0)
-          .map((_, i) => (
-            <span key={Math.random().toString(16)}>{i + 1}</span>
-          ))}
-      </div>
+      <CodeLineCounter rowsCount={rowsCount} />
       <textarea
         className="code__editor"
         ref={textAreaRef}

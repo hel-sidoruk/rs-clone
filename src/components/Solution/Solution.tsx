@@ -7,7 +7,7 @@ export const Solution = () => {
       <div className="solution__top">
         <p className="solution__top-text">Solution</p>
       </div>
-      <Code functionName="toCamelCase" />
+      <Code functionName="toCamelCase" fnArgs="str" />
     </div>
   );
 };
