@@ -1,3 +1,4 @@
+export * from './CommentsAPI';
 export * from './KataAPI';
 export * from './UsersAPI';
 
