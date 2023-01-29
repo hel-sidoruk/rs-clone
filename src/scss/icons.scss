@@ -1,0 +1,23 @@
+.icon-moon {
+  &::before {
+    font-family: 'Icomoon';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+  }
+  &-next {
+    &::before {
+      content: "\e015";
+    }
+  }
+  &-compare {
+    &::before {
+      content: "\f0ac";
+    }
+  }
+  &-comments {
+    &::before {
+      content: "\f086";
+    }
+  }
+}
