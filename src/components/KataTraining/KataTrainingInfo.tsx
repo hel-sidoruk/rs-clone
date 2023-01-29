@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { KataInstructions } from './KataInstructions';
+import { PastSolutions } from './PastSolutions';
 import { TestsOutput } from './TestsOutput';
 
 const options = ['Instructions', 'Output', 'Past Solutions'];
 
-export const KataTrainingInfo = () => {
+export const KataTrainingInfo = ({ solved }: { solved: boolean }) => {
   const [active, setActive] = useState(options[0]);
 
   const getClassname = (i: number) => {
@@ -20,12 +21,20 @@ export const KataTrainingInfo = () => {
         <button className={getClassname(1)} onClick={() => setActive(options[1])}>
           Output
         </button>
-        <button className={getClassname(2)} onClick={() => setActive(options[2])}>
-          Past Solutions
-        </button>
+        {solved && (
+          <button className={getClassname(2)} onClick={() => setActive(options[2])}>
+            Past Solutions
+          </button>
+        )}
       </div>
       <div className={`kata-train__descr ${active === options[1] ? 'output' : ''}`}>
-        {active === options[1] ? <TestsOutput /> : <KataInstructions />}
+        {active === options[0] ? (
+          <KataInstructions />
+        ) : active === options[1] ? (
+          <TestsOutput />
+        ) : (
+          <PastSolutions />
+        )}
       </div>
     </div>
   );

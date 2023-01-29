@@ -9,7 +9,7 @@ export const KataTraining = () => {
       <h1 className="page-title">Kata Training</h1>
       <KataDescription />
       <section className="kata-train">
-        <KataTrainingInfo />
+        <KataTrainingInfo solved />
         <div className="kata-train__code">
           <Solution />
         </div>
