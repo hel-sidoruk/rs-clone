@@ -65,11 +65,20 @@ input {
   border: none;
   background-color: transparent;
 }
-
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 .play-view {
   padding: 0 16px;
   width: calc(100% - 55px);
   margin-left: 55px;
+  flex-grow: 1;
+  &.kata-training {
+    display: flex;
+    flex-direction: column;
+  }
 }
 .page-title {
   color: $grey;

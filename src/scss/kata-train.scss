@@ -1,5 +1,6 @@
 .kata-train {
   display: flex;
+  flex-grow: 1;
   &__info {
     width: 42%;
     margin-right: 16px;
@@ -27,13 +28,23 @@
   }
   &__descr {
     flex-grow: 1;
+    border-radius: 8px;
     background-color: $section;
+    color: $light;
+    padding: 16px;
+    &.output {
+      background-color: $dark;
+      border: 2px solid $scroll;
+    }
   }
   &__code {
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
   }
 }
 .solution {
+  flex-grow: 1;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   background-color: $dark;
@@ -41,6 +52,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
   &__top {
     background-color: $section;
     padding: 8px;

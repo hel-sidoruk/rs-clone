@@ -22,7 +22,7 @@ export const KataTrainingInfo = () => {
           Past Solutions
         </button>
       </div>
-      <div className="kata-train__descr"></div>
+      <div className={`kata-train__descr ${active === options[1] ? 'output' : ''}`}>{active}</div>
     </div>
   );
 };

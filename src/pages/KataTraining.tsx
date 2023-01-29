@@ -5,7 +5,7 @@ import { Solution } from '../components/Solution/Solution';
 
 export const KataTraining = () => {
   return (
-    <main className="play-view">
+    <main className="play-view kata-training">
       <h1 className="page-title">Kata Training</h1>
       <KataDescription />
       <section className="kata-train">
