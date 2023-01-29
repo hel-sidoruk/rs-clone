@@ -23,9 +23,11 @@ export const KataControls = () => {
         Details
       </Link>
       <Link to="/kata/1/solutions" className={getClassname(1)}>
+        <i className="icon-moon-bullseye icon-moon"></i>
         Solutions
       </Link>
       <Link to="/kata/1/discuss" className={getClassname(2)}>
+        <i className="icon-moon-comments icon-moon"></i>
         Discourse
       </Link>
     </div>
