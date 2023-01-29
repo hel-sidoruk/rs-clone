@@ -17,6 +17,12 @@
       content: "\f0ac";
     }
   }
+  &-play {
+    margin-right: 5px;
+    &::before {
+      content: "\e009";
+    }
+  }
   &-comments {
     &::before {
       content: "\f086";

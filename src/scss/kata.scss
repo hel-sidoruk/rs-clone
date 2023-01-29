@@ -34,12 +34,25 @@
       }
     }
   }
+  &__controls {
+    .btn:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
 }
 .kata-description {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 12px;
+  &.section {
+    background-color: $section;
+    padding: 8px 16px;
+    border-radius: 8px;
+    .kata__info-bottom {
+      margin-bottom: 12px;
+    }
+  }
 }
 .kata-language {
   width: 120px;
