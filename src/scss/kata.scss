@@ -110,3 +110,15 @@
     margin-right: 5px;
   }
 }
+.kata-details {
+  max-width: 84%;
+  &__title {
+    color: $grey;
+    margin-bottom: 18px;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .35px;
+  }
+}
