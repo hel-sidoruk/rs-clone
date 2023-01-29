@@ -5,6 +5,7 @@
     font-weight: 400;
     line-height: 1;
     font-size: 14px;
+    font-size: inherit;
   }
   &-next {
     &::before {
@@ -40,6 +41,20 @@
     opacity: .75;
     &::before {
       content: "\e060";
+    }
+  }
+  &-expand {
+    &::before {
+      font-size: 24px;
+      content: "\e07c";
+    }
+  }
+  &-collapse {
+    line-height: 32px;
+    margin-right: 5px;
+    font-size: 24px;
+    &::before {
+      content: "\e07d";
     }
   }
   &-javascript {

@@ -5,7 +5,13 @@ import { TestsOutput } from './TestsOutput';
 
 const options = ['Instructions', 'Output', 'Past Solutions'];
 
-export const KataTrainingInfo = ({ solved }: { solved: boolean }) => {
+interface Props {
+  solved: boolean;
+  handler: () => void;
+  isHidden: boolean;
+}
+
+export const KataTrainingInfo = ({ solved, handler, isHidden }: Props) => {
   const [active, setActive] = useState(options[0]);
 
   const getClassname = (i: number) => {
@@ -24,6 +30,12 @@ export const KataTrainingInfo = ({ solved }: { solved: boolean }) => {
         {solved && (
           <button className={getClassname(2)} onClick={() => setActive(options[2])}>
             Past Solutions
+          </button>
+        )}
+        {isHidden && (
+          <button className="controls__btn centered" onClick={handler}>
+            <i className="icon-moon icon-moon-collapse"></i>
+            Restore
           </button>
         )}
       </div>

@@ -79,6 +79,11 @@ input {
     display: flex;
     flex-direction: column;
   }
+  &.hidden {
+    padding: 16px;
+    margin-left: 0;
+    width: 100%;
+  }
 }
 .page-title {
   color: $grey;
