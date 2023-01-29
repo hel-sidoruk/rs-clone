@@ -1,0 +1,37 @@
+.kata {
+  &__info {
+    &-top {
+      display: flex;
+      padding: 11px 0;
+      margin-bottom: 4px;
+      align-items: center;
+    }
+    &-title {
+      margin-left: 8px;
+      font-weight: 16;
+      font-weight: 700;
+      color: $light;
+      line-height: 1.4;
+    }
+    &-bottom {
+      display: flex;
+      align-items: center;
+    }
+    &-text {
+      color: $grey;
+      display: flex;
+      align-items: center;
+      &:not(:last-child) {
+        margin-right: 16px;
+      }
+      &.link,
+      &.star {
+        cursor: pointer;
+        transition: all .3s ease-in-out;
+        &:hover {
+          color: $blue;
+        }
+      }
+    }
+  }
+}
