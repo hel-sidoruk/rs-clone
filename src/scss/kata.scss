@@ -82,3 +82,28 @@
     line-height: 51px;
   }
 }
+.controls {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  &__btn {
+    padding: 8px 16px;
+    color: $grey;
+    border-radius: 8px;
+    transition: all .2s ease-in-out;
+    font-size: 14px;
+    line-height: 21px;
+    &:hover {
+      color: $blue;
+    }
+    &.active {
+      background-color: #ffffff10;
+      color: #ebebeb;
+      pointer-events: none;
+    }
+    &.centered {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

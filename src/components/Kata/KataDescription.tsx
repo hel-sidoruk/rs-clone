@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { KataInfo } from './KataInfo';
 import { KataLanguage } from './KataLanguage';
 
-export const KataDescription = () => {
+export const KataDescription = memo(function KataDescription() {
   return (
     <div className="kata-description section">
       <KataInfo />
@@ -20,4 +20,4 @@ export const KataDescription = () => {
       </div>
     </div>
   );
-};
+});

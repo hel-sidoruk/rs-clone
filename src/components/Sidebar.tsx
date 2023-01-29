@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { SidebarItem } from './Sidebar/SidebarItem';
 
-export const Sidebar = () => {
+export const Sidebar = memo(function Sidebar() {
   return (
     <div className="sidebar">
       <ul className="top md:mb-10">
@@ -22,4 +22,4 @@ export const Sidebar = () => {
       </ul>
     </div>
   );
-};
+});

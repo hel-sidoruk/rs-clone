@@ -1,0 +1,33 @@
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+
+const options = ['details', 'solutions', 'discuss'];
+
+export const KataControls = () => {
+  const location = useLocation();
+  const [active, setActive] = useState('details');
+
+  const getClassname = (i: number) => {
+    return `controls__btn ${active === options[i] ? 'active' : ''}`;
+  };
+
+  useEffect(() => {
+    if (location.pathname.endsWith(options[1])) setActive(options[1]);
+    else if (location.pathname.endsWith(options[2])) setActive(options[2]);
+    else setActive(options[0]);
+  }, [location.pathname]);
+
+  return (
+    <div className="controls">
+      <Link to="/kata/1/" className={getClassname(0)}>
+        Details
+      </Link>
+      <Link to="/kata/1/solutions" className={getClassname(1)}>
+        Solutions
+      </Link>
+      <Link to="/kata/1/discuss" className={getClassname(2)}>
+        Discourse
+      </Link>
+    </div>
+  );
+};
