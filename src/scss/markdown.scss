@@ -1,0 +1,42 @@
+.markdown {
+  p {
+    line-height: 1.6;
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+  h3 {
+    font-size: 18px;
+    color: #f1f3f5;
+    font-weight: 600;
+    margin-top: 28px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+  code {
+    font-family: 'CamingoCode', monospace;
+    color: #f1f3f5;
+    font-size: 14px;
+    border: 1px solid rgba(#fff, 0.125);
+    padding: 2px 4px;
+    border-radius: 4px;
+    white-space: pre;
+  }
+  a {
+    color: $grey;
+    text-decoration: underline;
+    font-weight: 500;
+    transition: all .2s ease-in-out;
+    &:hover {
+      color: $blue;
+    }
+  }
+}
+hr {
+  display: block;
+  height: 1px;
+  background-position: center center;
+  background-size: 100% 1px;
+  border-color: transparent;
+  background-image: linear-gradient( to left, transparent, rgba(#fff, .125) 20%, rgba(#fff, .125) 80%, transparent );
+}

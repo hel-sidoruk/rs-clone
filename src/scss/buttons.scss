@@ -14,12 +14,16 @@
     color: $blue-hover;
     background-color: $dark-hover;
   }
+  .btn-text {
+    margin-left: 8px;
+  }
 }
 .btn-fill {
   background-color: $blue;
   color: $dark;
   &:hover {
     background-color: $light-blue;
+    color: $dark;
   }
 }
 .btn-dark {

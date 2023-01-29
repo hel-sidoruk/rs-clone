@@ -1,5 +1,5 @@
-export * from './Challenges';
+export * from './KataLibrary';
 export * from './Home';
 export * from './Kata';
-export * from './KataTrain';
+export * from './KataTraining';
 export * from './UserProfile';
