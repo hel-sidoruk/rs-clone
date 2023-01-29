@@ -1,15 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Rank } from './Rank';
 
 export const KataInfo = () => {
   return (
     <div className="kata__info">
       <div className="kata__info-top">
-        <div className="rank yellow">
-          <div className="rank__inner">
-            <span>6 kyu</span>
-          </div>
-        </div>
+        <Rank rank={6} />
         <h4 className="kata__info-title">Convert string to camel case</h4>
       </div>
       <div className="kata__info-bottom">
