@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { KataInstructions } from './KataInstructions';
+import { TestsOutput } from './TestsOutput';
 
 const options = ['Instructions', 'Output', 'Past Solutions'];
 
@@ -22,7 +24,9 @@ export const KataTrainingInfo = () => {
           Past Solutions
         </button>
       </div>
-      <div className={`kata-train__descr ${active === options[1] ? 'output' : ''}`}>{active}</div>
+      <div className={`kata-train__descr ${active === options[1] ? 'output' : ''}`}>
+        {active === options[1] ? <TestsOutput /> : <KataInstructions />}
+      </div>
     </div>
   );
 };

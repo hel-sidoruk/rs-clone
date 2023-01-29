@@ -4,6 +4,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: 1;
+    font-size: 14px;
   }
   &-next {
     &::before {
@@ -53,6 +54,12 @@
     margin-right: 5px;
     &::before {
       content: "\e640";
+    }
+  }
+  &-tag {
+    margin-right: 5px;
+    &::before {
+      content: "\e063";
     }
   }
 }
