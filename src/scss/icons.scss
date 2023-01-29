@@ -41,4 +41,18 @@
       content: "\e060";
     }
   }
+  &-javascript {
+    &.solved {
+      color: #93c5fd;
+      filter: hue-rotate(290deg);
+    }
+    &.trained {
+      color: #93c5fd;
+      filter: hue-rotate(200deg);
+    }
+    margin-right: 5px;
+    &::before {
+      content: "\e640";
+    }
+  }
 }

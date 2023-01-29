@@ -35,3 +35,21 @@
     }
   }
 }
+.kata-description {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.kata-language {
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid rgba(#fff, 0.2);
+  background-color: 1px solid rgba(#000, 0.2);
+  color: $light;
+  line-height: 21px;
+}
