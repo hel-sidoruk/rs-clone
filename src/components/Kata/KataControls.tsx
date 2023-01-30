@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 const options = ['details', 'solutions', 'discuss'];
 
 export const KataControls = () => {
-  const location = useLocation();
+  const { pathname } = useLocation();
   const [active, setActive] = useState('details');
 
   const getClassname = (i: number) => {
@@ -12,10 +12,10 @@ export const KataControls = () => {
   };
 
   useEffect(() => {
-    if (location.pathname.endsWith(options[1])) setActive(options[1]);
-    else if (location.pathname.endsWith(options[2])) setActive(options[2]);
+    if (pathname.endsWith(options[1])) setActive(options[1]);
+    else if (pathname.endsWith(options[2])) setActive(options[2]);
     else setActive(options[0]);
-  }, [location.pathname]);
+  }, [pathname]);
 
   return (
     <div className="controls">
