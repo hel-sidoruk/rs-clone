@@ -5,7 +5,7 @@ export const Sidebar = memo(function Sidebar() {
   return (
     <div className="sidebar">
       <ul className="top md:mb-10">
-        <SidebarItem label="Home" path="/kata" nav />
+        <SidebarItem label="Home" path="/" nav />
         <li className="sidebar__section mt-16">
           <span>Training</span>
         </li>
