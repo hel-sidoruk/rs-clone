@@ -1,5 +1,5 @@
 import React from 'react';
 
 export const KataSolutions = () => {
-  return <div>KataSolutions</div>;
+  return <div className="section">KataSolutions</div>;
 };

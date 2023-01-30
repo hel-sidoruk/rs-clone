@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { KataDescription } from '../components/Kata/KataDescription';
+import { KataTrainingDescription } from '../components/KataTraining/KataTrainingDescription';
 import { KataTrainingInfo } from '../components/KataTraining/KataTrainingInfo';
 import { Solution } from '../components/Solution/Solution';
 
@@ -11,7 +11,7 @@ export const KataTraining = () => {
       {!isHidden && (
         <>
           <h1 className="page-title">Kata Training</h1>
-          <KataDescription handler={handleClick} />
+          <KataTrainingDescription handler={handleClick} />
         </>
       )}
       <section className="kata-train">

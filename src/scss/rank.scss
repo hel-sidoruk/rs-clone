@@ -72,6 +72,18 @@
       position: relative;
     }
   }
+  &.white {
+    background-color: $rank-white;
+    &::before {
+      border-right-color: $rank-white;
+    }
+    &::after {
+      border-left-color: $rank-white;
+    }
+    .rank__inner {
+      color: $rank-white;
+    }
+  }
   &.yellow {
     background-color: $yellow;
     &::before {
@@ -82,6 +94,30 @@
     }
     .rank__inner {
       color: $yellow;
+    }
+  }
+  &.blue {
+    background-color: $rank-blue;
+    &::before {
+      border-right-color: $rank-blue;
+    }
+    &::after {
+      border-left-color: $rank-blue;
+    }
+    .rank__inner {
+      color: $rank-blue;
+    }
+  }
+  &.purple {
+    background-color: $purple;
+    &::before {
+      border-right-color: $purple;
+    }
+    &::after {
+      border-left-color: $purple;
+    }
+    .rank__inner {
+      color: $purple;
     }
   }
 }

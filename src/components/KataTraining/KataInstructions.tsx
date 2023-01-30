@@ -1,4 +1,5 @@
 import React from 'react';
+import { TagsBlock } from '../Kata/TagsBlock';
 
 export const KataInstructions = () => {
   return (
@@ -23,12 +24,7 @@ export const KataInstructions = () => {
         </p>
       </div>
       <hr />
-      <div className="mt-16">
-        <i className="icon-moon icon-moon-tag "></i>
-        <div className="keyword-tag">Regular Expressions</div>
-        <div className="keyword-tag">Algorithms</div>
-        <div className="keyword-tag">Strings</div>
-      </div>
+      <TagsBlock />
     </div>
   );
 };

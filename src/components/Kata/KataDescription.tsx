@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { memo } from 'react';
+import { Link } from 'react-router-dom';
 import { KataInfo } from './KataInfo';
 import { KataLanguage } from './KataLanguage';
 
-export const KataDescription = ({ handler }: { handler: () => void }) => {
+export const KataDescription = memo(function KataDescription() {
   return (
-    <div className="kata-description">
+    <div className="kata-description section">
       <KataInfo />
-      <KataLanguage status="solved" />
-      <div className="controls">
-        <div title="Maximize editor space" onClick={handler}>
-          <div className="icon-container">
-            <i className="icon-moon icon-moon-expand "></i>
-          </div>
-        </div>
+      <KataLanguage status="trained" />
+      <div className="kata__controls">
+        <Link to="/kata/1/train" className="btn btn-fill">
+          <i className="icon-moon icon-moon-play"></i>
+          Train
+        </Link>
+        <Link to="/kata/2" className="btn">
+          <i className="icon-moon icon-moon-play"></i>
+          Next kata
+        </Link>
       </div>
     </div>
   );
-};
+});
