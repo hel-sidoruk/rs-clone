@@ -22,8 +22,8 @@ export default function AppRouter() {
         <Route path="/kata/:id/solutions" element={<KataSolutions />} />
       </Route>
       <Route path="/kata/:id/train" element={<KataTraining />} />
-      <Route path="/login" element={<Authorization />} />
-      <Route path="/registration" element={<Authorization />} />
+      <Route path="/login" element={<Authorization option="login" />} />
+      <Route path="/registration" element={<Authorization option="registration" />} />
       <Route path="/users/:id" element={<UserProfile />} />
       <Route path="/users/leaderboard" element={<Leaderboard />} />
     </Routes>
