@@ -10,6 +10,7 @@ export const KataLibrary = () => {
       <div className="library">
         <div className="library__container">
           <div className="library__header">Library</div>
+          <div className="library__found">{katas.length} Kata Found</div>
           <div className="library__filters filters">filters</div>
           <div className="library__tags">tags</div>
           <div className="library__katas katas">
