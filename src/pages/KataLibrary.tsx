@@ -1,4 +1,5 @@
 import React from 'react';
+import Filters from '../components/Filters/Filters';
 import { KataInfo } from '../components/Kata/KataInfo';
 import { TagsBlock } from '../components/Kata/TagsBlock';
 
@@ -11,7 +12,7 @@ export const KataLibrary = () => {
         <div className="library__container">
           <div className="library__header">Library</div>
           <div className="library__found">{katas.length} Kata Found</div>
-          <div className="library__filters filters">filters</div>
+          <Filters />
           <div className="library__tags">tags</div>
           <div className="library__katas katas">
             {katas.map((kata, index) => (
