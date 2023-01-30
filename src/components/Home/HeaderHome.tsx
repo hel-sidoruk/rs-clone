@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { DojoDropdown } from './DojoDropdown';
 
 export const HeaderHome = () => {
-  const [isAuth, setIsAuth] = useState(true);
+  const [isAuth, setIsAuth] = useState(false);
 
   return (
     <div className="header-home">
@@ -20,10 +20,10 @@ export const HeaderHome = () => {
           </>
         ) : (
           <div>
-            <Link to="/users/login" className="header-home__btn">
+            <Link to="/login" className="header-home__btn">
               Log in
             </Link>
-            <Link to="/users/registration" className="header-home__btn red">
+            <Link to="/registration" className="header-home__btn red">
               Join
             </Link>
           </div>

@@ -8,6 +8,7 @@ import { Sidebar } from './Sidebar';
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { pathname } = useLocation();
 
+  if (pathname === '/login' || pathname === '/registration') return <>{children}</>;
   return (
     <>
       {pathname === '/' ? (
