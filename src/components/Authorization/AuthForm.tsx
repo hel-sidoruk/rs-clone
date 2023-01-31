@@ -1,43 +1,44 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import { PasswordIcon } from '../Icons/PasswordIcon';
-import { GithubAuthButton } from './GithubAuthButton';
 
 export const AuthForm = ({ option }: { option: 'login' | 'registration' }) => {
   const isLoginPage = option === 'login';
 
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(username);
+    console.log(password);
+  };
+
   return (
-    <div className="auth__form-container">
-      <form>
-        <Link to="/" className="auth__home-link">
-          <img src="/logo-square.png" />
-        </Link>
-        <GithubAuthButton option={option} />
-        <div className="auth__line">
-          <span>OR</span>
+    <form onSubmit={handleSubmit}>
+      <div className="auth__inputs-box">
+        <div className="input-wrapper">
+          <i className="icon-moon icon-moon-user"></i>
+          <input
+            className="auth__input"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="username"
+          />
         </div>
-        <div className="auth__inputs-box">
-          <div className="input-wrapper">
-            <i className="icon-moon icon-moon-user"></i>
-            <input className="auth__input" placeholder="username" type="text" />
-          </div>
-          <div className="input-wrapper">
-            <PasswordIcon />
-            <input className="auth__input" placeholder="password" type="password" />
-          </div>
+        <div className="input-wrapper">
+          <PasswordIcon />
+          <input
+            className="auth__input"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="password"
+            type="password"
+          />
         </div>
-        <button className="auth__submit-btn" type="submit">
-          {isLoginPage ? 'Sign in' : 'Sign up'}
-        </button>
-      </form>
-      {isLoginPage && (
-        <div className="auth__registration-link">
-          <Link className="underline" to="/registration">
-            Sign up
-          </Link>
-          <span>if you don&apos;t have an account yet.</span>
-        </div>
-      )}
-    </div>
+      </div>
+      <button className={`auth__submit-btn ${isLoginPage ? 'indent' : ''}`} type="submit">
+        {isLoginPage ? 'Sign in' : 'Sign up'}
+      </button>
+    </form>
   );
 };

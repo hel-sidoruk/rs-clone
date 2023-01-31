@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { AccountAPI } from '../api/AccountAPI';
+import { AuthComponent } from '../components/Authorization/AuthComponent';
 import { AuthForm } from '../components/Authorization/AuthForm';
 
 export const Authorization = ({ option }: { option: 'login' | 'registration' }) => {
@@ -36,7 +37,7 @@ export const Authorization = ({ option }: { option: 'login' | 'registration' }) 
       {isLoading ? (
         <h1 style={{ color: '#fff', marginTop: '25px' }}>Loading...</h1>
       ) : (
-        <AuthForm option={option} />
+        <AuthComponent option={option} />
       )}
       <button className="btn" onClick={handleClick}>
         Check auth

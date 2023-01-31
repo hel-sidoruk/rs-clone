@@ -80,9 +80,11 @@
     letter-spacing: 0.2px;
     text-transform: uppercase;
     transition: background-color .2s ease-in-out;
-    margin-bottom: 24px;
     &:hover {
       background-color: #cf4b32;
+    }
+    &.indent {
+      margin-bottom: 24px;
     }
   }
   &__inputs-box {
