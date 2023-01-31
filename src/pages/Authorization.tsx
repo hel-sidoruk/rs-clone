@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { AccountAPI } from '../api/AccountAPI';
+import { AuthForm } from '../components/Authorization/AuthForm';
 
 export const Authorization = ({ option }: { option: 'login' | 'registration' }) => {
   const [params] = useSearchParams();
@@ -35,14 +36,7 @@ export const Authorization = ({ option }: { option: 'login' | 'registration' }) 
       {isLoading ? (
         <h1 style={{ color: '#fff', marginTop: '25px' }}>Loading...</h1>
       ) : (
-        <a
-          href={`https://github.com/login/oauth/authorize?client_id=${
-            option === 'login' ? 'b67da247620e2e266ba4' : 'ff8172a4250438893a45'
-          }&scope=user`}
-          className="header-home__btn"
-        >
-          {option === 'login' ? 'Sign in with Github' : 'Sign up with Github'}
-        </a>
+        <AuthForm option={option} />
       )}
       <button className="btn" onClick={handleClick}>
         Check auth

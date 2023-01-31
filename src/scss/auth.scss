@@ -4,4 +4,152 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  &__form-container {
+    width: 320px;
+    padding: 32px 24px 24px;
+    background-color: #222327;
+    border-radius: 8px;
+  }
+  &__home-link {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 56px;
+    img {
+      width: 128px;
+    }
+  }
+  &__github-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #d4d4d8;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid #3f3f46;
+    background-color: #27272a;
+    gap: 8px;
+    transition: background-color .2s ease-in-out;
+    margin-bottom: 16px;
+    svg {
+      fill: #d4d4d8;
+      width: 20px;
+      height: 20px;
+    }
+    &:hover {
+      background-color: #18181b;
+    }
+  }
+  &__line {
+    color: #71717a;
+    font-size: 14px;
+    line-height: 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    span {
+      background-color: #222327;
+      padding: 0 8px;
+      position: relative;
+      z-index: 1;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 0.6px;
+      background-color: #71717a;
+      z-index: 0;
+    }
+    margin-bottom: 16px;
+  }
+  &__submit-btn {
+    background-color: #bb432c;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    width: 100%;
+    border-radius: 8px;
+    justify-content: center;
+    color: #e4e4e7;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    transition: background-color .2s ease-in-out;
+    margin-bottom: 24px;
+    &:hover {
+      background-color: #cf4b32;
+    }
+  }
+  &__inputs-box {
+    border-radius: 6px;
+    border: 1px solid #3f3f46;
+    background-color: #27272a;
+    margin-bottom: 32px;
+    .input-wrapper {
+      display: flex;
+      position: relative;
+      align-items: center;
+      .icon-moon {
+        font-size: 16px;
+        margin-right: 0;
+        color: #a1a1aa;
+      }
+      svg {
+        width: 20px;
+        height: 20px;
+        stroke: #a1a1aa;
+      }
+      .icon-moon,
+      svg {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 12px;
+      }
+      &:first-child {
+        .auth__input {
+          border-top-left-radius: 6px;
+          border-top-right-radius: 6px;
+          border-bottom: 1px solid #3f3f46;
+        }
+      }
+      &:last-child {
+        .auth__input {
+          border-bottom-left-radius: 6px;
+          border-bottom-right-radius: 6px;
+        }
+      }
+    }
+  }
+  &__input {
+    padding: 8px 12px 8px 40px;
+    color: $light;
+    font-size: 14px;
+    line-height: 20px;
+    width: 100%;
+    outline: none;
+    &:focus {
+      outline: 2px solid #4b5563;
+    }
+  }
+  &__registration-link {
+    display: flex;
+    justify-content: center;
+    color: #c9c9c9;
+    font-size: 12px;
+    line-height: 16px;
+    .underline {
+      text-decoration: underline;
+      margin-right: 3px;
+      transition: color .2s ease-in-out;
+      &:hover {
+        color: $blue;
+      }
+    }
+  }
 }
