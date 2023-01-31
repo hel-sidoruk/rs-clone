@@ -1,0 +1,154 @@
+.library {
+  &__container {
+    display: grid;
+    margin: 0 auto; 
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: repeat(3, auto);
+    gap: 15px;
+    max-width: 1560px;
+    padding: 0 10px;
+    color: $light;
+  }
+
+  &__header {
+    grid-column: 1 / 3;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgb(177 54 30);
+    display: inline-block;
+    width: 75px;
+    justify-self: center;
+
+    i {
+      margin-right: 5px;
+    }
+  }
+
+  &__found {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+  }
+
+  &__filters {
+    grid-column: 1 / 2;
+    grid-row: 2 / 5;
+  }
+
+  &__tags {
+    grid-column: 2 / 3;
+    min-height: 66px;
+    &>span {
+      font-size: 12px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+  }
+
+  &__katas {
+    grid-column: 2 / 3;
+  }
+}
+
+.f-tags {
+ display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  &__item {
+    cursor: pointer;
+    padding: 10px 8px;
+    border-radius: 5px;
+    border: 0.5px solid $scroll;
+    transition: color 0.3s;
+    color: $grey;
+    display: flex;
+    gap: 7px;
+
+    svg {
+        fill: currentColor;
+    }
+
+    &:hover {
+      color: $blue;
+    }
+  }
+}
+
+.filters {
+  border: 1px solid $scroll;
+  border-radius: 8px;
+  padding: 14px;
+
+  &__drop-down{
+    margin-bottom: 15px;
+  }
+
+  &__search {
+    margin-bottom: 20px;
+    border: 1px solid $input-bdr;
+    width: 100%;
+    background: $input-bg;
+    height: 30px;
+    border-radius: 5px;
+    color: $input-text;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    input {
+      outline: none;
+    }
+
+    .search-icon {
+      svg {
+        transition: all 0.3s;
+      }
+    }
+    .search-icon:hover {
+      svg {
+        fill: $filters-accent;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.katas {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  &__item {
+    background: $section;
+    border-radius: 8px;
+    padding: 0 14px;
+  }
+}
+
+.drop-down {
+  &__top {
+    margin-top: 5px;
+    border: 1px solid $input-bdr;
+    background: $input-bg;
+    height: 30px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+  }
+
+  &__list {
+    padding: 14px;
+    background: $section;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $input-bdr;
+    border-radius: 5px;
+    color: $input-text;
+    display: none;
+  }
+
+  &__item {
+    padding: 10px 0;
+  }
+}
