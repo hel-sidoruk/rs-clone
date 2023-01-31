@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { AuthForm } from '../components/AuthForm';
 import { Home, KataLibrary, Kata, KataTraining, UserProfile } from '../pages';
 import { KataDiscuss } from '../pages/KataDiscuss';
 import { KataSolutions } from '../pages/KataSolutions';
@@ -17,6 +18,8 @@ export default function AppRouter() {
       <Route path="/kata/:id/train" element={<KataTraining />} />
       <Route path="/users/:id" element={<UserProfile />} />
       <Route path="/users/leaderboard" element={<Leaderboard />} />
+      <Route path="/users/login" element={<AuthForm />} />
+      <Route path="/users/registration" element={<AuthForm />} />
     </Routes>
   );
 }
