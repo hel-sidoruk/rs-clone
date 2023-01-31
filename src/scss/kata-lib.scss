@@ -59,18 +59,17 @@
     padding: 10px 8px;
     border-radius: 5px;
     border: 0.5px solid $scroll;
-    transition: all 0.2s ease-in;
-    
-    &:hover {
-      color: $blue;
-      svg {
-        fill: $blue;
-      }
-    }
+    transition: color 0.3s;
+    color: $grey;
+    display: flex;
+    gap: 7px;
 
     svg {
-      margin-right: 7px;
-      transition: all 0.2s ease-in;
+        fill: currentColor;
+    }
+
+    &:hover {
+      color: $blue;
     }
   }
 }
@@ -100,9 +99,15 @@
       outline: none;
     }
 
+    .search-icon {
+      svg {
+        transition: all 0.3s;
+      }
+    }
     .search-icon:hover {
       svg {
         fill: $filters-accent;
+        cursor: pointer;
       }
     }
   }
