@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AccountAPI } from '../../api/AccountAPI';
 import { PasswordIcon } from '../Icons/PasswordIcon';
 
 export const AuthForm = ({ option }: { option: 'login' | 'registration' }) => {
@@ -9,8 +10,9 @@ export const AuthForm = ({ option }: { option: 'login' | 'registration' }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(username);
-    console.log(password);
+    isLoginPage
+      ? AccountAPI.login({ username, password }).then(console.log)
+      : AccountAPI.registration({ username, password }).then(console.log);
   };
 
   return (

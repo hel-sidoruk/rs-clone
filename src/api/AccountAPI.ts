@@ -2,15 +2,31 @@ import jwt_decode from 'jwt-decode';
 import { AUTH_URL } from '.';
 
 export class AccountAPI {
-  static async registration() {
-    // const { data } = await $host.post('api/user/registration', { email, password, role: 'ADMIN' });
-    // localStorage.setItem('token', data.token);
-    // return jwt_decode(data.token);
+  static async registration(user: { username: string; password: string }) {
+    const data = await fetch(`${AUTH_URL}/registration`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    });
+    const { token, message } = await data.json();
+    if (!token) return { error: message };
+    localStorage.setItem('token', token);
+    return jwt_decode(token);
   }
-  static async login() {
-    // const { data } = await $host.post('api/user/login', { email, password });
-    // localStorage.setItem('token', data.token);
-    // return jwt_decode(data.token);
+  static async login(user: { username: string; password: string }) {
+    const data = await fetch(`${AUTH_URL}/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    });
+    const { token, message } = await data.json();
+    if (!token) return { error: message };
+    localStorage.setItem('token', token);
+    return jwt_decode(token);
   }
 
   static async githubRegistration(code: string) {

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { AccountAPI } from '../api/AccountAPI';
 import { AuthComponent } from '../components/Authorization/AuthComponent';
-import { AuthForm } from '../components/Authorization/AuthForm';
 
 export const Authorization = ({ option }: { option: 'login' | 'registration' }) => {
   const [params] = useSearchParams();
