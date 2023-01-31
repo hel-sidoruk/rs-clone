@@ -13,3 +13,39 @@ export interface KataInterface {
   tags: string[];
   createdBy: string;
 }
+
+export interface KataState {
+  katas: KatasById | null;
+  loading: boolean;
+  error: null | string;
+}
+
+export type KatasById = {
+  [id: string]: KataInterface;
+};
+
+export enum KatasActionTypes {
+  FETCH_KATAS = 'FETCH_KATAS',
+  FETCH_KATAS_SUCCESS = 'FETCH_KATAS_SUCCESS',
+  FETCH_KATAS_ERROR = 'FETCH_KATAS_ERROR',
+}
+
+interface FetchKatas {
+  type: KatasActionTypes.FETCH_KATAS;
+}
+
+interface FetchKatasSuccess {
+  type: KatasActionTypes.FETCH_KATAS_SUCCESS;
+  payload: {
+    katas: KatasById;
+  };
+}
+
+interface FetchKatasError {
+  type: KatasActionTypes.FETCH_KATAS_ERROR;
+  payload: {
+    error: string;
+  };
+}
+
+export type KatasAction = FetchKatas | FetchKatasSuccess | FetchKatasError;
