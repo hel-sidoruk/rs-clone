@@ -79,6 +79,7 @@
   }
   &-tag {
     margin-right: 5px;
+    color: $light;
     &::before {
       content: "\e063";
     }
