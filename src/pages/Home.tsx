@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import useTypedSelector from '../hooks/useTypedSelector';
 
 export const Home = () => {
-  const [isAuth, setIsAuth] = useState(false);
+  const { isAuthorized } = useTypedSelector((state) => state.authorizedUser);
 
   return (
     <div className="home">
@@ -15,7 +16,7 @@ export const Home = () => {
           'Improve your development skills by training with your peers on code kata that continuously\nchallenge and push your coding practice.'
         }
       </p>
-      <Link className="home__btn" to={isAuth ? '/kata' : '/login'}>
+      <Link className="home__btn" to={isAuthorized ? '/kata' : '/login'}>
         Get started
       </Link>
     </div>

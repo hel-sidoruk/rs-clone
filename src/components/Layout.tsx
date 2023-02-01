@@ -8,9 +8,10 @@ import { Sidebar } from './Sidebar';
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { pathname } = useLocation();
-  const { fetchKatas } = useActions();
+  const { fetchKatas, checkUser } = useActions();
 
   useEffect(() => {
+    checkUser();
     fetchKatas();
   }, []);
 
