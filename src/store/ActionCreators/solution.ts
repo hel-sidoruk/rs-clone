@@ -1,7 +1,11 @@
 import { ActionCreator } from 'redux';
-import { SolutionAction, UPDATE_SOLUTION } from '../reducers/solutionReducer';
+import { SolutionAction, SolutionActionsTypes } from '../reducers/solutionReducer';
 
 export const updateSolution: ActionCreator<SolutionAction> = (solution: string) => ({
-  type: UPDATE_SOLUTION,
+  type: SolutionActionsTypes.UPDATE_SOLUTION,
   solution,
+});
+
+export const startTesting: ActionCreator<SolutionAction> = () => ({
+  type: SolutionActionsTypes.START_TESTS,
 });

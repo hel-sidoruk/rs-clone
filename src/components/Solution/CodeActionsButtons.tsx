@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
 
 export const CodeActionsButtons = () => {
   const { solution } = useTypedSelector((state) => state.solution);
+  const { startTesting } = useActions();
   const startTests = () => {
+    startTesting();
     console.log(solution);
   };
   return (

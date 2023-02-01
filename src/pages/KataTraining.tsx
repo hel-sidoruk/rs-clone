@@ -6,6 +6,7 @@ import { Solution } from '../components/Solution/Solution';
 export const KataTraining = () => {
   const [isHidden, setIsHidden] = useState(false);
   const handleClick = () => setIsHidden((value) => !value);
+
   return (
     <main className={`play-view kata-training ${isHidden ? 'hidden' : ''}`}>
       {!isHidden && (
