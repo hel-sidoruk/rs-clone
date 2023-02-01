@@ -10,17 +10,18 @@ export interface SolutionState {
 export enum SolutionActionsTypes {
   UPDATE_SOLUTION = 'UPDATE_SOLUTION',
   START_TESTS = 'START_TESTS',
+  END_TESTS = 'END_TESTS',
 }
 
 interface UpdateSolutionAction {
   type: SolutionActionsTypes.UPDATE_SOLUTION;
   solution: string;
 }
-interface StartTestingAction {
-  type: SolutionActionsTypes.START_TESTS;
+interface TestingAction {
+  type: SolutionActionsTypes.START_TESTS | SolutionActionsTypes.END_TESTS;
 }
 
-export type SolutionAction = UpdateSolutionAction | StartTestingAction;
+export type SolutionAction = UpdateSolutionAction | TestingAction;
 
 export const solutionReducer = (state = initialState, action: SolutionAction): SolutionState => {
   switch (action.type) {
@@ -28,6 +29,8 @@ export const solutionReducer = (state = initialState, action: SolutionAction): S
       return { ...state, solution: action.solution };
     case SolutionActionsTypes.START_TESTS:
       return { ...state, isTestsStarted: true };
+    case SolutionActionsTypes.END_TESTS:
+      return { ...state, isTestsStarted: false };
     default:
       return state;
   }
