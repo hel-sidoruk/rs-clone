@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useTypedSelector from '../../hooks/useTypedSelector';
 
 export const CodeActionsButtons = () => {
+  const { solution } = useTypedSelector((state) => state.solution);
+  const startTests = () => {
+    console.log(solution);
+  };
   return (
     <div className="code__btns">
       <div className="code__btns-actions">
@@ -20,7 +25,9 @@ export const CodeActionsButtons = () => {
         <button className="btn btn-dark">reset</button>
       </div>
       <div className="code__btns-tests">
-        <button className="btn">test</button>
+        <button className="btn" onClick={startTests}>
+          test
+        </button>
         <button className="btn btn-fill">attempt</button>
       </div>
     </div>
