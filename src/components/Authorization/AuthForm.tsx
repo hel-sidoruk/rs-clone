@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { AccountAPI } from '../../api/AccountAPI';
+import useActions from '../../hooks/useActions';
+import useTypedSelector from '../../hooks/useTypedSelector';
 import { PasswordIcon } from '../Icons/PasswordIcon';
 
 export const AuthForm = ({ option }: { option: 'login' | 'registration' }) => {
@@ -7,12 +8,12 @@ export const AuthForm = ({ option }: { option: 'login' | 'registration' }) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { login, registration, clearError } = useActions();
+  const { authError } = useTypedSelector((state) => state.authorizedUser);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    isLoginPage
-      ? AccountAPI.login({ username, password }).then(console.log)
-      : AccountAPI.registration({ username, password }).then(console.log);
+    isLoginPage ? login({ username, password }) : registration({ username, password });
   };
 
   return (
@@ -23,7 +24,10 @@ export const AuthForm = ({ option }: { option: 'login' | 'registration' }) => {
           <input
             className="auth__input"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => {
+              setUsername(e.target.value);
+              if (authError) clearError();
+            }}
             placeholder="username"
           />
         </div>
@@ -32,13 +36,16 @@ export const AuthForm = ({ option }: { option: 'login' | 'registration' }) => {
           <input
             className="auth__input"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              if (authError) clearError();
+            }}
             placeholder="password"
             type="password"
           />
         </div>
       </div>
-      <button className={`auth__submit-btn ${isLoginPage ? 'indent' : ''}`} type="submit">
+      <button className="auth__submit-btn" type="submit">
         {isLoginPage ? 'Sign in' : 'Sign up'}
       </button>
     </form>
