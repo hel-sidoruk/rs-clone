@@ -1,8 +1,10 @@
+import { nanoid } from 'nanoid';
 import React, { useEffect, useState } from 'react';
 import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { TestsStats } from '../../types';
 import { WS_URL } from '../../utils';
+import { OutputLine } from '../UI/OutputLine';
 
 const initialOutputState = 'Your results will be shown here';
 
@@ -61,30 +63,7 @@ export const TestsOutput = () => {
         <div className="tests__text">
           {testsStats && <h2 className="tests__results">Test results: </h2>}
           {output.split('\n').map((line) => (
-            <p
-              className={`${
-                line.startsWith('-green')
-                  ? 'green'
-                  : line.startsWith('-red')
-                  ? 'red'
-                  : line.startsWith('-success')
-                  ? 'green success'
-                  : line.startsWith('-fail')
-                  ? 'red fail'
-                  : ''
-              }`}
-              key={Math.random().toString(16)}
-            >
-              {line.startsWith('-green')
-                ? line.replace('-green', '')
-                : line.startsWith('-red')
-                ? line.replace('-red', '')
-                : line.startsWith('-success')
-                ? line.replace('-success', '')
-                : line.startsWith('-fail')
-                ? line.replace('-fail', '')
-                : line}
-            </p>
+            <OutputLine key={nanoid()} line={line} />
           ))}
           {success && <div className="tests__congrats"> You have passed all of the tests! :) </div>}
         </div>
