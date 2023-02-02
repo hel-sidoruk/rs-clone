@@ -9,14 +9,14 @@ export function fetchKatas(): ThunkActionType {
       dispatch({ type: KatasActionTypes.FETCH_KATAS });
       const data = await KataAPI.getAll();
 
-      const katasById: KatasById = {};
+      const katasByID: KatasById = {};
 
       data.forEach((el) => {
-        katasById[el.id] = el;
+        katasByID[el.id] = el;
       });
       dispatch({
         type: KatasActionTypes.FETCH_KATAS_SUCCESS,
-        payload: { katasByID: katasById, katas: data },
+        payload: { katasByID, katas: data },
       });
     } catch (err) {
       dispatch({ type: KatasActionTypes.FETCH_KATAS_ERROR, payload: { error: 'Error' } });
