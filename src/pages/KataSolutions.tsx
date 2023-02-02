@@ -49,7 +49,7 @@ export const KataSolutions = () => {
           <div className="left-bar-items">
             <div className="sort">
               {checkBoxes.map((item, i) => (
-                <>
+                <span key={i}>
                   <span className={i ? 'title bottom' : 'title'}>{item.title}</span>
                   <>
                     {item.items.map((text, idx) => (
@@ -91,7 +91,7 @@ export const KataSolutions = () => {
                       </span>
                     ) : null}
                   </>
-                </>
+                </span>
               ))}
             </div>
             <div className="adds"></div>
