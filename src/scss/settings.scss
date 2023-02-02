@@ -18,14 +18,8 @@ body {
   min-width: 320px;
   font-family: 'Lato', sans-serif;
   background-color: $bg-color;
-  &::-webkit-scrollbar {
-    width: 10px;
-    background: $section;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: $scroll;
-  }
+  font-size: 14px;
+  @include scrollBar(10px);
 }
 
 button {

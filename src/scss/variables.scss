@@ -5,7 +5,7 @@ $light-blue: #7ca4e3;
 $blue-hover: #91b2e7;
 $dark: #131414;
 $section: #222327;
-$success: #5f8120;
+$success: #67b04b;
 $dark-hover: #0b0707;
 $scroll: #404040;
 $grey: #c0c0c0;
@@ -19,3 +19,14 @@ $input-bdr: #6c6c74;
 $input-bg: #1a1a1e;
 $input-text: #b6b6be;
 $filters-accent: #27bafd;
+
+@mixin scrollBar($width) {
+  &::-webkit-scrollbar {
+    width: $width;
+    background: $section;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: $scroll;
+  }
+}

@@ -13,10 +13,11 @@ export const KataInstructions = () => {
     if (katas && id) setKata(katas[id]);
   }, [katas]);
   return (
-    <div className="description">
-      <div className="markdown mb-32">
-        {kata && <p>{kata.description}</p>}
-        {/* <p>
+    <div className="kata-train__descr">
+      <div className="description">
+        <div className="markdown mb-32">
+          {kata && <p>{kata.description}</p>}
+          {/* <p>
           Complete the method/function so that it converts dash/underscore delimited words into{' '}
           <a href="https://en.wikipedia.org/wiki/Camel_case" target="_blank" rel="noreferrer">
             camel casing
@@ -33,9 +34,10 @@ export const KataInstructions = () => {
           <code>&quot;The_Stealth_Warrior&quot;</code> gets converted to{' '}
           <code>&quot;TheStealthWarrior&quot;</code>
         </p> */}
+        </div>
+        <hr />
+        <TagsBlock />
       </div>
-      <hr />
-      <TagsBlock />
     </div>
   );
 };

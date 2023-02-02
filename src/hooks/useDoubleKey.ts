@@ -14,6 +14,7 @@ const doubles: { [key: string]: string } = {
   '[': ']',
   '"': '"',
   "'": "'",
+  '`': '`',
 };
 
 export const useDoubleKey: FnType = (ref, setCaretPosition) => {
