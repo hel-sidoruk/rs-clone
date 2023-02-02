@@ -1,13 +1,15 @@
 import { nanoid } from 'nanoid';
-import React, { useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import { useTesting } from '../../hooks/useTesting';
 import useTypedSelector from '../../hooks/useTypedSelector';
+import { SUITE_END, SUITE_START } from '../../utils';
 import { OutputLine } from '../UI/OutputLine';
 import { TestStats } from './TestStats';
+import { TestSuite } from './TestSuite';
 
 const initialOutputState = 'Your results will be shown here';
 
-export const TestsOutput = () => {
+export const TestsOutput = memo(function TestsOutput() {
   const { isTestsStarted, success } = useTypedSelector((state) => state.solution);
   const [startTests, output, failure, stats] = useTesting();
 
@@ -21,13 +23,24 @@ export const TestsOutput = () => {
       <div className="tests__output">
         <div className="tests__text">
           {!output && initialOutputState}
-          {stats && <h2 className="tests__results">Test results: </h2>}
-          {output.split('\n').map((line) => (
-            <OutputLine key={nanoid()} line={line} />
-          ))}
+          {stats && <h2 className={`tests__results ${success ? '' : 'error'}`}>Test results: </h2>}
+          {output.split(SUITE_END).map((el) =>
+            el.includes(SUITE_START) ? (
+              <TestSuite key={nanoid()} suite={el} />
+            ) : (
+              <div key={nanoid()}>
+                {el
+                  .split('\n')
+                  .filter(Boolean)
+                  .map((line) => (
+                    <OutputLine key={nanoid()} line={line} />
+                  ))}
+              </div>
+            )
+          )}
           {success && <div className="tests__congrats"> You have passed all of the tests! :) </div>}
         </div>
       </div>
     </div>
   );
-};
+});

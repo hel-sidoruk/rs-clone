@@ -9,6 +9,5 @@ export interface TestsStats {
   failures: number;
   passes: number;
   pending: number;
-  suites: number;
   tests: number;
 }

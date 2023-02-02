@@ -26,7 +26,7 @@ export function useTesting(): [() => void, string, boolean, TestsStats | null] {
         return setTestsStats(JSON.parse(event.data.replace('--stats--', '')));
       if (event.data === '--success--') return setSuccess();
       if (event.data === '--failure--') return setFailure(true);
-      setOutput((state) => state + `\n${event.data}\n`);
+      setOutput((state) => state + `${event.data}\n`);
     };
 
     socket.onclose = function () {

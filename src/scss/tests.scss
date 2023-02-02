@@ -21,6 +21,9 @@
     font-size: 14px;
     color: #eaeaea;
     line-height: 18px;
+    &.error {
+      border-color: $error;
+    }
   }
   &__output {
     padding: 16px;
@@ -74,4 +77,31 @@
 }
 .green {
   color: $success;
+}
+.suite {
+  margin: 4px 0;
+  padding: 4px 0;
+  color: #eaeaea;
+  &__top {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    svg {
+      width: 16px;
+      height: 16px;
+      transition: transform .1s ease-in-out;
+    }
+  }
+  &__content {
+    display: none;
+  }
+  &.opened {
+    svg {
+      transform: rotate(90deg);
+    }
+    .suite__content {
+      padding-top: 8px;
+      display: block;
+    }
+  }
 }
