@@ -11,11 +11,11 @@ const rankColors: { [key: number]: string } = {
   1: 'purple',
 };
 
-export const Rank = ({ rank }: { rank: number }) => {
+export const Rank = ({ rank }: { rank: string }) => {
   return (
-    <div className={`rank ${rankColors[rank]}`}>
+    <div className={`rank ${rankColors[Number.parseInt(rank)]}`}>
       <div className="rank__inner">
-        <span>{rank} kyu</span>
+        <span>{rank}</span>
       </div>
     </div>
   );
