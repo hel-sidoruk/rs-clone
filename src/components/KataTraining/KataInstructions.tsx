@@ -24,7 +24,7 @@ export const KataInstructions = () => {
         </p>
       </div>
       <hr />
-      <TagsBlock />
+      <TagsBlock tags={['fundamentals', 'algorithms']} />
     </div>
   );
 };
