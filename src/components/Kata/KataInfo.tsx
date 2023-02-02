@@ -1,26 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { KataInterface } from '../../types/kata';
 import { Rank } from './Rank';
 
-export const KataInfo = () => {
+export const KataInfo = ({ data }: { data: KataInterface }) => {
   return (
     <div className="kata__info">
       <div className="kata__info-top">
-        <Rank rank={6} />
-        <h4 className="kata__info-title">Convert string to camel case</h4>
+        <Rank rank={data.rank} />
+        <h4 className="kata__info-title">
+          <Link to={`/kata/${data.id}`}>{data.name}</Link>
+        </h4>
       </div>
       <div className="kata__info-bottom">
         <span className="kata__info-text star">
           <i className="icon-moon icon-moon-star"></i>
-          2418
+          {data.totalStars}
         </span>
         <span className="kata__info-text">
           <i className="icon-moon icon-moon-bullseye"></i>
-          46,786 of 135,255
+          {`${data.totalCompleted} of ${data.totalAttempts}`}
         </span>
-        <Link to={`/users/${1}`} className="kata__info-text link">
+        <Link to={`/users/${data.createdBy}`} className="kata__info-text link">
           <i className="icon-moon icon-moon-user"></i>
-          username
+          {data.createdBy}
         </Link>
       </div>
     </div>

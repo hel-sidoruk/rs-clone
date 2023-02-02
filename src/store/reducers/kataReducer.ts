@@ -1,7 +1,8 @@
 import { KatasAction, KatasActionTypes, KataState } from '../../types/kata';
 
 const initialState: KataState = {
-  katas: null,
+  katasByID: null,
+  katas: [],
   loading: false,
   error: null,
 };
@@ -15,6 +16,7 @@ export default function kataReducer(state: KataState = initialState, action: Kat
         ...state,
         loading: false,
         katas: action.payload.katas,
+        kataByID: action.payload.katasByID,
       };
     case KatasActionTypes.FETCH_KATAS_ERROR:
       return {
