@@ -36,6 +36,7 @@ export default function AppRouter() {
           <Route path="/registration" element={<Authorization option="registration" />} />
         </>
       )}
+      {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
     </Routes>
   );
 }

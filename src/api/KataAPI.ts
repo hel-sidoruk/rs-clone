@@ -2,8 +2,8 @@ import { API_URL } from '.';
 import { KataInterface } from '../types/kata';
 
 export class KataAPI {
-  static async getAll(): Promise<KataInterface[]> {
-    const response = await fetch(`${API_URL}/kata`);
+  static async getAll(page: number): Promise<{ rows: KataInterface[]; count: number }> {
+    const response = await fetch(`${API_URL}/kata?page=${page}`);
     const data = await response.json();
     return data;
   }
