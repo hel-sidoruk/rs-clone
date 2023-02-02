@@ -17,7 +17,9 @@ export const KataList = () => {
           <TagsBlock tags={kata.tags} />
         </div>
       ))}
-      <div ref={intersectedRef}>{loading && <Loader />}</div>
+      <div className="library__loader" ref={intersectedRef}>
+        {loading && <Loader />}
+      </div>
     </div>
   );
 };

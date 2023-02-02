@@ -30,6 +30,7 @@ export default function kataReducer(state: KataState = initialState, action: Kat
     case KatasActionTypes.FETCH_NEXT_KATAS:
       return {
         ...state,
+        loading: false,
         katas: action.payload.katas,
         katasByID: action.payload.katasByID,
         page: action.payload.page,
