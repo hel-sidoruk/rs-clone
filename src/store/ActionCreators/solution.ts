@@ -13,3 +13,7 @@ export const startTesting: ActionCreator<SolutionAction> = () => ({
 export const endTesting: ActionCreator<SolutionAction> = () => ({
   type: SolutionActionsTypes.END_TESTS,
 });
+
+export const setSuccess: ActionCreator<SolutionAction> = () => ({
+  type: SolutionActionsTypes.SET_SUCCESS,
+});
