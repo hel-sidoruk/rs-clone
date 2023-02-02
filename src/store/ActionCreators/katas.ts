@@ -16,7 +16,7 @@ export function fetchKatas(): ThunkActionType {
       });
       dispatch({
         type: KatasActionTypes.FETCH_KATAS_SUCCESS,
-        payload: { katas: katasById },
+        payload: { katasByID: katasById, katas: data },
       });
     } catch (err) {
       dispatch({ type: KatasActionTypes.FETCH_KATAS_ERROR, payload: { error: 'Error' } });

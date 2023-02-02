@@ -15,7 +15,8 @@ export interface KataInterface {
 }
 
 export interface KataState {
-  katas: KatasById | null;
+  katas: KataInterface[];
+  katasByID: KatasById | null;
   loading: boolean;
   error: null | string;
 }
@@ -37,7 +38,8 @@ interface FetchKatas {
 interface FetchKatasSuccess {
   type: KatasActionTypes.FETCH_KATAS_SUCCESS;
   payload: {
-    katas: KatasById;
+    katasByID: KatasById;
+    katas: KataInterface[];
   };
 }
 
