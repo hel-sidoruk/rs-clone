@@ -4,19 +4,52 @@ import { ThunkActionType } from '../../types';
 import { KatasAction, KatasActionTypes, KatasById } from '../../types/kata';
 
 export function fetchKatas(): ThunkActionType {
-  return async (dispatch: Dispatch<KatasAction>) => {
+  return async (dispatch: Dispatch<KatasAction>, getState) => {
+    const { page } = getState().katas;
     try {
       dispatch({ type: KatasActionTypes.FETCH_KATAS });
-      const data = await KataAPI.getAll();
+      const { rows, count } = await KataAPI.getAll(page);
 
-      const katasById: KatasById = {};
+      const katasByID: KatasById = {};
+      console.log(rows);
 
-      data.forEach((el) => {
-        katasById[el.id] = el;
+      rows.forEach((el) => {
+        katasByID[el.id] = el;
       });
       dispatch({
         type: KatasActionTypes.FETCH_KATAS_SUCCESS,
-        payload: { katasByID: katasById, katas: data },
+        payload: { katasByID, katas: rows, totalCount: count },
+      });
+    } catch (err) {
+      dispatch({ type: KatasActionTypes.FETCH_KATAS_ERROR, payload: { error: 'Error' } });
+    }
+  };
+}
+
+export function fetchNextKatas(): ThunkActionType {
+  return async (dispatch: Dispatch<KatasAction>, getState) => {
+    const { page, katas, katasByID, totalCount } = getState().katas;
+    if (page > totalCount / 10) return;
+    const nextPage = page + 1;
+    try {
+      console.log('PAGE: ', page);
+      dispatch({ type: KatasActionTypes.FETCH_KATAS });
+      console.log('NEXT PAGE: ', nextPage);
+      const { rows } = await KataAPI.getAll(nextPage);
+
+      const katasById: KatasById = {};
+      console.log(rows);
+
+      rows.forEach((el) => {
+        katasById[el.id] = el;
+      });
+      dispatch({
+        type: KatasActionTypes.FETCH_NEXT_KATAS,
+        payload: {
+          katasByID: { ...katasByID, ...katasById },
+          katas: [...katas, ...rows],
+          page: nextPage,
+        },
       });
     } catch (err) {
       dispatch({ type: KatasActionTypes.FETCH_KATAS_ERROR, payload: { error: 'Error' } });
