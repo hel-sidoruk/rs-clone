@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import useTypedSelector from '../../hooks/useTypedSelector';
 import { KataInstructions } from './KataInstructions';
 import { PastSolutions } from './PastSolutions';
 import { TestsOutput } from './TestsOutput';
@@ -13,10 +14,15 @@ interface Props {
 
 export const KataTrainingInfo = ({ solved, handler, isHidden }: Props) => {
   const [active, setActive] = useState(options[0]);
+  const { isTestsStarted } = useTypedSelector((state) => state.solution);
 
   const getClassname = (i: number) => {
     return `controls__btn ${active === options[i] ? 'active' : ''}`;
   };
+
+  useEffect(() => {
+    if (isTestsStarted) setActive(options[1]);
+  }, [isTestsStarted]);
 
   return (
     <div className="kata-train__info">
@@ -39,7 +45,7 @@ export const KataTrainingInfo = ({ solved, handler, isHidden }: Props) => {
           </button>
         )}
       </div>
-      <div className={`kata-train__descr ${active === options[1] ? 'output' : ''}`}>
+      <>
         {active === options[0] ? (
           <KataInstructions />
         ) : active === options[1] ? (
@@ -47,7 +53,7 @@ export const KataTrainingInfo = ({ solved, handler, isHidden }: Props) => {
         ) : (
           <PastSolutions />
         )}
-      </div>
+      </>
     </div>
   );
 };

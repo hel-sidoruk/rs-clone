@@ -1,7 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useActions from '../../hooks/useActions';
+import useTypedSelector from '../../hooks/useTypedSelector';
 
 export const CodeActionsButtons = () => {
+  const { startTesting } = useActions();
+  const { isTestsStarted, success, solution } = useTypedSelector((state) => state.solution);
+  const startTests = () => {
+    if (!solution) return;
+    startTesting();
+  };
   return (
     <div className="code__btns">
       <div className="code__btns-actions">
@@ -19,9 +27,13 @@ export const CodeActionsButtons = () => {
         </Link>
         <button className="btn btn-dark">reset</button>
       </div>
-      <div className="code__btns-tests">
-        <button className="btn">test</button>
-        <button className="btn btn-fill">attempt</button>
+      <div className={`code__btns-tests ${isTestsStarted ? 'disabled' : ''}`}>
+        <button className="btn" onClick={startTests}>
+          test
+        </button>
+        <button className={`btn btn-fill ${success ? 'success' : ''}`}>
+          {success ? 'submit' : 'attempt'}
+        </button>
       </div>
     </div>
   );
