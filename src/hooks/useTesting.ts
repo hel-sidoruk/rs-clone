@@ -18,7 +18,7 @@ export function useTesting(): [() => void, string, boolean, TestsStats | null] {
     socket.onopen = function () {
       setFailure(false);
       setOutput('');
-      socket.send(solution);
+      socket.send(JSON.stringify({ functionName: 'simpleMultiplication', solution }));
     };
 
     socket.onmessage = function (event) {

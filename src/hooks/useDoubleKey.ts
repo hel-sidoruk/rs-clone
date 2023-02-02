@@ -3,8 +3,6 @@ import useTypedSelector from './useTypedSelector';
 
 type FnType = (
   ref: React.RefObject<HTMLTextAreaElement>,
-  // value: string,
-  // setValue: (s: string) => void,
   setPosition: (n: number) => void
 ) => [(s: string) => void];
 

@@ -6,8 +6,6 @@ import useTypedSelector from './useTypedSelector';
 
 type FnType = (
   ref: React.RefObject<HTMLTextAreaElement>,
-  // value: string,
-  // setValue: (s: string) => void,
   setPosition: (n: number) => void
 ) => [number, (e: React.KeyboardEvent<HTMLTextAreaElement>) => void];
 
@@ -17,9 +15,13 @@ export const useKeyPress: FnType = (ref, setCaretPosition) => {
   const [rowsCount, setRowsCount] = useState(3);
 
   const { solution } = useTypedSelector((state) => state.solution);
-  const { updateSolution } = useActions();
+  const { updateSolution, startTesting } = useActions();
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 's' && e.ctrlKey && solution) {
+      e.preventDefault();
+      startTesting();
+    }
     if (['Tab', 'Enter', '{', '(', '[', '"', "'", '`'].includes(e.key)) {
       e.preventDefault();
       e.key !== 'Enter' && doubleKey(e.key);

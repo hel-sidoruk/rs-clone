@@ -5,8 +5,9 @@ import useTypedSelector from '../../hooks/useTypedSelector';
 
 export const CodeActionsButtons = () => {
   const { startTesting } = useActions();
-  const { isTestsStarted, success } = useTypedSelector((state) => state.solution);
+  const { isTestsStarted, success, solution } = useTypedSelector((state) => state.solution);
   const startTests = () => {
+    if (!solution) return;
     startTesting();
   };
   return (
