@@ -17,6 +17,14 @@
   .btn-text {
     margin-left: 8px;
   }
+  &.success {
+    background-color: $success-btn;
+    border-color: $success-btn;
+    &:hover {
+      background-color: $success-btn;
+      filter: brightness(1.2);
+    }
+  }
 }
 .btn-fill {
   background-color: $blue;

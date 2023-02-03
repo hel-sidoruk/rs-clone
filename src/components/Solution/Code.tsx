@@ -1,18 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import useActions from '../../hooks/useActions';
 import { useCaretPosition } from '../../hooks/useCaretPosition';
 import { useKeyPress } from '../../hooks/useKeyPress';
+import useTypedSelector from '../../hooks/useTypedSelector';
 import { getInitialFunction } from '../../utils';
 import { CodeLineCounter } from './CodeLineCounter';
 
 export const Code = ({ functionName, fnArgs }: { functionName: string; fnArgs: string }) => {
-  const [value, setValue] = useState(getInitialFunction(functionName, fnArgs));
   const [textAreaRef, updateCaret, setCaretPosition] = useCaretPosition();
-  const [rowsCount, handleKeyDown] = useKeyPress(textAreaRef, value, setValue, setCaretPosition);
+  const [rowsCount, handleKeyDown] = useKeyPress(textAreaRef, setCaretPosition);
+  const { updateSolution } = useActions();
+  const { solution } = useTypedSelector((state) => state.solution);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setValue(e.target.value);
+    updateSolution(e.target.value);
     updateCaret();
   };
+
+  useEffect(() => {
+    updateSolution(getInitialFunction(functionName, fnArgs));
+  }, []);
 
   return (
     <div className="code">
@@ -21,7 +28,7 @@ export const Code = ({ functionName, fnArgs }: { functionName: string; fnArgs: s
         className="code__editor"
         ref={textAreaRef}
         onKeyDown={handleKeyDown}
-        value={value}
+        value={solution}
         onChange={handleChange}
       />
     </div>

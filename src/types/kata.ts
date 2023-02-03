@@ -15,9 +15,12 @@ export interface KataInterface {
 }
 
 export interface KataState {
-  katas: KatasById | null;
+  katas: KataInterface[];
+  katasByID: KatasById | null;
   loading: boolean;
   error: null | string;
+  totalCount: number;
+  page: number;
 }
 
 export type KatasById = {
@@ -28,6 +31,7 @@ export enum KatasActionTypes {
   FETCH_KATAS = 'FETCH_KATAS',
   FETCH_KATAS_SUCCESS = 'FETCH_KATAS_SUCCESS',
   FETCH_KATAS_ERROR = 'FETCH_KATAS_ERROR',
+  FETCH_NEXT_KATAS = 'FETCH_NEXT_KATAS',
 }
 
 interface FetchKatas {
@@ -37,7 +41,9 @@ interface FetchKatas {
 interface FetchKatasSuccess {
   type: KatasActionTypes.FETCH_KATAS_SUCCESS;
   payload: {
-    katas: KatasById;
+    katasByID: KatasById;
+    katas: KataInterface[];
+    totalCount: number;
   };
 }
 
@@ -48,4 +54,12 @@ interface FetchKatasError {
   };
 }
 
-export type KatasAction = FetchKatas | FetchKatasSuccess | FetchKatasError;
+interface FetchNextKatas {
+  type: KatasActionTypes.FETCH_NEXT_KATAS;
+  payload: {
+    katasByID: KatasById;
+    katas: KataInterface[];
+    page: number;
+  };
+}
+export type KatasAction = FetchKatas | FetchKatasSuccess | FetchKatasError | FetchNextKatas;

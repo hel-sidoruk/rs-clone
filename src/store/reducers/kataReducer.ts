@@ -1,9 +1,12 @@
 import { KatasAction, KatasActionTypes, KataState } from '../../types/kata';
 
 const initialState: KataState = {
-  katas: null,
+  katasByID: null,
+  katas: [],
   loading: false,
   error: null,
+  totalCount: 0,
+  page: 1,
 };
 
 export default function kataReducer(state: KataState = initialState, action: KatasAction) {
@@ -15,12 +18,22 @@ export default function kataReducer(state: KataState = initialState, action: Kat
         ...state,
         loading: false,
         katas: action.payload.katas,
+        katasByID: action.payload.katasByID,
+        totalCount: action.payload.totalCount,
       };
     case KatasActionTypes.FETCH_KATAS_ERROR:
       return {
         ...state,
         loading: false,
         error: action.payload.error,
+      };
+    case KatasActionTypes.FETCH_NEXT_KATAS:
+      return {
+        ...state,
+        loading: false,
+        katas: action.payload.katas,
+        katasByID: action.payload.katasByID,
+        page: action.payload.page,
       };
     default:
       return state;

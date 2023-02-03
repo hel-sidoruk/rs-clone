@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import useTypedSelector from '../hooks/useTypedSelector';
 import {
   Authorization,
@@ -36,7 +36,7 @@ export default function AppRouter() {
           <Route path="/registration" element={<Authorization option="registration" />} />
         </>
       )}
-      {/*<Route path="*" element={<Navigate to="/" replace />} />*/}
+      {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
     </Routes>
   );
 }
