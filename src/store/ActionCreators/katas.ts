@@ -11,7 +11,6 @@ export function fetchKatas(): ThunkActionType {
       const { rows, count } = await KataAPI.getAll(page);
 
       const katasByID: KatasById = {};
-      console.log(rows);
 
       rows.forEach((el) => {
         katasByID[el.id] = el;
@@ -32,13 +31,10 @@ export function fetchNextKatas(): ThunkActionType {
     if (page > totalCount / 10) return;
     const nextPage = page + 1;
     try {
-      console.log('PAGE: ', page);
       dispatch({ type: KatasActionTypes.FETCH_KATAS });
-      console.log('NEXT PAGE: ', nextPage);
       const { rows } = await KataAPI.getAll(nextPage);
 
       const katasById: KatasById = {};
-      console.log(rows);
 
       rows.forEach((el) => {
         katasById[el.id] = el;
