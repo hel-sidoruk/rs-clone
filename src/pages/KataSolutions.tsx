@@ -23,7 +23,6 @@ export const KataSolutions = () => {
       title: 'View',
       items: ['All', 'Following', 'Mine'],
       inv: {
-        className: 'check-box square',
         text: 'Invalidated',
         title: 'Apply the view to invalidated solutions',
       },
@@ -94,18 +93,172 @@ export const KataSolutions = () => {
                 </span>
               ))}
             </div>
-            <div className="adds"></div>
-            <div className="adds"></div>
+            <div className="adds">
+              <a
+                href="https://www.codewars.com/post/8-reasons-why-codewarriors-practice-coding-with-codewars"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="image">
+                  <img
+                    src="https://uploads-ssl.webflow.com/62e95dddfb380a0e61193e7d/6363e7db70db732290fa3db6_logo-256.png"
+                    alt="some-cw-image"
+                  />
+                </span>
+                <span className="info">
+                  <span className="title">
+                    8 Reasons Why Codewarriors Practice Coding with Codewars
+                  </span>
+                  <span>
+                    Not everyone trains the same. Discover new ways to leverage Codewars in your
+                    education and career.
+                  </span>
+                </span>
+              </a>
+            </div>
+            <div className="adds">
+              <a
+                href="https://www.codewars.com/post/10-traits-employers-look-for-when-hiring-software-engineers"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="image">
+                  <img
+                    src="https://uploads-ssl.webflow.com/62e95dddfb380a0e61193e7d/6397a637b0034f276c24d9fe_62f25d9703388a1bef8320f8_62d5c7124ddf80d307192793_AdobeStock_164314960%2520(1)-p-2600%201.png"
+                    alt="some-cw-image"
+                  />
+                </span>
+                <span className="info">
+                  <span className="title">
+                    10 Traits Employers Look for When Hiring Software Engineers
+                  </span>
+                  <span>
+                    Codewars CEO Jake Hoffner breaks down the 10 traits he looks for in software
+                    engineers.
+                  </span>
+                </span>
+              </a>
+            </div>
           </div>
         </div>
         <div className="results">
-          <div className="result"></div>
-          <div className="result"></div>
-          <div className="result"></div>
-          <div className="result"></div>
-          <div className="result"></div>
-          <div className="result"></div>
-          <div className="result"></div>
+          <div className="result">
+            <div className="head">
+              <h6>
+                <i className="icon-moon-users icon-moon"></i>
+                <a className="font-semibold" href="/users/Pashabn">
+                  Pashabn
+                </a>{' '}
+                <span>, </span>
+                <a className="font-semibold" href="/users/HelSidoruk">
+                  HelSidoruk
+                </a>{' '}
+                <span>, </span>
+              </h6>
+            </div>
+            <pre className="code-area">
+              <code data-language="javascript">
+                {/*  <span className="cm-keyword">class</span> <span*/}
+                {/*    className="cm-def">MarioAdapter</span> {*/}
+                {/*  <span className="cm-property">constructor</span>(<span className="cm-def">mario</span>) {*/}
+                {/*    <span className="cm-keyword">this</span>.<span className="cm-property">mario</span> <span className="cm-operator">=</span> <span className="cm-variable-2">mario</span>;*/}
+                {/*}*/}
+
+                {/*    <span className="cm-property">attack</span>(<span className="cm-def">target</span>) {*/}
+                {/*    <span className="cm-variable-2">target</span>.<span className="cm-property">health</span> <span className="cm-operator">-=</span> <span className="cm-keyword">this</span>.<span className="cm-property">mario</span>.<span className="cm-property">jumpAttack</span>();*/}
+                {/*}*/}
+                {/*}*/}
+              </code>
+            </pre>
+            <div className="similar-items">
+              <div className="similar">
+                1 similar code variation is grouped with this one
+                <i
+                  className="icon-moon-info ml-1 icon-moon"
+                  title="We group similar results by ignoring whitespace, linebreaks and very minor character variations."
+                ></i>
+              </div>
+              <button className="button">Show Variations</button>
+            </div>
+          </div>
+          <div className="result">
+            <div className="head">
+              <h6>
+                <i className="icon-moon-users icon-moon"></i>
+                <a className="font-semibold" href="/users/Pashabn">
+                  Pashabn
+                </a>{' '}
+                <span>, </span>
+                <a className="font-semibold" href="/users/HelSidoruk">
+                  HelSidoruk
+                </a>{' '}
+                <span>, </span>
+              </h6>
+            </div>
+            <pre className="code-area">
+              <code data-language="javascript">
+                {/*  <span className="cm-keyword">class</span> <span*/}
+                {/*    className="cm-def">MarioAdapter</span> {*/}
+                {/*  <span className="cm-property">constructor</span>(<span className="cm-def">mario</span>) {*/}
+                {/*    <span className="cm-keyword">this</span>.<span className="cm-property">mario</span> <span className="cm-operator">=</span> <span className="cm-variable-2">mario</span>;*/}
+                {/*}*/}
+
+                {/*    <span className="cm-property">attack</span>(<span className="cm-def">target</span>) {*/}
+                {/*    <span className="cm-variable-2">target</span>.<span className="cm-property">health</span> <span className="cm-operator">-=</span> <span className="cm-keyword">this</span>.<span className="cm-property">mario</span>.<span className="cm-property">jumpAttack</span>();*/}
+                {/*}*/}
+                {/*}*/}
+              </code>
+            </pre>
+            <div className="similar-items">
+              <div className="similar">
+                1 similar code variation is grouped with this one
+                <i
+                  className="icon-moon-info ml-1 icon-moon"
+                  title="We group similar results by ignoring whitespace, linebreaks and very minor character variations."
+                ></i>
+              </div>
+              <button className="button">Show Variations</button>
+            </div>
+          </div>
+          <div className="result">
+            <div className="head">
+              <h6>
+                <i className="icon-moon-users icon-moon"></i>
+                <a className="font-semibold" href="/users/Pashabn">
+                  Pashabn
+                </a>{' '}
+                <span>, </span>
+                <a className="font-semibold" href="/users/HelSidoruk">
+                  HelSidoruk
+                </a>{' '}
+                <span>, </span>
+              </h6>
+            </div>
+            <pre className="code-area">
+              <code data-language="javascript">
+                {/*  <span className="cm-keyword">class</span> <span*/}
+                {/*    className="cm-def">MarioAdapter</span> {*/}
+                {/*  <span className="cm-property">constructor</span>(<span className="cm-def">mario</span>) {*/}
+                {/*    <span className="cm-keyword">this</span>.<span className="cm-property">mario</span> <span className="cm-operator">=</span> <span className="cm-variable-2">mario</span>;*/}
+                {/*}*/}
+
+                {/*    <span className="cm-property">attack</span>(<span className="cm-def">target</span>) {*/}
+                {/*    <span className="cm-variable-2">target</span>.<span className="cm-property">health</span> <span className="cm-operator">-=</span> <span className="cm-keyword">this</span>.<span className="cm-property">mario</span>.<span className="cm-property">jumpAttack</span>();*/}
+                {/*}*/}
+                {/*}*/}
+              </code>
+            </pre>
+            <div className="similar-items">
+              <div className="similar">
+                1 similar code variation is grouped with this one
+                <i
+                  className="icon-moon-info ml-1 icon-moon"
+                  title="We group similar results by ignoring whitespace, linebreaks and very minor character variations."
+                ></i>
+              </div>
+              <button className="button">Show Variations</button>
+            </div>
+          </div>
         </div>
       </div>
     </>
