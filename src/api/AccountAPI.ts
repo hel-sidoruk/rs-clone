@@ -1,63 +1,41 @@
-import jwt_decode from 'jwt-decode';
-import { AUTH_URL } from '.';
-
-type ApiResponse = Promise<{ username?: string; error?: string }>;
+import { API_URL } from '.';
+import { AccountInterface } from '../types';
 
 export class AccountAPI {
-  static async registration(user: { username: string; password: string }): ApiResponse {
-    const data = await fetch(`${AUTH_URL}/registration`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(user),
-    });
-    const { token, message } = await data.json();
-    if (!token) return { error: message };
-    localStorage.setItem('token', token);
-    return jwt_decode(token);
-  }
-  static async login(user: { username: string; password: string }): ApiResponse {
-    const data = await fetch(`${AUTH_URL}/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(user),
-    });
-    const { token, message } = await data.json();
-    if (!token) return { error: message };
-    localStorage.setItem('token', token);
-    return jwt_decode(token);
-  }
-
-  static async githubRegistration(code: string): ApiResponse {
-    const url = `${AUTH_URL}/github-registration`;
-    const data = await fetch(`${url}?code=${code}&option=registration`);
-    const { token, message } = await data.json();
-    if (!token) return { error: message };
-    localStorage.setItem('token', token);
-    return jwt_decode(token);
-  }
-
-  static async githubLogin(code: string): ApiResponse {
-    const url = `${AUTH_URL}/github-login`;
-    const data = await fetch(`${url}?code=${code}&option=login`);
-    const { token, message } = await data.json();
-    if (!token) return { error: message };
-    localStorage.setItem('token', token);
-    return jwt_decode(token);
-  }
-
-  static async check(): ApiResponse {
+  static async getInfo(): Promise<AccountInterface | { error?: string }> {
     const savedToken = localStorage.getItem('token');
     if (!savedToken) return { error: 'No token found' };
-    const data = await fetch(`${AUTH_URL}/check`, {
+    const data = await fetch(`${API_URL}/account`, {
       headers: { Authorization: `Bearer ${savedToken}` },
     });
-    const { token, message } = await data.json();
-    if (!token) return { error: message };
-    localStorage.setItem('token', token);
-    return jwt_decode(token);
+    const info = await data.json();
+    if (info.message) return { error: info.message };
+    return info;
+  }
+
+  static async addTrainedKata(kataId: string): Promise<{ status?: string; error?: string }> {
+    const savedToken = localStorage.getItem('token');
+    if (!savedToken) return { error: 'No token found' };
+    const data = await fetch(`${API_URL}/account/trained`, {
+      method: 'PATCH',
+      headers: { Authorization: `Bearer ${savedToken}` },
+      body: JSON.stringify({ kataId }),
+    });
+    const { status, message } = await data.json();
+    if (message) return { error: message };
+    return { status };
+  }
+
+  static async addSolvedKata(kataId: string): Promise<{ status?: string; error?: string }> {
+    const savedToken = localStorage.getItem('token');
+    if (!savedToken) return { error: 'No token found' };
+    const data = await fetch(`${API_URL}/account/solved`, {
+      method: 'PATCH',
+      headers: { Authorization: `Bearer ${savedToken}` },
+      body: JSON.stringify({ kataId }),
+    });
+    const { status, message } = await data.json();
+    if (message) return { error: message };
+    return { status };
   }
 }
