@@ -7,12 +7,24 @@ const TopTags = () => {
         <i className="icon-moon-tag icon-moon colored"></i>
         Top Tags:
       </div>
-      <div>Fundamentals:112</div>
-      <div>Mathematics:47</div>
-      <div>Algorithms:37</div>
-      <div>Strings:30</div>
-      <div>Puzzles:9</div>
-      <div>Arrays:6</div>
+      <div>
+        <span>Fundamentals: </span>112
+      </div>
+      <div>
+        <span>Mathematics: </span>47
+      </div>
+      <div>
+        <span>Algorithms: </span>37
+      </div>
+      <div>
+        <span>Strings: </span>30
+      </div>
+      <div>
+        <span>Puzzles: </span>9
+      </div>
+      <div>
+        <span>Arrays: </span>6
+      </div>
     </div>
   );
 };
