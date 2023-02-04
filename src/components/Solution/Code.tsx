@@ -26,24 +26,7 @@ export const Code = ({ functionName, fnArgs }: { functionName: string; fnArgs: s
     <div className="code">
       <CodeLineCounter rowsCount={rowsCount} />
       <div className="code__editor-wrapper">
-        <CodeHighlight text={solution} />
-        {/* {solution.split(' ').map((word) =>
-          operators.includes(word) ? (
-            <span className="purple-text" key={nanoid()}>
-              {word}{' '}
-            </span>
-          ) : word.match(/'.*'/) ? (
-            <span className="green-text" key={nanoid()}>
-              {word}{' '}
-            </span>
-          ) : word.match(/\d/) ? (
-            <span className="orange-text" key={nanoid()}>
-              {word}{' '}
-            </span>
-          ) : (
-            <span key={nanoid()}>{word} </span>
-          )
-        )} */}
+        <CodeHighlight className="language-javascript">{solution}</CodeHighlight>
         <textarea
           className="code__editor"
           ref={textAreaRef}
