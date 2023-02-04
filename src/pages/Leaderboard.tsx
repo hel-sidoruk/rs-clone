@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import FakeAvatar from '../components/Icons/FakeAvatar';
 import { Rank } from '../components/Kata/Rank';
 import useActions from '../hooks/useActions';
 import useTypedSelector from '../hooks/useTypedSelector';
@@ -17,7 +19,7 @@ export const Leaderboard = () => {
       <div className="leader__container">
         <div className="leader__tab">Overall</div>
         <div className="leader__list leader-table">
-          <div>
+          <div className="leader-table__text">
             {`A user's honor is determined by earning higher ranks (dan/kyu) as well as through other
             activities such as getting up votes on kata, solutions and comments that they create.
             Certain activities are worth more honor than others. For example publishing a kata is
@@ -35,7 +37,12 @@ export const Leaderboard = () => {
               <div className="leader-table__td leader-table__td_position">#{index + 1}</div>
               <div className="leader-table__td">
                 <Rank rank={user.rank}></Rank>
-                {user.username}
+                <Link className="leader-table__link" to={`/users/${user.id}`}>
+                  <div className="leader-table__avatar">
+                    <FakeAvatar />
+                  </div>
+                  <div className="leader-table__username">{user.username}</div>
+                </Link>
               </div>
               <td className="leader-table__td">{user.clan}</td>
               <td className="leader-table__td">{user.honor}</td>

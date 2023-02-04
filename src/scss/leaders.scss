@@ -20,17 +20,12 @@
 }
 
 .leader-table {
-  padding: 13px;
-
-}
-
-.leader-table {
   background: $section;
   border-radius: 10px;
   padding: 15px;
+  line-height: 1.6;
 
   &__header {
-    margin-bottom: 10px;
     display: flex;
     padding: 10px;
     &>div {
@@ -47,6 +42,33 @@
     }
   }
 
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.5s;
+
+    svg {
+      color: $blue;
+      fill: currentColor;
+      transition: all 0.5s;
+    }
+
+    &:hover {
+      svg {
+        fill: $filters-accent;
+      }
+      .leader-table__username {
+        color:  $filters-accent;
+      }
+    }
+  }
+
+
+  &__username {
+    transition: all 0.5s;
+  }
+
   &__header, 
   &__tr {
     display: grid;
@@ -56,7 +78,7 @@
   }
 
   &__tr {
-    padding: 10px;
+    padding: 5px;
     &:not(:last-child) {
       border-bottom: 1px solid #ffffff20;
     }
