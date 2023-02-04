@@ -21,3 +21,13 @@ export interface AccountInterface {
   solvedKatas: string[];
   trainedKatas: string[];
 }
+
+export interface SolutionInterface {
+  id: string;
+  kataId: string;
+  username: string;
+  solution: string;
+  createdAt: string;
+  cleverVotes: number;
+  bestPracticesVotes: number;
+}
