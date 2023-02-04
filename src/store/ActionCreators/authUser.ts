@@ -1,11 +1,11 @@
 import { Dispatch } from 'redux';
-import { AccountAPI } from '../../api/AccountAPI';
+import { AuthAPI } from '../../api/AuthAPI';
 import { ThunkActionType } from '../../types';
 import { AuthUserAction, AuthUserActionTypes } from '../../types/authUser';
 
 export function checkUser(): ThunkActionType {
   return async (dispatch: Dispatch<AuthUserAction>) => {
-    const { username } = await AccountAPI.check();
+    const { username } = await AuthAPI.check();
     if (username)
       dispatch({
         type: AuthUserActionTypes.SET_USER_SUCCESS,
@@ -27,7 +27,7 @@ export const clearError = (): ThunkActionType => (dispatch: Dispatch<AuthUserAct
 export function login(user: { username: string; password: string }): ThunkActionType {
   return async (dispatch: Dispatch<AuthUserAction>) => {
     dispatch({ type: AuthUserActionTypes.SET_USER });
-    const { username, error } = await AccountAPI.login(user);
+    const { username, error } = await AuthAPI.login(user);
     if (username)
       dispatch({
         type: AuthUserActionTypes.SET_USER_SUCCESS,
@@ -40,7 +40,7 @@ export function login(user: { username: string; password: string }): ThunkAction
 export function registration(user: { username: string; password: string }): ThunkActionType {
   return async (dispatch: Dispatch<AuthUserAction>) => {
     dispatch({ type: AuthUserActionTypes.SET_USER });
-    const { username, error } = await AccountAPI.registration(user);
+    const { username, error } = await AuthAPI.registration(user);
     if (username)
       dispatch({
         type: AuthUserActionTypes.SET_USER_SUCCESS,
@@ -54,7 +54,7 @@ export function registration(user: { username: string; password: string }): Thun
 export function githubLogin(code: string): ThunkActionType {
   return async (dispatch: Dispatch<AuthUserAction>) => {
     dispatch({ type: AuthUserActionTypes.SET_USER });
-    const { username, error } = await AccountAPI.githubLogin(code);
+    const { username, error } = await AuthAPI.githubLogin(code);
     if (username)
       dispatch({
         type: AuthUserActionTypes.SET_USER_SUCCESS,
@@ -67,7 +67,7 @@ export function githubLogin(code: string): ThunkActionType {
 export function githubRegistration(code: string): ThunkActionType {
   return async (dispatch: Dispatch<AuthUserAction>) => {
     dispatch({ type: AuthUserActionTypes.SET_USER });
-    const { username, error } = await AccountAPI.githubRegistration(code);
+    const { username, error } = await AuthAPI.githubRegistration(code);
     if (username)
       dispatch({
         type: AuthUserActionTypes.SET_USER_SUCCESS,
