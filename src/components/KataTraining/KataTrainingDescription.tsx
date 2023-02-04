@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import useTypedSelector from '../../hooks/useTypedSelector';
+import { KataAPI } from '../../api';
 import { KataInterface } from '../../types/kata';
 import { KataInfo } from '../Kata/KataInfo';
 import { KataLanguage } from '../Kata/KataLanguage';
@@ -8,10 +8,10 @@ import { KataLanguage } from '../Kata/KataLanguage';
 export const KataTrainingDescription = ({ handler }: { handler: () => void }) => {
   const [kata, setKata] = useState<KataInterface | null>(null);
   const { id } = useParams();
-  const { katasByID } = useTypedSelector((state) => state.katas);
+
   useEffect(() => {
-    if (katasByID && id) setKata(katasByID[id]);
-  }, [katasByID, id]);
+    if (id) KataAPI.getOne(id).then(setKata);
+  }, []);
 
   return (
     <div className="kata-description">
