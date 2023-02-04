@@ -2,7 +2,7 @@ import { API_URL } from '.';
 import { SolutionInterface } from '../types';
 
 export class SolutionsAPI {
-  static async getSolutions(kataId: string): Promise<SolutionInterface> {
+  static async getSolutions(kataId: string): Promise<SolutionInterface[]> {
     const response = await fetch(`${API_URL}/kata/${kataId}/solutions`);
     const data = await response.json();
     return data;
