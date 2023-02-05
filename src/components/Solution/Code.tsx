@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import useActions from '../../hooks/useActions';
 import { useCaretPosition } from '../../hooks/useCaretPosition';
 import { useKeyPress } from '../../hooks/useKeyPress';
 import useTypedSelector from '../../hooks/useTypedSelector';
-import { getInitialFunction } from '../../utils';
+// import { getInitialFunction } from '../../utils';
 import { CodeHighlight } from './CodeHighlight';
 import { CodeLineCounter } from './CodeLineCounter';
 
-export const Code = ({ functionName, fnArgs }: { functionName: string; fnArgs: string }) => {
+export const Code = () => {
   const [textAreaRef, updateCaret, setCaretPosition] = useCaretPosition();
   const [rowsCount, handleKeyDown] = useKeyPress(textAreaRef, setCaretPosition);
   const { updateSolution } = useActions();
@@ -18,16 +18,17 @@ export const Code = ({ functionName, fnArgs }: { functionName: string; fnArgs: s
     updateCaret();
   };
 
-  useEffect(() => {
-    updateSolution(getInitialFunction(functionName, fnArgs));
-  }, []);
+  // useEffect(() => {
+  //   updateSolution(getInitialFunction(functionName, fnArgs));
+  // }, []);
 
   return (
     <div className="code">
       <CodeLineCounter rowsCount={rowsCount} />
       <div className="code__editor-wrapper">
-        <CodeHighlight className="language-javascript">{solution}</CodeHighlight>
+        <CodeHighlight>{solution}</CodeHighlight>
         <textarea
+          spellCheck="false"
           className="code__editor"
           ref={textAreaRef}
           onKeyDown={handleKeyDown}

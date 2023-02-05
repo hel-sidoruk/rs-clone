@@ -4,7 +4,7 @@ import { WS_URL } from '../utils';
 import useActions from './useActions';
 import useTypedSelector from './useTypedSelector';
 
-export function useTesting(): [() => void, string, boolean, TestsStats | null] {
+export function useTesting(kataId: string): [() => void, string, boolean, TestsStats | null] {
   const [output, setOutput] = useState('');
   const [failure, setFailure] = useState(false);
   const [testsStats, setTestsStats] = useState<TestsStats | null>(null);
@@ -18,7 +18,7 @@ export function useTesting(): [() => void, string, boolean, TestsStats | null] {
     socket.onopen = function () {
       setFailure(false);
       setOutput('');
-      socket.send(JSON.stringify({ functionName: 'simpleMultiplication', solution }));
+      socket.send(JSON.stringify({ kataId, solution }));
     };
 
     socket.onmessage = function (event) {
