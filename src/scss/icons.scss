@@ -13,6 +13,7 @@
     }
   }
   &-compare {
+    margin-right: 5px;
     &::before {
       content: "\f0ac";
     }
@@ -128,6 +129,14 @@
     color: #bb432c;
     &::before {
       content: "\e061";
+    }
+  }
+
+  &-share {
+    margin-right: 5px;
+    font-size: 50px;
+    &::before {
+      content: "\e600";
     }
   }
 }
