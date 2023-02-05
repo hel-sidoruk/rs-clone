@@ -47,7 +47,9 @@ export const KataTrainingInfo = ({ solved, handler, isHidden }: Props) => {
       </div>
       <>
         {active === options[0] ? (
-          <KataInstructions />
+          <div className="kata-train__descr">
+            <KataInstructions />
+          </div>
         ) : active === options[1] ? (
           <TestsOutput />
         ) : (

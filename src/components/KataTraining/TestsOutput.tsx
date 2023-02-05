@@ -6,12 +6,14 @@ import { SUITE_END, SUITE_START } from '../../utils';
 import { OutputLine } from '../UI/OutputLine';
 import { TestStats } from './TestStats';
 import { TestSuite } from './TestSuite';
+import { useParams } from 'react-router-dom';
 
 const initialOutputState = 'Your results will be shown here';
 
 export const TestsOutput = memo(function TestsOutput() {
   const { isTestsStarted, success } = useTypedSelector((state) => state.solution);
-  const [startTests, output, failure, stats] = useTesting();
+  const { id } = useParams();
+  const [startTests, output, failure, stats] = useTesting(id as string);
 
   useEffect(() => {
     if (isTestsStarted) startTests();

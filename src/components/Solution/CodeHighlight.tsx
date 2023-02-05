@@ -5,11 +5,10 @@ import React, { useEffect, useRef } from 'react';
 hljs.registerLanguage('javascript', javascript);
 
 interface Props {
-  className: string;
   children: React.ReactNode;
 }
 
-export const CodeHighlight = ({ children, className }: Props) => {
+export const CodeHighlight = ({ children }: Props) => {
   const ref = useRef<HTMLPreElement>(null);
 
   useEffect(() => {
@@ -18,7 +17,7 @@ export const CodeHighlight = ({ children, className }: Props) => {
 
   return (
     <pre>
-      <code ref={ref} className={className}>
+      <code ref={ref} className="language-javascript">
         {children}
       </code>
     </pre>

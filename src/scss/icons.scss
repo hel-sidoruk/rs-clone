@@ -13,8 +13,12 @@
     }
   }
   &-compare {
+    margin-right: 5px;
     &::before {
       content: "\f0ac";
+    }
+    &.colored {
+      color: #bb432c;
     }
   }
   &-play {
@@ -94,8 +98,59 @@
   &-tag {
     margin-right: 5px;
     color: $light;
+    &.colored {
+      color: #bb432c;
+    }
     &::before {
       content: "\e063";
+    }
+  }
+
+  &-info {
+    margin-right: 5px;
+    color: #ffffff;
+    &::before {
+      content: "\e05c";
+    }
+  }
+
+  &-progress {
+    margin-right: 5px;
+    color: #bb432c;
+    &::before {
+      content: "\e91a";
+    }
+  }
+
+  &-contribution {
+    margin-right: 5px;
+    color: #bb432c;
+    &::before {
+      content: "\e91b";
+    }
+  }
+
+  &-terminal {
+    margin-right: 5px;
+    color: #bb432c;
+    &::before {
+      content: "\e905";
+    }
+  }
+
+  &-users {
+    margin-right: 5px;
+    //color: #bb432c;
+    &::before {
+      content: "\e061";
+    }
+  }
+
+  &-share {
+    margin-right: 5px;
+    font-size: 50px;
+    &::before {
+      content: "\e600";
     }
   }
 }
