@@ -8,22 +8,22 @@ const Community = () => {
         Community:
       </div>
       <div>
-        <span>Comments:</span>7,856 (383 replies)
+        <b>Comments:</b>7,856 (383 replies)
       </div>
       <div>
-        <span>Collections:</span>0
+        <b>Collections:</b>0
       </div>
       <div>
-        <span>Kumite:</span>567 (639 Started)
+        <b>Kumite:</b>567 (639 Started)
       </div>
       <div>
-        <span>Translations:</span>4,563 (4,419 approved)
+        <b>Translations:</b>4,563 (4,419 approved)
       </div>
       <div>
-        <span>Contributed Kata:</span>81
+        <b>Contributed Kata:</b>81
       </div>
       <div>
-        <span>Kata Approvals:</span>61
+        <b>Kata Approvals:</b>61
       </div>
     </div>
   );

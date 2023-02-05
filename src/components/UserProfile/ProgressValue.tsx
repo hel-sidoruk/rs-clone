@@ -4,19 +4,19 @@ const ProgressValue = () => {
   return (
     <div className="stats__progress-value">
       <div>
-        <span>Rank:</span>1 kyu
+        <b>Rank:</b>1 kyu
       </div>
       <div>
-        <span>Honor:</span>419,676
+        <b>Honor:</b>419,676
       </div>
       <div>
-        <span>Leaderboard Position:</span>#1
+        <b>Leaderboard Position:</b>#1
       </div>
       <div>
-        <span>Honor Percentile:</span>Top 0.000%
+        <b>Honor Percentile:</b>Top 0.000%
       </div>
       <div>
-        <span>Total Completed Kata:</span>2,644
+        <b>Total Completed Kata:</b>2,644
       </div>
     </div>
   );

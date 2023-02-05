@@ -8,22 +8,22 @@ const TopTags = () => {
         Top Tags:
       </div>
       <div>
-        <span>Fundamentals: </span>112
+        <b>Fundamentals: </b>112
       </div>
       <div>
-        <span>Mathematics: </span>47
+        <b>Mathematics: </b>47
       </div>
       <div>
-        <span>Algorithms: </span>37
+        <b>Algorithms: </b>37
       </div>
       <div>
-        <span>Strings: </span>30
+        <b>Strings: </b>30
       </div>
       <div>
-        <span>Puzzles: </span>9
+        <b>Puzzles: </b>9
       </div>
       <div>
-        <span>Arrays: </span>6
+        <b>Arrays: </b>6
       </div>
     </div>
   );

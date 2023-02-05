@@ -8,22 +8,22 @@ const AuthoredKata = () => {
         Authored Kata:
       </div>
       <div>
-        <span>Created:</span> 142 (2 in beta)
+        <b>Created:</b> 142 (2 in beta)
       </div>
       <div>
-        <span>Total Completions:</span> 1,960,288
+        <b>Total Completions:</b> 1,960,288
       </div>
       <div>
-        <span>Total Stars:</span> 87,189
+        <b>Total Stars:</b> 87,189
       </div>
       <div>
-        <span>Total Collected:</span> 16,770
+        <b>Total Collected:</b> 16,770
       </div>
       <div>
-        <span>Avg. Rank:</span> 5 kyu
+        <b>Avg. Rank:</b> 5 kyu
       </div>
       <div>
-        <span>Avg. Satisfaction Rating:</span> 84%
+        <b>Avg. Satisfaction Rating:</b> 84%
       </div>
     </div>
   );
