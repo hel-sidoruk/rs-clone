@@ -4,6 +4,7 @@ import { useCaretPosition } from '../../hooks/useCaretPosition';
 import { useKeyPress } from '../../hooks/useKeyPress';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { getInitialFunction } from '../../utils';
+import { CodeHighlight } from './CodeHighlight';
 import { CodeLineCounter } from './CodeLineCounter';
 
 export const Code = ({ functionName, fnArgs }: { functionName: string; fnArgs: string }) => {
@@ -24,13 +25,16 @@ export const Code = ({ functionName, fnArgs }: { functionName: string; fnArgs: s
   return (
     <div className="code">
       <CodeLineCounter rowsCount={rowsCount} />
-      <textarea
-        className="code__editor"
-        ref={textAreaRef}
-        onKeyDown={handleKeyDown}
-        value={solution}
-        onChange={handleChange}
-      />
+      <div className="code__editor-wrapper">
+        <CodeHighlight className="language-javascript">{solution}</CodeHighlight>
+        <textarea
+          className="code__editor"
+          ref={textAreaRef}
+          onKeyDown={handleKeyDown}
+          value={solution}
+          onChange={handleChange}
+        />
+      </div>
     </div>
   );
 };

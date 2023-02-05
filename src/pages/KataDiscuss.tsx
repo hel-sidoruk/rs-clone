@@ -7,6 +7,8 @@ interface InitialArray {
 
 export const KataDiscuss = () => {
   const [check, setCheck] = useState({ first: 0, inv: 0 } as InitialArray);
+  const [showDiscuss, setShowDiscuss] = useState(false);
+  const [discuss, setDiscuss] = useState('');
   const setCheckBox = (item: string, value = 0) => {
     if (item === 'inv') {
       setCheck((check) => ({ ...check, inv: check.inv === 0 ? 1 : 0 }));
@@ -22,6 +24,14 @@ export const KataDiscuss = () => {
     inv: {
       text: 'Show Resolved',
     },
+  };
+
+  const feedBackInput = (e: React.FormEvent<HTMLTextAreaElement>) => {
+    setDiscuss(e.currentTarget.value);
+  };
+  const closeDiscuss = () => {
+    setDiscuss('');
+    setShowDiscuss(false);
   };
 
   return (
@@ -117,7 +127,33 @@ export const KataDiscuss = () => {
           </div>
         </div>
         <div className="results">
-          <div className="result"></div>
+          <div className="result">
+            <div className="feedback open">
+              <div className="avatar"></div>
+              <div className="input-field">
+                <textarea
+                  className="feedback-input"
+                  placeholder="Leave feedback..."
+                  onInput={(e) => feedBackInput(e)}
+                  value={discuss}
+                  id="feedback"
+                />
+                <label htmlFor="feedback" className="feedback-label">
+                  <button
+                    className="feedButtons"
+                    onClick={() => {
+                      console.log('send');
+                    }}
+                  >
+                    Post
+                  </button>
+                  <button className="feedButtons" onClick={() => closeDiscuss()}>
+                    Cancel
+                  </button>
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
