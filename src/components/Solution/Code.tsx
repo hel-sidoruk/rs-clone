@@ -26,7 +26,7 @@ export const Code = () => {
     <div className="code">
       <CodeLineCounter rowsCount={rowsCount} />
       <div className="code__editor-wrapper">
-        <CodeHighlight className="language-javascript">{solution}</CodeHighlight>
+        <CodeHighlight>{solution}</CodeHighlight>
         <textarea
           spellCheck="false"
           className="code__editor"

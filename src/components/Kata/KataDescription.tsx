@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { KataAPI } from '../../api';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { KataInterface } from '../../types/kata';
 import { KataInfo } from './KataInfo';
@@ -9,9 +10,13 @@ export const KataDescription = memo(function KataDescription() {
   const [kata, setKata] = useState<KataInterface | null>(null);
   const { id } = useParams();
   const { katasByID } = useTypedSelector((state) => state.katas);
+
   useEffect(() => {
-    if (katasByID && id) setKata(katasByID[id]);
-  }, [katasByID, id]);
+    if (id && katasByID) {
+      if (katasByID[id]) setKata(katasByID[id]);
+      else KataAPI.getOne(id).then((kata) => setKata(kata));
+    }
+  }, [id, katasByID]);
 
   return (
     <div className="kata-description section">
