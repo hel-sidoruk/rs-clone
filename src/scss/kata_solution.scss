@@ -98,86 +98,100 @@
         align-items: flex-start;
         color: $grey;
 
-        .title {
-          margin: 0 0 10px;
-          font-size: 14px;
-          line-height: 22px;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: .025em;
-
-          &.bottom {
-            margin: 14px 0 10px;
-          }
-        }
-
-        .check-box {
+        span {
           display: flex;
-          gap: 8px;
+          flex-direction: column;
           width: 100%;
-          position: relative;
-          cursor: pointer;
-          margin-bottom: 4px;
 
-          .item {
-            $wh: 14px;
+          .title {
+            margin: 0 0 10px;
+            font-size: 14px;
+            line-height: 22px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .025em;
+
+            &.bottom {
+              margin: 14px 0 10px;
+            }
+          }
+
+          .check-box {
             display: flex;
-            width: $wh;
-            height: $wh;
-            border: 1px solid $scroll;
-            border-radius: 50%;
+            flex-direction: row;
+            gap: 8px;
+            width: 100%;
             position: relative;
-            transition: .3s;
-          }
+            cursor: pointer;
+            margin-bottom: 4px;
 
-          &.square {
             .item {
-              border-radius: 2px;
+              $wh: 14px;
+              display: flex;
+              width: $wh;
+              min-width: $wh;
+              height: $wh;
+              border: 1px solid $scroll;
+              border-radius: 50%;
+              position: relative;
+              transition: .3s;
             }
-          }
 
-          &.current {
-            .item {
-              border: 5px solid $filters-accent;
-            }
-          }
-
-          &.square.current {
-            .item {
-              background: $filters-accent;
-
-              &:after {
-                position: absolute;
-                top: 30%;
-                left: 60%;
-                transform: translate(-50%, -50%);
-                content: '✔';
-                font-size: 11px;
-                color: $bg-color;
+            &.square {
+              .item {
+                border-radius: 2px;
               }
             }
-          }
 
-          .text {
-            font-size: 14px;
-            line-height: 1.5em;
-            -webkit-font-smoothing: antialiased;
-            user-select: none;
-            font-weight: 400;
-          }
+            &.current {
+              .item {
+                border: 5px solid $filters-accent;
+              }
+            }
 
-          .counter {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: #8e8e99;
-            font-size: 12px;
-            color: $dark;
-            margin-left: auto;
-            margin-right: 20%;
+            &.square.current {
+              .item {
+                background: $filters-accent;
+
+                &:after {
+                  position: absolute;
+                  top: 30%;
+                  left: 60%;
+                  transform: translate(-50%, -50%);
+                  content: '✔';
+                  font-size: 11px;
+                  color: $bg-color;
+                }
+              }
+            }
+
+            .text {
+              font-size: 14px;
+              line-height: 1.5em;
+              -webkit-font-smoothing: antialiased;
+              user-select: none;
+              font-weight: 400;
+              width: auto;
+            }
+
+            .counter {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 18px;
+              min-width: 18px;
+              height: 18px;
+              border-radius: 50%;
+              background: #8e8e99;
+              font-size: 12px;
+              color: $dark;
+              margin-left: auto;
+              margin-right: 20%;
+
+              span {
+                transform: translate(1px, 0);
+              }
+            }
           }
         }
       }
@@ -464,7 +478,6 @@
 
           }
         }
-
 
 
         &.open {
