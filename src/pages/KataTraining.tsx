@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { KataTrainingDescription } from '../components/KataTraining/KataTrainingDescription';
 import { KataTrainingInfo } from '../components/KataTraining/KataTrainingInfo';
 import { Solution } from '../components/Solution/Solution';
+import useActions from '../hooks/useActions';
+import useTypedSelector from '../hooks/useTypedSelector';
 
 export const KataTraining = () => {
   const [isHidden, setIsHidden] = useState(false);
+  const { id } = useParams();
+  const { markAsTrained } = useActions();
   const handleClick = () => setIsHidden((value) => !value);
+  const { trainedKatas, solvedKatas } = useTypedSelector((state) => state.account);
+
+  useEffect(() => {
+    if (id) {
+      if (!trainedKatas?.includes(id) && !solvedKatas?.includes(id)) markAsTrained(id);
+    }
+  }, []);
 
   return (
     <main className={`play-view kata-training ${isHidden ? 'hidden' : ''}`}>

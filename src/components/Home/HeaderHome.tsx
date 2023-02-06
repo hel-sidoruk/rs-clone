@@ -6,7 +6,12 @@ import { DojoDropdown } from './DojoDropdown';
 
 export const HeaderHome = () => {
   const { isAuthorized } = useTypedSelector((state) => state.authorizedUser);
-  const { signOut } = useActions();
+  const { signOut, signOutAccount } = useActions();
+
+  const handleClick = () => {
+    signOut();
+    signOutAccount();
+  };
 
   return (
     <div className="header-home">
@@ -20,7 +25,7 @@ export const HeaderHome = () => {
             <Link to="/kata" className="header-home__btn red">
               Enter the Dojo
             </Link>
-            <button className="header-home__btn" onClick={signOut}>
+            <button className="header-home__btn" onClick={handleClick}>
               Sign out
             </button>
           </div>

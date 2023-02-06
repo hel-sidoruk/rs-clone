@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 
 const options = ['details', 'solutions', 'discuss'];
 
 export const KataControls = () => {
   const { pathname } = useLocation();
   const [active, setActive] = useState('details');
+  const { id } = useParams();
 
   const getClassname = (i: number) => {
     return `controls__btn ${active === options[i] ? 'active' : ''}`;
@@ -19,14 +20,14 @@ export const KataControls = () => {
 
   return (
     <div className="controls">
-      <Link to="/kata/1/" className={getClassname(0)}>
+      <Link to={`/kata/${id}/`} className={getClassname(0)}>
         Details
       </Link>
-      <Link to="/kata/1/solutions" className={getClassname(1)}>
+      <Link to={`/kata/${id}/solutions`} className={getClassname(1)}>
         <i className="icon-moon-bullseye icon-moon"></i>
         Solutions
       </Link>
-      <Link to="/kata/1/discuss" className={getClassname(2)}>
+      <Link to={`/kata/${id}/discuss`} className={getClassname(2)}>
         <i className="icon-moon-comments icon-moon"></i>
         Discourse
       </Link>

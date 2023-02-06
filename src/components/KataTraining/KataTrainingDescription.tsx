@@ -18,7 +18,7 @@ export const KataTrainingDescription = ({ handler }: { handler: () => void }) =>
       {kata && (
         <>
           <KataInfo data={kata} />
-          <KataLanguage status="solved" />
+          <KataLanguage />
           <div className="controls">
             <div title="Maximize editor space" onClick={handler}>
               <div className="icon-container">
