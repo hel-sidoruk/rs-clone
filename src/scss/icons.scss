@@ -67,6 +67,12 @@
       content: "\e05c";
     }
   }
+  &-refresh {
+    margin-right: 5px;
+    &::before {
+      content: "\e038";
+    }
+  }
   &-expand {
     &::before {
       font-size: 24px;
