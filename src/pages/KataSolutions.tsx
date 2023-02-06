@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import KataSolutionItem from '../components/Kata/kataSolutionItem';
 import Adds from '../components/Kata/adds';
 import LeftBarForSolutions from '../components/Kata/leftBarForSolutions';
+import { SolutionsAPI } from '../api/SolutionsAPI';
+import { useParams } from 'react-router';
+import { SolutionInterface } from '../types';
+import { nanoid } from 'nanoid';
 
 const add = [
   {
@@ -21,49 +25,27 @@ const add = [
 ];
 
 export const KataSolutions = () => {
-  const [showCode, setShowCode] = useState(false);
+  const { id } = useParams();
+  const [solutions, setSolutions] = useState<SolutionInterface[]>([]);
 
-  const openCode = (id: number) => {
-    setShowCode(!showCode);
-  };
+  useEffect(() => {
+    if (id) SolutionsAPI.getSolutions(id).then((res) => setSolutions(res));
+  }, []);
 
   return (
-    <>
-      <div className="section _test-cases">
-        <div className="_header" onClick={() => openCode(22)}>
-          <div className="header-items">
-            <span className="span">Test Cases</span>
-            <div className={showCode ? 'arrow open' : 'arrow'}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                <path
-                  fillRule="evenodd"
-                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-                ></path>
-              </svg>
-            </div>
-          </div>
-          <div className={showCode ? 'code open' : 'code'}>
-            <pre className="code-area">
-              <code data-language="javascript"></code>
-            </pre>
-          </div>
-        </div>
-      </div>
-      <div className="section solution-main">
-        <div className="left-bar">
-          <div className="left-bar-items">
-            <LeftBarForSolutions />
-            {add.map((item, idx) => (
-              <Adds key={idx} data={item} />
-            ))}
-          </div>
-        </div>
-        <div className="results">
+    <div className="section solution-main">
+      <div className="left-bar">
+        <div className="left-bar-items">
+          <LeftBarForSolutions />
           {add.map((item, idx) => (
-            <KataSolutionItem key={idx} />
+            <Adds key={idx} data={item} />
           ))}
         </div>
       </div>
-    </>
+      <div>
+        {solutions.length &&
+          solutions.map((item) => <KataSolutionItem solution={item} key={nanoid()} />)}
+      </div>
+    </div>
   );
 };

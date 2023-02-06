@@ -31,11 +31,11 @@ export const CodeActionsButtons = () => {
           <i className="icon-moon icon-moon-next"></i>
           <span className="btn-text">skip</span>
         </Link>
-        <Link to="/kata/1/solutions" className="btn btn-dark">
+        <Link to={`/kata/${id}/solutions`} className="btn btn-dark">
           <i className="icon-moon icon-moon-compare"></i>
           <span className="btn-text">view solutions</span>
         </Link>
-        <Link to="/kata/1/discuss" className="btn btn-dark">
+        <Link to={`/kata/${id}/discuss`} className="btn btn-dark">
           <i className="icon-moon icon-moon-comments"></i>
           <span className="btn-text">discuss</span>
         </Link>

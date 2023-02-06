@@ -126,32 +126,29 @@ export const KataDiscuss = () => {
             </div>
           </div>
         </div>
-        <div className="results">
-          <div className="result">
-            <div className="feedback open">
-              <div className="avatar"></div>
-              <div className="input-field">
-                <textarea
-                  className="feedback-input"
-                  placeholder="Leave feedback..."
-                  onInput={(e) => feedBackInput(e)}
-                  value={discuss}
-                  id="feedback"
-                />
-                <label htmlFor="feedback" className="feedback-label">
-                  <button
-                    className="feedButtons"
-                    onClick={() => {
-                      console.log('send');
-                    }}
-                  >
-                    Post
-                  </button>
-                  <button className="feedButtons" onClick={() => closeDiscuss()}>
-                    Cancel
-                  </button>
-                </label>
-              </div>
+        <div className="section">
+          <div className="feedback open">
+            <div className="avatar"></div>
+            <div className="input-field">
+              <textarea
+                className="feedback-input"
+                placeholder="Leave feedback..."
+                onInput={feedBackInput}
+                value={discuss}
+              />
+              <label className="feedback-label">
+                <button
+                  className="btn btn-fill"
+                  onClick={() => {
+                    console.log('send');
+                  }}
+                >
+                  Post
+                </button>
+                <button className="btn" onClick={() => closeDiscuss()}>
+                  Cancel
+                </button>
+              </label>
             </div>
           </div>
         </div>

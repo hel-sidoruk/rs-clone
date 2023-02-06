@@ -122,30 +122,12 @@
     text-transform: uppercase;
     letter-spacing: .35px;
   }
-  &__header {
-    padding: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    svg {
-      fill: $light;
-      transition: transform .2s ease-in-out;
-      transform: rotate(90deg);
-    }
-  }
+
   &.kata-hide {
     max-width: unset;
     border: 1px solid $scroll;
     padding: 0;
     transition: height .3s ease-in-out;
-    .kata-details__title {
-      font-size: 16px;
-      line-height: 24px;
-      color: $light;
-      text-transform: none;
-      margin-bottom: 0;
-    }
     .description {
       padding: 16px;
     }
@@ -164,4 +146,23 @@
   max-width: 1024px;
   margin: 0 auto;
   padding-top: 16px;
+}
+.toggle-block {
+  &__header {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    svg {
+      fill: $light;
+      transition: transform .2s ease-in-out;
+      transform: rotate(90deg);
+    }
+  }
+  &__title {
+    font-size: 16px;
+    line-height: 24px;
+    color: $light;
+  }
 }
