@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { SolutionInterface } from '../../types';
+import { CodeHighlight } from '../Solution/CodeHighlight';
+import { SolutionControls } from './SolutionControls';
 
-const KataSolutionItem = () => {
+const KataSolutionItem = ({ solution }: { solution: SolutionInterface }) => {
   const [showDiscuss, setShowDiscuss] = useState(false);
   const [discuss, setDiscuss] = useState('');
 
-  const openDiscuss = (id: number) => {
+  const openDiscuss = () => {
     if (showDiscuss) setDiscuss('');
     setShowDiscuss(!showDiscuss);
   };
@@ -17,55 +21,28 @@ const KataSolutionItem = () => {
   };
 
   return (
-    <div className="result">
-      <div className="head">
-        <h6>
-          <i className="icon-moon-users icon-moon"></i>
-          <a className="user-link" href="/users/Pashabn">
-            Pashabn
-          </a>{' '}
-          <span>, </span>
-          <a className="user-link" href="/users/HelSidoruk">
-            HelSidoruk
-          </a>
-        </h6>
+    <div className="solution-item">
+      <div className="solution-item__head">
+        <i className="icon-moon-users icon-moon"></i>
+        <Link className="link" to={`/users/${solution.username}`}>
+          {solution.username}
+        </Link>
       </div>
-      <pre className="code-area">
-        <code data-language="javascript"></code>
-      </pre>
-      <div className="similar-items">
-        <div className="similar">
-          1 similar code variation is grouped with this one
-          <i
-            className="icon-moon-info ml-1 icon-moon"
-            title="We group similar results by ignoring whitespace, linebreaks and very minor character variations."
-          ></i>
-        </div>
-        <button className="button">Show Variations</button>
+      <div className="markdown solution-item__code">
+        <CodeHighlight>{solution.solution}</CodeHighlight>
       </div>
-      <div className="bottom-things">
-        <div className="best-practice">
-          <i className="icon-moon-up icon-moon"></i>
-          <div className="text">Best Practices</div>
-          <div className="count">26</div>
-        </div>
-        <div className="best-practice">
-          <i className="icon-moon-up icon-moon"></i>
-          <div className="text">Clever</div>
-          <div className="count">2</div>
-        </div>
-        <div className="discuss" onClick={() => openDiscuss(22)}>
-          <i className="icon-moon-comments icon-moon"></i>
-          <span>12</span>
-        </div>
-      </div>
+      <SolutionControls
+        bestPractices={solution.bestPracticesVotes}
+        clever={solution.cleverVotes}
+        handler={openDiscuss}
+      />
       <div className={showDiscuss ? 'feedback open' : 'feedback'}>
         <div className="avatar"></div>
         <div className="input-field">
           <textarea
             className="feedback-input"
             placeholder="Leave feedback..."
-            onInput={(e) => feedBackInput(e)}
+            onInput={feedBackInput}
             value={discuss}
             id="feedback"
           />
@@ -78,7 +55,7 @@ const KataSolutionItem = () => {
             >
               Post
             </button>
-            <button className="feedButtons" onClick={() => closeDiscuss()}>
+            <button className="feedButtons" onClick={closeDiscuss}>
               Cancel
             </button>
           </label>

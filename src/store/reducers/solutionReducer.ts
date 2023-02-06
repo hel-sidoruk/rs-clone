@@ -21,13 +21,14 @@ interface UpdateSolutionAction {
   solution: string;
 }
 interface TestingAction {
-  type:
-    | SolutionActionsTypes.START_TESTS
-    | SolutionActionsTypes.END_TESTS
-    | SolutionActionsTypes.SET_SUCCESS;
+  type: SolutionActionsTypes.START_TESTS | SolutionActionsTypes.END_TESTS;
+}
+interface SetSuccess {
+  type: SolutionActionsTypes.SET_SUCCESS;
+  success: boolean;
 }
 
-export type SolutionAction = UpdateSolutionAction | TestingAction;
+export type SolutionAction = UpdateSolutionAction | TestingAction | SetSuccess;
 
 export const solutionReducer = (state = initialState, action: SolutionAction): SolutionState => {
   switch (action.type) {
@@ -38,7 +39,7 @@ export const solutionReducer = (state = initialState, action: SolutionAction): S
     case SolutionActionsTypes.END_TESTS:
       return { ...state, isTestsStarted: false };
     case SolutionActionsTypes.SET_SUCCESS:
-      return { ...state, success: true };
+      return { ...state, success: action.success };
     default:
       return state;
   }

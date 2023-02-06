@@ -11,13 +11,15 @@ export const KataTraining = () => {
   const { id } = useParams();
   const { markAsTrained } = useActions();
   const handleClick = () => setIsHidden((value) => !value);
+  const [isSolved, setIsSolved] = useState(false);
   const { trainedKatas, solvedKatas } = useTypedSelector((state) => state.account);
 
   useEffect(() => {
     if (id) {
       if (!trainedKatas?.includes(id) && !solvedKatas?.includes(id)) markAsTrained(id);
+      if (solvedKatas?.includes(id)) setIsSolved(true);
     }
-  }, []);
+  }, [solvedKatas, trainedKatas]);
 
   return (
     <main className={`play-view kata-training ${isHidden ? 'hidden' : ''}`}>
@@ -28,7 +30,7 @@ export const KataTraining = () => {
         </>
       )}
       <section className="kata-train">
-        <KataTrainingInfo solved handler={handleClick} isHidden={isHidden} />
+        <KataTrainingInfo solved={isSolved} handler={handleClick} isHidden={isHidden} />
         <div className="kata-train__code">
           <Solution />
         </div>

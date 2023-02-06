@@ -67,6 +67,19 @@
       content: "\e05c";
     }
   }
+  &-refresh {
+    margin-right: 5px;
+    &::before {
+      content: "\e038";
+    }
+  }
+  &-up {
+    padding: 0 5px;
+
+    &:before {
+      content: "\e625"
+    }
+  }
   &-expand {
     &::before {
       font-size: 24px;
@@ -135,14 +148,6 @@
     color: #bb432c;
     &::before {
       content: "\e905";
-    }
-  }
-
-  &-users {
-    margin-right: 5px;
-    //color: #bb432c;
-    &::before {
-      content: "\e061";
     }
   }
 

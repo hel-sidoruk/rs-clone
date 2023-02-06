@@ -2,8 +2,10 @@ import { API_URL } from '.';
 import { SolutionInterface } from '../types';
 
 export class SolutionsAPI {
-  static async getSolutions(kataId: string): Promise<SolutionInterface[]> {
-    const response = await fetch(`${API_URL}/kata/${kataId}/solutions`);
+  static async getSolutions(kataId: string, username?: string): Promise<SolutionInterface[]> {
+    const response = await fetch(
+      `${API_URL}/kata/${kataId}/solutions${username ? `?username=${username}` : ''}`
+    );
     const data = await response.json();
     return data;
   }
