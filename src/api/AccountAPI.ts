@@ -1,8 +1,8 @@
 import { API_URL } from '.';
-import { AccountInterface } from '../types';
+import { AccountInterface } from '../types/account';
 
 export class AccountAPI {
-  static async getInfo(): Promise<AccountInterface | { error?: string }> {
+  static async getInfo(): Promise<{ account?: AccountInterface; error?: string }> {
     const savedToken = localStorage.getItem('token');
     if (!savedToken) return { error: 'No token found' };
     const data = await fetch(`${API_URL}/account`, {
@@ -10,7 +10,7 @@ export class AccountAPI {
     });
     const info = await data.json();
     if (info.message) return { error: info.message };
-    return info;
+    return { account: info };
   }
 
   static async addTrainedKata(kataId: string): Promise<{ status?: string; error?: string }> {

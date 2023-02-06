@@ -11,7 +11,7 @@ export const KataDescription = memo(function KataDescription() {
   const [kata, setKata] = useState<KataInterface | null>(null);
   const { id } = useParams();
   const { katasByID } = useTypedSelector((state) => state.katas);
-  const [nextKataID, setNextKataID] = useState<string>('');
+  const [nextKataID, setNextKataID] = useState('');
 
   useEffect(() => {
     if (id && katasByID) {

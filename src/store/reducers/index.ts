@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import accountReducer from './accountReducer';
 import authUserReducer from './authUserReducer';
 import kataReducer from './kataReducer';
 import leaderReducer from './leadersReducer';
@@ -9,6 +10,7 @@ export const rootReducer = combineReducers({
   authorizedUser: authUserReducer,
   solution: solutionReducer,
   leaders: leaderReducer,
+  account: accountReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
