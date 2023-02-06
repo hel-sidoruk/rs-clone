@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import KataSolutionItem from '../components/Kata/kataSolutionItem';
-import Adds from '../components/Kata/adds';
 import LeftBarForSolutions from '../components/Kata/leftBarForSolutions';
 import { SolutionsAPI } from '../api/SolutionsAPI';
 import { useParams } from 'react-router';
@@ -33,14 +32,9 @@ export const KataSolutions = () => {
   }, []);
 
   return (
-    <div className="section solution-main">
-      <div className="left-bar">
-        <div className="left-bar-items">
-          <LeftBarForSolutions />
-          {add.map((item, idx) => (
-            <Adds key={idx} data={item} />
-          ))}
-        </div>
+    <>
+      <div className="section solution-main">
+        <LeftBarForSolutions sol />
       </div>
       <div>
         {solutions.length &&
