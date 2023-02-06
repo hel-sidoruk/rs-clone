@@ -20,7 +20,7 @@ export function markAsTrained(kataId: string): ThunkActionType {
   return async (dispatch: Dispatch<AccountAction>, getState) => {
     const { trainedKatas } = getState().account;
     const { status } = await AccountAPI.addTrainedKata(kataId);
-    if (status && trainedKatas) {
+    if (status && trainedKatas && !trainedKatas.includes(kataId)) {
       dispatch({
         type: AccountActionTypes.MARK_AS_TRAINED,
         payload: { trainedKatas: [...trainedKatas, kataId] },
@@ -33,7 +33,7 @@ export function markAsSolved(kataId: string): ThunkActionType {
   return async (dispatch: Dispatch<AccountAction>, getState) => {
     const { solvedKatas, trainedKatas } = getState().account;
     const { status } = await AccountAPI.addSolvedKata(kataId);
-    if (status && solvedKatas && trainedKatas) {
+    if (status && solvedKatas && trainedKatas && !solvedKatas.includes(kataId)) {
       dispatch({
         type: AccountActionTypes.MARK_AS_SOLVED,
         payload: {

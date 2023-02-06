@@ -27,7 +27,7 @@ export const KataDescription = memo(function KataDescription() {
       {kata && (
         <>
           <KataInfo data={kata} />
-          <KataLanguage status="trained" />
+          <KataLanguage />
           <div className="kata__controls">
             <Link to={`/kata/${kata.id}/train`} className="btn btn-fill">
               <i className="icon-moon icon-moon-play"></i>
