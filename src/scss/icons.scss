@@ -53,6 +53,20 @@
       content: "\e060";
     }
   }
+  &-users {
+    margin-right: 5px;
+    opacity: 1;
+    &::before {
+      content: "\e061";
+    }
+  }
+  &-info {
+    margin-right: 5px;
+    opacity: 1;
+    &::before {
+      content: "\e05c";
+    }
+  }
   &-expand {
     &::before {
       font-size: 24px;
@@ -126,7 +140,7 @@
 
   &-users {
     margin-right: 5px;
-    color: #bb432c;
+    //color: #bb432c;
     &::before {
       content: "\e061";
     }

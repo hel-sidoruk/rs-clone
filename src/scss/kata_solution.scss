@@ -1,40 +1,83 @@
 ._test-cases {
-  border-radius: $mini-border-radius;
+  border-radius: $mini-border-radius * 2;
   border: solid 1px $scroll;
   margin-bottom: 10px;
   cursor: pointer;
 
   ._header {
     display: flex;
+    flex-direction: column;
     width: 100%;
-    align-items: center;
-    justify-content: space-between;
 
-    .span {
-      font-size: 1rem !important;
-      line-height: 1.5rem !important;
-      font-weight: 700 !important;
+
+    .header-items {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+
+      .span {
+        font-size: 1rem;
+        line-height: 1.5rem;
+        font-weight: 700;
+      }
+
+      .arrow {
+        transition: .4s;
+
+        svg {
+          fill: $light;
+        }
+
+        &.open {
+          transform: rotate(90deg);
+        }
+      }
+
     }
 
-    svg {
-      fill: $light;
+    .code {
+      display: flex;
+      width: 100%;
+      height: 0;
+      overflow: hidden;
+      padding: 0;
+      transition: .4s;
+
+      .code-area {
+        width: 100%;
+        height: 0;
+        padding: 0;
+        transition: inherit;
+      }
+
+      &.open {
+        padding-top: 16px;
+        height: 100%;
+
+        .code-area {
+          display: flex;
+          padding: 0.5rem;
+          height: 300px;
+          max-height: 95vh;
+          background: $codeAreaBackground;
+          margin: 0;
+        }
+      }
     }
   }
 }
 
 .solution-main {
   display: flex;
-  gap: 20px;
+  gap: 16px;
   background: transparent;
   padding: 0;
   margin-top: 20px;
 
-
   .left-bar {
     display: flex;
     flex-direction: column;
-    width: 260px;
-    max-width: 260px;
 
 
     .left-bar-items {
@@ -42,18 +85,18 @@
       top: 20px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
-
+      gap: 16px;
+      width: 260px;
+      max-width: 260px;
 
       .sort {
         display: flex;
         flex-direction: column;
         background: #ffffff05;
         padding: 16px;
-        border-radius: $mini-border-radius * 2;
+        border-radius: $mini-border-radius;
         align-items: flex-start;
         color: $grey;
-
 
         .title {
           margin: 0 0 10px;
@@ -122,18 +165,72 @@
             user-select: none;
             font-weight: 400;
           }
+
+          .counter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #8e8e99;
+            font-size: 12px;
+            color: $dark;
+            margin-left: auto;
+            margin-right: 20%;
+          }
         }
       }
 
       .adds {
-        display: flex;
-        height: 177px;
-        border-radius: $mini-border-radius * 2;
-        padding: 12px;
-        background: #ffffff10;
 
-        &:last-child {
-          background: #ffffff05;
+        a {
+          display: flex;
+          border-radius: $mini-border-radius * 2;
+          padding: 12px;
+          background: #ffffff10;
+          gap: 16px;
+
+          &:last-child {
+            background: #ffffff05;
+          }
+
+          .image {
+            width: 35%;
+            overflow: hidden;
+            position: relative;
+
+            img {
+              width: 100%;
+            }
+          }
+
+          .info {
+            display: flex;
+            width: 65%;
+            flex-direction: column;
+            gap: 5px;
+
+            span {
+              font-size: 13px;
+              line-height: 1.1em;
+              transition: .2s;
+              font-weight: 400;
+            }
+
+            .title {
+              color: $linkBlue;
+              font-weight: 700;
+              font-size: 14px;
+              line-height: 1.5em;
+            }
+          }
+
+          &:hover {
+            span {
+              color: $linkBlue;
+            }
+          }
         }
       }
     }
@@ -144,13 +241,239 @@
     flex-direction: column;
     gap: 10px;
     width: 100%;
-    height: 2000px;
 
     .result {
       display: flex;
-      height: 300px;
+      flex-direction: column;
       background: $section;
       border-radius: $mini-border-radius * 2;
+      padding: 8px 16px 16px;
+
+      .head {
+        display: flex;
+        width: 100%;
+        margin: 16px 0;
+
+        .icon-moon-users {
+          position: relative;
+          margin-right: 5px;
+          font-size: 1em;
+        }
+
+        h6 {
+          margin: 0;
+          font-size: 15px;
+
+          .user-link {
+            font-weight: 400;
+            transition: .2s;
+
+            &:nth-child(2) {
+              font-weight: 700;
+            }
+
+            &:hover {
+              color: $linkBlue;
+            }
+          }
+        }
+      }
+
+      .code-area {
+        display: flex;
+        width: 100%;
+        padding: 0.5rem;
+        height: 300px;
+        max-height: 95vh;
+        background: $codeAreaBackground;
+        margin: 0;
+      }
+
+      .similar-items {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 1rem;
+        padding: 0 .25rem;
+
+        .similar {
+          display: flex;
+          gap: 5px;
+        }
+
+        .icon-moon-info {
+          margin-right: 5px;
+          font-size: 1em;
+
+          &:before {
+            content: "\e05c";
+          }
+        }
+
+        .button {
+          border: none;
+          background: none;
+          cursor: pointer;
+          color: $light;
+        }
+      }
+
+      .bottom-things {
+        display: flex;
+        width: 100%;
+        height: 21px;
+        margin-top: 16px;
+        gap: 10px;
+
+
+        .best-practice {
+          display: flex;
+          align-items: center;
+          background: #3e3f42;
+          font-size: 12px;
+          color: $grey;
+          border-radius: 2px;
+          overflow: hidden;
+          cursor: pointer;
+          transition: .2s;
+
+          .icon-moon-up {
+            padding: 0 5px;
+
+            &:before {
+              content: "\e625"
+            }
+          }
+
+          .text {
+            padding: 5px 5px 5px 0;
+          }
+
+          .count {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #56575a;
+            height: 100%;
+            width: 21px;
+            transition: inherit;
+          }
+
+          &:hover {
+            background: #555559;
+            color: lighten($grey, 10);
+
+            .count {
+              background: #6f7073;
+            }
+          }
+        }
+
+        .discuss {
+          display: flex;
+          width: 40px;
+          align-items: center;
+          gap: 3px;
+          cursor: pointer;
+          color: $grey;
+          transition: .2s;
+
+          &:hover {
+            color: $linkBlue;
+          }
+        }
+      }
+
+      .feedback {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        width: 100%;
+        height: 0;
+        transition: .4s;
+        overflow: hidden;
+
+
+        .avatar {
+          width: 40px;
+          min-width: 40px;
+          height: 40px;
+          background: #1f87e7;
+          border-radius: 3px;
+          transition: inherit;
+        }
+
+        .input-field {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+        }
+
+        .feedback-label {
+          height: 0;
+          overflow: hidden;
+          transition: 0.4s;
+
+
+          .feedButtons {
+            text-transform: uppercase;
+            color: $linkBlue;
+            font-weight: 400;
+            font-size: 12px;
+          }
+
+          .feedButtons:first-child {
+            width: 55px;
+            height: 30px;
+            border-radius: $mini-border-radius;
+            color: #1a1a1e;
+            background: $linkBlue;
+            margin-right: 15px;
+          }
+        }
+
+        .feedback-input {
+          display: flex;
+          width: 256px;
+          height: 40px;
+          border: 1px solid grey;
+          border-radius: 2px;
+          padding: 10px;
+          color: white;
+          background: transparent;
+          resize: none;
+          transition: 0.4s;
+          outline: none;
+
+          &:focus-within,
+          &:not(:placeholder-shown) {
+            background: $codeAreaBackground;
+            height: 150px;
+            width: 100%;
+            border: 1px solid transparent;
+
+            &::placeholder {
+              color: transparent;
+            }
+
+            &:not(:placeholder-shown) ~ label,
+            &:focus-within ~ label {
+              padding-top: 16px;
+              height: 46px;
+            }
+
+          }
+        }
+
+
+
+        &.open {
+          padding-top: 16px;
+          //height: 60px;
+          height: auto;
+        }
+      }
     }
   }
 }
+
