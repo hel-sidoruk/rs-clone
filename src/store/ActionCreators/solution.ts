@@ -14,6 +14,7 @@ export const endTesting: ActionCreator<SolutionAction> = () => ({
   type: SolutionActionsTypes.END_TESTS,
 });
 
-export const setSuccess: ActionCreator<SolutionAction> = () => ({
+export const setSuccess: ActionCreator<SolutionAction> = (value: boolean) => ({
   type: SolutionActionsTypes.SET_SUCCESS,
+  success: value,
 });

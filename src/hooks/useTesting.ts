@@ -26,7 +26,7 @@ export function useTesting(kataId: string): [() => void, string, boolean, TestsS
         return setTestsStats(JSON.parse(event.data.replace('--stats--', '')));
       if (event.data === '--success--') {
         markAsSolved(kataId);
-        return setSuccess();
+        return setSuccess(true);
       }
       if (event.data === '--failure--') return setFailure(true);
       setOutput((state) => state + `${event.data}\n`);
