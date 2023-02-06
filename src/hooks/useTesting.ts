@@ -9,7 +9,7 @@ export function useTesting(kataId: string): [() => void, string, boolean, TestsS
   const [failure, setFailure] = useState(false);
   const [testsStats, setTestsStats] = useState<TestsStats | null>(null);
   const { solution } = useTypedSelector((state) => state.solution);
-  const { setSuccess, endTesting } = useActions();
+  const { setSuccess, endTesting, markAsSolved } = useActions();
 
   const startTests = () => {
     setOutput('Sending request...');
@@ -24,7 +24,10 @@ export function useTesting(kataId: string): [() => void, string, boolean, TestsS
     socket.onmessage = function (event) {
       if (event.data.startsWith('--stats--'))
         return setTestsStats(JSON.parse(event.data.replace('--stats--', '')));
-      if (event.data === '--success--') return setSuccess();
+      if (event.data === '--success--') {
+        markAsSolved(kataId);
+        return setSuccess();
+      }
       if (event.data === '--failure--') return setFailure(true);
       setOutput((state) => state + `${event.data}\n`);
     };
