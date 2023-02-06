@@ -20,10 +20,6 @@ export const KataInstructions = () => {
     }
   }, [id, katasByID]);
 
-  useEffect(() => {
-    if (kata) console.log(kata.description);
-  }, [kata]);
-
   return (
     <div className="description">
       <div className="markdown mb-32">
