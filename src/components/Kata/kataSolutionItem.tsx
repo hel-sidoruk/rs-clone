@@ -44,18 +44,17 @@ const KataSolutionItem = ({ solution }: { solution: SolutionInterface }) => {
             placeholder="Leave feedback..."
             onInput={feedBackInput}
             value={discuss}
-            id="feedback"
           />
-          <label htmlFor="feedback" className="feedback-label">
+          <label className="feedback-label">
             <button
-              className="feedButtons"
+              className="btn btn-fill"
               onClick={() => {
                 console.log('send');
               }}
             >
               Post
             </button>
-            <button className="feedButtons" onClick={closeDiscuss}>
+            <button className="btn" onClick={closeDiscuss}>
               Cancel
             </button>
           </label>
