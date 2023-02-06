@@ -108,15 +108,10 @@
 .purple-text {
   color: $purple-text;
 }
-.green-text {
-  color: $green-text;
-}
-.orange-text {
-  color: $orange-text;
-}
-.red-text {
-  color: $red-text;
-}
-.blue-text {
-  color: $blue-text;
+
+.past-solutions {
+  pre {
+    border-radius: 0;
+    border: 1px solid rgba(#ccc, 0.5);
+  }
 }

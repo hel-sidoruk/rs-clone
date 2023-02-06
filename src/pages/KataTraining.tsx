@@ -19,7 +19,7 @@ export const KataTraining = () => {
       if (!trainedKatas?.includes(id) && !solvedKatas?.includes(id)) markAsTrained(id);
       if (solvedKatas?.includes(id)) setIsSolved(true);
     }
-  }, []);
+  }, [solvedKatas, trainedKatas]);
 
   return (
     <main className={`play-view kata-training ${isHidden ? 'hidden' : ''}`}>
