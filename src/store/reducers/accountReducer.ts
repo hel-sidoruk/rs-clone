@@ -53,6 +53,13 @@ export default function accountReducer(state: AccountState = initialState, actio
         ...state,
         starredKatas: action.payload.starredKatas,
       };
+    case AccountActionTypes.UPDATE_USER_PROGRESS:
+      return {
+        ...state,
+        rank: action.payload.rank,
+        honor: action.payload.honor,
+        score: action.payload.score,
+      };
     default:
       return state;
   }

@@ -26,6 +26,7 @@ export enum AccountActionTypes {
   MARK_AS_TRAINED = 'MARK_AS_TRAINED',
   MARK_AS_SOLVED = 'MARK_AS_SOLVED',
   ADD_TO_STARRED = 'ADD_TO_STARRED',
+  UPDATE_USER_PROGRESS = 'UPDATE_USER_PROGRESS',
 }
 interface SetAccount {
   type: AccountActionTypes.SET_ACCOUNT;
@@ -62,4 +63,18 @@ interface AddToStarred {
     starredKatas: string[];
   };
 }
-export type AccountAction = SetAccount | SignOut | MarkAsTrained | MarkAsSolved | AddToStarred;
+interface UpdateUserProgress {
+  type: AccountActionTypes.UPDATE_USER_PROGRESS;
+  payload: {
+    rank: string;
+    score: number;
+    honor: number;
+  };
+}
+export type AccountAction =
+  | SetAccount
+  | SignOut
+  | MarkAsTrained
+  | MarkAsSolved
+  | AddToStarred
+  | UpdateUserProgress;
