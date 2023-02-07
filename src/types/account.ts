@@ -6,6 +6,7 @@ export interface AccountInterface {
   github: string | null;
   solvedKatas: string[];
   trainedKatas: string[];
+  starredKatas: string[];
 }
 
 export interface AccountState {
@@ -13,6 +14,10 @@ export interface AccountState {
   avatar: string | null;
   solvedKatas: string[] | null;
   trainedKatas: string[] | null;
+  starredKatas: string[] | null;
+  rank: string | null;
+  score: number | null;
+  honor: number | null;
 }
 
 export enum AccountActionTypes {
@@ -20,6 +25,7 @@ export enum AccountActionTypes {
   SIGN_OUT_ACCOUNT = 'SIGN_OUT_ACCOUNT',
   MARK_AS_TRAINED = 'MARK_AS_TRAINED',
   MARK_AS_SOLVED = 'MARK_AS_SOLVED',
+  ADD_TO_STARRED = 'ADD_TO_STARRED',
 }
 interface SetAccount {
   type: AccountActionTypes.SET_ACCOUNT;
@@ -28,6 +34,10 @@ interface SetAccount {
     avatar: string | null;
     solvedKatas: string[];
     trainedKatas: string[];
+    starredKatas: string[];
+    rank: string;
+    honor: number;
+    score: number;
   };
 }
 interface SignOut {
@@ -46,4 +56,10 @@ interface MarkAsSolved {
     solvedKatas: string[];
   };
 }
-export type AccountAction = SetAccount | SignOut | MarkAsTrained | MarkAsSolved;
+interface AddToStarred {
+  type: AccountActionTypes.ADD_TO_STARRED;
+  payload: {
+    starredKatas: string[];
+  };
+}
+export type AccountAction = SetAccount | SignOut | MarkAsTrained | MarkAsSolved | AddToStarred;

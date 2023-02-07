@@ -39,6 +39,13 @@
       content: "\e622";
     }
   }
+  &-star-empty {
+    margin-right: 5px;
+    opacity: .75;
+    &::before {
+      content: "\e621";
+    }
+  }
   &-bullseye {
     margin-right: 5px;
     opacity: .75;
@@ -156,6 +163,30 @@
     font-size: 50px;
     &::before {
       content: "\e600";
+    }
+  }
+  &-bookmark {
+    font-size: 24px;
+    &::before {
+      content: "\f143";
+    }
+  }
+  &-bell {
+    font-size: 24px;
+    &::before {
+      content: "\e90c";
+    }
+  }
+  &-settings {
+    margin-right: 5px;
+    &::before {
+      content: "\e00e";
+    }
+  }
+  &-power {
+    margin-right: 5px;
+    &::before {
+      content: "\f11d";
     }
   }
 }
