@@ -12,6 +12,11 @@
       font-weight: 700;
       color: $light;
       line-height: 1.4;
+      transition: color 0.5s;
+
+      &:hover {
+        color: $blue;
+      }
     }
     &-bottom {
       display: flex;
