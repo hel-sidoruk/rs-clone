@@ -1,7 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import useTypedSelector from '../hooks/useTypedSelector';
 import { HeaderProfile, Notification, StarredKatasList } from './HeaderComponents';
 
 export const Header = () => {
+  const { isAuthorized } = useTypedSelector((state) => state.authorizedUser);
   return (
     <header className="header">
       <ul className="header__list">
@@ -12,22 +15,35 @@ export const Header = () => {
             </svg>
           </a>
         </li>
-        <li className="header__item starred">
-          <i className="icon-moon icon-moon-bookmark"></i>
-          <StarredKatasList />
-        </li>
-        <li className="header__item notifications">
-          <i className="icon-moon icon-moon-bell"></i>
-          <div className="header__menu notifications-menu">
-            <div className="header__menu-body">
-              <ul>
-                <Notification />
-                <Notification />
-              </ul>
-            </div>
-          </div>
-        </li>
-        <HeaderProfile />
+        {isAuthorized ? (
+          <>
+            <li className="header__item starred">
+              <i className="icon-moon icon-moon-bookmark"></i>
+              <StarredKatasList />
+            </li>
+            <li className="header__item notifications">
+              <i className="icon-moon icon-moon-bell"></i>
+              <div className="header__menu notifications-menu">
+                <div className="header__menu-body">
+                  <ul>
+                    <Notification />
+                    <Notification />
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <HeaderProfile />
+          </>
+        ) : (
+          <li className="header__buttons">
+            <Link to="/login" className="btn">
+              Log in
+            </Link>
+            <Link to="/registration" className="btn btn-fill">
+              Sign up
+            </Link>
+          </li>
+        )}
       </ul>
     </header>
   );

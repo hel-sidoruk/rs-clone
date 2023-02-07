@@ -30,6 +30,25 @@
       padding: 10px 15px;
     }
   }
+  &__buttons {
+    padding: 18px;
+    display: flex;
+    gap: 20px;
+    .btn {
+      border-color: #fff;
+      color: #fff;
+      &:hover {
+        filter: brightness(0.7);
+      }
+    }
+    .btn-fill {
+      background-color: #bb432c;
+      border-color: #bb432c;
+      &:hover {
+        filter: brightness(1.2);
+      }
+    }
+  }
   .starred-menu {
     .link {
       display: flex;
