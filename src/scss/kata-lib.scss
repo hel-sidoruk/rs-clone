@@ -163,3 +163,13 @@
     padding: 10px 0;
   }
 }
+
+.kata-item {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+
+  &__language {
+    align-self: auto;
+  }
+}
