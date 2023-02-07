@@ -14,7 +14,7 @@ export const KataInfo = ({ data }: { data: KataInterface }) => {
       </div>
       <div className="kata__info-bottom">
         <span className="kata__info-text star">
-          <i className="icon-moon icon-moon-star"></i>
+          <i className="icon-moon icon-moon-star-empty"></i>
           {data.totalStars}
         </span>
         <span className="kata__info-text">

@@ -38,4 +38,17 @@ export class AccountAPI {
     if (message) return { error: message };
     return { status };
   }
+
+  static async addStarredKata(kataId: string): Promise<{ status?: string; error?: string }> {
+    const savedToken = localStorage.getItem('token');
+    if (!savedToken) return { error: 'No token found' };
+    const data = await fetch(`${API_URL}/account/starred`, {
+      method: 'PATCH',
+      headers: { Authorization: `Bearer ${savedToken}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ kataId }),
+    });
+    const { status, message } = await data.json();
+    if (message) return { error: message };
+    return { status };
+  }
 }

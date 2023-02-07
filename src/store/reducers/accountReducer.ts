@@ -5,6 +5,7 @@ const initialState: AccountState = {
   avatar: null,
   solvedKatas: null,
   trainedKatas: null,
+  starredKatas: null,
 };
 
 export default function accountReducer(state: AccountState = initialState, action: AccountAction) {
@@ -16,6 +17,7 @@ export default function accountReducer(state: AccountState = initialState, actio
         avatar: action.payload.avatar,
         solvedKatas: action.payload.solvedKatas,
         trainedKatas: action.payload.trainedKatas,
+        starredKatas: action.payload.starredKatas,
       };
     case AccountActionTypes.SIGN_OUT_ACCOUNT:
       return {
@@ -23,6 +25,8 @@ export default function accountReducer(state: AccountState = initialState, actio
         username: null,
         avatar: null,
         solvedKatas: null,
+        trainedKatas: null,
+        starredKatas: null,
       };
     case AccountActionTypes.MARK_AS_TRAINED:
       return {
@@ -34,6 +38,11 @@ export default function accountReducer(state: AccountState = initialState, actio
         ...state,
         trainedKatas: action.payload.trainedKatas,
         solvedKatas: action.payload.solvedKatas,
+      };
+    case AccountActionTypes.ADD_TO_STARRED:
+      return {
+        ...state,
+        starredKatas: action.payload.starredKatas,
       };
     default:
       return state;

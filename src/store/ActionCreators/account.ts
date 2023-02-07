@@ -7,10 +7,10 @@ export function setAccount(): ThunkActionType {
   return async (dispatch: Dispatch<AccountAction>) => {
     const { account } = await AccountAPI.getInfo();
     if (account) {
-      const { username, avatar, trainedKatas, solvedKatas } = account;
+      const { username, avatar, trainedKatas, solvedKatas, starredKatas } = account;
       dispatch({
         type: AccountActionTypes.SET_ACCOUNT,
-        payload: { username, avatar, trainedKatas, solvedKatas },
+        payload: { username, avatar, trainedKatas, solvedKatas, starredKatas },
       });
     }
   };
@@ -41,6 +41,29 @@ export function markAsSolved(kataId: string): ThunkActionType {
           trainedKatas: trainedKatas.filter((id) => id !== kataId),
         },
       });
+    }
+  };
+}
+
+export function addToStarred(kataId: string): ThunkActionType {
+  return async (dispatch: Dispatch<AccountAction>, getState) => {
+    const { starredKatas } = getState().account;
+    const { status } = await AccountAPI.addStarredKata(kataId);
+    if (status && starredKatas) {
+      if (!starredKatas.includes(kataId))
+        dispatch({
+          type: AccountActionTypes.ADD_TO_STARRED,
+          payload: {
+            starredKatas: [...starredKatas, kataId],
+          },
+        });
+      else
+        dispatch({
+          type: AccountActionTypes.ADD_TO_STARRED,
+          payload: {
+            starredKatas: starredKatas.filter((id) => id !== kataId),
+          },
+        });
     }
   };
 }
