@@ -15,6 +15,9 @@ export interface AccountState {
   solvedKatas: string[] | null;
   trainedKatas: string[] | null;
   starredKatas: string[] | null;
+  rank: string | null;
+  score: number | null;
+  honor: number | null;
 }
 
 export enum AccountActionTypes {
@@ -32,6 +35,9 @@ interface SetAccount {
     solvedKatas: string[];
     trainedKatas: string[];
     starredKatas: string[];
+    rank: string;
+    honor: number;
+    score: number;
   };
 }
 interface SignOut {

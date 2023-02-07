@@ -1,4 +1,5 @@
 import { ActionCreator, Dispatch } from 'redux';
+import { UsersAPI } from '../../api';
 import { AccountAPI } from '../../api/AccountAPI';
 import { ThunkActionType } from '../../types';
 import { AccountAction, AccountActionTypes } from '../../types/account';
@@ -8,9 +9,10 @@ export function setAccount(): ThunkActionType {
     const { account } = await AccountAPI.getInfo();
     if (account) {
       const { username, avatar, trainedKatas, solvedKatas, starredKatas } = account;
+      const { rank, honor, score } = await UsersAPI.getOne(username);
       dispatch({
         type: AccountActionTypes.SET_ACCOUNT,
-        payload: { username, avatar, trainedKatas, solvedKatas, starredKatas },
+        payload: { username, avatar, trainedKatas, solvedKatas, starredKatas, rank, honor, score },
       });
     }
   };
