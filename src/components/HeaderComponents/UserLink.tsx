@@ -1,18 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { DEFAULT_AVATAR } from '../../utils';
 import { Rank } from '../Kata/Rank';
 
-export const UserLink = () => {
+export const UserLink = ({ avatar, username }: { avatar: string | null; username: string }) => {
   return (
-    <Link className="header__profile-link" to="/users/rsschool_085c30fe4e1fbd81">
+    <Link className="header__profile-link" to={`/users/${username}`}>
       <div className="profile-picture">
-        <img alt="User avatar" src="https://avatars.githubusercontent.com/u/105039101?s=100" />
+        <img alt="User avatar" src={avatar || DEFAULT_AVATAR} />
       </div>
       <div className="profile-points">
         <Rank rank="3 kyu" />
-        <div className="ml-10px is-inline" data-rt="63256c43dfffbe00584b658c:honor">
-          1,502
-        </div>
+        1,502
       </div>
     </Link>
   );
