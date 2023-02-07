@@ -20,20 +20,43 @@
     min-width: 150px;
     z-index: 12;
     display: none;
+    left: 0;
+    width: 100%;
     &-body {
       margin-top: 10px;
       background-color: $sidebar-bg;
     }
+    &-item {
+      padding: 10px 15px;
+    }
   }
   .starred-menu {
-    left: 0;
-    width: 100%;
     .link {
-      padding: 10px 15px;
       display: flex;
       gap: 15px;
       align-items: center;
       color: #fff;
+      &:hover {
+        .link-title {
+          filter: brightness(0.6)
+        }
+      }
+    }
+    .link-title {
+      transition: filter .2s ease-in-out;
+    }
+  }
+  .notifications-menu {
+    .notification {
+      &:not(:last-child) {
+        border-bottom: 1px solid rgba(#fff, 0.15);
+      }
+      &__top {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
     }
   }
   &__item {
@@ -51,7 +74,7 @@
         color: #bb432c;
       }
       svg {
-        filter: brightness(0.6);
+        filter: brightness(0.7);
       }
     }
     &.starred:hover {
@@ -59,9 +82,15 @@
         display: block;
       }
     }
+    &.notifications:hover {
+      .notifications-menu {
+        display: block;
+      }
+    }
   }
   &__profile {
     padding: 12px 15px;
+    position: relative;
     &-link {
       display: flex;
       align-items: center;
@@ -77,6 +106,25 @@
       display: flex;
       gap: 10px;
       align-items: center;
+    }
+    &:hover {
+      .profile-menu {
+        display: block;
+      }
+    }
+    .header__menu-item {
+      display: flex;
+      align-items: center;
+      transition: filter .2s ease-in-out;
+      &:hover {
+        filter: brightness(0.7);
+      }
+    }
+    .border-bottom {
+      border-bottom: 1px solid rgba(#fff, 0.15);
+    }
+    button {
+      color: inherit;
     }
   }
 }

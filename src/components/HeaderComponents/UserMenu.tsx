@@ -1,28 +1,24 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const UserMenu = () => {
   return (
-    <div className="menu-body">
+    <div className="header__menu-body">
       <ul>
+        <li className="border-bottom">
+          <Link className="header__menu-item" to="/users/rsschool_085c30fe4e1fbd81">
+            <i className="icon-moon icon-moon-user "></i>View Profile
+          </Link>
+        </li>
+        <li className="border-bottom">
+          <Link className="header__menu-item" to="/users/edit">
+            <i className="icon-moon icon-moon-settings "></i>Account Settings
+          </Link>
+        </li>
         <li>
-          <a href="/users/rsschool_085c30fe4e1fbd81">
-            <i className="icon-moon-user "></i>View Profile
-          </a>
-        </li>
-        <li className="border-t">
-          <a href="/users/edit">
-            <i className="icon-moon-settings "></i>Account Settings
-          </a>
-        </li>
-        <li>
-          <a href="/trainer/setup">
-            <i className="icon-moon-settings "></i>Training Setup
-          </a>
-        </li>
-        <li className="border-t">
-          <a className="js-sign-out">
-            <i className="icon-moon-power "></i>Sign out
-          </a>
+          <Link to="/login" className="header__menu-item">
+            <i className="icon-moon icon-moon-power "></i>Sign out
+          </Link>
         </li>
       </ul>
     </div>

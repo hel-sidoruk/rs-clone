@@ -170,6 +170,18 @@
       content: "\e90c";
     }
   }
+  &-settings {
+    margin-right: 5px;
+    &::before {
+      content: "\e00e";
+    }
+  }
+  &-power {
+    margin-right: 5px;
+    &::before {
+      content: "\f11d";
+    }
+  }
 }
 
 .fake-avatar {

@@ -1,5 +1,6 @@
 import React from 'react';
-import { StarredKata, UserLink, UserMenu, Notification } from './HeaderComponents';
+import { StarredKata, Notification } from './HeaderComponents';
+import { HeaderProfile } from './HeaderComponents/HeaderProfile';
 
 export const Header = () => {
   return (
@@ -13,10 +14,10 @@ export const Header = () => {
           </a>
         </li>
         <li className="header__item starred">
-          <i className="icon-moon icon-moon-bookmark text-2xl"></i>
+          <i className="icon-moon icon-moon-bookmark"></i>
           <div className="header__menu starred-menu">
             <div className="header__menu-body">
-              <ul className="space-y">
+              <ul>
                 <StarredKata rank="8 kyu" title="Even or Odd" />
                 <StarredKata rank="4 kyu" title="Codewars style ranking system" />
                 <StarredKata rank="6 kyu" title="Add all" />
@@ -24,26 +25,18 @@ export const Header = () => {
             </div>
           </div>
         </li>
-        <li className="header__item">
-          <a>
-            <i className="icon-moon icon-moon-bell text-2xl"></i>
-          </a>
-          {/* <div className="menu right-0 shadow-lg">
-            <div className="menu-body">
-              <div className="notifications-body">
-                <ul className="divide-y">
-                  <Notification />
-                </ul>
-              </div>
+        <li className="header__item notifications">
+          <i className="icon-moon icon-moon-bell"></i>
+          <div className="header__menu notifications-menu">
+            <div className="header__menu-body">
+              <ul>
+                <Notification />
+                <Notification />
+              </ul>
             </div>
-          </div> */}
+          </div>
         </li>
-        <li className="header__profile">
-          <UserLink />
-          {/* <div className="menu shadow-lg">
-            <UserMenu />
-          </div> */}
-        </li>
+        <HeaderProfile />
       </ul>
     </header>
   );
