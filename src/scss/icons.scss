@@ -158,6 +158,18 @@
       content: "\e600";
     }
   }
+  &-bookmark {
+    font-size: 24px;
+    &::before {
+      content: "\f143";
+    }
+  }
+  &-bell {
+    font-size: 24px;
+    &::before {
+      content: "\e90c";
+    }
+  }
 }
 
 .fake-avatar {

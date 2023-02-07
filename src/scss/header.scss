@@ -1,7 +1,84 @@
 .header {
-  position: absolute;
+  position: fixed;
+  z-index: 1000;
   right: 0;
   top: 0;
+  height: 64px;
+  background-color: $sidebar-bg;
+  border-bottom-left-radius: 8px;
+  color: $light;
+  svg {
+    fill: $light;
+    transition: all .2s ease-in-out;
+  }
+  &__list {
+    display: flex;
+  }
+  &__menu {
+    position: absolute;
+    top: 50px;
+    min-width: 150px;
+    z-index: 12;
+    display: none;
+    &-body {
+      margin-top: 10px;
+      background-color: $sidebar-bg;
+    }
+  }
+  .starred-menu {
+    left: 0;
+    width: 100%;
+    .link {
+      padding: 10px 15px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      color: #fff;
+    }
+  }
+  &__item {
+    width: 60px;
+    height: 60px;
+    padding: 18px;
+    font-size: 15px;
+    line-height: 22px;
+    cursor: pointer;
+    i {
+      transition: color .2s ease-in-out;
+    }
+    &:hover {
+      i {
+        color: #bb432c;
+      }
+      svg {
+        filter: brightness(0.6);
+      }
+    }
+    &.starred:hover {
+      .starred-menu {
+        display: block;
+      }
+    }
+  }
+  &__profile {
+    padding: 12px 15px;
+    &-link {
+      display: flex;
+      align-items: center;
+    }
+    .profile-picture {
+      height: 38px;
+      border-radius: 3px;
+      overflow: hidden;
+      width: 38px;
+      margin-right: 15px;
+    }
+    .profile-points {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+  }
 }
 .header-home {
   position: fixed;
