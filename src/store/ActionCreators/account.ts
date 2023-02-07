@@ -45,10 +45,10 @@ export function markAsSolved(kataId: string): ThunkActionType {
   };
 }
 
-export function addToStarred(kataId: string): ThunkActionType {
+export function addToStarred(kataId: string, stars: number): ThunkActionType {
   return async (dispatch: Dispatch<AccountAction>, getState) => {
     const { starredKatas } = getState().account;
-    const { status } = await AccountAPI.addStarredKata(kataId);
+    const { status } = await AccountAPI.addStarredKata(kataId, stars);
     if (status && starredKatas) {
       if (!starredKatas.includes(kataId))
         dispatch({
