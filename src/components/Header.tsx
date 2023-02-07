@@ -1,6 +1,5 @@
 import React from 'react';
-import { StarredKata, Notification } from './HeaderComponents';
-import { HeaderProfile } from './HeaderComponents/HeaderProfile';
+import { HeaderProfile, Notification, StarredKatasList } from './HeaderComponents';
 
 export const Header = () => {
   return (
@@ -15,15 +14,7 @@ export const Header = () => {
         </li>
         <li className="header__item starred">
           <i className="icon-moon icon-moon-bookmark"></i>
-          <div className="header__menu starred-menu">
-            <div className="header__menu-body">
-              <ul>
-                <StarredKata rank="8 kyu" title="Even or Odd" />
-                <StarredKata rank="4 kyu" title="Codewars style ranking system" />
-                <StarredKata rank="6 kyu" title="Add all" />
-              </ul>
-            </div>
-          </div>
+          <StarredKatasList />
         </li>
         <li className="header__item notifications">
           <i className="icon-moon icon-moon-bell"></i>

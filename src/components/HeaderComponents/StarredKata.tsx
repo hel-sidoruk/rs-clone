@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { KataAPI } from '../../api';
+import useTypedSelector from '../../hooks/useTypedSelector';
+import { KataInterface } from '../../types/kata';
 import { Rank } from '../Kata/Rank';
 
-export const StarredKata = ({ rank, title }: { rank: string; title: string }) => {
+export const StarredKata = ({ id }: { id: string }) => {
+  const [kata, setKata] = useState<KataInterface | null>(null);
+  const { katasByID } = useTypedSelector((state) => state.katas);
+  useEffect(() => {
+    if (katasByID) {
+      if (katasByID[id]) setKata(katasByID[id]);
+      else KataAPI.getOne(id).then((res) => setKata(res));
+    }
+  }, [katasByID]);
+
   return (
     <li>
-      <Link className="header__menu-item link" to="/kata/53da3dbb4a5168369a0000fe">
-        <Rank rank={rank} />
-        <span className="link-title">{title}</span>
+      <Link className="header__menu-item link" to={`/kata/${id}`}>
+        {kata && (
+          <>
+            <Rank rank={kata.rank} />
+            <span className="link-title">{kata.name}</span>
+          </>
+        )}
       </Link>
     </li>
   );
