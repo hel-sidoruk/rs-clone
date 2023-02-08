@@ -4,17 +4,20 @@ import FilterItem from './FilterItem';
 
 const DropDownSingle = ({ list }: { list: string[] }) => {
   const [isOpen, setOpen] = useState(false);
-  const [topTitle, setTopTitle] = useState(list[0]);
+  const [selected, setSelected] = useState(list[0]);
 
   const handleOpen = () => {
     setOpen(!isOpen);
   };
 
+  const selectHandler = (param: string) => setSelected(param);
+
   const menuRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
   useEffect(() => {
     const handler = (e: Event) => {
-      if (!menuRef.current.contains(e.target as Node)) {
+      const elem = e.target as HTMLElement;
+      if (!menuRef.current.contains(e.target as Node) && elem.className !== 'drop-down__top') {
         setOpen(false);
       }
     };
@@ -24,23 +27,26 @@ const DropDownSingle = ({ list }: { list: string[] }) => {
     };
   });
 
-  const updateTop = (title: string) => {
-    setTopTitle(title);
-  };
-
   return (
     <div className={isOpen ? `drop-down drop-down_open` : `drop-down`}>
       <button className="drop-down__top" onClick={handleOpen}>
-        {topTitle}
+        {selected}
         <DropIcon />
       </button>
       <div
         ref={menuRef}
         className={isOpen ? 'drop-down__list drop-down__list_open' : 'drop-down__list'}
       >
-        {list.map((item) => (
-          <FilterItem key={item} content={item} update={updateTop} open={handleOpen}></FilterItem>
-        ))}
+        {isOpen &&
+          list.map((item) => (
+            <FilterItem
+              selectHandler={selectHandler}
+              openHandler={handleOpen}
+              isSelected={item === selected}
+              key={item}
+              content={item}
+            ></FilterItem>
+          ))}
       </div>
     </div>
   );

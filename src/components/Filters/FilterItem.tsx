@@ -3,24 +3,18 @@ import CheckMark from '../Icons/CheckMark';
 
 type FilterItemProps = {
   content: string;
-  update: (title: string) => void;
-  open: () => void;
+  selectHandler: (param: string) => void;
+  isSelected: boolean;
+  openHandler: () => void;
 };
 
-const FilterItem = ({ content, update, open }: FilterItemProps) => {
-  const [isActive, setIsActive] = useState(false);
-
-  const activeHandler = () => {
-    setIsActive(!isActive);
-  };
-
+const FilterItem = ({ content, isSelected, selectHandler, openHandler }: FilterItemProps) => {
   return (
     <div
-      className={isActive ? 'drop-down__item drop-down__item_active' : 'drop-down__item'}
+      className={isSelected ? 'drop-down__item drop-down__item_active' : 'drop-down__item'}
       onClick={() => {
-        activeHandler();
-        update(content);
-        open();
+        selectHandler(content);
+        openHandler();
       }}
     >
       <CheckMark />
