@@ -189,6 +189,17 @@
       content: "\f11d";
     }
   }
+  &-unlock {
+    margin-right: 5px;
+    &::before {
+      content: "\e055";
+    }
+  }
+  &-x {
+    &::before {
+      content: "\e042";
+    }
+  }
 }
 
 .fake-avatar {

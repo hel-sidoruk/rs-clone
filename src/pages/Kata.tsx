@@ -18,6 +18,10 @@ export const Kata = () => {
     setIsHidden(true);
   }, [pathname]);
 
+  useEffect(() => {
+    if (kata) document.title = `${kata.name} | Codewars Clone`;
+  }, [kata]);
+
   return (
     <main className="play-view">
       <h1 className="page-title">Kata</h1>

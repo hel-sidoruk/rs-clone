@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LeaderTable from '../components/leaderBoard/LeaderTable';
 
-export const Leaderboard = () => {
+export const Leaderboard = ({ title }: { title: string }) => {
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
   return (
     <main className="play-view">
       <h1 className="page-title">Leaderboards</h1>

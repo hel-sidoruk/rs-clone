@@ -5,7 +5,11 @@ import Loader from '../components/UI/Loader';
 import useActions from '../hooks/useActions';
 import useTypedSelector from '../hooks/useTypedSelector';
 
-export const Authorization = ({ option }: { option: 'login' | 'registration' }) => {
+interface Props {
+  option: 'login' | 'registration';
+  title: string;
+}
+export const Authorization = ({ option, title }: Props) => {
   const [params] = useSearchParams();
   const { githubLogin, githubRegistration } = useActions();
   const { loading, isAuthorized } = useTypedSelector((state) => state.authorizedUser);
@@ -20,6 +24,10 @@ export const Authorization = ({ option }: { option: 'login' | 'registration' }) 
   useEffect(() => {
     isAuthorized && navigate('/');
   }, [isAuthorized]);
+
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
 
   return (
     <div className="auth">

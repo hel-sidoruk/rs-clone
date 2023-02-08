@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useTypedSelector from '../hooks/useTypedSelector';
 
-export const Home = () => {
+export const Home = ({ title }: { title: string }) => {
   const { isAuthorized } = useTypedSelector((state) => state.authorizedUser);
 
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
   return (
     <div className="home">
       <h1 className="home__title">

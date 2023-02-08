@@ -23,6 +23,10 @@ export const KataTraining = () => {
     }
   }, [solvedKatas, trainedKatas]);
 
+  useEffect(() => {
+    if (kata) document.title = `Training on ${kata.name} | Codewars Clone`;
+  }, [kata]);
+
   return (
     <main className={`play-view kata-training ${isHidden ? 'hidden' : ''}`}>
       {!isHidden && (
