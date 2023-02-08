@@ -11,7 +11,7 @@ const SearchInput = () => {
     setSearchValue(val);
   }
 
-  function setSearchString(e: FormEvent<HTMLFormElement | HTMLButtonElement>) {
+  function getSearchString(e: FormEvent<HTMLFormElement | HTMLButtonElement>) {
     e.preventDefault();
     console.log(searchValue);
   }
@@ -21,15 +21,15 @@ const SearchInput = () => {
   }
 
   return (
-    <form className="filters__search" onSubmit={setSearchString}>
+    <form className="filters__search" onSubmit={getSearchString} onReset={resetInput}>
       <input type="text" value={searchValue} onInput={updateValue} />
       <div className="filters__btn-wrap">
         {searchValue ? (
-          <button onClick={resetInput}>
+          <button type="reset">
             <CloseIcon />
           </button>
         ) : null}
-        <button onClick={setSearchString}>
+        <button type="submit">
           <SearchIcon />
         </button>
       </div>
