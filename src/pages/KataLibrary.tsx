@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FeaturedTags } from '../components/FeaturedTags';
 import Filters from '../components/Filters/Filters';
 import { KataList } from '../components/Kata/KataList';
 import useTypedSelector from '../hooks/useTypedSelector';
 
-export const KataLibrary = () => {
+export const KataLibrary = ({ title }: { title: string }) => {
   const { katas, loading, totalCount } = useTypedSelector((state) => state.katas);
+
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
 
   return (
     <main className="play-view">
