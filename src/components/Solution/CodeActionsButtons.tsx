@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { SolutionsAPI } from '../../api/SolutionsAPI';
 import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
+import { ShowSolutionsButton } from './ShowSolutionsButton';
 
 export const CodeActionsButtons = () => {
   const { startTesting, updateSolution, setSuccess } = useActions();
@@ -10,10 +11,12 @@ export const CodeActionsButtons = () => {
   const navigate = useNavigate();
   const { isTestsStarted, success, solution } = useTypedSelector((state) => state.solution);
   const { username } = useTypedSelector((state) => state.account);
+
   const startTests = () => {
     if (!solution) return;
     startTesting();
   };
+
   const handleSubmit = async () => {
     if (id && success && username)
       await SolutionsAPI.addSolution(id, {
@@ -24,6 +27,7 @@ export const CodeActionsButtons = () => {
     setSuccess(false);
     navigate(`/kata/${id}/solutions`);
   };
+
   return (
     <div className="code__btns">
       <div className="code__btns-actions">
@@ -31,10 +35,7 @@ export const CodeActionsButtons = () => {
           <i className="icon-moon icon-moon-next"></i>
           <span className="btn-text">skip</span>
         </Link>
-        <Link to={`/kata/${id}/solutions`} className="btn btn-dark">
-          <i className="icon-moon icon-moon-compare"></i>
-          <span className="btn-text">view solutions</span>
-        </Link>
+        <ShowSolutionsButton id={id as string} />
         <Link to={`/kata/${id}/discuss`} className="btn btn-dark">
           <i className="icon-moon icon-moon-comments"></i>
           <span className="btn-text">discuss</span>

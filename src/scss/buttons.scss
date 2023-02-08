@@ -20,6 +20,7 @@
   &.success {
     background-color: $success-btn;
     border-color: $success-btn;
+    color: $dark;
     &:hover {
       background-color: $success-btn;
       filter: brightness(1.2);

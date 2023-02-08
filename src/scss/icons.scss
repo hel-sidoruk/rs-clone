@@ -195,6 +195,11 @@
       content: "\e055";
     }
   }
+  &-x {
+    &::before {
+      content: "\e042";
+    }
+  }
 }
 
 .fake-avatar {
