@@ -4,6 +4,7 @@ import { ArrowIcon } from '../components/Icons/ArrowIcon';
 import { KataControls } from '../components/Kata/KataControls';
 import { KataDescription } from '../components/Kata/KataDescription';
 import { KataInstructions } from '../components/KataTraining/KataInstructions';
+import { Popup } from '../components/UI/Popup';
 import { useFetchKata } from '../hooks/useFetchKata';
 
 export const Kata = () => {
@@ -41,6 +42,7 @@ export const Kata = () => {
           {kata && <KataInstructions description={kata.description} tags={kata.tags} />}
         </div>
       )}
+      <Popup />
       <Outlet />
     </main>
   );
