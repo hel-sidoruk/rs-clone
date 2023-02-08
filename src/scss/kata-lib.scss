@@ -106,16 +106,19 @@
     justify-content: space-between;
     align-items: center;
     padding: 5px 10px;
+
     input {
+      color: inherit;
       outline: none;
     }
 
-    .search-icon {
+    button {
+      color: inherit;
       svg {
         transition: all 0.3s;
       }
     }
-    .search-icon:hover {
+    button:hover {
       svg {
         fill: $filters-accent;
         cursor: pointer;
@@ -145,22 +148,40 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 10px;
+    padding: 5px;
+    color: $input-bdr;
+    width: 100%;
   }
 
   &__list {
-    padding: 14px;
     background: $section;
     display: flex;
     flex-direction: column;
     border: 1px solid $input-bdr;
     border-radius: 5px;
     color: $input-text;
-    display: none;
   }
 
   &__item {
-    padding: 10px 0;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+
+    svg {
+      display: none;
+      fill: currentColor;
+    }
+
+    &_active {
+      svg {
+        display: block;
+      }
+    }
+
+    &:hover {
+      background: $rank-blue;
+      color: $section;
+    }
   }
 }
 
