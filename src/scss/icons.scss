@@ -189,6 +189,12 @@
       content: "\f11d";
     }
   }
+  &-unlock {
+    margin-right: 5px;
+    &::before {
+      content: "\e055";
+    }
+  }
 }
 
 .fake-avatar {
