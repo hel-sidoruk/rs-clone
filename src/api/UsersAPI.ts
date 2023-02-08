@@ -26,7 +26,10 @@ export class UsersAPI {
     return data;
   }
 
-  static async update(id: number, data: Partial<Omit<UserInterface, 'id' | 'username'>>) {
+  static async update(
+    id: string,
+    data: Partial<Omit<UserInterface, 'id' | 'username'>>
+  ): Promise<{ status?: 'ok' }> {
     const response = await fetch(`${API_URL}/user/${id}`, {
       method: 'PATCH',
       headers: {
@@ -34,6 +37,7 @@ export class UsersAPI {
       },
       body: JSON.stringify(data),
     });
-    return response;
+    const res = await response.json();
+    return { status: res.status };
   }
 }

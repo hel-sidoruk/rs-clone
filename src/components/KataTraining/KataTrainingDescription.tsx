@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { KataAPI } from '../../api';
+import React from 'react';
 import { KataInterface } from '../../types/kata';
 import { KataInfo } from '../Kata/KataInfo';
 import { KataLanguage } from '../Kata/KataLanguage';
 
-export const KataTrainingDescription = ({ handler }: { handler: () => void }) => {
-  const [kata, setKata] = useState<KataInterface | null>(null);
-  const { id } = useParams();
-
-  useEffect(() => {
-    if (id) KataAPI.getOne(id).then(setKata);
-  }, []);
-
+interface Props {
+  handler: () => void;
+  kata: KataInterface;
+}
+export const KataTrainingDescription = ({ handler, kata }: Props) => {
   return (
     <div className="kata-description">
       {kata && (

@@ -10,10 +10,10 @@ import { useParams } from 'react-router-dom';
 
 const initialOutputState = 'Your results will be shown here';
 
-export const TestsOutput = memo(function TestsOutput() {
+export const TestsOutput = memo(function TestsOutput({ kataRank }: { kataRank: string }) {
   const { isTestsStarted, success } = useTypedSelector((state) => state.solution);
   const { id } = useParams();
-  const [startTests, output, failure, stats] = useTesting(id as string);
+  const [startTests, output, failure, stats] = useTesting(id as string, kataRank);
 
   useEffect(() => {
     if (isTestsStarted) startTests();
