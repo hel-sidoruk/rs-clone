@@ -125,6 +125,11 @@
       }
     }
   }
+
+  &__btn-wrap {
+    display: flex;
+    gap: 10px;
+  }
 }
 
 .katas {
