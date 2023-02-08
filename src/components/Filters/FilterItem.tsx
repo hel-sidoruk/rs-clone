@@ -1,22 +1,32 @@
-import React, { forwardRef, HTMLAttributes, PropsWithChildren } from 'react';
+import React, { useState } from 'react';
 import CheckMark from '../Icons/CheckMark';
 
 type FilterItemProps = {
-  active?: boolean;
-  value: string;
-  onClick?(): void;
-} & HTMLAttributes<HTMLDivElement>;
+  content: string;
+  update: (title: string) => void;
+  open: () => void;
+};
 
-// eslint-disable-next-line react/display-name
-const FilterItem = forwardRef<HTMLDivElement, PropsWithChildren<FilterItemProps>>((props, ref) => {
-  const { active, children, ...rest } = props;
+const FilterItem = ({ content, update, open }: FilterItemProps) => {
+  const [isActive, setIsActive] = useState(false);
+
+  const activeHandler = () => {
+    setIsActive(!isActive);
+  };
 
   return (
-    <div className={active ? 'drop-down__item drop-down__item_active' : 'drop-down__item'}>
+    <div
+      className={isActive ? 'drop-down__item drop-down__item_active' : 'drop-down__item'}
+      onClick={() => {
+        activeHandler();
+        update(content);
+        open();
+      }}
+    >
       <CheckMark />
-      {props.children}
+      {content}
     </div>
   );
-});
+};
 
 export default FilterItem;
