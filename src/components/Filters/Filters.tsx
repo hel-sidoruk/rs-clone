@@ -1,15 +1,15 @@
 import React from 'react';
 import { FilterDropDown } from './FilterDropDown';
-import SearchIcon from '../Icons/SearchIcon';
+import DropDown from './DropDown';
+import FilterItem from './FilterItem';
+import SearchInput from './SearchInput';
+
 const list = ['Newest', 'Oldest', 'Popularity', 'Hardest', 'Easiest', 'Name'];
 
 const Filters = () => {
   return (
     <div className="library__filters filters">
-      <div className="filters__search">
-        <input type="text" />
-        <SearchIcon />
-      </div>
+      <SearchInput />
       <div className="filters__drop-down sort">
         Sort By
         <FilterDropDown list={list} />
@@ -29,6 +29,16 @@ const Filters = () => {
       <div className="filters__drop-down tags-filter">
         Tags
         <FilterDropDown list={list} />
+      </div>
+      <div>
+        Test
+        <DropDown label={<div>test</div>}>
+          {list.map((item) => (
+            <FilterItem key={item} value={item}>
+              {item}
+            </FilterItem>
+          ))}
+        </DropDown>
       </div>
     </div>
   );
