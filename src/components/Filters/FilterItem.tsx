@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CheckMark from '../Icons/CheckMark';
 
 type FilterItemProps = {
   content: string;
   selectHandler: (param: string) => void;
   isSelected: boolean;
-  openHandler: () => void;
+  openHandler?: () => void;
 };
 
 const FilterItem = ({ content, isSelected, selectHandler, openHandler }: FilterItemProps) => {
@@ -14,7 +14,7 @@ const FilterItem = ({ content, isSelected, selectHandler, openHandler }: FilterI
       className={isSelected ? 'drop-down__item drop-down__item_active' : 'drop-down__item'}
       onClick={() => {
         selectHandler(content);
-        openHandler();
+        if (openHandler) openHandler();
       }}
     >
       <CheckMark />
