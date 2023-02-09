@@ -7,6 +7,7 @@ export interface AccountInterface {
   solvedKatas: string[];
   trainedKatas: string[];
   starredKatas: string[];
+  forfeitedKatas: string[];
 }
 
 export interface AccountState {
@@ -15,6 +16,7 @@ export interface AccountState {
   solvedKatas: string[] | null;
   trainedKatas: string[] | null;
   starredKatas: string[] | null;
+  forfeitedKatas: string[] | null;
   rank: string | null;
   score: number | null;
   honor: number | null;
@@ -26,6 +28,8 @@ export enum AccountActionTypes {
   MARK_AS_TRAINED = 'MARK_AS_TRAINED',
   MARK_AS_SOLVED = 'MARK_AS_SOLVED',
   ADD_TO_STARRED = 'ADD_TO_STARRED',
+  ADD_TO_FORFEITED = 'ADD_TO_FORFEITED',
+  UPDATE_USER_PROGRESS = 'UPDATE_USER_PROGRESS',
 }
 interface SetAccount {
   type: AccountActionTypes.SET_ACCOUNT;
@@ -35,6 +39,7 @@ interface SetAccount {
     solvedKatas: string[];
     trainedKatas: string[];
     starredKatas: string[];
+    forfeitedKatas: string[];
     rank: string;
     honor: number;
     score: number;
@@ -62,4 +67,25 @@ interface AddToStarred {
     starredKatas: string[];
   };
 }
-export type AccountAction = SetAccount | SignOut | MarkAsTrained | MarkAsSolved | AddToStarred;
+interface AddToForfeited {
+  type: AccountActionTypes.ADD_TO_FORFEITED;
+  payload: {
+    forfeitedKatas: string[];
+  };
+}
+interface UpdateUserProgress {
+  type: AccountActionTypes.UPDATE_USER_PROGRESS;
+  payload: {
+    rank: string;
+    score: number;
+    honor: number;
+  };
+}
+export type AccountAction =
+  | SetAccount
+  | SignOut
+  | MarkAsTrained
+  | MarkAsSolved
+  | AddToStarred
+  | UpdateUserProgress
+  | AddToForfeited;

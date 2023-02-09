@@ -35,3 +35,44 @@ export const filterLists = {
     'Strings',
   ],
 };
+
+type StringKeys = { [key: string]: number };
+type NumberKeys = { [key: number]: number };
+export const scoreNeededForRankingUp: NumberKeys = {
+  7: 20,
+  6: 76,
+  5: 229,
+  4: 643,
+  3: 1768,
+  2: 4829,
+  1: 13147,
+};
+export const awardedScorePerKata: StringKeys = {
+  '8 kyu': 2,
+  '7 kyu': 3,
+  '6 kyu': 8,
+  '5 kyu': 21,
+  '4 kyu': 55,
+  '3 kyu': 149,
+  '2 kyu': 404,
+  '1 kyu': 1097,
+};
+export const awardedHonorPerKata: StringKeys = {
+  '8 kyu': 2,
+  '7 kyu': 2,
+  '6 kyu': 8,
+  '5 kyu': 8,
+  '4 kyu': 32,
+  '3 kyu': 32,
+  '2 kyu': 128,
+  '1 kyu': 128,
+};
+export const awardedHonorPerRankingUp: NumberKeys = {
+  7: 20,
+  6: 30,
+  5: 45,
+  4: 70,
+  3: 100,
+  2: 150,
+  1: 225,
+};

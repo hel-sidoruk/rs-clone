@@ -6,6 +6,7 @@ const initialState: AccountState = {
   solvedKatas: null,
   trainedKatas: null,
   starredKatas: null,
+  forfeitedKatas: null,
   rank: null,
   score: null,
   honor: null,
@@ -21,6 +22,7 @@ export default function accountReducer(state: AccountState = initialState, actio
         solvedKatas: action.payload.solvedKatas,
         trainedKatas: action.payload.trainedKatas,
         starredKatas: action.payload.starredKatas,
+        forfeitedKatas: action.payload.forfeitedKatas,
         rank: action.payload.rank,
         honor: action.payload.honor,
         score: action.payload.score,
@@ -33,6 +35,7 @@ export default function accountReducer(state: AccountState = initialState, actio
         solvedKatas: null,
         trainedKatas: null,
         starredKatas: null,
+        forfeitedKatas: null,
         rank: null,
         honor: null,
         score: null,
@@ -52,6 +55,18 @@ export default function accountReducer(state: AccountState = initialState, actio
       return {
         ...state,
         starredKatas: action.payload.starredKatas,
+      };
+    case AccountActionTypes.ADD_TO_FORFEITED:
+      return {
+        ...state,
+        forfeitedKatas: action.payload.forfeitedKatas,
+      };
+    case AccountActionTypes.UPDATE_USER_PROGRESS:
+      return {
+        ...state,
+        rank: action.payload.rank,
+        honor: action.payload.honor,
+        score: action.payload.score,
       };
     default:
       return state;

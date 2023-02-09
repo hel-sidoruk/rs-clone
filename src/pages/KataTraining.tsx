@@ -4,6 +4,7 @@ import { KataTrainingDescription } from '../components/KataTraining/KataTraining
 import { KataTrainingInfo } from '../components/KataTraining/KataTrainingInfo';
 import { Solution } from '../components/Solution/Solution';
 import useActions from '../hooks/useActions';
+import { useFetchKata } from '../hooks/useFetchKata';
 import useTypedSelector from '../hooks/useTypedSelector';
 
 export const KataTraining = () => {
@@ -13,6 +14,7 @@ export const KataTraining = () => {
   const handleClick = () => setIsHidden((value) => !value);
   const [isSolved, setIsSolved] = useState(false);
   const { trainedKatas, solvedKatas } = useTypedSelector((state) => state.account);
+  const [kata] = useFetchKata(id as string);
 
   useEffect(() => {
     if (id) {
@@ -21,19 +23,28 @@ export const KataTraining = () => {
     }
   }, [solvedKatas, trainedKatas]);
 
+  useEffect(() => {
+    if (kata) document.title = `Training on ${kata.name} | Codewars Clone`;
+  }, [kata]);
+
   return (
     <main className={`play-view kata-training ${isHidden ? 'hidden' : ''}`}>
       {!isHidden && (
         <>
           <h1 className="page-title">Kata Training</h1>
-          <KataTrainingDescription handler={handleClick} />
+          {kata && <KataTrainingDescription handler={handleClick} kata={kata} />}
         </>
       )}
       <section className="kata-train">
-        <KataTrainingInfo solved={isSolved} handler={handleClick} isHidden={isHidden} />
-        <div className="kata-train__code">
-          <Solution />
-        </div>
+        {kata && (
+          <KataTrainingInfo
+            solved={isSolved}
+            handler={handleClick}
+            isHidden={isHidden}
+            kata={kata}
+          />
+        )}
+        <div className="kata-train__code">{kata && <Solution kata={kata} />}</div>
       </section>
     </main>
   );

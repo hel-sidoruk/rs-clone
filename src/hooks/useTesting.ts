@@ -4,12 +4,15 @@ import { WS_URL } from '../utils';
 import useActions from './useActions';
 import useTypedSelector from './useTypedSelector';
 
-export function useTesting(kataId: string): [() => void, string, boolean, TestsStats | null] {
+type ReturnType = [() => void, string, boolean, TestsStats | null];
+
+export function useTesting(kataId: string, kataRank: string): ReturnType {
   const [output, setOutput] = useState('');
   const [failure, setFailure] = useState(false);
   const [testsStats, setTestsStats] = useState<TestsStats | null>(null);
-  const { solution } = useTypedSelector((state) => state.solution);
-  const { setSuccess, endTesting, markAsSolved } = useActions();
+  const { solution, testSuites } = useTypedSelector((state) => state.solution);
+  const { solvedKatas, forfeitedKatas } = useTypedSelector((state) => state.account);
+  const { setSuccess, endTesting, markAsSolved, updateUserProgress } = useActions();
 
   const startTests = () => {
     setOutput('Sending request...');
@@ -18,15 +21,18 @@ export function useTesting(kataId: string): [() => void, string, boolean, TestsS
     socket.onopen = function () {
       setFailure(false);
       setOutput('');
-      socket.send(JSON.stringify({ kataId, solution }));
+      socket.send(JSON.stringify({ kataId, solution, testSuites }));
     };
 
     socket.onmessage = function (event) {
       if (event.data.startsWith('--stats--'))
         return setTestsStats(JSON.parse(event.data.replace('--stats--', '')));
       if (event.data === '--success--') {
-        markAsSolved(kataId);
-        return setSuccess(true);
+        if (!solvedKatas?.includes(kataId) && testSuites === 'all') {
+          markAsSolved(kataId);
+          if (!forfeitedKatas?.includes(kataId)) updateUserProgress(kataId, kataRank);
+        }
+        return setSuccess(testSuites);
       }
       if (event.data === '--failure--') return setFailure(true);
       setOutput((state) => state + `${event.data}\n`);

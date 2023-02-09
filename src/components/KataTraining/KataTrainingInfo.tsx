@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useTypedSelector from '../../hooks/useTypedSelector';
+import { KataInterface } from '../../types/kata';
 import { KataInstructions } from './KataInstructions';
 import { PastSolutions } from './PastSolutions';
 import { TestsOutput } from './TestsOutput';
@@ -10,9 +11,10 @@ interface Props {
   solved: boolean;
   handler: () => void;
   isHidden: boolean;
+  kata: KataInterface;
 }
 
-export const KataTrainingInfo = ({ solved, handler, isHidden }: Props) => {
+export const KataTrainingInfo = ({ solved, handler, isHidden, kata }: Props) => {
   const [active, setActive] = useState(options[0]);
   const { isTestsStarted } = useTypedSelector((state) => state.solution);
 
@@ -48,10 +50,10 @@ export const KataTrainingInfo = ({ solved, handler, isHidden }: Props) => {
       <>
         {active === options[0] ? (
           <div className="kata-train__descr">
-            <KataInstructions />
+            <KataInstructions description={kata.description} tags={kata.tags} />
           </div>
         ) : active === options[1] ? (
-          <TestsOutput />
+          <TestsOutput kataRank={kata.rank} />
         ) : (
           <PastSolutions />
         )}

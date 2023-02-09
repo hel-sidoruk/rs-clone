@@ -1,24 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { ArrowIcon } from '../components/Icons/ArrowIcon';
 import { KataControls } from '../components/Kata/KataControls';
 import { KataDescription } from '../components/Kata/KataDescription';
 import { KataInstructions } from '../components/KataTraining/KataInstructions';
+import { useFetchKata } from '../hooks/useFetchKata';
 
 export const Kata = () => {
   const { pathname } = useLocation();
+  const { id } = useParams();
   const [shouldHide, setShouldHide] = useState(false);
   const [isHidden, setIsHidden] = useState(true);
+  const [kata] = useFetchKata(id as string);
 
   useEffect(() => {
     setShouldHide(pathname.endsWith('/discuss') || pathname.endsWith('/solutions') ? true : false);
     setIsHidden(true);
   }, [pathname]);
 
+  useEffect(() => {
+    if (kata) document.title = `${kata.name} | Codewars Clone`;
+  }, [kata]);
+
   return (
     <main className="play-view">
       <h1 className="page-title">Kata</h1>
-      <KataDescription />
+      {kata && <KataDescription kata={kata} />}
       <KataControls />
       {shouldHide ? (
         <div className={`section kata-details kata-hide ${isHidden ? 'hide' : ''}`}>
@@ -26,12 +33,12 @@ export const Kata = () => {
             <h3 className="toggle-block__title">Description</h3>
             <ArrowIcon />
           </div>
-          <KataInstructions />
+          {kata && <KataInstructions description={kata.description} tags={kata.tags} />}
         </div>
       ) : (
         <div className="section kata-details">
           <h3 className="kata-details__title">Description:</h3>
-          <KataInstructions />
+          {kata && <KataInstructions description={kata.description} tags={kata.tags} />}
         </div>
       )}
       <Outlet />

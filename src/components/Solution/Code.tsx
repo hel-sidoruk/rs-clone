@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useActions from '../../hooks/useActions';
 import { useCaretPosition } from '../../hooks/useCaretPosition';
 import { useKeyPress } from '../../hooks/useKeyPress';
 import useTypedSelector from '../../hooks/useTypedSelector';
-// import { getInitialFunction } from '../../utils';
 import { CodeHighlight } from './CodeHighlight';
 import { CodeLineCounter } from './CodeLineCounter';
 
-export const Code = () => {
+export const Code = ({ initialValue }: { initialValue: string }) => {
   const [textAreaRef, updateCaret, setCaretPosition] = useCaretPosition();
   const [rowsCount, handleKeyDown] = useKeyPress(textAreaRef, setCaretPosition);
   const { updateSolution } = useActions();
@@ -18,9 +17,9 @@ export const Code = () => {
     updateCaret();
   };
 
-  // useEffect(() => {
-  //   updateSolution(getInitialFunction(functionName, fnArgs));
-  // }, []);
+  useEffect(() => {
+    updateSolution(initialValue);
+  }, []);
 
   return (
     <div className="code">
