@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { TestsStats } from '../types';
-import { WS_URL } from '../utils';
+import { updateProgress, WS_URL } from '../utils';
 import useActions from './useActions';
 import useTypedSelector from './useTypedSelector';
 
@@ -11,7 +11,9 @@ export function useTesting(kataId: string, kataRank: string): ReturnType {
   const [failure, setFailure] = useState(false);
   const [testsStats, setTestsStats] = useState<TestsStats | null>(null);
   const { solution } = useTypedSelector((state) => state.solution);
-  const { solvedKatas, forfeitedKatas } = useTypedSelector((state) => state.account);
+  const { solvedKatas, forfeitedKatas, honor, rank, score } = useTypedSelector(
+    (state) => state.account
+  );
   const { setSuccess, endTesting, markAsSolved, updateUserProgress } = useActions();
 
   const startTests = () => {
@@ -30,7 +32,12 @@ export function useTesting(kataId: string, kataRank: string): ReturnType {
       if (event.data === '--success--') {
         if (!solvedKatas?.includes(kataId)) {
           markAsSolved(kataId);
-          if (!forfeitedKatas?.includes(kataId)) updateUserProgress(kataId, kataRank);
+          if (!forfeitedKatas?.includes(kataId) && honor !== null && score !== null && rank) {
+            const updates = updateProgress(kataRank, honor, parseInt(rank), score);
+            const { newScore, newHonor, newRank } = updates;
+            console.log(newScore, newHonor, newRank);
+            updateUserProgress(newScore, newHonor, newRank);
+          }
         }
         return setSuccess(true);
       }

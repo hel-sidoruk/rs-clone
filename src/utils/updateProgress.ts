@@ -10,7 +10,7 @@ export function updateProgress(
   honor: number,
   rank: number,
   score: number
-): { newScore: number; newHonor: number; newRank: string } {
+): { newScore: number; newHonor: number; newRank?: string } {
   const scoreForNextRank = scoreNeededForRankingUp[rank - 1];
   const newScore = score + awardedScorePerKata[kataRank];
   let newHonor = honor + awardedHonorPerKata[kataRank];
@@ -18,6 +18,7 @@ export function updateProgress(
   if (newScore >= scoreForNextRank) {
     newRank = rank - 1;
     newHonor += awardedHonorPerRankingUp[newRank];
+    return { newScore, newHonor, newRank: `${newRank} kyu` };
   }
-  return { newScore, newHonor, newRank: `${newRank} kyu` };
+  return { newScore, newHonor };
 }
