@@ -1,4 +1,6 @@
 export interface NotificationInterface {
+  id: string;
+  username: string;
   text: string;
   createdAt: string;
 }
