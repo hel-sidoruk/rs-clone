@@ -9,6 +9,9 @@
   overflow: hidden;
   font-size: 16px;
   color: $light;
+  transform: translateY(130%);
+  opacity: 0;
+  transition: all .8s ease-out;
   &__header {
     background-color: #4b66ce;
     padding: 25px;
@@ -33,5 +36,9 @@
   &__body {
     padding: 25px;
     line-height: 28px;
+  }
+  &--active {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

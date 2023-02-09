@@ -1,9 +1,9 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 
-export const Popup = () => {
+export const Popup = ({ isHidden }: { isHidden: boolean }) => {
   return createPortal(
-    <div className="popup">
+    <div className={`${isHidden ? 'popup' : 'popup popup--active'}`}>
       <div className="popup__header">
         <i className="icon-moon-info icon-moon"></i>
         <span>You have ranked up!</span>
