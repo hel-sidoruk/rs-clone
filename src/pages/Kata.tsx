@@ -50,7 +50,7 @@ export const Kata = () => {
       <button className="btn btn-fill" onClick={handler}>
         Click
       </button>
-      <Popup isHidden={isPopupHidden} />
+      <Popup isHidden={isPopupHidden} close={() => setIsPopupHidden(true)} />
       <Outlet />
     </main>
   );
