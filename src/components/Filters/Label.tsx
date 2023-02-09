@@ -1,0 +1,20 @@
+import React from 'react';
+import CloseEmptyIcon from '../Icons/CloseEmptyIcon';
+
+type LabelProps = {
+  text: string;
+  cb: (tag: string) => void;
+};
+
+const Label = ({ text, cb }: LabelProps) => {
+  return (
+    <div className="drop-down__label">
+      <div>{text}</div>
+      <div onClick={() => cb(text)}>
+        <CloseEmptyIcon />
+      </div>
+    </div>
+  );
+};
+
+export default Label;
