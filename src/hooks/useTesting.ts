@@ -10,7 +10,7 @@ export function useTesting(kataId: string, kataRank: string): ReturnType {
   const [output, setOutput] = useState('');
   const [failure, setFailure] = useState(false);
   const [testsStats, setTestsStats] = useState<TestsStats | null>(null);
-  const { solution } = useTypedSelector((state) => state.solution);
+  const { solution, testSuites } = useTypedSelector((state) => state.solution);
   const { solvedKatas, forfeitedKatas } = useTypedSelector((state) => state.account);
   const { setSuccess, endTesting, markAsSolved, updateUserProgress } = useActions();
 
@@ -21,18 +21,18 @@ export function useTesting(kataId: string, kataRank: string): ReturnType {
     socket.onopen = function () {
       setFailure(false);
       setOutput('');
-      socket.send(JSON.stringify({ kataId, solution }));
+      socket.send(JSON.stringify({ kataId, solution, testSuites }));
     };
 
     socket.onmessage = function (event) {
       if (event.data.startsWith('--stats--'))
         return setTestsStats(JSON.parse(event.data.replace('--stats--', '')));
       if (event.data === '--success--') {
-        if (!solvedKatas?.includes(kataId)) {
+        if (!solvedKatas?.includes(kataId) && testSuites === 'all') {
           markAsSolved(kataId);
           if (!forfeitedKatas?.includes(kataId)) updateUserProgress(kataId, kataRank);
         }
-        return setSuccess(true);
+        return setSuccess(testSuites);
       }
       if (event.data === '--failure--') return setFailure(true);
       setOutput((state) => state + `${event.data}\n`);
