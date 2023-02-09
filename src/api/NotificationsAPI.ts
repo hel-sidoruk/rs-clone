@@ -4,17 +4,19 @@ import { NotificationInterface } from '../types/notifications';
 const URL = `${API_URL}/notifications`;
 
 export class NotificationsAPI {
-  static async getAll(): Promise<NotificationInterface[] | { message: string }> {
+  static async getAll(): Promise<{ notifications?: NotificationInterface[]; message?: string }> {
     const savedToken = localStorage.getItem('token');
     if (!savedToken) return { message: 'No token found' };
     const response = await fetch(URL, {
       headers: { Authorization: `Bearer ${savedToken}` },
     });
-    const data = await response.json();
-    return data;
+    const notifications = await response.json();
+    return { notifications };
   }
 
-  static async create(text: string): Promise<NotificationInterface | { message: string }> {
+  static async create(
+    text: string
+  ): Promise<{ notification?: NotificationInterface; message?: string }> {
     const savedToken = localStorage.getItem('token');
     if (!savedToken) return { message: 'No token found' };
     const response = await fetch(URL, {
@@ -25,8 +27,8 @@ export class NotificationsAPI {
       },
       body: JSON.stringify({ text }),
     });
-    const data = await response.json();
-    return data;
+    const notification = await response.json();
+    return { notification };
   }
 
   static async delete(id: string): Promise<{ status?: 'ok'; message?: string }> {
