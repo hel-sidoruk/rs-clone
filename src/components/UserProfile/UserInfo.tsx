@@ -1,7 +1,6 @@
 import React from 'react';
 import { UserInterface } from '../../types/user';
-import FakeAvatar from '../Icons/FakeAvatar';
-import Shield from '../Icons/Shield';
+import { FakeAvatar, Shield } from '../Icons';
 import { Rank } from '../Kata/Rank';
 
 const UserInfo = ({ user }: { user: UserInterface }) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import CloseEmptyIcon from '../Icons/CloseEmptyIcon';
+import { CloseEmptyIcon } from '../Icons';
 
 type LabelProps = {
   text: string;

@@ -1,6 +1,5 @@
-import React, { MouseEventHandler, useEffect, useRef, useState } from 'react';
-import CloseIcon from '../Icons/CloseIcon';
-import DropIcon from '../Icons/DropIcon';
+import React, { useEffect, useRef, useState } from 'react';
+import { CloseIcon, DropIcon } from '../Icons';
 import FilterItem from './FilterItem';
 import Label from './Label';
 

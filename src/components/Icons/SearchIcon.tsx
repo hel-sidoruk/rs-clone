@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function SearchIcon() {
+export function SearchIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

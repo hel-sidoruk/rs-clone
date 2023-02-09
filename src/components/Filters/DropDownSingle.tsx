@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import DropIcon from '../Icons/DropIcon';
+import { DropIcon } from '../Icons';
 import FilterItem from './FilterItem';
 
 const DropDownSingle = ({ list }: { list: string[] }) => {

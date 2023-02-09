@@ -1,6 +1,5 @@
 import React, { FormEvent, useEffect, useRef, useState } from 'react';
-import CloseIcon from '../Icons/CloseIcon';
-import SearchIcon from '../Icons/SearchIcon';
+import { CloseIcon, SearchIcon } from '../Icons';
 
 const SearchInput = () => {
   const [searchValue, setSearchValue] = useState('');

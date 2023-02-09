@@ -1,5 +1,5 @@
 import React from 'react';
-import CheckMark from '../Icons/CheckMark';
+import { CheckMark } from '../Icons';
 
 type FilterItemProps = {
   content: string;

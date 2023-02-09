@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Shield = () => {
+export const Shield = () => {
   return (
     <svg
       className="block mx-auto h-8"
@@ -13,4 +13,3 @@ const Shield = () => {
     </svg>
   );
 };
-export default Shield;
