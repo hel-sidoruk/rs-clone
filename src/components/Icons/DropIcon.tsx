@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function DropIcon() {
+export function DropIcon() {
   return (
     <div className="drop-icon">
       <svg

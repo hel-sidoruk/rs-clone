@@ -12,6 +12,11 @@
       font-weight: 700;
       color: $light;
       line-height: 1.4;
+      transition: color 0.5s;
+
+      &:hover {
+        color: $blue;
+      }
     }
     &-bottom {
       display: flex;
@@ -62,7 +67,7 @@
   padding: 12px;
   font-size: 14px;
   border: 1px solid rgba(#fff, 0.2);
-  background-color: 1px solid rgba(#000, 0.2);
+  background-color: rgba(#000, 0.2);
   color: $light;
   line-height: 21px;
 }

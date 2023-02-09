@@ -1,3 +1,8 @@
+%filter-focus {
+  border: 1px solid #227ead;
+  box-shadow: rgba(14, 165, 233, 0.4) 0 0 0 3px;
+}
+
 .library {
   &__container {
     display: grid;
@@ -32,6 +37,7 @@
   &__filters {
     grid-column: 1 / 2;
     grid-row: 2 / 5;
+    align-self: start;
   }
 
   &__tags {
@@ -85,45 +91,6 @@
   }
 }
 
-.filters {
-  border: 1px solid $scroll;
-  border-radius: 8px;
-  padding: 14px;
-
-  &__drop-down{
-    margin-bottom: 15px;
-  }
-
-  &__search {
-    margin-bottom: 20px;
-    border: 1px solid $input-bdr;
-    width: 100%;
-    background: $input-bg;
-    height: 30px;
-    border-radius: 5px;
-    color: $input-text;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 10px;
-    input {
-      outline: none;
-    }
-
-    .search-icon {
-      svg {
-        transition: all 0.3s;
-      }
-    }
-    .search-icon:hover {
-      svg {
-        fill: $filters-accent;
-        cursor: pointer;
-      }
-    }
-  }
-}
-
 .katas {
   display: flex;
   flex-direction: column;
@@ -135,31 +102,12 @@
   }
 }
 
-.drop-down {
-  &__top {
-    margin-top: 5px;
-    border: 1px solid $input-bdr;
-    background: $input-bg;
-    height: 30px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 10px;
-  }
+.kata-item {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
 
-  &__list {
-    padding: 14px;
-    background: $section;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid $input-bdr;
-    border-radius: 5px;
-    color: $input-text;
-    display: none;
-  }
-
-  &__item {
-    padding: 10px 0;
+  &__language {
+    align-self: auto;
   }
 }

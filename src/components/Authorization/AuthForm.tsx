@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
-import { PasswordIcon } from '../Icons/PasswordIcon';
+import { PasswordIcon } from '../Icons';
 
 export const AuthForm = ({ option }: { option: 'login' | 'registration' }) => {
   const isLoginPage = option === 'login';

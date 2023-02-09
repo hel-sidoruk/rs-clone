@@ -1,6 +1,6 @@
 import React from 'react';
 import { CLIENT_ID_LOGIN, CLIENT_ID_REGISTRATION, GITHUB_AUTH_URL } from '../../utils';
-import { GithubIcon } from '../Icons/GithubIcon';
+import { GithubIcon } from '../Icons';
 
 export const GithubAuthButton = ({ option }: { option: 'login' | 'registration' }) => {
   const isLoginPage = option === 'login';

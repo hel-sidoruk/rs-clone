@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FakeAvatar = () => {
+export const FakeAvatar = () => {
   return (
     <svg
       className="fake-avatar"
@@ -18,4 +18,3 @@ const FakeAvatar = () => {
     </svg>
   );
 };
-export default FakeAvatar;

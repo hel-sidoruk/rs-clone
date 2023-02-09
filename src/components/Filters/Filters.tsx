@@ -1,34 +1,28 @@
 import React from 'react';
-import { FilterDropDown } from './FilterDropDown';
-import SearchIcon from '../Icons/SearchIcon';
-const list = ['Newest', 'Oldest', 'Popularity', 'Hardest', 'Easiest', 'Name'];
+import DropDownSingle from './DropDownSingle';
+import SearchInput from './SearchInput';
+import { filterLists } from '../../utils';
+import DropDownMultiply from './DropDownMultiply';
 
 const Filters = () => {
   return (
     <div className="library__filters filters">
-      <div className="filters__search">
-        <input type="text" />
-        <SearchIcon />
-      </div>
+      <SearchInput />
       <div className="filters__drop-down sort">
         Sort By
-        <FilterDropDown list={list} />
-      </div>
-      <div className="filters__drop-down status">
-        Status
-        <FilterDropDown list={list} />
+        <DropDownSingle list={filterLists.sort} />
       </div>
       <div className="filters__drop-down progress">
         Progress
-        <FilterDropDown list={list} />
+        <DropDownSingle list={filterLists.progress} />
       </div>
       <div className="filters__drop-down difficulty">
         Difficulty
-        <FilterDropDown list={list} />
+        <DropDownMultiply list={filterLists.difficulty} filterType="difficulty" />
       </div>
       <div className="filters__drop-down tags-filter">
         Tags
-        <FilterDropDown list={list} />
+        <DropDownMultiply list={filterLists.tags} filterType="tags" />
       </div>
     </div>
   );
