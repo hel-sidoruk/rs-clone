@@ -12,6 +12,7 @@ export interface KataInterface {
   category: string;
   tags: string[];
   createdBy: string;
+  initialSolution: string;
 }
 
 export interface KataState {
