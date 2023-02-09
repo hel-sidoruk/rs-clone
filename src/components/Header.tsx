@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import useActions from '../hooks/useActions';
 import useTypedSelector from '../hooks/useTypedSelector';
 import { HeaderProfile, Notification, StarredKatasList } from './HeaderComponents';
 
 export const Header = () => {
   const { isAuthorized } = useTypedSelector((state) => state.authorizedUser);
+  const { fetchNotifications } = useActions();
+  useEffect(() => {
+    fetchNotifications();
+  }, []);
   return (
     <header className="header">
       <ul className="header__list">

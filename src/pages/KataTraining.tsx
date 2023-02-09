@@ -44,9 +44,7 @@ export const KataTraining = () => {
             kata={kata}
           />
         )}
-        <div className="kata-train__code">
-          <Solution />
-        </div>
+        <div className="kata-train__code">{kata && <Solution kata={kata} />}</div>
       </section>
     </main>
   );

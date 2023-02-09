@@ -10,11 +10,12 @@ export function useTesting(kataId: string, kataRank: string): ReturnType {
   const [output, setOutput] = useState('');
   const [failure, setFailure] = useState(false);
   const [testsStats, setTestsStats] = useState<TestsStats | null>(null);
-  const { solution } = useTypedSelector((state) => state.solution);
   const { solvedKatas, forfeitedKatas, honor, rank, score } = useTypedSelector(
     (state) => state.account
   );
-  const { setSuccess, endTesting, markAsSolved, updateUserProgress } = useActions();
+  const { solution, testSuites } = useTypedSelector((state) => state.solution);
+  const { setSuccess, endTesting, markAsSolved, updateUserProgress, addNotification } =
+    useActions();
 
   const startTests = () => {
     setOutput('Sending request...');
@@ -23,23 +24,24 @@ export function useTesting(kataId: string, kataRank: string): ReturnType {
     socket.onopen = function () {
       setFailure(false);
       setOutput('');
-      socket.send(JSON.stringify({ kataId, solution }));
+      socket.send(JSON.stringify({ kataId, solution, testSuites }));
     };
 
     socket.onmessage = function (event) {
       if (event.data.startsWith('--stats--'))
         return setTestsStats(JSON.parse(event.data.replace('--stats--', '')));
       if (event.data === '--success--') {
-        if (!solvedKatas?.includes(kataId)) {
+        if (!solvedKatas?.includes(kataId) && testSuites === 'all') {
           markAsSolved(kataId);
           if (!forfeitedKatas?.includes(kataId) && honor !== null && score !== null && rank) {
             const updates = updateProgress(kataRank, honor, parseInt(rank), score);
             const { newScore, newHonor, newRank } = updates;
-            console.log(newScore, newHonor, newRank);
+            if (newRank)
+              addNotification(`Well done! You have ranked up to ${newRank} in Javascript`);
             updateUserProgress(newScore, newHonor, newRank);
           }
         }
-        return setSuccess(true);
+        return setSuccess(testSuites);
       }
       if (event.data === '--failure--') return setFailure(true);
       setOutput((state) => state + `${event.data}\n`);

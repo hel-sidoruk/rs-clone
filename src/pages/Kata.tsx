@@ -4,7 +4,6 @@ import { ArrowIcon } from '../components/Icons/ArrowIcon';
 import { KataControls } from '../components/Kata/KataControls';
 import { KataDescription } from '../components/Kata/KataDescription';
 import { KataInstructions } from '../components/KataTraining/KataInstructions';
-import { Popup } from '../components/UI/Popup';
 import { useFetchKata } from '../hooks/useFetchKata';
 
 export const Kata = () => {
@@ -12,7 +11,6 @@ export const Kata = () => {
   const { id } = useParams();
   const [shouldHide, setShouldHide] = useState(false);
   const [isHidden, setIsHidden] = useState(true);
-  const [isPopupHidden, setIsPopupHidden] = useState(true);
   const [kata] = useFetchKata(id as string);
 
   useEffect(() => {
@@ -23,10 +21,6 @@ export const Kata = () => {
   useEffect(() => {
     if (kata) document.title = `${kata.name} | Codewars Clone`;
   }, [kata]);
-
-  const handler = () => {
-    setIsPopupHidden((state) => !state);
-  };
 
   return (
     <main className="play-view">
@@ -47,10 +41,6 @@ export const Kata = () => {
           {kata && <KataInstructions description={kata.description} tags={kata.tags} />}
         </div>
       )}
-      <button className="btn btn-fill" onClick={handler}>
-        Click
-      </button>
-      <Popup isHidden={isPopupHidden} close={() => setIsPopupHidden(true)} />
       <Outlet />
     </main>
   );

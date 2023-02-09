@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { UserInterface } from '../../types/user';
-import FakeAvatar from '../Icons/FakeAvatar';
+import { FakeAvatar } from '../Icons';
 import { Rank } from '../Kata/Rank';
 
 const LeaderItem = ({ user, index }: { user: UserInterface; index: number }) => {

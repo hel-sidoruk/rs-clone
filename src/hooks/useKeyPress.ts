@@ -20,7 +20,7 @@ export const useKeyPress: FnType = (ref, setCaretPosition) => {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 's' && e.ctrlKey && solution) {
       e.preventDefault();
-      startTesting();
+      startTesting('fixed');
     }
     if (['Tab', 'Enter', '{', '(', '[', '"', "'", '`'].includes(e.key)) {
       e.preventDefault();
