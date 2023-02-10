@@ -14,7 +14,7 @@ export const Kata = () => {
   const [kata] = useFetchKata(id as string);
 
   useEffect(() => {
-    setShouldHide(pathname.endsWith('/discuss') || pathname.endsWith('/solutions') ? true : false);
+    setShouldHide(pathname.endsWith('/discuss') || pathname.endsWith('/solutions'));
     setIsHidden(true);
   }, [pathname]);
 
