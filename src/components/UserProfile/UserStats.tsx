@@ -1,5 +1,5 @@
 import React from 'react';
-import Indicators from '../components/UserProfile/Indicators';
+import Indicators from './dasboard/Indicators';
 
 const UserStats = () => {
   return (
@@ -10,7 +10,7 @@ const UserStats = () => {
         <div className="user-stats__tab">Collections</div>
         <div className="user-stats__tab">Discourse</div>
       </div>
-      <div className="user-stats__container">
+      <div className="user-stats__stats">
         <div className="stats">
           <div className="stats__refresh">
             <i className="icon-moon-info icon-moon"></i>

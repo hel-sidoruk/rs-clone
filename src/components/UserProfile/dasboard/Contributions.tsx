@@ -1,7 +1,7 @@
 import React from 'react';
 import AuthoredKata from './AuthoredKata';
 import Community from './Community';
-import TopTags from './TopTags';
+import TopTags from '../TopTags';
 
 const Contributions = () => {
   return (

@@ -3,7 +3,7 @@ import Article from '../components/Article';
 import ReferalBlock from '../components/UserProfile/ReferalBlock';
 import UserInfo from '../components/UserProfile/UserInfo';
 import { UserInterface } from '../types/user';
-import UserStats from './UserStats';
+import UserStats from '../components/UserProfile/UserStats';
 
 const user: UserInterface = {
   id: '545207bac8e60b30fc000942',
