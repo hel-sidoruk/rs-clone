@@ -1,38 +1,38 @@
 import React, { useState } from 'react';
 import useTypedSelector from '../../hooks/useTypedSelector';
+import { FormDropdown } from './FormDropdown';
 
 export const CommentForm = () => {
-  const [discuss, setDiscuss] = useState('');
+  const [comment, setComment] = useState('');
   const { avatar } = useTypedSelector((state) => state.account);
+  const [isActive, setIsActive] = useState(false);
 
-  const feedBackInput = (e: React.FormEvent<HTMLTextAreaElement>) => {
-    setDiscuss(e.currentTarget.value);
-  };
-
-  const closeDiscuss = () => {
-    setDiscuss('');
-  };
+  const closeDiscuss = () => setIsActive(false);
 
   return (
     <div className="comment-form">
       <div className="avatar">
         <img src={avatar as string} alt="avatar" />
       </div>
-      <div className="input-field">
+      <div className={`input-field ${isActive ? 'active' : ''}`}>
         <textarea
           className="comment-form__input"
           placeholder="Leave feedback..."
-          onInput={feedBackInput}
-          value={discuss}
+          onChange={(e) => setComment(e.target.value)}
+          onClick={() => {
+            if (!isActive) setIsActive(true);
+          }}
+          value={comment}
         />
-        <label className="feedback-label">
-          <button className="btn btn-fill" onClick={() => console.log('send')}>
+        <div className="comment-form__actions">
+          <FormDropdown />
+          <button className="btn btn-fill" onClick={() => console.log(comment)}>
             Post
           </button>
           <button className="btn" onClick={closeDiscuss}>
             Cancel
           </button>
-        </label>
+        </div>
       </div>
     </div>
   );

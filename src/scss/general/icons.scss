@@ -67,13 +67,7 @@
       content: "\e061";
     }
   }
-  &-info {
-    margin-right: 5px;
-    opacity: 1;
-    &::before {
-      content: "\e05c";
-    }
-  }
+
   &-refresh {
     margin-right: 5px;
     &::before {
@@ -210,6 +204,24 @@
     margin-left: 5px;
     &::before {
       content: "\e624";
+    }
+  }
+  &-question {
+    margin-right: 5px;
+    &::before {
+      content: "\e62d";
+    }
+  }
+  &-enhancement {
+    margin-right: 5px;
+    &::before {
+      content: "\e62e";
+    }
+  }
+  &-issue {
+    margin-right: 5px;
+    &::before {
+      content: "\e602";
     }
   }
 }

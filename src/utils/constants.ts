@@ -88,3 +88,16 @@ export const requiredHonorForPrivileges: { [key: number]: string } = {
   2000: '2000+ Honor: Now your vote counts 3x towards getting a kata out of beta',
   3000: '3000+ Honor: Now your vote counts 4x towards getting a kata out of beta',
 };
+
+export const commentFormOptions: ['No label', 'Issue', 'Suggestion', 'Question'] = [
+  'No label',
+  'Issue',
+  'Suggestion',
+  'Question',
+];
+
+export const commentFormIcons: { [key: string]: string } = {
+  Issue: 'icon-moon-issue',
+  Suggestion: 'icon-moon-enhancement',
+  Question: 'icon-moon-question',
+};

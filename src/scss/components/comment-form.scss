@@ -4,7 +4,6 @@
   gap: 20px;
   width: 100%;
   transition: .4s;
-  overflow: hidden;
   margin-bottom: 34px;
   padding-top: 16px;
   .avatar {
@@ -14,16 +13,14 @@
     overflow: hidden;
     border-radius: 3px;
   }
-  .input-field {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-  .feedback-label {
+
+  &__actions {
     height: 0;
     overflow: hidden;
+    display: flex;
+    align-items: center;
     transition: 0.4s;
-    .btn:first-child {
+    .btn-fill {
       margin-right: 5px;
     }
   }
@@ -41,19 +38,95 @@
     resize: none;
     transition: 0.4s;
     outline: none;
-    &:focus-within,
-    &:not(:placeholder-shown) {
-      background: $codeAreaBackground;
-      height: 150px;
-      width: 100%;
-      border: 1px solid transparent;
-      &::placeholder {
-        color: transparent;
+    font-size: 14px;
+  }
+  .input-field {
+    width: 100%;
+    &.active {
+      .comment-form__input {
+        background: $dark;
+        height: 150px;
+        width: 100%;
+        border: 1px solid transparent;
+        &::placeholder {
+          color: transparent;
+        }
       }
-      &:not(:placeholder-shown) ~ label,
-      &:focus-within ~ label {
+      .comment-form__actions {
         padding-top: 16px;
-        height: 46px;
+        height: 52px;
+        overflow: unset;
+      }
+    }
+  }
+  &__dropdown {
+    width: 250px;
+    position: relative;
+    padding: 10px;
+    margin-right: 15px;
+    background-color: rgba(#000, 0.1);
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    &:hover {
+      background-color: rgba(#000, 0.2);
+    }
+    &-list {
+      background-color: #151616;
+      display: none;
+      z-index: 11;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      border: 1px solid rgba(#fff, 0.15);
+      border-top: none;
+    }
+    &-item {
+      padding: 10px;
+      color: #c9c9c9;
+      position: relative;
+      cursor: pointer;
+      transition: all .2s ease-in-out;
+      &:hover {
+        background-color: rgba(#fff, 0.1);
+      }
+    }
+    .info-flyout {
+      line-height: 21px;
+      display: none;
+      white-space: break-spaces;
+      padding: 10px;
+    }
+    .placeholder {
+      border: 1px solid rgba(#fff, 0.15);
+      border-bottom: none;
+      background-color: #151616;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      padding: 10px;
+      z-index: 10;
+      display: none;
+    }
+    .info {
+      float: right;
+      opacity: .5;
+      transition: opacity .2s ease-in-out;
+      &:hover {
+        opacity: 1;
+        & + .info-flyout {
+          display: block;
+        }
+      }
+    }
+    &.active {
+      .comment-form__dropdown-list {
+        display: block;
+      }
+      .placeholder {
+        display: block;
       }
     }
   }
