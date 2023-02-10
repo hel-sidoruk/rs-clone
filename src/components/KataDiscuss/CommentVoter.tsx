@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const CommentVoter = () => {
+export const CommentVoter = ({ votes }: { votes: number }) => {
   return (
     <div className="voter">
-      <span className="voter__score">1</span>
+      <span className="voter__score">{votes}</span>
       <span className="vote voter__up link">
         <i className="icon-moon-up icon-moon"></i>
       </span>

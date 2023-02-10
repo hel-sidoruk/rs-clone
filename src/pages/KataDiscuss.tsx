@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import LeftBarForSolutions from '../components/Kata/leftBarForSolutions';
-import { Comment } from '../components/KataDiscuss/Comment';
 import { CommentForm } from '../components/KataDiscuss/CommentForm';
+import { CommentsList } from '../components/KataDiscuss/CommentsList';
+import useActions from '../hooks/useActions';
 
 export const KataDiscuss = () => {
+  const { id } = useParams();
+  const { fetchComments } = useActions();
+
+  useEffect(() => {
+    if (id) fetchComments(id);
+  }, [id]);
+
   return (
     <>
       <div className="section solution-main">
         <LeftBarForSolutions sol={false} />
-        <div className="section">
+        <div className="section comments-section">
           <CommentForm />
-          <Comment />
-          <Comment />
-          <Comment />
+          <CommentsList />
         </div>
       </div>
     </>

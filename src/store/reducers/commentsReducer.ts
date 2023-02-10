@@ -12,7 +12,7 @@ export const commentsReducer = (state = initialState, action: CommentsAction): C
     case CommentsActionTypes.FETCH_COMMENTS:
       return { ...state, comments: action.payload.comments, loading: false };
     case CommentsActionTypes.ADD_COMMENT:
-      return { ...state, comments: action.payload.comments, loading: false };
+      return { ...state, comments: action.payload.comments };
     default:
       return state;
   }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { CommentsAPI } from '../../api';
+import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { CommentLabel } from '../../types/comments';
 import { FormDropdown } from './FormDropdown';
@@ -10,12 +10,18 @@ export const CommentForm = () => {
   const [isActive, setIsActive] = useState(false);
   const [option, setOption] = useState<CommentLabel | 'No label'>('No label');
   const { id } = useParams();
-  const { username, avatar, rank } = useTypedSelector((state) => state.account);
+  const { avatar } = useTypedSelector((state) => state.account);
+  const { addComment } = useActions();
 
   const closeDiscuss = () => setIsActive(false);
   const openInput = () => !isActive && setIsActive(true);
 
-  const postComment = () => {};
+  const postComment = () => {
+    const label = option === 'No label' ? null : option;
+    if (id) addComment(id, comment, label);
+    setComment('');
+    setIsActive(false);
+  };
 
   return (
     <div className="comment-form">

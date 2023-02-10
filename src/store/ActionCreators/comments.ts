@@ -14,15 +14,18 @@ export function fetchComments(kataId: string): ThunkActionType {
   };
 }
 
-export function addComment(kataId: string, text: string, label: CommentLabel): ThunkActionType {
+export function addComment(
+  kataId: string,
+  text: string,
+  label: CommentLabel | null
+): ThunkActionType {
   return async (dispatch: Dispatch<CommentsAction>, getState) => {
     const { comments } = getState().comments;
     const { username, rank, avatar } = getState().account;
     if (!username || !rank || !avatar) return;
-    dispatch({ type: CommentsActionTypes.LOADING_COMMENTS });
     const comment = await CommentsAPI.create(kataId, { username, rank, label, text, avatar });
     dispatch({
-      type: CommentsActionTypes.FETCH_COMMENTS,
+      type: CommentsActionTypes.ADD_COMMENT,
       payload: { comments: [...comments, comment] },
     });
   };

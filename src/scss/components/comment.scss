@@ -1,3 +1,6 @@
+.comments-section {
+  position: relative;
+}
 .comment {
   color: $grey;
   display: flex;
@@ -50,6 +53,15 @@
     margin-left: 5px;
     &.issue {
       background-color: #b1361e;
+    }
+    &.question {
+      color: #efefef;
+      border: 1px solid #efefef;
+      background-color: transparent;
+    }
+    &.suggestion {
+      background-color: #ffffff30;
+      color: #efefef;
     }
   }
 }

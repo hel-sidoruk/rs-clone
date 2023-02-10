@@ -4,6 +4,7 @@ import * as SolutionActionCreators from './solution';
 import * as LeaderActionCreators from './leaders';
 import * as AccountActionCreators from './account';
 import * as NotificationsActionCreators from './notifications';
+import * as CommentsActionCreators from './comments';
 
 export default {
   ...KatasActionCreators,
@@ -12,4 +13,5 @@ export default {
   ...LeaderActionCreators,
   ...AccountActionCreators,
   ...NotificationsActionCreators,
+  ...CommentsActionCreators,
 };
