@@ -1,5 +1,5 @@
 import React from 'react';
-import Indicators from './dasboard/Indicators';
+import Indicators from './dashboard/stats/Indicators';
 
 const UserStats = () => {
   return (
