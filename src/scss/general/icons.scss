@@ -224,6 +224,18 @@
       content: "\e602";
     }
   }
+  &-edit {
+    margin-right: 5px;
+    &::before {
+      content: "\e053";
+    }
+  }
+  &-trash {
+    margin-right: 5px;
+    &::before {
+      content: "\e006";
+    }
+  }
 }
 
 .fake-avatar {

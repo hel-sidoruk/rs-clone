@@ -1,10 +1,14 @@
 import dayjs from 'dayjs';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useTypedSelector from '../../hooks/useTypedSelector';
 import { CommentInterface } from '../../types/comments';
 import { CommentVoter } from './CommentVoter';
 
 export const Comment = ({ comment }: { comment: CommentInterface }) => {
+  const { username } = useTypedSelector((state) => state.account);
+  const isAccountComment = comment.username === username;
+
   return (
     <div className="comment">
       <Link className="avatar" to={`/users/${comment.username}`}>
@@ -29,10 +33,28 @@ export const Comment = ({ comment }: { comment: CommentInterface }) => {
         <div className="comment__actions">
           <CommentVoter votes={comment.votes} />
           <div className="bullet"></div>
+          {isAccountComment && (
+            <>
+              <div className="link">
+                <i className="icon-moon-edit icon-moon"></i>Edit
+              </div>
+              <div className="bullet"></div>
+              <div className="link">View Solution</div>
+              <div className="bullet"></div>
+            </>
+          )}
           <div className="link">
             <i className="icon-moon-flag icon-moon"></i>
             <span>Spoiler</span>
           </div>
+          {isAccountComment && (
+            <>
+              <div className="bullet"></div>
+              <div className="link">
+                <i className="icon-moon-trash icon-moon"></i>Remove
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

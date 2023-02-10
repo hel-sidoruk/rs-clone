@@ -26,7 +26,7 @@ export function addComment(
     const comment = await CommentsAPI.create(kataId, { username, rank, label, text, avatar });
     dispatch({
       type: CommentsActionTypes.ADD_COMMENT,
-      payload: { comments: [...comments, comment] },
+      payload: { comments: [comment, ...comments] },
     });
   };
 }
