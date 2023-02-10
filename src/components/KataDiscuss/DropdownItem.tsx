@@ -1,4 +1,5 @@
 import React from 'react';
+import { CommentLabel } from '../../types/comments';
 import { commentFormIcons } from '../../utils';
 
 const info = {
@@ -11,8 +12,8 @@ const info = {
 };
 
 interface Props {
-  setOption: (s: string) => void;
-  option: 'Issue' | 'No label' | 'Question' | 'Suggestion';
+  setOption: (s: CommentLabel | 'No label') => void;
+  option: CommentLabel | 'No label';
 }
 
 export const DropdownItem = ({ setOption, option }: Props) => {

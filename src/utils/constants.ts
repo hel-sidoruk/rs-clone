@@ -1,3 +1,5 @@
+import { CommentLabel } from '../types/comments';
+
 export const GITHUB_AUTH_URL = 'https://github.com/login/oauth/authorize';
 export const CLIENT_ID_LOGIN = 'b67da247620e2e266ba4';
 export const CLIENT_ID_REGISTRATION = 'ff8172a4250438893a45';
@@ -89,7 +91,7 @@ export const requiredHonorForPrivileges: { [key: number]: string } = {
   3000: '3000+ Honor: Now your vote counts 4x towards getting a kata out of beta',
 };
 
-export const commentFormOptions: ['No label', 'Issue', 'Suggestion', 'Question'] = [
+export const commentFormOptions: (CommentLabel | 'No label')[] = [
   'No label',
   'Issue',
   'Suggestion',

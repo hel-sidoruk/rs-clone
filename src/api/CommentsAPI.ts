@@ -17,7 +17,7 @@ export class CommentsAPI {
   static async create(
     id: string,
     comment: Omit<CommentInterface, 'id' | 'kataId' | 'votes' | 'createdAt' | 'spoiler'>
-  ): Promise<CommentInterface[]> {
+  ): Promise<CommentInterface> {
     const response = await fetch(`${API_URL}/kata/${id}/discuss`, {
       method: 'POST',
       headers: {

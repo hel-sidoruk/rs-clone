@@ -1,11 +1,16 @@
 import { nanoid } from 'nanoid';
 import React, { useEffect, useState } from 'react';
+import { CommentLabel } from '../../types/comments';
 import { commentFormIcons, commentFormOptions } from '../../utils';
 import { DropdownItem } from './DropdownItem';
 
-export const FormDropdown = () => {
+interface Props {
+  option: string;
+  setOption: (s: CommentLabel | 'No label') => void;
+}
+
+export const FormDropdown = ({ option, setOption }: Props) => {
   const [isActive, setIsActive] = useState(false);
-  const [option, setOption] = useState('No label');
 
   const toggle = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
