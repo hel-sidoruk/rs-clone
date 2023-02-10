@@ -22,6 +22,9 @@
     display: none;
     left: 0;
     width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    @include scrollBar(6px);
     &-body {
       margin-top: 10px;
       background-color: $sidebar-bg;
@@ -75,6 +78,21 @@
         align-items: center;
         gap: 10px;
         margin-bottom: 10px;
+      }
+      &__avatar {
+        width: 40px;
+        height: 40px;
+      }
+      &__bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .btn {
+          color: #bb432c;
+          &:hover {
+            filter: brightness(1.2)
+          }
+        }
       }
     }
   }

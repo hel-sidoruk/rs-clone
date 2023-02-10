@@ -18,7 +18,7 @@ export const KataList = () => {
             <KataInfo data={kata} />
             <TagsBlock tags={kata.tags} />
           </div>
-          <KataLanguage />
+          <KataLanguage kataId={kata.id} />
         </div>
       ))}
       <div className="library__loader" ref={intersectedRef}>
