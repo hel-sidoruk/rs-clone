@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import useActions from '../../hooks/useActions';
 import { CloseIcon, DropIcon } from '../Icons';
 import FilterItem from './FilterItem';
 import Label from './Label';
@@ -7,6 +8,8 @@ const DropDownMultiply = ({ list, filterType }: { list: string[]; filterType: st
   const [isOpen, setOpen] = useState(false);
   const [selected, setSelected] = useState<string[]>([]);
   const menuRef = useRef() as React.MutableRefObject<HTMLDivElement>;
+
+  const { changeFilters } = useActions();
 
   const handleOpen = (e: React.MouseEvent<HTMLButtonElement>) => {
     const elem = e.target as HTMLButtonElement;
@@ -33,6 +36,13 @@ const DropDownMultiply = ({ list, filterType }: { list: string[]; filterType: st
       document.removeEventListener('mousedown', handler);
     };
   });
+
+  useEffect(() => {
+    const filters = [...selected]
+      .map((filter) => (filter.split(' ').length > 1 ? filter.split(' ').join('+') : filter))
+      .map((filter) => filter.toLocaleLowerCase());
+    changeFilters(filterType, filters.join('*'));
+  }, [changeFilters, selected, filterType]);
 
   return (
     <div className={isOpen ? `drop-down drop-down_open` : `drop-down`}>

@@ -1,16 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
+import useActions from '../../hooks/useActions';
 import { DropIcon } from '../Icons';
 import FilterItem from './FilterItem';
 
-const DropDownSingle = ({ list }: { list: string[] }) => {
+const DropDownSingle = ({ list, type }: { list: string[]; type: string }) => {
   const [isOpen, setOpen] = useState(false);
   const [selected, setSelected] = useState(list[0]);
+
+  const { changeFilters } = useActions();
 
   const handleOpen = () => {
     setOpen(!isOpen);
   };
 
-  const selectHandler = (param: string) => setSelected(param);
+  const selectHandler = (param: string) => {
+    setSelected(param);
+  };
 
   const menuRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
@@ -26,6 +31,14 @@ const DropDownSingle = ({ list }: { list: string[] }) => {
       document.removeEventListener('mousedown', handler);
     };
   });
+
+  useEffect(() => {
+    let filterValue = selected.toLocaleLowerCase();
+    if (filterValue.split(' ').length > 1) {
+      filterValue = filterValue.split(' ').join('+');
+    }
+    changeFilters(type, filterValue);
+  }, [changeFilters, selected, type]);
 
   return (
     <div className={isOpen ? `drop-down drop-down_open` : `drop-down`}>

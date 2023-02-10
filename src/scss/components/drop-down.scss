@@ -28,14 +28,16 @@
   &__list {
     position: absolute;
     z-index: 2;
+    display: none;
+    width: 100%;
+    max-height: 350px;
+    overflow-y: scroll;
     background: $section;
-    display: flex;
-    flex-direction: column;
     border: 1px solid $input-bdr;
     border-radius: 5px;
     color: $input-text;
-    display: none;
-    width: 100%;
+    @include scrollBar(12px);
+    
 
     &_open {
       display: block;

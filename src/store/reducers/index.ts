@@ -5,6 +5,7 @@ import kataReducer from './kataReducer';
 import leaderReducer from './leadersReducer';
 import { notificationsReducer } from './notificationsReducer';
 import { solutionReducer } from './solutionReducer';
+import filtersReducer from './filtersReducer';
 
 export const rootReducer = combineReducers({
   katas: kataReducer,
@@ -12,6 +13,7 @@ export const rootReducer = combineReducers({
   solution: solutionReducer,
   leaders: leaderReducer,
   account: accountReducer,
+  filters: filtersReducer,
   notifications: notificationsReducer,
 });
 
