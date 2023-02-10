@@ -1,7 +1,10 @@
 import React, { FormEvent, useEffect, useRef, useState } from 'react';
+import useActions from '../../hooks/useActions';
 import { CloseIcon, SearchIcon } from '../Icons';
 
 const SearchInput = () => {
+  const { changeFilters } = useActions();
+
   const [searchValue, setSearchValue] = useState('');
   const [isFocus, setIsFocus] = useState(false);
   const formRef = useRef() as React.MutableRefObject<HTMLFormElement>;
@@ -10,11 +13,6 @@ const SearchInput = () => {
     const elem = e.target as HTMLInputElement;
     const val = elem.value;
     setSearchValue(val);
-  }
-
-  function getSearchString(e: FormEvent<HTMLFormElement | HTMLButtonElement>) {
-    e.preventDefault();
-    console.log(searchValue);
   }
 
   function resetInput() {
@@ -36,8 +34,14 @@ const SearchInput = () => {
   return (
     <form
       className={isFocus ? 'filters__search filters__search_focus' : 'filters__search'}
-      onSubmit={getSearchString}
-      onReset={resetInput}
+      onSubmit={(e) => {
+        e.preventDefault();
+        changeFilters('search', searchValue);
+      }}
+      onReset={() => {
+        resetInput();
+        changeFilters('search', '');
+      }}
       onClick={() => setIsFocus(!isFocus)}
       ref={formRef}
     >
