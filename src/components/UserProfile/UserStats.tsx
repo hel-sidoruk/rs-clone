@@ -1,23 +1,26 @@
 import React from 'react';
-import Indicators from './dashboard/stats/Indicators';
+import { Link, Outlet } from 'react-router-dom';
+import { StatsTab } from './dashboard';
 
 const UserStats = () => {
   return (
     <div className="user-profile__stats user-stats">
       <div className="user-stats__tabs">
-        <div className="user-stats__tab user-stats__tab_open">Stats</div>
-        <div className="user-stats__tab">Kata</div>
-        <div className="user-stats__tab">Collections</div>
-        <div className="user-stats__tab">Discourse</div>
+        <Link to={'/users/:id/stats'} className="user-stats__tab user-stats__tab_open">
+          Stats
+        </Link>
+        <Link to={'/users/:id/completed'} className="user-stats__tab">
+          Kata
+        </Link>
+        <Link to={'/users/:id/collections'} className="user-stats__tab">
+          Collections
+        </Link>
+        <Link to={'/users/:id/comments'} className="user-stats__tab">
+          Discourse
+        </Link>
       </div>
       <div className="user-stats__stats">
-        <div className="stats">
-          <div className="stats__refresh">
-            <i className="icon-moon-info icon-moon"></i>
-            Next stats refresh now
-          </div>
-          <Indicators />
-        </div>
+        <Outlet />
       </div>
     </div>
   );
