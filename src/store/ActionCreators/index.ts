@@ -3,6 +3,7 @@ import * as AuthUserActionCreators from './authUser';
 import * as SolutionActionCreators from './solution';
 import * as LeaderActionCreators from './leaders';
 import * as AccountActionCreators from './account';
+import * as FiltersActionCreators from './filters';
 
 export default {
   ...KatasActionCreators,
@@ -10,4 +11,5 @@ export default {
   ...SolutionActionCreators,
   ...LeaderActionCreators,
   ...AccountActionCreators,
+  ...FiltersActionCreators,
 };
