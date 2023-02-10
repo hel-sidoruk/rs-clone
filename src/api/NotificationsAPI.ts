@@ -38,7 +38,6 @@ export class NotificationsAPI {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${savedToken}`,
-        'Content-Type': 'application/json',
       },
     });
     const data = await response.json();
