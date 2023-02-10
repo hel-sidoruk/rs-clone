@@ -76,6 +76,17 @@
         gap: 10px;
         margin-bottom: 10px;
       }
+      &__bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .btn {
+          color: #bb432c;
+          &:hover {
+            filter: brightness(1.2)
+          }
+        }
+      }
     }
   }
   &__item {

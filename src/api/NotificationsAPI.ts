@@ -34,7 +34,7 @@ export class NotificationsAPI {
   static async delete(id: string): Promise<{ status?: 'ok'; message?: string }> {
     const savedToken = localStorage.getItem('token');
     if (!savedToken) return { message: 'No token found' };
-    const response = await fetch(`URL/${id}`, {
+    const response = await fetch(`${URL}/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${savedToken}`,
