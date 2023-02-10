@@ -20,6 +20,10 @@ export const notificationsReducer = (
       return {
         ...state,
         notifications: action.payload.notifications,
+      };
+    case NotificationsActionTypes.ADD_NEW_NOTIFICATION:
+      return {
+        ...state,
         newItems: action.payload.newItems,
       };
     case NotificationsActionTypes.REMOVE_FROM_NEW:

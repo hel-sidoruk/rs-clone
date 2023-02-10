@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import { Dispatch } from 'redux';
 import { NotificationsAPI } from '../../api/NotificationsAPI';
 import { ThunkActionType } from '../../types';
@@ -25,15 +26,18 @@ export function removeFromNew(id: string): ThunkActionType {
   };
 }
 
-export function addNotification(text: string): ThunkActionType {
+export function addNotification(text: string, title: string): ThunkActionType {
   return async (dispatch: Dispatch<NotificationsAction>, getState) => {
     const { notifications, newItems } = getState().notifications;
+    dispatch({
+      type: NotificationsActionTypes.ADD_NEW_NOTIFICATION,
+      payload: { newItems: [...newItems, { id: nanoid(), text, title }] },
+    });
     const { notification } = await NotificationsAPI.create(text);
     if (notification) {
       dispatch({
         type: NotificationsActionTypes.ADD_NOTIFICATION,
         payload: {
-          newItems: [...newItems, notification],
           notifications: [...notifications, notification],
         },
       });
