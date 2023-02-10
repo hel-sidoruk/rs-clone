@@ -10,11 +10,11 @@ const Filters = () => {
       <SearchInput />
       <div className="filters__drop-down sort">
         Sort By
-        <DropDownSingle list={filterLists.sort} />
+        <DropDownSingle list={filterLists.sort} type="sort" />
       </div>
       <div className="filters__drop-down progress">
         Progress
-        <DropDownSingle list={filterLists.progress} />
+        <DropDownSingle list={filterLists.progress} type="progress" />
       </div>
       <div className="filters__drop-down difficulty">
         Difficulty
