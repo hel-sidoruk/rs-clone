@@ -40,4 +40,12 @@ export class CommentsAPI {
     const data = await response.json();
     return data;
   }
+
+  static async delete(id: string, commentId: number): Promise<{ status?: 'ok'; message?: string }> {
+    const response = await fetch(`${API_URL}/kata/${id}/discuss/${commentId}`, {
+      method: 'DELETE',
+    });
+    const data = await response.json();
+    return data;
+  }
 }

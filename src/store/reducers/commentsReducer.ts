@@ -13,6 +13,8 @@ export const commentsReducer = (state = initialState, action: CommentsAction): C
       return { ...state, comments: action.payload.comments, loading: false };
     case CommentsActionTypes.ADD_COMMENT:
       return { ...state, comments: action.payload.comments };
+    case CommentsActionTypes.DELETE_COMMENT:
+      return { ...state, comments: action.payload.comments };
     default:
       return state;
   }

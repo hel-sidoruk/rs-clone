@@ -30,3 +30,16 @@ export function addComment(
     });
   };
 }
+
+export function deleteComment(kataId: string, commentId: number): ThunkActionType {
+  return async (dispatch: Dispatch<CommentsAction>, getState) => {
+    const { comments } = getState().comments;
+    const { status } = await CommentsAPI.delete(kataId, commentId);
+    if (status) {
+      dispatch({
+        type: CommentsActionTypes.DELETE_COMMENT,
+        payload: { comments: comments.filter((comment) => comment.id !== commentId) },
+      });
+    }
+  };
+}

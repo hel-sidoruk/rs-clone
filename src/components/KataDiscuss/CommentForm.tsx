@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
 import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { CommentLabel } from '../../types/comments';
 import { FormDropdown } from './FormDropdown';
 
-export const CommentForm = () => {
+export const CommentForm = ({ kataId }: { kataId: string }) => {
   const [comment, setComment] = useState('');
   const [isActive, setIsActive] = useState(false);
   const [option, setOption] = useState<CommentLabel | 'No label'>('No label');
-  const { id } = useParams();
   const { avatar } = useTypedSelector((state) => state.account);
   const { addComment } = useActions();
 
@@ -18,7 +16,7 @@ export const CommentForm = () => {
 
   const postComment = () => {
     const label = option === 'No label' ? null : option;
-    if (id) addComment(id, comment, label);
+    addComment(kataId, comment, label);
     setComment('');
     setIsActive(false);
   };

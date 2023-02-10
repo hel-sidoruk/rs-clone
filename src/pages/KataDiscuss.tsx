@@ -18,8 +18,8 @@ export const KataDiscuss = () => {
       <div className="section solution-main">
         <LeftBarForSolutions sol={false} />
         <div className="section comments-section">
-          <CommentForm />
-          <CommentsList />
+          <CommentForm kataId={id as string} />
+          <CommentsList kataId={id as string} />
         </div>
       </div>
     </>

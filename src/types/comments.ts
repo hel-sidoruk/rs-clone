@@ -22,21 +22,20 @@ export enum CommentsActionTypes {
   LOADING_COMMENTS = 'LOADING_COMMENTS',
   FETCH_COMMENTS = 'FETCH_COMMENTS',
   ADD_COMMENT = 'ADD_COMMENT',
+  DELETE_COMMENT = 'DELETE_COMMENT',
 }
 interface LoadingComments {
   type: CommentsActionTypes.LOADING_COMMENTS;
 }
 
-interface FetchComments {
-  type: CommentsActionTypes.FETCH_COMMENTS;
+interface CommentsActions {
+  type:
+    | CommentsActionTypes.FETCH_COMMENTS
+    | CommentsActionTypes.ADD_COMMENT
+    | CommentsActionTypes.DELETE_COMMENT;
   payload: {
     comments: CommentInterface[];
   };
 }
-interface AddComment {
-  type: CommentsActionTypes.ADD_COMMENT;
-  payload: {
-    comments: CommentInterface[];
-  };
-}
-export type CommentsAction = LoadingComments | FetchComments | AddComment;
+
+export type CommentsAction = LoadingComments | CommentsActions;

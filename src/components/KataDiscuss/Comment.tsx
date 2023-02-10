@@ -1,13 +1,18 @@
 import dayjs from 'dayjs';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { CommentInterface } from '../../types/comments';
 import { CommentVoter } from './CommentVoter';
 
-export const Comment = ({ comment }: { comment: CommentInterface }) => {
+export const Comment = ({ kataId, comment }: { kataId: string; comment: CommentInterface }) => {
   const { username } = useTypedSelector((state) => state.account);
+  const { deleteComment } = useActions();
+
   const isAccountComment = comment.username === username;
+
+  const deleteByClick = () => deleteComment(kataId, comment.id);
 
   return (
     <div className="comment">
@@ -50,7 +55,7 @@ export const Comment = ({ comment }: { comment: CommentInterface }) => {
           {isAccountComment && (
             <>
               <div className="bullet"></div>
-              <div className="link">
+              <div className="link" onClick={deleteByClick}>
                 <i className="icon-moon-trash icon-moon"></i>Remove
               </div>
             </>
