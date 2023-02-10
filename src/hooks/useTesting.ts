@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { TestsStats } from '../types';
 import { WS_URL } from '../utils';
 import useActions from './useActions';
+import { useProgressUpdate } from './useProgressUpdate';
 import useTypedSelector from './useTypedSelector';
 
 type ReturnType = [() => void, string, boolean, TestsStats | null];
@@ -10,9 +11,10 @@ export function useTesting(kataId: string, kataRank: string): ReturnType {
   const [output, setOutput] = useState('');
   const [failure, setFailure] = useState(false);
   const [testsStats, setTestsStats] = useState<TestsStats | null>(null);
-  const { solution, testSuites } = useTypedSelector((state) => state.solution);
   const { solvedKatas, forfeitedKatas } = useTypedSelector((state) => state.account);
-  const { setSuccess, endTesting, markAsSolved, updateUserProgress } = useActions();
+  const { solution, testSuites } = useTypedSelector((state) => state.solution);
+  const { setSuccess, endTesting, markAsSolved } = useActions();
+  const [updateProgress] = useProgressUpdate();
 
   const startTests = () => {
     setOutput('Sending request...');
@@ -30,7 +32,7 @@ export function useTesting(kataId: string, kataRank: string): ReturnType {
       if (event.data === '--success--') {
         if (!solvedKatas?.includes(kataId) && testSuites === 'all') {
           markAsSolved(kataId);
-          if (!forfeitedKatas?.includes(kataId)) updateUserProgress(kataId, kataRank);
+          if (!forfeitedKatas?.includes(kataId)) updateProgress(kataRank);
         }
         return setSuccess(testSuites);
       }

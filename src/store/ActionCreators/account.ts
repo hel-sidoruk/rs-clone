@@ -3,7 +3,6 @@ import { UsersAPI } from '../../api';
 import { AccountAPI } from '../../api/AccountAPI';
 import { ThunkActionType } from '../../types';
 import { AccountAction, AccountActionTypes } from '../../types/account';
-import { updateProgress } from '../../utils';
 
 export function setAccount(): ThunkActionType {
   return async (dispatch: Dispatch<AccountAction>) => {
@@ -98,25 +97,29 @@ export function addToForfeited(kataId: string): ThunkActionType {
   };
 }
 
-export function updateUserProgress(kataId: string, kataRank: string): ThunkActionType {
+export function updateUserProgress(
+  score: number,
+  honor: number,
+  newRank?: string
+): ThunkActionType {
   return async (dispatch: Dispatch<AccountAction>, getState) => {
-    const { username, rank, honor, score } = getState().account;
-    console.log(username, rank, honor, score);
-    if (username && rank && honor !== null && score !== null) {
+    const { username, rank } = getState().account;
+    if (username && rank) {
       const { totalCompleted } = await UsersAPI.getOne(username);
-      const updates = updateProgress(kataRank, honor, parseInt(rank), score);
-      const { newScore, newHonor, newRank } = updates;
-
-      const { status } = await UsersAPI.update(username, {
-        totalCompleted: totalCompleted + 1,
-        rank: newRank,
-        honor: newHonor,
-        score: newScore,
-      });
+      const count = totalCompleted + 1;
+      const updates = newRank
+        ? {
+            totalCompleted: count,
+            rank: newRank,
+            honor,
+            score,
+          }
+        : { totalCompleted: count, honor, score };
+      const { status } = await UsersAPI.update(username, updates);
       if (status) {
         dispatch({
           type: AccountActionTypes.UPDATE_USER_PROGRESS,
-          payload: { rank: newRank, honor: newHonor, score: newScore },
+          payload: { rank: newRank ? newRank : rank, honor, score },
         });
       }
     }

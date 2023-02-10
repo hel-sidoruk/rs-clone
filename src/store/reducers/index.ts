@@ -3,6 +3,7 @@ import accountReducer from './accountReducer';
 import authUserReducer from './authUserReducer';
 import kataReducer from './kataReducer';
 import leaderReducer from './leadersReducer';
+import { notificationsReducer } from './notificationsReducer';
 import { solutionReducer } from './solutionReducer';
 import filtersReducer from './filtersReducer';
 
@@ -13,6 +14,7 @@ export const rootReducer = combineReducers({
   leaders: leaderReducer,
   account: accountReducer,
   filters: filtersReducer,
+  notifications: notificationsReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

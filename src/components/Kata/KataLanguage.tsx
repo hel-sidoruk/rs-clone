@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import useTypedSelector from '../../hooks/useTypedSelector';
 
-export const KataLanguage = () => {
+export const KataLanguage = ({ kataId }: { kataId: string }) => {
   const [status, setStatus] = useState('');
-  const { id } = useParams();
   const { trainedKatas, solvedKatas } = useTypedSelector((state) => state.account);
+
   useEffect(() => {
-    if (id) {
-      trainedKatas?.includes(id) && setStatus('trained');
-      solvedKatas?.includes(id) && setStatus('solved');
-    }
+    trainedKatas?.includes(kataId) && setStatus('trained');
+    solvedKatas?.includes(kataId) && setStatus('solved');
   }, [trainedKatas, solvedKatas]);
 
   return (

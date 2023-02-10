@@ -24,7 +24,7 @@ export const KataDescription = memo(function KataDescription({ kata }: { kata: K
   return (
     <div className="kata-description section">
       <KataInfo data={kata} />
-      <KataLanguage />
+      <KataLanguage kataId={kata.id} />
       <div className="kata__controls">
         <Link to={`/kata/${kata.id}/train`} className={`btn ${isSolved ? '' : 'btn-fill'}`}>
           {isSolved ? (
