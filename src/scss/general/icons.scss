@@ -200,6 +200,18 @@
       content: "\e042";
     }
   }
+  &-flag {
+    margin-right: 5px;
+    &::before {
+      content: "\e000";
+    }
+  }
+  &-down {
+    margin-left: 5px;
+    &::before {
+      content: "\e624";
+    }
+  }
 }
 
 .fake-avatar {

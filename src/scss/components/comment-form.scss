@@ -1,0 +1,60 @@
+.comment-form {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  transition: .4s;
+  overflow: hidden;
+  margin-bottom: 34px;
+  padding-top: 16px;
+  .avatar {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 3px;
+  }
+  .input-field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .feedback-label {
+    height: 0;
+    overflow: hidden;
+    transition: 0.4s;
+    .btn:first-child {
+      margin-right: 5px;
+    }
+  }
+  &__input {
+    font-family: 'Lato';
+    line-height: 18px;
+    display: flex;
+    width: 256px;
+    height: 40px;
+    border: 1px solid grey;
+    border-radius: 2px;
+    padding: 10px;
+    color: white;
+    background: transparent;
+    resize: none;
+    transition: 0.4s;
+    outline: none;
+    &:focus-within,
+    &:not(:placeholder-shown) {
+      background: $codeAreaBackground;
+      height: 150px;
+      width: 100%;
+      border: 1px solid transparent;
+      &::placeholder {
+        color: transparent;
+      }
+      &:not(:placeholder-shown) ~ label,
+      &:focus-within ~ label {
+        padding-top: 16px;
+        height: 46px;
+      }
+    }
+  }
+}
