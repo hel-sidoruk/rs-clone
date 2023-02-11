@@ -12,7 +12,7 @@
     padding: 0 5px;
     color: $input-bdr;
     width: 100%;
-    
+
 
     &>div {
       display: flex;
@@ -31,22 +31,18 @@
     display: none;
     width: 100%;
     max-height: 350px;
-    overflow-y: scroll;
+    overflow-y: auto;
     background: $section;
     border: 1px solid $input-bdr;
     border-radius: 5px;
     color: $input-text;
-    @include scrollBar(12px);
-    
-
-    &_open {
-      display: block;
-    }
+    @include scrollBar(8px);
   }
 
   &__item {
     padding: 15px 15px 15px 30px;
     display: flex;
+    cursor: pointer;
     position: relative;
 
     svg {
@@ -83,9 +79,7 @@
     svg {
       fill: currentColor;
     }
-
-    button {
-      color: inherit;
+    .close-icon {
       cursor: pointer;
     }
   }
@@ -104,12 +98,15 @@
       transition: transform 0.3s;
     }
   }
-  
+
   &_open {
     .drop-icon {
       svg {
         transform: rotate(-180deg);
       }
+    }
+    .drop-down__list {
+      display: block;
     }
   }
 }

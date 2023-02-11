@@ -19,13 +19,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px;
+    padding-right: 10px;
 
     &.filters__search_focus {
       @extend %filter-focus;
     }
 
     input {
+      padding: 0 10px;
       color: inherit;
       outline: none;
       width: 100%;
