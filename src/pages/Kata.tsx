@@ -43,7 +43,7 @@ export const Kata = () => {
             <h3 className="kata-details__title">Description:</h3>
             {kata && <KataInstructions description={kata.description} tags={kata.tags} />}
           </div>
-          <SimilarKatas />
+          <SimilarKatas data={kata} />
           <KataStats />
         </>
       )}
