@@ -1,41 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import LeftBarForSolutions from '../components/Kata/leftBarForSolutions';
+import { CommentForm } from '../components/KataDiscuss/CommentForm';
+import { CommentsList } from '../components/KataDiscuss/CommentsList';
+import useActions from '../hooks/useActions';
 
 export const KataDiscuss = () => {
-  const [showDiscuss, setShowDiscuss] = useState(false);
-  const [discuss, setDiscuss] = useState('');
-  const feedBackInput = (e: React.FormEvent<HTMLTextAreaElement>) => {
-    setDiscuss(e.currentTarget.value);
-  };
-  const closeDiscuss = () => {
-    setDiscuss('');
-    setShowDiscuss(false);
-  };
+  const { id } = useParams();
+  const { fetchComments } = useActions();
+
+  useEffect(() => {
+    if (id) fetchComments(id);
+  }, [id]);
 
   return (
     <>
       <div className="section solution-main">
         <LeftBarForSolutions sol={false} />
-        <div className="section">
-          <div className="feedback open">
-            <div className="avatar"></div>
-            <div className="input-field">
-              <textarea
-                className="feedback-input"
-                placeholder="Leave feedback..."
-                onInput={feedBackInput}
-                value={discuss}
-              />
-              <label className="feedback-label">
-                <button className="btn btn-fill" onClick={() => console.log('send')}>
-                  Post
-                </button>
-                <button className="btn" onClick={closeDiscuss}>
-                  Cancel
-                </button>
-              </label>
-            </div>
-          </div>
+        <div className="section comments-section">
+          <CommentForm kataId={id as string} />
+          <CommentsList kataId={id as string} />
         </div>
       </div>
     </>
