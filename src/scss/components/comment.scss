@@ -46,6 +46,9 @@
       cursor: pointer;
     }
   }
+  .spoiler {
+    color: #bb432c;
+  }
   .keyword-tag {
     line-height: 14px;
     margin: 0;
@@ -68,6 +71,9 @@
 .voter {
   display: flex;
   align-items: center;
+  &.disabled {
+    pointer-events: none;
+  }
   &__score {
     color: $light;
   }

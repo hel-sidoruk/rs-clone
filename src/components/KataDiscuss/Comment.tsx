@@ -5,6 +5,7 @@ import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { CommentInterface } from '../../types/comments';
 import { CommentVoter } from './CommentVoter';
+import { SpoilerFlag } from './SpoilerFlag';
 
 export const Comment = ({ kataId, comment }: { kataId: string; comment: CommentInterface }) => {
   const { username } = useTypedSelector((state) => state.account);
@@ -36,7 +37,12 @@ export const Comment = ({ kataId, comment }: { kataId: string; comment: CommentI
         </div>
 
         <div className="comment__actions">
-          <CommentVoter votes={comment.votes} />
+          <CommentVoter
+            id={comment.id}
+            kataId={kataId}
+            votes={comment.votes}
+            isAccount={isAccountComment}
+          />
           <div className="bullet"></div>
           {isAccountComment && (
             <>
@@ -44,14 +50,9 @@ export const Comment = ({ kataId, comment }: { kataId: string; comment: CommentI
                 <i className="icon-moon-edit icon-moon"></i>Edit
               </div>
               <div className="bullet"></div>
-              <div className="link">View Solution</div>
-              <div className="bullet"></div>
             </>
           )}
-          <div className="link">
-            <i className="icon-moon-flag icon-moon"></i>
-            <span>Spoiler</span>
-          </div>
+          <SpoilerFlag spoiler={comment.spoiler} id={comment.id} kataId={kataId} />
           {isAccountComment && (
             <>
               <div className="bullet"></div>
