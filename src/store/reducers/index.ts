@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import accountReducer from './accountReducer';
 import authUserReducer from './authUserReducer';
+import { commentsReducer } from './commentsReducer';
 import kataReducer from './kataReducer';
 import leaderReducer from './leadersReducer';
 import { notificationsReducer } from './notificationsReducer';
@@ -15,6 +16,7 @@ export const rootReducer = combineReducers({
   account: accountReducer,
   filters: filtersReducer,
   notifications: notificationsReducer,
+  comments: commentsReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

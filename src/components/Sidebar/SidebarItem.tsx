@@ -25,7 +25,7 @@ export const SidebarItem = ({ label, path, nav }: Props) => {
   return (
     <li className="sidebar__item">
       {nav ? (
-        <NavLink to={path} className={({ isActive }) => (isActive ? 'link-active' : '')}>
+        <NavLink to={path} className={({ isActive }) => (isActive ? 'link-active' : '')} end>
           {icons[label]}
           <SidebarContent label={label} />
         </NavLink>

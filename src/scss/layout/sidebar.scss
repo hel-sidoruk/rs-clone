@@ -88,7 +88,9 @@
       align-items: center;
       width: 320px;
       color: $grey;
+      transition: background-color .2s ease-in-out;
       &:hover {
+        background-color: rgba(#fff, 0.1);
         .sidebar__label {
           color: $blue;
         }
@@ -100,6 +102,7 @@
         }
       }
       &.link-active {
+        pointer-events: none;
         .sidebar__label {
           color: #fff;
         }

@@ -1,3 +1,5 @@
+import { CommentLabel } from '../types/comments';
+
 export const GITHUB_AUTH_URL = 'https://github.com/login/oauth/authorize';
 export const CLIENT_ID_LOGIN = 'b67da247620e2e266ba4';
 export const CLIENT_ID_REGISTRATION = 'ff8172a4250438893a45';
@@ -87,4 +89,17 @@ export const requiredHonorForPrivileges: { [key: number]: string } = {
   1000: '1000+ Honor: Now your vote counts 2x towards getting a kata out of beta',
   2000: '2000+ Honor: Now your vote counts 3x towards getting a kata out of beta',
   3000: '3000+ Honor: Now your vote counts 4x towards getting a kata out of beta',
+};
+
+export const commentFormOptions: (CommentLabel | 'No label')[] = [
+  'No label',
+  'Issue',
+  'Suggestion',
+  'Question',
+];
+
+export const commentFormIcons: { [key: string]: string } = {
+  Issue: 'icon-moon-issue',
+  Suggestion: 'icon-moon-enhancement',
+  Question: 'icon-moon-question',
 };
