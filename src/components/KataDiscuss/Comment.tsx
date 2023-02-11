@@ -1,19 +1,16 @@
 import dayjs from 'dayjs';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { CommentInterface } from '../../types/comments';
 import { CommentVoter } from './CommentVoter';
+import { RemoveCommentButton } from './RemoveCommentButton';
 import { SpoilerFlag } from './SpoilerFlag';
 
 export const Comment = ({ kataId, comment }: { kataId: string; comment: CommentInterface }) => {
   const { username } = useTypedSelector((state) => state.account);
-  const { deleteComment } = useActions();
 
   const isAccountComment = comment.username === username;
-
-  const deleteByClick = () => deleteComment(kataId, comment.id);
 
   return (
     <div className="comment">
@@ -53,14 +50,7 @@ export const Comment = ({ kataId, comment }: { kataId: string; comment: CommentI
             </>
           )}
           <SpoilerFlag spoiler={comment.spoiler} id={comment.id} kataId={kataId} />
-          {isAccountComment && (
-            <>
-              <div className="bullet"></div>
-              <div className="link" onClick={deleteByClick}>
-                <i className="icon-moon-trash icon-moon"></i>Remove
-              </div>
-            </>
-          )}
+          {isAccountComment && <RemoveCommentButton kataId={kataId} id={comment.id} />}
         </div>
       </div>
     </div>
