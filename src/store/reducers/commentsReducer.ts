@@ -3,6 +3,7 @@ import { CommentsAction, CommentsActionTypes, CommentsState } from '../../types/
 const initialState: CommentsState = {
   comments: [],
   loading: false,
+  updatingComment: null,
 };
 
 export const commentsReducer = (state = initialState, action: CommentsAction): CommentsState => {
@@ -15,6 +16,10 @@ export const commentsReducer = (state = initialState, action: CommentsAction): C
       return { ...state, comments: action.payload.comments };
     case CommentsActionTypes.DELETE_COMMENT:
       return { ...state, comments: action.payload.comments };
+    case CommentsActionTypes.UPDATE_COMMENT_TEXT:
+      return { ...state, comments: action.payload.comments };
+    case CommentsActionTypes.SET_UPDATING_COMMENT:
+      return { ...state, updatingComment: action.payload.updatingComment };
     default:
       return state;
   }

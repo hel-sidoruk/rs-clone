@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { CommentInterface } from '../../types/comments';
 import { CommentVoter } from './CommentVoter';
@@ -9,11 +10,13 @@ import { SpoilerFlag } from './SpoilerFlag';
 
 export const Comment = ({ kataId, comment }: { kataId: string; comment: CommentInterface }) => {
   const { username } = useTypedSelector((state) => state.account);
+  const { updatingComment } = useTypedSelector((state) => state.comments);
+  const { setUpdatingComment } = useActions();
 
   const isAccountComment = comment.username === username;
 
   return (
-    <div className="comment">
+    <div className={`comment ${comment.id === updatingComment?.id ? 'hidden' : ''}`}>
       <Link className="avatar" to={`/users/${comment.username}`}>
         <img src={comment.avatar} alt="avatar" />
       </Link>
@@ -43,7 +46,7 @@ export const Comment = ({ kataId, comment }: { kataId: string; comment: CommentI
           <div className="bullet"></div>
           {isAccountComment && (
             <>
-              <div className="link">
+              <div className="link" onClick={() => setUpdatingComment(comment.id)}>
                 <i className="icon-moon-edit icon-moon"></i>Edit
               </div>
               <div className="bullet"></div>

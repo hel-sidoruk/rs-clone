@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { CommentLabel } from '../../types/comments';
@@ -9,9 +9,17 @@ export const CommentForm = ({ kataId }: { kataId: string }) => {
   const [isActive, setIsActive] = useState(false);
   const [option, setOption] = useState<CommentLabel | 'No label'>('No label');
   const { avatar } = useTypedSelector((state) => state.account);
-  const { addComment } = useActions();
+  const { updatingComment } = useTypedSelector((state) => state.comments);
+  const { addComment, setUpdatingComment, updateCommentText } = useActions();
 
-  const closeDiscuss = () => setIsActive(false);
+  const closeDiscuss = () => {
+    setIsActive(false);
+    if (updatingComment) {
+      setUpdatingComment(null);
+      setComment('');
+      setOption('No label');
+    }
+  };
   const openInput = () => !isActive && setIsActive(true);
 
   const postComment = () => {
@@ -19,7 +27,26 @@ export const CommentForm = ({ kataId }: { kataId: string }) => {
     addComment(kataId, comment, label);
     setComment('');
     setIsActive(false);
+    setOption('No label');
   };
+
+  const updateComment = () => {
+    if (!updatingComment) return;
+    const label = option === 'No label' ? null : option;
+    updateCommentText(kataId, updatingComment.id, label, comment);
+    setUpdatingComment(null);
+    setComment('');
+    setIsActive(false);
+    setOption('No label');
+  };
+
+  useEffect(() => {
+    if (updatingComment) {
+      setIsActive(true);
+      setComment(updatingComment.text);
+      setOption(updatingComment.label === null ? 'No label' : updatingComment.label);
+    }
+  }, [updatingComment]);
 
   return (
     <div className="comment-form">
@@ -37,9 +64,15 @@ export const CommentForm = ({ kataId }: { kataId: string }) => {
         />
         <div className="comment-form__actions">
           <FormDropdown option={option} setOption={setOption} />
-          <button className="btn btn-fill" onClick={postComment}>
-            Post
-          </button>
+          {updatingComment ? (
+            <button className="btn btn-fill" onClick={updateComment}>
+              Update
+            </button>
+          ) : (
+            <button className="btn btn-fill" onClick={postComment}>
+              Post
+            </button>
+          )}
           <button className="btn" onClick={closeDiscuss}>
             Cancel
           </button>

@@ -1,10 +1,11 @@
 import { API_URL } from '.';
-import { CommentInterface } from '../types/comments';
+import { CommentInterface, CommentLabel } from '../types/comments';
 
 interface CommentUpdates {
   votes?: number;
   spoiler?: boolean;
   text?: string;
+  label?: CommentLabel | null;
 }
 
 export class CommentsAPI {
