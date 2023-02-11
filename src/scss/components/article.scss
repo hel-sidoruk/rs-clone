@@ -21,12 +21,14 @@
  &__preview {
    border-radius: 4px;
    overflow: hidden;
+   max-width: 120px;
 
    img {
     border-radius: 4px;
     height: auto;
     object-position: center;
     object-fit: cover;
+    width: 100%;
    }
   }
 
