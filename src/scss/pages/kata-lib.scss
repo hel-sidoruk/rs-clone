@@ -34,10 +34,13 @@
     grid-row: 3 / 4;
   }
 
-  &__filters {
+  &__bar {
     grid-column: 1 / 2;
     grid-row: 2 / 5;
     align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
   }
 
   &__tags {
