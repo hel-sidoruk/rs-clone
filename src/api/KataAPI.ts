@@ -8,6 +8,12 @@ export class KataAPI {
     return data;
   }
 
+  static async getSimilar(limit: number, tags: string) {
+    const response = await fetch(`${API_URL}/kata/similar?limit=${limit}&tags=${tags}`);
+    const data = await response.json();
+    return data;
+  }
+
   static async getOne(id: string): Promise<KataInterface> {
     const response = await fetch(`${API_URL}/kata/${id}`);
     const data = await response.json();
