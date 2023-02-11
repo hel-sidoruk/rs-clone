@@ -12,22 +12,22 @@ export const CommentForm = ({ kataId }: { kataId: string }) => {
   const { updatingComment } = useTypedSelector((state) => state.comments);
   const { addComment, setUpdatingComment, updateCommentText } = useActions();
 
-  const closeDiscuss = () => {
+  const reset = () => {
+    setComment('');
     setIsActive(false);
-    if (updatingComment) {
-      setUpdatingComment(null);
-      setComment('');
-      setOption('No label');
-    }
+    setOption('No label');
+  };
+
+  const closeDiscuss = () => {
+    reset();
+    if (updatingComment) setUpdatingComment(null);
   };
   const openInput = () => !isActive && setIsActive(true);
 
   const postComment = () => {
     const label = option === 'No label' ? null : option;
     addComment(kataId, comment, label);
-    setComment('');
-    setIsActive(false);
-    setOption('No label');
+    reset();
   };
 
   const updateComment = () => {
@@ -35,9 +35,7 @@ export const CommentForm = ({ kataId }: { kataId: string }) => {
     const label = option === 'No label' ? null : option;
     updateCommentText(kataId, updatingComment.id, label, comment);
     setUpdatingComment(null);
-    setComment('');
-    setIsActive(false);
-    setOption('No label');
+    reset();
   };
 
   useEffect(() => {

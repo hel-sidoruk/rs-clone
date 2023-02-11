@@ -1,17 +1,16 @@
 import dayjs from 'dayjs';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { CommentInterface } from '../../types/comments';
 import { CommentVoter } from './CommentVoter';
+import { EditCommentButton } from './EditCommentButton';
 import { RemoveCommentButton } from './RemoveCommentButton';
 import { SpoilerFlag } from './SpoilerFlag';
 
 export const Comment = ({ kataId, comment }: { kataId: string; comment: CommentInterface }) => {
   const { username } = useTypedSelector((state) => state.account);
   const { updatingComment } = useTypedSelector((state) => state.comments);
-  const { setUpdatingComment } = useActions();
 
   const isAccountComment = comment.username === username;
 
@@ -44,14 +43,7 @@ export const Comment = ({ kataId, comment }: { kataId: string; comment: CommentI
             isAccount={isAccountComment}
           />
           <div className="bullet"></div>
-          {isAccountComment && (
-            <>
-              <div className="link" onClick={() => setUpdatingComment(comment.id)}>
-                <i className="icon-moon-edit icon-moon"></i>Edit
-              </div>
-              <div className="bullet"></div>
-            </>
-          )}
+          {isAccountComment && <EditCommentButton id={comment.id} />}
           <SpoilerFlag spoiler={comment.spoiler} id={comment.id} kataId={kataId} />
           {isAccountComment && <RemoveCommentButton kataId={kataId} id={comment.id} />}
         </div>
