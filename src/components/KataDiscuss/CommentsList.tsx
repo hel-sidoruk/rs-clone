@@ -10,9 +10,11 @@ export const CommentsList = ({ kataId }: { kataId: string }) => {
   if (loading) return <Loader />;
   return (
     <div>
-      {comments.length
-        ? comments.map((comment) => <Comment comment={comment} key={nanoid()} kataId={kataId} />)
-        : null}
+      {comments.length ? (
+        comments.map((comment) => <Comment comment={comment} key={nanoid()} kataId={kataId} />)
+      ) : (
+        <div style={{ fontSize: '16px' }}>There are no comments yet</div>
+      )}
     </div>
   );
 };
