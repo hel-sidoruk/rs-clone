@@ -1,6 +1,8 @@
+import dayjs from 'dayjs';
 import React from 'react';
+import { KataInterface } from '../../types/kata';
 
-export const KataStats = () => {
+export const KataStats = ({ data }: { data: KataInterface }) => {
   return (
     <div className="section kata-details">
       <h3 className="kata-details__title">Stats:</h3>
@@ -8,31 +10,27 @@ export const KataStats = () => {
         <div className="kata-stats__block">
           <div className="kata-stats__item">
             <span>Created</span>
-            <span>Sep 10, 2014</span>
+            <span>{dayjs(data.createdAt).format('MMM DD, YYYY')}</span>
           </div>
           <div className="kata-stats__item">
             <span>Published</span>
-            <span>Sep 10, 2014</span>
+            <span>{dayjs(data.publishedAt).format('MMM DD, YYYY')}</span>
           </div>
           <div className="kata-stats__item">
-            <span>Warriors Trained</span>
-            <span>5619</span>
-          </div>
-          <div className="kata-stats__item">
-            <span>Total Skips</span>
-            <span>197</span>
+            <span>Category</span>
+            <span>{data.category}</span>
           </div>
           <div className="kata-stats__item">
             <span>Total Code Submissions</span>
-            <span>9491</span>
+            <span>{data.totalAttempts}</span>
           </div>
           <div className="kata-stats__item">
             <span>Total Times Completed</span>
-            <span>4284</span>
+            <span>{data.totalCompleted}</span>
           </div>
           <div className="kata-stats__item">
             <span>Total Stars</span>
-            <span>57</span>
+            <span>{data.totalStars}</span>
           </div>
         </div>
       </div>

@@ -44,7 +44,7 @@ export const Kata = () => {
             {kata && <KataInstructions description={kata.description} tags={kata.tags} />}
           </div>
           <SimilarKatas data={kata} />
-          <KataStats />
+          {kata && <KataStats data={kata} />}
         </>
       )}
       <Outlet />
