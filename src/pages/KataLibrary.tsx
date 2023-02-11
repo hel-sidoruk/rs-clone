@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Article from '../components/Article';
 import { FeaturedTags } from '../components/FeaturedTags';
 import Filters from '../components/Filters/Filters';
 import { KataList } from '../components/Kata/KataList';
@@ -21,7 +22,11 @@ export const KataLibrary = ({ title }: { title: string }) => {
             Library
           </div>
           <div className="library__found">{totalCount} Kata Found</div>
-          <Filters />
+          <div className="library__bar">
+            <Filters />
+            <Article />
+            <Article />
+          </div>
           <div className="library__tags">
             <span>FEATURED TAGS</span>
             <FeaturedTags />
