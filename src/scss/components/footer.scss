@@ -4,7 +4,6 @@
   width: 100%;
   padding: 0 68px;
   border-top: 1px solid hsla(0, 0%, 100%, 0.1);
-  height: 300px;
   background-color: #16171b;
   background-image: url($noise);
   background-position: 0 0;
@@ -26,6 +25,7 @@
       padding: 48px 0;
       display: flex;
       justify-content: space-between;
+      align-items: center;
 
 
       .bottom__text {
@@ -62,7 +62,7 @@
           transition: .3s;
 
           &:hover {
-            color: $light;;
+            color: $light;
           }
         }
       }
