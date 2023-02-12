@@ -12,9 +12,9 @@ const SearchInput = () => {
     changeFilters('search', '');
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    changeFilters('search', searchValue);
+    changeFilters('search', searchValue.trim());
   };
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const SearchInput = () => {
       <input
         type="text"
         value={searchValue}
-        onBlur={() => changeFilters('search', searchValue)}
+        onBlur={() => changeFilters('search', searchValue.trim())}
         onChange={(e) => setSearchValue(e.target.value)}
       />
       <div className="filters__btn-wrap">

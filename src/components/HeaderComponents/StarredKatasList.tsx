@@ -5,6 +5,7 @@ import useTypedSelector from '../../hooks/useTypedSelector';
 
 export const StarredKatasList = () => {
   const { starredKatas } = useTypedSelector((state) => state.account);
+
   return (
     <div className="header__menu starred-menu">
       <div className="header__menu-body">

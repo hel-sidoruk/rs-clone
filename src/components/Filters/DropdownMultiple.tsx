@@ -25,7 +25,7 @@ const DropdownMultiple = ({ list, filterType }: { list: string[]; filterType: st
       : [...selected, param];
     setSelected(newState);
 
-    const filters = newState.map((filter) => filter.toLowerCase().replace(/ /g, '+')).join('*');
+    const filters = newState.map((filter) => filter.toLowerCase()).join('*');
     changeFilters(filterType, filters);
   };
 

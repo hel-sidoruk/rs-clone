@@ -15,7 +15,7 @@ const DropdownSingle = ({ list, type }: { list: string[]; type: string }) => {
 
   const selectHandler = (param: string) => {
     setSelected(param);
-    const filterValue = param.toLowerCase().replace(/ /g, '+');
+    const filterValue = param.toLowerCase();
     changeFilters(type, filterValue);
   };
 

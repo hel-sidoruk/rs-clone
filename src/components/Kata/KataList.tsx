@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import React from 'react';
 import useInfiniteList from '../../hooks/useInfiniteList';
 import useTypedSelector from '../../hooks/useTypedSelector';
@@ -12,8 +13,8 @@ export const KataList = () => {
 
   return (
     <div className="library__katas katas">
-      {katas.map((kata, index) => (
-        <div key={index} className="katas__item kata-item">
+      {katas.map((kata) => (
+        <div key={nanoid()} className="katas__item kata-item">
           <div className="kata-item__wrap">
             <KataInfo data={kata} />
             <TagsBlock tags={kata.tags} />

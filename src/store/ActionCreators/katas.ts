@@ -1,15 +1,15 @@
 import { Dispatch } from 'redux';
 import { KataAPI } from '../../api';
 import { ThunkActionType } from '../../types';
-import { KatasAction, KatasActionTypes, KatasById } from '../../types/kata';
+import { KataInterface, KatasAction, KatasActionTypes, KatasById } from '../../types/kata';
 
 export function fetchKatas(): ThunkActionType {
   return async (dispatch: Dispatch<KatasAction>, getState) => {
-    const { page } = getState().katas;
+    const { query } = getState().filters;
     try {
       dispatch({ type: KatasActionTypes.FETCH_KATAS });
-      const { rows, count } = await KataAPI.getAll(page);
-
+      const { rows, count } = await KataAPI.getAll(1, query);
+      if (!rows) return;
       const katasByID: KatasById = {};
 
       rows.forEach((el) => {
@@ -17,7 +17,7 @@ export function fetchKatas(): ThunkActionType {
       });
       dispatch({
         type: KatasActionTypes.FETCH_KATAS_SUCCESS,
-        payload: { katasByID, katas: rows, totalCount: count },
+        payload: { katasByID, katas: rows, totalCount: count, filters: query },
       });
     } catch (err) {
       dispatch({ type: KatasActionTypes.FETCH_KATAS_ERROR, payload: { error: 'Error' } });
@@ -27,12 +27,13 @@ export function fetchKatas(): ThunkActionType {
 
 export function fetchNextKatas(): ThunkActionType {
   return async (dispatch: Dispatch<KatasAction>, getState) => {
-    const { page, katas, katasByID, totalCount } = getState().katas;
+    const { page, katas, katasByID, totalCount, filters } = getState().katas;
     if (page > totalCount / 10) return;
     const nextPage = page + 1;
     try {
       dispatch({ type: KatasActionTypes.FETCH_KATAS });
-      const { rows } = await KataAPI.getAll(nextPage);
+      const { rows } = await KataAPI.getAll(nextPage, filters);
+      if (!rows) return;
 
       const katasById: KatasById = {};
 
@@ -50,5 +51,17 @@ export function fetchNextKatas(): ThunkActionType {
     } catch (err) {
       dispatch({ type: KatasActionTypes.FETCH_KATAS_ERROR, payload: { error: 'Error' } });
     }
+  };
+}
+
+export function addStarredKata(kata: KataInterface): ThunkActionType {
+  return async (dispatch: Dispatch<KatasAction>, getState) => {
+    const { starredKatasList } = getState().katas;
+    dispatch({
+      type: KatasActionTypes.ADD_STARRED_KATA,
+      payload: {
+        starredKatasList: [...starredKatasList, kata],
+      },
+    });
   };
 }
