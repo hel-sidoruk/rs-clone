@@ -10,7 +10,7 @@ const LeaderItem = ({ user, index }: { user: UserInterface; index: number }) => 
       <div className="leader-table__td leader-table__td_position">#{index + 1}</div>
       <div className="leader-table__td">
         <Rank rank={user.rank}></Rank>
-        <Link className="leader-table__link" to={`/users/${user.id}`}>
+        <Link className="leader-table__link" to={`/users/${user.username}/stats`}>
           <div className="leader-table__avatar">
             <FakeAvatar />
           </div>

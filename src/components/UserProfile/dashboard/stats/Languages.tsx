@@ -1,6 +1,7 @@
 import React from 'react';
+import { UserInterface } from '../../../../types/user';
 
-const Languages = () => {
+const Languages = ({ user }: { user: UserInterface }) => {
   return (
     <div className="stats__langs">
       <div className="stats__subtitle">
@@ -11,7 +12,7 @@ const Languages = () => {
         <b>Total Languages Trained:</b>51
       </div>
       <div>
-        <b>Highest Trained:</b>JavaScript (1 kyu)
+        <b>Highest Trained:</b>JavaScript ({user.rank})
       </div>
       <div>
         <b>Most Recent:</b>Groovy
