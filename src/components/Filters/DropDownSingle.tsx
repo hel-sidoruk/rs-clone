@@ -27,7 +27,7 @@ const DropdownSingle = ({ list, type }: { list: string[]; type: string }) => {
 
   return (
     <div className={`drop-down ${isOpen ? 'drop-down_open' : ''}`}>
-      <button className="drop-down__top" onClick={handleOpen}>
+      <button className={`drop-down__top ${selected ? 'active' : ''}`} onClick={handleOpen}>
         {selected}
         <DropIcon />
       </button>

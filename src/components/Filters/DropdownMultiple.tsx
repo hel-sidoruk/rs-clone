@@ -44,7 +44,7 @@ const DropdownMultiple = ({ list, filterType }: { list: string[]; filterType: st
 
   return (
     <div className={isOpen ? `drop-down drop-down_open` : `drop-down`}>
-      <button className="drop-down__top" onClick={handleOpen}>
+      <button className={`drop-down__top ${selected.length ? 'active' : ''}`} onClick={handleOpen}>
         <div>
           {selected.length
             ? selected.map((tag) => <Label key={nanoid()} text={tag} cb={selectHandler} />)

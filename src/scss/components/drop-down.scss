@@ -12,7 +12,9 @@
     padding: 0 5px;
     color: $input-bdr;
     width: 100%;
-
+    &.active {
+      color: $light;
+    }
 
     &>div {
       display: flex;

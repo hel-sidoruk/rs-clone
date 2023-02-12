@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { FeaturedTags } from '../components/FeaturedTags';
 import Filters from '../components/Filters/Filters';
 import { KataList } from '../components/Kata/KataList';
@@ -8,15 +7,10 @@ import useTypedSelector from '../hooks/useTypedSelector';
 
 export const KataLibrary = ({ title }: { title: string }) => {
   const { katas, totalCount, loading } = useTypedSelector((state) => state.katas);
-  const { isAuthorized } = useTypedSelector((state) => state.authorizedUser);
-  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = title;
   }, [title]);
-  useEffect(() => {
-    if (!isAuthorized) navigate('/');
-  }, [isAuthorized]);
 
   return (
     <main className="play-view">
