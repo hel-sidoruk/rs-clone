@@ -1,0 +1,54 @@
+.filters {
+  border: 1px solid $scroll;
+  border-radius: 8px;
+  padding: 14px;
+  min-width: 300px;
+
+  &__drop-down{
+    margin-bottom: 15px;
+  }
+
+  &__search {
+    margin-bottom: 20px;
+    border: 1px solid $input-bdr;
+    width: 100%;
+    background: $input-bg;
+    height: 30px;
+    border-radius: 5px;
+    color: $input-text;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 10px;
+
+    &.filters__search_focus {
+      @extend %filter-focus;
+    }
+
+    input {
+      padding: 0 10px;
+      color: inherit;
+      outline: none;
+      width: 100%;
+      align-self: stretch;
+    }
+
+    button {
+      color: inherit;
+      svg {
+        transition: all 0.3s;
+      }
+    }
+    button:hover {
+      svg {
+        fill: $filters-accent;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__btn-wrap {
+    display: flex;
+    gap: 10px;
+  }
+}

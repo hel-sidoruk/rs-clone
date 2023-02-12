@@ -6,19 +6,23 @@ import { Footer } from './Footer';
 import { Header } from './Header';
 import { HeaderHome } from './Home/HeaderHome';
 import { Sidebar } from './Sidebar';
+import { Popup } from './UI/Popup';
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { pathname } = useLocation();
   const { fetchKatas, checkUser, setAccount } = useActions();
   const { isAuthorized } = useTypedSelector((state) => state.authorizedUser);
+  const { newItems } = useTypedSelector((state) => state.notifications);
 
   useEffect(() => {
     checkUser();
-    fetchKatas();
   }, []);
 
   useEffect(() => {
-    isAuthorized && setAccount();
+    if (isAuthorized) {
+      setAccount();
+      fetchKatas();
+    }
   }, [isAuthorized]);
 
   if (pathname === '/login' || pathname === '/registration') return <>{children}</>;
@@ -30,6 +34,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
         <>
           <Sidebar />
           <Header />
+          {newItems.length ? <Popup /> : <></>}
         </>
       )}
       {children}

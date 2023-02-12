@@ -8,6 +8,7 @@
     "lint": "eslint . --ext .ts"
   },
   "dependencies": {
+    "dayjs": "^1.11.7",
     "highlight.js": "^11.7.0",
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",

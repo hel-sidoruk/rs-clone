@@ -1,6 +1,12 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import {
+  StatsTab,
+  KataTab,
+  CollectionsTab,
+  DiscourseTab,
+} from '../components/UserProfile/dashboard';
+import {
   Authorization,
   Home,
   Kata,
@@ -22,7 +28,12 @@ export default function AppRouter() {
         <Route path="/kata/:id/solutions" element={<KataSolutions />} />
       </Route>
       <Route path="/kata/:id/train" element={<KataTraining />} />
-      <Route path="/users/:id" element={<UserProfile />} />
+      <Route path="/users/:id/" element={<UserProfile />}>
+        <Route path="/users/:id/stats" element={<StatsTab />} />
+        <Route path="/users/:id/completed" element={<KataTab />} />
+        <Route path="/users/:id/collections" element={<CollectionsTab />} />
+        <Route path="/users/:id/comments" element={<DiscourseTab />} />
+      </Route>
       <Route path="/users/leaderboard" element={<Leaderboard title="Leaders | Codewars Clone" />} />
       <Route
         path="/login"

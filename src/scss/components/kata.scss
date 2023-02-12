@@ -1,0 +1,192 @@
+.kata {
+  &__info {
+    &-top {
+      display: flex;
+      padding: 11px 0;
+      margin-bottom: 4px;
+      align-items: center;
+    }
+    &-title {
+      margin-left: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      color: $light;
+      line-height: 1.4;
+      transition: color 0.5s;
+
+      &:hover {
+        color: $blue;
+      }
+    }
+    &-bottom {
+      display: flex;
+      align-items: center;
+    }
+    &-text {
+      color: $grey;
+      display: flex;
+      align-items: center;
+      &:not(:last-child) {
+        margin-right: 16px;
+      }
+      &.link,
+      &.star {
+        cursor: pointer;
+        transition: all .3s ease-in-out;
+        &:hover {
+          color: $blue;
+        }
+      }
+    }
+  }
+  &__controls {
+    .btn:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
+}
+.kata-description {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  &.section {
+    background-color: $section;
+    padding: 8px 16px;
+    border-radius: 8px;
+    .kata__info-bottom {
+      margin-bottom: 12px;
+    }
+  }
+}
+.kata-language {
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid rgba(#fff, 0.2);
+  background-color: rgba(#000, 0.2);
+  color: $light;
+  line-height: 21px;
+}
+.icon-container {
+  background-color: rgba(#fff, 0.125);
+  height: 50px;
+  width: 50px;
+  color: $grey;
+  text-align: center;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  &:hover {
+    background-color: rgba(#fff, 0.05);
+    color: $blue;
+  }
+  .icon-moon::before {
+    line-height: 51px;
+  }
+}
+.controls {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  &__btn {
+    padding: 8px 16px;
+    color: $grey;
+    border-radius: 8px;
+    transition: all .2s ease-in-out;
+    font-size: 14px;
+    line-height: 21px;
+    &:hover {
+      color: $blue;
+    }
+    &.active {
+      background-color: #ffffff10;
+      color: #ebebeb;
+      pointer-events: none;
+    }
+    &.centered {
+      display: flex;
+      align-items: center;
+    }
+  }
+  .icon-moon-comments {
+    margin-right: 5px;
+  }
+}
+.kata-details {
+  max-width: 84%;
+  margin-bottom: 15px;
+  &__title {
+    color: $grey;
+    margin-bottom: 18px;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .35px;
+  }
+  &__similar {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 16px;
+    grid-column-gap: 32px;
+    min-height: 300px;
+  }
+  &__similar-item {
+    padding: 16px;
+    .kata-tags {
+      margin: 0;
+    }
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &.kata-hide {
+    max-width: unset;
+    border: 1px solid $scroll;
+    padding: 0;
+    transition: height .3s ease-in-out;
+    .description {
+      padding: 16px;
+    }
+    &.hide {
+      height:56px;
+      .description {
+        transform: scaleY(0);
+      }
+      svg {
+        transform: rotate(0);
+      }
+    }
+  }
+}
+.kata-tags {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding-top: 16px;
+}
+.toggle-block {
+  &__header {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    svg {
+      fill: $light;
+      transition: transform .2s ease-in-out;
+      transform: rotate(90deg);
+    }
+  }
+  &__title {
+    font-size: 16px;
+    line-height: 24px;
+    color: $light;
+  }
+}

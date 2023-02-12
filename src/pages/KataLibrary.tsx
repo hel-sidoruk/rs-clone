@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
+import Article from '../components/Article';
 import { FeaturedTags } from '../components/FeaturedTags';
 import Filters from '../components/Filters/Filters';
 import { KataList } from '../components/Kata/KataList';
+import Loader from '../components/UI/Loader';
 import useTypedSelector from '../hooks/useTypedSelector';
 
 export const KataLibrary = ({ title }: { title: string }) => {
-  const { katas, loading, totalCount } = useTypedSelector((state) => state.katas);
+  const { katas, totalCount, loading } = useTypedSelector((state) => state.katas);
 
   useEffect(() => {
     document.title = title;
@@ -21,12 +23,17 @@ export const KataLibrary = ({ title }: { title: string }) => {
             Library
           </div>
           <div className="library__found">{totalCount} Kata Found</div>
-          <Filters />
+          <div className="library__bar">
+            <Filters />
+            <Article />
+            <Article />
+          </div>
           <div className="library__tags">
             <span>FEATURED TAGS</span>
             <FeaturedTags />
           </div>
-          {katas.length && <KataList />}
+          {loading && <Loader />}
+          {katas.length ? <KataList /> : null}
         </div>
       </div>
     </main>

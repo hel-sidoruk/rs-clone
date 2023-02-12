@@ -1,0 +1,83 @@
+.comments-section {
+  position: relative;
+}
+.comment {
+  color: $grey;
+  display: flex;
+  margin-bottom: 20px;
+  gap: 15px;
+  &.hidden {
+    display: none;
+  }
+  .avatar {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 3px;
+    display: block;
+  }
+  .bullet {
+    background-color: rgba(#fff, 0.3);
+    border-radius: 50%;
+    width: 3px;
+    height: 3px;
+    margin: 0 5px;
+  }
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  &__body {
+    color: $light;
+    padding: 4px 0;
+    font-size: 16px;
+    line-height: 28px;
+    margin-bottom: 5px;
+  }
+  &__rank {
+    color: $light;
+    margin-left: 5px;
+  }
+  &__actions {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    line-height: 21px;
+    gap: 3px;
+    .link {
+      cursor: pointer;
+    }
+  }
+  .spoiler {
+    color: #bb432c;
+  }
+  .keyword-tag {
+    line-height: 14px;
+    margin: 0;
+    padding: 1px 6px;
+    margin-left: 5px;
+    &.issue {
+      background-color: #b1361e;
+    }
+    &.question {
+      color: #efefef;
+      border: 1px solid #efefef;
+      background-color: transparent;
+    }
+    &.suggestion {
+      background-color: #ffffff30;
+      color: #efefef;
+    }
+  }
+}
+.voter {
+  display: flex;
+  align-items: center;
+  &.disabled {
+    pointer-events: none;
+  }
+  &__score {
+    color: $light;
+  }
+}

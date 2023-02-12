@@ -13,7 +13,7 @@ export const KataTrainingDescription = ({ handler, kata }: Props) => {
       {kata && (
         <>
           <KataInfo data={kata} />
-          <KataLanguage />
+          <KataLanguage kataId={kata.id} />
           <div className="controls">
             <div title="Maximize editor space" onClick={handler}>
               <div className="icon-container">

@@ -1,27 +1,5 @@
-@import './scss/fonts';
-@import './scss/variables';
-@import './scss/settings';
-@import './scss/buttons';
-@import './scss/rank';
+@import './scss/general';
+@import './scss/components';
 
-@import './scss/header';
-@import './scss/sidebar';
-@import './scss/markdown';
-@import './scss/tests';
-@import './scss/icons';
-
-@import './scss/home';
-@import './scss/auth';
-@import './scss/kata';
-@import './scss/kata-train';
-@import './scss/kata-lib';
-@import './scss/kata-solution';
-@import './scss/kata-discuss';
-@import './scss/leaders.scss';
-@import './scss/leaders';
-@import './scss/user-profile';
-
-@import './scss/loader';
-@import './scss/highlight';
-@import './scss/article';
-@import './scss/modal';
+@import './scss/pages';
+@import './scss/layout';

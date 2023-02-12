@@ -12,19 +12,19 @@ export const CodeActionsButtons = () => {
   const { isTestsStarted, success, solution } = useTypedSelector((state) => state.solution);
   const { username } = useTypedSelector((state) => state.account);
 
-  const startTests = () => {
+  const startTests = (tests: 'all' | 'fixed') => {
     if (!solution) return;
-    startTesting();
+    startTesting(tests);
   };
 
   const handleSubmit = async () => {
+    setSuccess(null);
     if (id && success && username)
       await SolutionsAPI.addSolution(id, {
         username,
         solution,
       }).then(console.log);
     updateSolution('');
-    setSuccess(false);
     navigate(`/kata/${id}/solutions`);
   };
 
@@ -43,12 +43,18 @@ export const CodeActionsButtons = () => {
         <button className="btn btn-dark">reset</button>
       </div>
       <div className={`code__btns-tests ${isTestsStarted ? 'disabled' : ''}`}>
-        <button className="btn" onClick={startTests}>
+        <button className="btn" onClick={() => startTests('fixed')}>
           test
         </button>
-        <button className={`btn btn-fill ${success ? 'success' : ''}`} onClick={handleSubmit}>
-          {success ? 'submit' : 'attempt'}
-        </button>
+        {success === 'all' ? (
+          <button className="btn btn-fill success" onClick={handleSubmit}>
+            submit
+          </button>
+        ) : (
+          <button className="btn btn-fill" onClick={() => startTests('all')}>
+            attempt
+          </button>
+        )}
       </div>
     </div>
   );

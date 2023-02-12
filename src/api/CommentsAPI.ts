@@ -1,10 +1,11 @@
 import { API_URL } from '.';
-import { CommentInterface } from '../types/comments';
+import { CommentInterface, CommentLabel } from '../types/comments';
 
 interface CommentUpdates {
   votes?: number;
   spoiler?: boolean;
   text?: string;
+  label?: CommentLabel | null;
 }
 
 export class CommentsAPI {
@@ -17,7 +18,7 @@ export class CommentsAPI {
   static async create(
     id: string,
     comment: Omit<CommentInterface, 'id' | 'kataId' | 'votes' | 'createdAt' | 'spoiler'>
-  ): Promise<CommentInterface[]> {
+  ): Promise<CommentInterface> {
     const response = await fetch(`${API_URL}/kata/${id}/discuss`, {
       method: 'POST',
       headers: {
@@ -36,6 +37,14 @@ export class CommentsAPI {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(comment),
+    });
+    const data = await response.json();
+    return data;
+  }
+
+  static async delete(id: string, commentId: number): Promise<{ status?: 'ok'; message?: string }> {
+    const response = await fetch(`${API_URL}/kata/${id}/discuss/${commentId}`, {
+      method: 'DELETE',
     });
     const data = await response.json();
     return data;

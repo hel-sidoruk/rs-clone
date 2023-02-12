@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { UsersAPI } from '../../api';
 import { UserInterface } from '../../types/user';
-import FakeAvatar from '../Icons/FakeAvatar';
-import Shield from '../Icons/Shield';
+import { FakeAvatar, Shield } from '../Icons';
 import { Rank } from '../Kata/Rank';
+
+const initialUser: UserInterface = {
+  username: '',
+  clan: '',
+  honor: 0,
+  id: '',
+  leaderboardPosition: 1,
+  rank: '',
+  name: '',
+  score: 0,
+  totalCompleted: 0,
+};
 
 const UserInfo = ({ user }: { user: UserInterface }) => {
   return (
