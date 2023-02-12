@@ -6,8 +6,6 @@ export const Footer = () => {
       <div className="footer__items">
         <div className="items__bottom">
           <div className="bottom__text">
-            <span className="text__span">© HAPsoft</span>
-            <span className="text__span">2023</span>
             <span className="text__span">
               Created by
               <span className="text__span_a">
@@ -64,6 +62,10 @@ export const Footer = () => {
                 </a>
               </span>
             </span>
+          </div>
+          <div className="bottom__text">
+            <span className="text__span">© HAPsoft</span>
+            <span className="text__span">2023</span>
           </div>
           <div className="bottom__icons">
             <a href="https://rs.school/js/">
