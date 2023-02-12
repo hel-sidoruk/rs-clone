@@ -10,7 +10,7 @@ const Label = ({ text, cb }: LabelProps) => {
   return (
     <div className="drop-down__label">
       <div>{text}</div>
-      <div onClick={() => cb(text)}>
+      <div className="close-icon" onClick={() => cb(text)}>
         <CloseEmptyIcon />
       </div>
     </div>

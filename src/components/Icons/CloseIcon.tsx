@@ -6,7 +6,7 @@ export const CloseIcon = () => {
       xmlns="http://www.w3.org/2000/svg"
       width="16"
       height="16"
-      fill="currentColor"
+      fill="#6c6c74"
       className="close-icon"
       viewBox="0 0 16 16"
     >

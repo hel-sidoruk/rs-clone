@@ -1,57 +1,50 @@
-import React, { FormEvent, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useActions from '../../hooks/useActions';
 import { CloseIcon, SearchIcon } from '../Icons';
 
 const SearchInput = () => {
-  const { changeFilters } = useActions();
-
   const [searchValue, setSearchValue] = useState('');
   const [isFocus, setIsFocus] = useState(false);
-  const formRef = useRef() as React.MutableRefObject<HTMLFormElement>;
+  const { changeFilters } = useActions();
 
-  function updateValue(e: FormEvent<HTMLInputElement>) {
-    const elem = e.target as HTMLInputElement;
-    const val = elem.value;
-    setSearchValue(val);
-  }
-
-  function resetInput() {
+  const reset = () => {
     setSearchValue('');
-  }
+    changeFilters('search', '');
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    changeFilters('search', searchValue.trim());
+  };
 
   useEffect(() => {
-    const handler = (e: Event) => {
-      if (!formRef.current.contains(e.target as Node)) {
-        setIsFocus(false);
-      }
-    };
-    document.addEventListener('mousedown', handler);
-    return () => {
-      document.removeEventListener('mousedown', handler);
-    };
+    const handler = () => setIsFocus(false);
+    document.body.addEventListener('click', handler);
+    return () => document.body.removeEventListener('click', handler);
   });
 
   return (
     <form
       className={isFocus ? 'filters__search filters__search_focus' : 'filters__search'}
-      onSubmit={(e) => {
-        e.preventDefault();
-        changeFilters('search', searchValue);
+      onSubmit={handleSubmit}
+      onReset={reset}
+      onClick={(e) => {
+        e.stopPropagation();
+        setIsFocus(!isFocus);
       }}
-      onReset={() => {
-        resetInput();
-        changeFilters('search', '');
-      }}
-      onClick={() => setIsFocus(!isFocus)}
-      ref={formRef}
     >
-      <input type="text" value={searchValue} onInput={updateValue} />
+      <input
+        type="text"
+        value={searchValue}
+        onBlur={() => changeFilters('search', searchValue.trim())}
+        onChange={(e) => setSearchValue(e.target.value)}
+      />
       <div className="filters__btn-wrap">
-        {searchValue ? (
+        {searchValue && (
           <button type="reset">
             <CloseIcon />
           </button>
-        ) : null}
+        )}
         <button type="submit">
           <SearchIcon />
         </button>

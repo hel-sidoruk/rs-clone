@@ -12,8 +12,8 @@ export const KataList = () => {
 
   return (
     <div className="library__katas katas">
-      {katas.map((kata, index) => (
-        <div key={index} className="katas__item kata-item">
+      {katas.map((kata) => (
+        <div key={kata.id} className="katas__item kata-item">
           <div className="kata-item__wrap">
             <KataInfo data={kata} />
             <TagsBlock tags={kata.tags} />

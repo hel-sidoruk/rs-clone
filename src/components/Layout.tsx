@@ -16,11 +16,13 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     checkUser();
-    fetchKatas();
   }, []);
 
   useEffect(() => {
-    isAuthorized && setAccount();
+    if (isAuthorized) {
+      setAccount();
+      fetchKatas();
+    }
   }, [isAuthorized]);
 
   if (pathname === '/login' || pathname === '/registration') return <>{children}</>;

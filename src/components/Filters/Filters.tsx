@@ -1,29 +1,39 @@
 import React from 'react';
-import DropDownSingle from './DropDownSingle';
+import DropdownSingle from './DropdownSingle';
 import SearchInput from './SearchInput';
 import { filterLists } from '../../utils';
-import DropDownMultiply from './DropDownMultiply';
+import DropdownMultiple from './DropdownMultiple';
+import useTypedSelector from '../../hooks/useTypedSelector';
+import useActions from '../../hooks/useActions';
 
 const Filters = () => {
+  const { isAuthorized } = useTypedSelector((state) => state.authorizedUser);
+  const { fetchKatas } = useActions();
+
   return (
     <div className="library__filters filters">
       <SearchInput />
-      <div className="filters__drop-down sort">
+      <div className="filters__drop-down">
         Sort By
-        <DropDownSingle list={filterLists.sort} type="sort" />
+        <DropdownSingle list={filterLists.sort} type="sort" />
       </div>
-      <div className="filters__drop-down progress">
-        Progress
-        <DropDownSingle list={filterLists.progress} type="progress" />
-      </div>
-      <div className="filters__drop-down difficulty">
+      {isAuthorized && (
+        <div className="filters__drop-down">
+          Progress
+          <DropdownSingle list={filterLists.progress} type="progress" />
+        </div>
+      )}
+      <div className="filters__drop-down">
         Difficulty
-        <DropDownMultiply list={filterLists.difficulty} filterType="difficulty" />
+        <DropdownMultiple list={filterLists.difficulty} filterType="difficulty" />
       </div>
-      <div className="filters__drop-down tags-filter">
+      <div className="filters__drop-down">
         Tags
-        <DropDownMultiply list={filterLists.tags} filterType="tags" />
+        <DropdownMultiple list={filterLists.tags} filterType="tags" />
       </div>
+      <button className="btn" onClick={fetchKatas}>
+        Search
+      </button>
     </div>
   );
 };

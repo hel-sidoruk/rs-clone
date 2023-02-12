@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { KataAPI } from '../../api';
+import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { KataInterface } from '../../types/kata';
 import { Rank } from '../Kata/Rank';
 
 export const StarredKata = ({ id }: { id: string }) => {
+  const { addStarredKata } = useActions();
+  const { starredKatasList } = useTypedSelector((state) => state.katas);
   const [kata, setKata] = useState<KataInterface | null>(null);
-  const { katasByID } = useTypedSelector((state) => state.katas);
+
   useEffect(() => {
-    if (katasByID) {
-      if (katasByID[id]) setKata(katasByID[id]);
-      else KataAPI.getOne(id).then((res) => setKata(res));
+    const kataItem = starredKatasList.find((item) => item.id === id);
+    if (kataItem) setKata(kataItem);
+    else {
+      KataAPI.getOne(id).then((res) => {
+        setKata(res);
+        addStarredKata(res);
+      });
     }
-  }, [katasByID]);
+  }, [kata]);
 
   return (
     <li>

@@ -3,10 +3,12 @@ import { KatasAction, KatasActionTypes, KataState } from '../../types/kata';
 const initialState: KataState = {
   katasByID: null,
   katas: [],
+  starredKatasList: [],
   loading: false,
   error: null,
   totalCount: 0,
   page: 1,
+  filters: '',
 };
 
 export default function kataReducer(state: KataState = initialState, action: KatasAction) {
@@ -20,6 +22,8 @@ export default function kataReducer(state: KataState = initialState, action: Kat
         katas: action.payload.katas,
         katasByID: action.payload.katasByID,
         totalCount: action.payload.totalCount,
+        filters: action.payload.filters,
+        page: 1,
       };
     case KatasActionTypes.FETCH_KATAS_ERROR:
       return {
@@ -34,6 +38,11 @@ export default function kataReducer(state: KataState = initialState, action: Kat
         katas: action.payload.katas,
         katasByID: action.payload.katasByID,
         page: action.payload.page,
+      };
+    case KatasActionTypes.ADD_STARRED_KATA:
+      return {
+        ...state,
+        starredKatasList: action.payload.starredKatasList,
       };
     default:
       return state;
