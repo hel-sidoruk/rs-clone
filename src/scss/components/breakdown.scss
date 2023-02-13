@@ -1,0 +1,39 @@
+.rank-breakdown {
+ 
+ 
+  &__chart { 
+    position: relative; 
+    width: 200px;
+  }
+
+  &__next {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  &__wrapper {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+.honor-breakdown {
+  padding-right: 40px;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__item {
+    padding: 4px 8px;
+    background: $scroll;
+  }
+}

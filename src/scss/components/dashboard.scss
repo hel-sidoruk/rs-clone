@@ -21,7 +21,6 @@
   }
 }
 
-
 .user-stats {
   &__tabs {
     display: flex;
@@ -85,7 +84,7 @@ line-height: 150%;
   &__subtitle {
     margin-bottom: 8px;
     font-size: 16px;
-    &~div {
+    &~div:not(.rank-breakdown__wrapper) {
        margin-left: 20px;
     }
   }
@@ -117,6 +116,22 @@ line-height: 150%;
   &__top-tags {
     grid-column: 4 / 5;
     grid-row: 2 / 3;
+  }
+
+  
+  &__breakdowns {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 90px 3fr 3fr;
+    margin-bottom: 50px;
+  }
+
+  &__honor-breakdown {
+    grid-column: 2 / 3;
+  }
+
+  &__rank-breakdown {
+    grid-column: 3 / 4;
   }
 }
 
