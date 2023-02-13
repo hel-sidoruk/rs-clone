@@ -1,21 +1,26 @@
 import React from 'react';
 
-export const ResetSolutionDialog = ({ onSubmit }: { onSubmit: () => void }) => {
+interface Props {
+  onConfirm: () => void;
+  title: string;
+  text: string;
+  children: React.ReactNode;
+}
+
+export const Dialog = ({ onConfirm, title, text, children }: Props) => {
   return (
     <div className="modal__content">
       <div className="modal__header">
-        <h4>Reset your solution?</h4>
+        <h4>{title}</h4>
         <button>
           <i className="icon-moon icon-moon-x"></i>
         </button>
       </div>
-      <div className="modal__body">
-        This will replace your solution with the default setup. Are you sure?
-      </div>
+      <div className="modal__body">{children}</div>
       <div className="modal__footer">
         <button className="btn btn-fill">Cancel</button>
-        <button className="btn success" onClick={onSubmit}>
-          Yes. Do it!
+        <button className="btn success" onClick={onConfirm}>
+          {text}
         </button>
       </div>
     </div>

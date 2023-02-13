@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import useActions from '../../hooks/useActions';
+import { Dialog } from '../UI/Dialog';
 import { Modal } from '../UI/Modal';
-import { ResetSolutionDialog } from './ResetSolutionDialog';
 
 export const ResetSolutionButton = ({ initialSolution }: { initialSolution: string }) => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const { updateSolution } = useActions();
 
-  const onSubmit = () => updateSolution(initialSolution);
+  const onConfirm = () => updateSolution(initialSolution);
 
   return (
     <>
@@ -16,7 +16,9 @@ export const ResetSolutionButton = ({ initialSolution }: { initialSolution: stri
       </button>
       {isModalOpened && (
         <Modal onClose={() => setIsModalOpened(false)}>
-          <ResetSolutionDialog onSubmit={onSubmit} />
+          <Dialog title="Reset your solution?" text="Yes. Do it!" onConfirm={onConfirm}>
+            This will replace your solution with the default setup. Are you sure?
+          </Dialog>
         </Modal>
       )}
     </>
