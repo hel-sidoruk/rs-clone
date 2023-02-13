@@ -29,9 +29,12 @@
     }
   }
 
-  &__found {
+  &__controls {
     grid-column: 2 / 3;
     grid-row: 3 / 4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   &__bar {
@@ -69,6 +72,36 @@
       margin: 10px 0;
       position: unset;
       transform: translate(0, 0);
+    }
+  }
+  .shuffle-btn {
+    position: relative;
+    &__tooltip {
+      position: absolute;
+      background-color: $grey;
+      color: $dark;
+      padding: 8px 8px 6px;
+      right: 0;
+      width: 120px;
+      top: -32px;
+      border-radius: 4px;
+      transform: scale(0);
+      transform-origin: right bottom;
+      transition: all .2s ease-in-out;
+      opacity: 0;
+    }
+    svg {
+      transition: fill .2s ease-in-out;
+      fill: $grey;
+    }
+    &:hover {
+      svg {
+        fill: $filters-accent;
+      }
+      .shuffle-btn__tooltip {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
   }
 }

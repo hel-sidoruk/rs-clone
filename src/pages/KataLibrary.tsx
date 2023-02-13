@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Article from '../components/Article';
 import { FeaturedTags } from '../components/FeaturedTags';
 import Filters from '../components/Filters/Filters';
+import { ShuffleIcon } from '../components/Icons/ShuffleIcon';
 import { KataList } from '../components/Kata/KataList';
 import Loader from '../components/UI/Loader';
 import useTypedSelector from '../hooks/useTypedSelector';
@@ -22,7 +23,13 @@ export const KataLibrary = ({ title }: { title: string }) => {
             <i className="icon-moon icon-moon-compare"></i>
             Library
           </div>
-          <div className="library__found">{totalCount} Kata Found</div>
+          <div className="library__controls">
+            <span>{totalCount} Kata Found</span>
+            <button className="shuffle-btn">
+              <span className="shuffle-btn__tooltip">Random sample</span>
+              <ShuffleIcon />
+            </button>
+          </div>
           <div className="library__bar">
             <Filters />
             <Article />
