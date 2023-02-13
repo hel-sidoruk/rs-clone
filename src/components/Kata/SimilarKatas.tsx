@@ -14,7 +14,7 @@ export const SimilarKatas = ({ data }: { data: KataInterface | null }) => {
   useEffect(() => {
     if (data) {
       setIsLoading(true);
-      KataAPI.getSimilar(4, data.tags.join(','))
+      KataAPI.getRandom(4, data.tags.join(','))
         .then((res) => setSimilarKatas(res))
         .finally(() => setIsLoading(false));
     }

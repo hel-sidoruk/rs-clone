@@ -12,7 +12,7 @@ export const Solution = ({ kata }: { kata: KataInterface }) => {
         </div>
         <Code initialValue={kata.initialSolution} />
       </div>
-      <CodeActionsButtons />
+      <CodeActionsButtons initialSolution={kata.initialSolution} />
     </>
   );
 };

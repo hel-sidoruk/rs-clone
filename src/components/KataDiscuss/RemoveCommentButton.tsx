@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import useActions from '../../hooks/useActions';
+import { Dialog } from '../UI/Dialog';
 import { Modal } from '../UI/Modal';
-import { RemoveCommentDialog } from './RemoveCommentDialog';
 
 interface Props {
   kataId: string;
@@ -12,7 +12,7 @@ export const RemoveCommentButton = ({ kataId, id }: Props) => {
   const { deleteComment } = useActions();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const deleteByClick = () => deleteComment(kataId, id);
+  const onConfirm = () => deleteComment(kataId, id);
 
   return (
     <>
@@ -22,7 +22,9 @@ export const RemoveCommentButton = ({ kataId, id }: Props) => {
       </div>
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)}>
-          <RemoveCommentDialog onConfirm={deleteByClick} />
+          <Dialog title="Confirm" text="Confirm" onConfirm={onConfirm}>
+            You sure you want to remove this comment?
+          </Dialog>
         </Modal>
       )}
     </>

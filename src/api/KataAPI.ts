@@ -15,10 +15,18 @@ export class KataAPI {
     return data;
   }
 
-  static async getSimilar(limit: number, tags: string) {
-    const response = await fetch(`${API_URL}/kata/similar?limit=${limit}&tags=${tags}`);
+  static async getRandom(limit: number, tags?: string) {
+    const response = await fetch(
+      `${API_URL}/kata/random?limit=${limit}${tags ? `&tags=${tags}` : ''}`
+    );
     const data = await response.json();
     return data;
+  }
+
+  static async getRandomId() {
+    const response = await fetch(`${API_URL}/kata/random?limit=1&id_only=true`);
+    const [data] = await response.json();
+    return data.id;
   }
 
   static async getOne(id: string): Promise<KataInterface> {
