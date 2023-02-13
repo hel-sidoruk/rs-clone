@@ -40,3 +40,9 @@ $noise: 'https://uploads-ssl.webflow.com/62e3ee10882dc50bcae8d07a/631a5d4631d4c5
     background: $scroll;
   }
 }
+
+@mixin noiseBackground {
+  background-image: url($noise);
+  background-position: 0 0;
+  background-size: 200px;
+}
