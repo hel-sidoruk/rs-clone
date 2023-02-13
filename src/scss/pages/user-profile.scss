@@ -80,7 +80,21 @@
 }
 
   &__controls {
+    grid-row: 3/4;
+    grid-column: 1/5;
+  }
 
+  &__follow {
+    text-transform: capitalize;
+    &.follow {
+      color: $success;
+      border-color: $success;
+    }
+
+    &.unfollow {
+      color: $red-text;
+      border-color: $red-text;
+    }
   }
 
   &__shield {

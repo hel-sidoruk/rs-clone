@@ -5,6 +5,7 @@ import {
   KataTab,
   CollectionsTab,
   DiscourseTab,
+  SocialTab,
 } from '../components/UserProfile/dashboard';
 import {
   Authorization,
@@ -33,6 +34,7 @@ export default function AppRouter() {
         <Route path="/users/:id/completed" element={<KataTab />} />
         <Route path="/users/:id/collections" element={<CollectionsTab />} />
         <Route path="/users/:id/comments" element={<DiscourseTab />} />
+        <Route path="/users/:id/social" element={<SocialTab />} />
       </Route>
       <Route path="/users/leaderboard" element={<Leaderboard title="Leaders | Codewars Clone" />} />
       <Route

@@ -1,23 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { UsersAPI } from '../../api';
+import React, { useState } from 'react';
+import useTypedSelector from '../../hooks/useTypedSelector';
 import { UserInterface } from '../../types/user';
 import { FakeAvatar, Shield } from '../Icons';
 import { Rank } from '../Kata/Rank';
 
-const initialUser: UserInterface = {
-  username: '',
-  clan: '',
-  honor: 0,
-  id: '',
-  leaderboardPosition: 1,
-  rank: '',
-  name: '',
-  score: 0,
-  totalCompleted: 0,
-};
-
 const UserInfo = ({ user }: { user: UserInterface }) => {
+  const [isFollowed, setIsFollowed] = useState(false);
+  const { username } = useTypedSelector((state) => state.authorizedUser);
+  const isAuth = user.username === username;
+
   return (
     <div className="user-profile__info user-info">
       <div className="user-info__avatar">
@@ -71,7 +62,17 @@ const UserInfo = ({ user }: { user: UserInterface }) => {
           1,556
         </div>
       </div>
-      <div className="user-info__controls"></div>
+      <div className="user-info__controls">
+        {!isAuth && (
+          <button
+            className={`user-info__follow btn ${isFollowed ? 'unfollow' : 'follow'}`}
+            onClick={() => setIsFollowed(!isFollowed)}
+          >
+            <i className="icon-moon-follow icon-moon"></i>
+            {isFollowed ? 'Unfollow' : 'Follow'}
+          </button>
+        )}
+      </div>
     </div>
   );
 };
