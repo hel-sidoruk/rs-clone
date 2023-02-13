@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { UsersAPI } from '../../../../api';
 import { initialUser } from '../../../../pages';
+import Breakdown from '../breakdown/Breakdown';
 import Contributions from './Contributions';
 import Progress from './Progress';
 
@@ -16,6 +17,7 @@ const Indicators = () => {
   return (
     <div className="stats__indicators">
       <Progress user={user} />
+      <Breakdown></Breakdown>
       <Contributions />
     </div>
   );
