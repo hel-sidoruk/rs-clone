@@ -8,6 +8,7 @@
     "lint": "eslint . --ext .ts"
   },
   "dependencies": {
+    "@types/styled-components": "^5.1.26",
     "dayjs": "^1.11.7",
     "highlight.js": "^11.7.0",
     "jwt-decode": "^3.1.2",
@@ -20,7 +21,8 @@
     "react-router-dom": "^6.8.0",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
-    "remark-gfm": "^3.0.1"
+    "remark-gfm": "^3.0.1",
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
     "@redux-devtools/extension": "^3.2.5",
