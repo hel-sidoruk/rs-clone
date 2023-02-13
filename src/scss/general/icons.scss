@@ -1,4 +1,7 @@
 .icon-moon {
+  &.colored {
+    color: #bb432c;
+  }
   &::before {
     font-family: 'Icomoon';
     font-style: normal;
@@ -16,9 +19,6 @@
     margin-right: 5px;
     &::before {
       content: "\f0ac";
-    }
-    &.colored {
-      color: #bb432c;
     }
   }
   &-play {
@@ -112,9 +112,6 @@
   &-tag {
     margin-right: 5px;
     color: $light;
-    &.colored {
-      color: #bb432c;
-    }
     &::before {
       content: "\e063";
     }
@@ -234,6 +231,18 @@
     margin-right: 5px;
     &::before {
       content: "\e006";
+    }
+  }
+  &-ranks2 {
+      margin-right: 5px;
+      &::before {
+        content: "\e904";
+      }
+  }
+  &-honor {
+    margin-right: 5px;
+    &::before {
+      content: "\e911";
     }
   }
 }
