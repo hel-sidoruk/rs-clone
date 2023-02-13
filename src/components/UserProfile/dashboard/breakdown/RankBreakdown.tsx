@@ -1,4 +1,5 @@
 import React from 'react';
+import { rankColorSelector } from '../../../../utils';
 import { Rank } from '../../../Kata/Rank';
 import PieChart from './PieChart';
 
@@ -15,8 +16,8 @@ const RankBreakdown = ({ percent, nextRank }: RankBreakdownProps) => {
         Rank Breakdown
       </div>
       <div className="rank-breakdown__wrapper">
-        <div className="rank-breakdown__chart">
-          <PieChart percent={percent} color="red"></PieChart>
+        <div className={`rank-breakdown__chart ${rankColorSelector(nextRank)}`}>
+          <PieChart percent={percent}></PieChart>
           <div className="rank-breakdown__next">
             Next Rank
             <Rank rank={`${nextRank} kyu`}></Rank>

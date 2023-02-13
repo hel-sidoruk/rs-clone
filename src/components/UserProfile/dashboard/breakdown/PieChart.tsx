@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-const PieChart = ({ percent, color }: { percent: number; color: string }) => {
+const PieChart = ({ percent }: { percent: number }) => {
   const animation = keyframes`
     0% {
       stroke-dasharray: 0, 100;
@@ -27,11 +27,11 @@ const PieChart = ({ percent, color }: { percent: number; color: string }) => {
         strokeWidth="3.5"
       ></circle>
       <Circle
+        className="pie-color"
         cx="20"
         cy="20"
         r="15.91549430918954"
         fill="transparent"
-        stroke={color}
         strokeWidth="3.5"
         strokeDasharray={`${percent} ${100 - percent}`}
         strokeDashoffset="25"

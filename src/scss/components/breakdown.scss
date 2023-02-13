@@ -1,9 +1,32 @@
 .rank-breakdown {
  
- 
   &__chart { 
     position: relative; 
     width: 200px;
+    
+    &.white {
+      .pie-color {
+        stroke: $light;
+      }
+    }
+
+    &.yellow {
+      .pie-color {
+        stroke: $yellow;
+      }
+    }
+
+    &.blue {
+      .pie-color {
+        stroke: $blue;
+      }
+    }
+
+    &.purple {
+      .pie-color {
+        stroke: $purple;
+      }
+    }
   }
 
   &__next {
