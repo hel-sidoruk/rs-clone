@@ -3,10 +3,11 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { SolutionsAPI } from '../../api/SolutionsAPI';
 import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
+import { ResetSolutionButton } from './ResetSolutionButton';
 import { ShowSolutionsButton } from './ShowSolutionsButton';
 import { SkipKataButton } from './SkipKataButton';
 
-export const CodeActionsButtons = () => {
+export const CodeActionsButtons = ({ initialSolution }: { initialSolution: string }) => {
   const { startTesting, updateSolution, setSuccess } = useActions();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ export const CodeActionsButtons = () => {
           <i className="icon-moon icon-moon-comments"></i>
           <span className="btn-text">discuss</span>
         </Link>
-        <button className="btn btn-dark">reset</button>
+        <ResetSolutionButton initialSolution={initialSolution} />
       </div>
       <div className={`code__btns-tests ${isTestsStarted ? 'disabled' : ''}`}>
         <button className="btn" onClick={() => startTests('fixed')}>
