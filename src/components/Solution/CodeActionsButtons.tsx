@@ -4,6 +4,7 @@ import { SolutionsAPI } from '../../api/SolutionsAPI';
 import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { ShowSolutionsButton } from './ShowSolutionsButton';
+import { SkipKataButton } from './SkipKataButton';
 
 export const CodeActionsButtons = () => {
   const { startTesting, updateSolution, setSuccess } = useActions();
@@ -31,10 +32,7 @@ export const CodeActionsButtons = () => {
   return (
     <div className="code__btns">
       <div className="code__btns-actions">
-        <Link to="/kata/2/train" className="btn btn-dark">
-          <i className="icon-moon icon-moon-next"></i>
-          <span className="btn-text">skip</span>
-        </Link>
+        <SkipKataButton />
         <ShowSolutionsButton id={id as string} />
         <Link to={`/kata/${id}/discuss`} className="btn btn-dark">
           <i className="icon-moon icon-moon-comments"></i>

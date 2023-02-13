@@ -23,6 +23,12 @@ export class KataAPI {
     return data;
   }
 
+  static async getRandomId() {
+    const response = await fetch(`${API_URL}/kata/random?limit=1&id_only=true`);
+    const [data] = await response.json();
+    return data.id;
+  }
+
   static async getOne(id: string): Promise<KataInterface> {
     const response = await fetch(`${API_URL}/kata/${id}`);
     const data = await response.json();

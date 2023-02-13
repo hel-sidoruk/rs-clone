@@ -6,9 +6,10 @@ export const KataLanguage = ({ kataId }: { kataId: string }) => {
   const { trainedKatas, solvedKatas } = useTypedSelector((state) => state.account);
 
   useEffect(() => {
-    trainedKatas?.includes(kataId) && setStatus('trained');
-    solvedKatas?.includes(kataId) && setStatus('solved');
-  }, [trainedKatas, solvedKatas]);
+    if (trainedKatas && trainedKatas.includes(kataId)) setStatus('trained');
+    else if (solvedKatas && solvedKatas.includes(kataId)) setStatus('solved');
+    else setStatus('');
+  }, [trainedKatas, solvedKatas, kataId]);
 
   return (
     <div className="kata-language">
