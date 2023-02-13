@@ -19,7 +19,7 @@ export const Code = ({ initialValue }: { initialValue: string }) => {
 
   useEffect(() => {
     updateSolution(initialValue);
-  }, []);
+  }, [initialValue]);
 
   return (
     <div className="code">
