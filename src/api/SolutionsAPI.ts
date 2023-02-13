@@ -10,6 +10,18 @@ export class SolutionsAPI {
     return data;
   }
 
+  static async getUserSolutions(): Promise<{ solutions?: SolutionInterface[]; message?: string }> {
+    const savedToken = localStorage.getItem('token');
+    if (!savedToken) return { message: 'No token found' };
+    const result = await fetch(`${API_URL}/solutions`, {
+      headers: {
+        Authorization: `Bearer ${savedToken}`,
+      },
+    });
+    const data = await result.json();
+    return { solutions: data };
+  }
+
   static async addSolution(
     kataId: string,
     solution: { username: string; solution: string }

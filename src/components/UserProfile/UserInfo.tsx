@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { SolutionsAPI } from '../../api/SolutionsAPI';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { UserInterface } from '../../types/user';
 import { FakeAvatar, Shield } from '../Icons';
@@ -8,6 +9,10 @@ const UserInfo = ({ user }: { user: UserInterface }) => {
   const [isFollowed, setIsFollowed] = useState(false);
   const { username } = useTypedSelector((state) => state.authorizedUser);
   const isAuth = user.username === username;
+
+  useEffect(() => {
+    SolutionsAPI.getUserSolutions().then(console.log);
+  }, []);
 
   return (
     <div className="user-profile__info user-info">
