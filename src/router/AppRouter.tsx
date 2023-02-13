@@ -6,6 +6,7 @@ import {
   CollectionsTab,
   DiscourseTab,
   SocialTab,
+  SolutionsTab,
 } from '../components/UserProfile/dashboard';
 import {
   Authorization,
@@ -35,6 +36,7 @@ export default function AppRouter() {
         <Route path="/users/:id/collections" element={<CollectionsTab />} />
         <Route path="/users/:id/comments" element={<DiscourseTab />} />
         <Route path="/users/:id/social" element={<SocialTab />} />
+        <Route path="/users/:id/solutions" element={<SolutionsTab />} />
       </Route>
       <Route path="/users/leaderboard" element={<Leaderboard title="Leaders | Codewars Clone" />} />
       <Route
