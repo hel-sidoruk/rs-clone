@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import useTypedSelector from '../../hooks/useTypedSelector';
 import { UserInterface } from '../../types/user';
 
 const UserStats = ({ user }: { user: UserInterface }) => {
   const [openedTab, setOpenedTab] = useState('stats');
+  const { username } = useTypedSelector((state) => state.authorizedUser);
+  const isAuth = user.username === username;
 
   return (
     <div className="user-profile__stats user-stats">
@@ -35,6 +38,13 @@ const UserStats = ({ user }: { user: UserInterface }) => {
           onClick={() => setOpenedTab('discourse')}
         >
           Discourse
+        </Link>
+        <Link
+          to={`/users/${user.username}/social`}
+          className={`user-stats__tab${openedTab === 'social' ? ' _opened-tab' : ''}`}
+          onClick={() => setOpenedTab('social')}
+        >
+          Social
         </Link>
       </div>
       <div className="user-stats__stats">

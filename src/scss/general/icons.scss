@@ -245,6 +245,18 @@
       content: "\e911";
     }
   }
+  &-follow {
+    margin-right: 5px;
+    &::before {
+      content: "\e64f";
+    }
+  }
+  &-clan {
+    margin-right: 5px;
+    &::before {
+      content: "\e628";
+    }
+  }
 }
 
 .fake-avatar {
