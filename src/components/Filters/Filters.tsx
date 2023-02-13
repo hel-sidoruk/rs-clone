@@ -1,10 +1,10 @@
 import React from 'react';
-import DropdownSingle from './DropdownSingle';
 import SearchInput from './SearchInput';
 import { filterLists } from '../../utils';
 import DropdownMultiple from './DropdownMultiple';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import useActions from '../../hooks/useActions';
+import DropdownSingle from './DropDownSingle';
 
 const Filters = () => {
   const { isAuthorized } = useTypedSelector((state) => state.authorizedUser);
