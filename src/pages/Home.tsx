@@ -49,7 +49,7 @@ export const Home = ({ title }: { title: string }) => {
           </a>
         </div>
         <div className="sharpen__image">
-          <img src="../../public/8ky.png" alt="8ky-image" className="image__img" />
+          <img src="/8ky.png" alt="8ky-image" className="image__img" />
           <div className="sharpen__image_noise"></div>
         </div>
       </div>
@@ -81,11 +81,7 @@ export const Home = ({ title }: { title: string }) => {
             </p>
           </div>
           <div className="item__image">
-            <img
-              src="../../public/l_s_image.jpg"
-              alt="image with code example"
-              className="image__img"
-            />
+            <img src="/l_s_image.jpg" alt="image with code example" className="image__img" />
             <div className="item__image_noise"></div>
           </div>
         </div>
@@ -116,11 +112,7 @@ export const Home = ({ title }: { title: string }) => {
             </p>
           </div>
           <div className="item__image">
-            <img
-              src="../../public/r_s_image.png"
-              alt="image with code example"
-              className="image__img"
-            />
+            <img src="/r_s_image.png" alt="image with code example" className="image__img" />
             <div className="item__image_noise"></div>
           </div>
         </div>
@@ -174,7 +166,7 @@ export const Home = ({ title }: { title: string }) => {
             </p>
           </div>
           <div className="item__image sphere">
-            <img src="../../public/widsom.png" alt="image with sphere" className="image__img " />
+            <img src="/widsom.png" alt="image with sphere" className="image__img " />
             <div className="item__image_noise"></div>
           </div>
         </div>
@@ -205,7 +197,7 @@ export const Home = ({ title }: { title: string }) => {
             </p>
           </div>
           <div className="item__image">
-            <img src="../../public/dojo.png" alt="image with code example" className="image__img" />
+            <img src="/dojo.png" alt="image with code example" className="image__img" />
             <div className="item__image_noise"></div>
           </div>
         </div>
@@ -290,7 +282,7 @@ export const Home = ({ title }: { title: string }) => {
           Extremely well done and an excellent example of mastery learning.
         </h2>
         <div className="flash__image">
-          <img src="../../public/coder.jpeg" alt="user-image" />
+          <img src="/coder.jpeg" alt="user-image" />
           <div className="flash__image_noise"></div>
         </div>
         <p className="flash__name">Ahmed Omran</p>
