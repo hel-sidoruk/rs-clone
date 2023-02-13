@@ -3,11 +3,12 @@ import Article from '../components/Article';
 import { FeaturedTags } from '../components/FeaturedTags';
 import Filters from '../components/Filters/Filters';
 import { KataList } from '../components/Kata/KataList';
+import { ShuffleControls } from '../components/Kata/ShuffleControls';
 import Loader from '../components/UI/Loader';
 import useTypedSelector from '../hooks/useTypedSelector';
 
 export const KataLibrary = ({ title }: { title: string }) => {
-  const { katas, totalCount, loading } = useTypedSelector((state) => state.katas);
+  const { katas, totalCount, loading, randomKatas } = useTypedSelector((state) => state.katas);
 
   useEffect(() => {
     document.title = title;
@@ -22,7 +23,10 @@ export const KataLibrary = ({ title }: { title: string }) => {
             <i className="icon-moon icon-moon-compare"></i>
             Library
           </div>
-          <div className="library__found">{totalCount} Kata Found</div>
+          <div className="library__controls">
+            <span>{randomKatas ? randomKatas.length : totalCount} Kata Found</span>
+            <ShuffleControls />
+          </div>
           <div className="library__bar">
             <Filters />
             <Article />

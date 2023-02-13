@@ -1,29 +1,24 @@
 import React from 'react';
 import useInfiniteList from '../../hooks/useInfiniteList';
 import useTypedSelector from '../../hooks/useTypedSelector';
+import { KataInterface } from '../../types/kata';
 import Loader from '../UI/Loader';
-import { KataInfo } from './KataInfo';
-import { KataLanguage } from './KataLanguage';
-import { TagsBlock } from './TagsBlock';
+import { KataPreview } from './KataPreview';
 
 export const KataList = () => {
-  const { katas, loading } = useTypedSelector((state) => state.katas);
+  const { katas, loading, randomKatas } = useTypedSelector((state) => state.katas);
   const [intersectedRef] = useInfiniteList();
+
+  const renderKata = (kata: KataInterface) => <KataPreview kata={kata} key={kata.id} />;
 
   return (
     <div className="library__katas katas">
-      {katas.map((kata) => (
-        <div key={kata.id} className="katas__item kata-item">
-          <div className="kata-item__wrap">
-            <KataInfo data={kata} />
-            <TagsBlock tags={kata.tags} />
-          </div>
-          <KataLanguage kataId={kata.id} />
+      {randomKatas ? randomKatas.map(renderKata) : katas.map(renderKata)}
+      {!randomKatas && (
+        <div className="library__loader" ref={intersectedRef}>
+          {loading && <Loader />}
         </div>
-      ))}
-      <div className="library__loader" ref={intersectedRef}>
-        {loading && <Loader />}
-      </div>
+      )}
     </div>
   );
 };
