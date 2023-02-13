@@ -4,7 +4,7 @@ import ReferalBlock from '../components/UserProfile/ReferalBlock';
 import UserInfo from '../components/UserProfile/UserInfo';
 import { UserInterface } from '../types/user';
 import UserStats from '../components/UserProfile/UserStats';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { UsersAPI } from '../api';
 
 export const initialUser: UserInterface = {
@@ -22,9 +22,13 @@ export const initialUser: UserInterface = {
 export const UserProfile = () => {
   const [user, setUser] = useState(initialUser);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    UsersAPI.getOne(id as string).then((data) => setUser(data));
+    UsersAPI.getOne(id as string).then((data) => {
+      setUser(data);
+      navigate(`/users/${id}/stats`);
+    });
   }, []);
 
   return (

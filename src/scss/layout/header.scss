@@ -182,6 +182,7 @@
   background-image: url('https://uploads-ssl.webflow.com/62e3ee10882dc50bcae8d07a/631a5d4631d4c55a475f3e34_noise-50.png');
   background-position: 0px 0px;
   background-size: 200px;
+  z-index: 1000;
   &__btn {
     box-shadow: inset 0 0 0 1px #fff;
     color: #fff;
