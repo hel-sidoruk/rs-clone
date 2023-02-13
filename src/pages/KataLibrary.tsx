@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import Article from '../components/Article';
 import { FeaturedTags } from '../components/FeaturedTags';
 import Filters from '../components/Filters/Filters';
-import { ShuffleIcon } from '../components/Icons/ShuffleIcon';
 import { KataList } from '../components/Kata/KataList';
+import { ShuffleControls } from '../components/Kata/ShuffleControls';
 import Loader from '../components/UI/Loader';
 import useTypedSelector from '../hooks/useTypedSelector';
 
 export const KataLibrary = ({ title }: { title: string }) => {
-  const { katas, totalCount, loading } = useTypedSelector((state) => state.katas);
+  const { katas, totalCount, loading, randomKatas } = useTypedSelector((state) => state.katas);
 
   useEffect(() => {
     document.title = title;
@@ -24,11 +24,8 @@ export const KataLibrary = ({ title }: { title: string }) => {
             Library
           </div>
           <div className="library__controls">
-            <span>{totalCount} Kata Found</span>
-            <button className="shuffle-btn">
-              <span className="shuffle-btn__tooltip">Random sample</span>
-              <ShuffleIcon />
-            </button>
+            <span>{randomKatas ? randomKatas.length : totalCount} Kata Found</span>
+            <ShuffleControls />
           </div>
           <div className="library__bar">
             <Filters />

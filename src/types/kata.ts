@@ -19,6 +19,7 @@ export interface KataState {
   katas: KataInterface[];
   katasByID: KatasById | null;
   starredKatasList: KataInterface[];
+  randomKatas: KataInterface[] | null;
   loading: boolean;
   error: null | string;
   totalCount: number;
@@ -36,6 +37,7 @@ export enum KatasActionTypes {
   FETCH_KATAS_ERROR = 'FETCH_KATAS_ERROR',
   FETCH_NEXT_KATAS = 'FETCH_NEXT_KATAS',
   ADD_STARRED_KATA = 'ADD_STARRED_KATA',
+  SET_RANDOM_KATAS = 'SET_RANDOM_KATAS',
 }
 
 interface FetchKatas {
@@ -74,9 +76,18 @@ interface FetchStarredKatas {
     starredKatasList: KataInterface[];
   };
 }
+
+interface FetchRandomKatas {
+  type: KatasActionTypes.SET_RANDOM_KATAS;
+  payload: {
+    randomKatas: KataInterface[] | null;
+  };
+}
+
 export type KatasAction =
   | FetchKatas
   | FetchKatasSuccess
   | FetchKatasError
   | FetchNextKatas
-  | FetchStarredKatas;
+  | FetchStarredKatas
+  | FetchRandomKatas;

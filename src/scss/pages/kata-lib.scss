@@ -4,6 +4,7 @@
 }
 
 .library {
+  padding-bottom: 50px;
   &__container {
     display: grid;
     margin: 0 auto;
@@ -74,38 +75,40 @@
       transform: translate(0, 0);
     }
   }
-  .shuffle-btn {
+}
+.shuffle {
+  &__tooltip {
+    position: absolute;
+    background-color: $grey;
+    color: $dark;
+    padding: 8px 8px 6px;
+    right: 8px;
+    width: 120px;
+    top: -30px;
+    border-radius: 4px;
+    transform: scale(0);
+    transform-origin: right bottom;
+    transition: all .2s ease-in-out;
+    opacity: 0;
+  }
+  svg {
+    transition: fill .2s ease-in-out;
+    fill: $grey;
+  }
+  &__btn {
     position: relative;
-    &__tooltip {
-      position: absolute;
-      background-color: $grey;
-      color: $dark;
-      padding: 8px 8px 6px;
-      right: 0;
-      width: 120px;
-      top: -32px;
-      border-radius: 4px;
-      transform: scale(0);
-      transform-origin: right bottom;
-      transition: all .2s ease-in-out;
-      opacity: 0;
-    }
-    svg {
-      transition: fill .2s ease-in-out;
-      fill: $grey;
-    }
+    padding: 8px;
     &:hover {
       svg {
         fill: $filters-accent;
       }
-      .shuffle-btn__tooltip {
+      .shuffle__tooltip {
         transform: scale(1);
         opacity: 1;
       }
     }
   }
 }
-
 .f-tags {
  display: flex;
   gap: 10px;

@@ -4,6 +4,7 @@ const initialState: KataState = {
   katasByID: null,
   katas: [],
   starredKatasList: [],
+  randomKatas: null,
   loading: false,
   error: null,
   totalCount: 0,
@@ -38,6 +39,12 @@ export default function kataReducer(state: KataState = initialState, action: Kat
         katas: action.payload.katas,
         katasByID: action.payload.katasByID,
         page: action.payload.page,
+      };
+    case KatasActionTypes.SET_RANDOM_KATAS:
+      return {
+        ...state,
+        loading: false,
+        randomKatas: action.payload.randomKatas,
       };
     case KatasActionTypes.ADD_STARRED_KATA:
       return {

@@ -65,3 +65,18 @@ export function addStarredKata(kata: KataInterface): ThunkActionType {
     });
   };
 }
+
+export function setRandomKatas(reset?: string): ThunkActionType {
+  return async (dispatch: Dispatch<KatasAction>) => {
+    if (reset) {
+      dispatch({
+        type: KatasActionTypes.SET_RANDOM_KATAS,
+        payload: { randomKatas: null },
+      });
+      return;
+    }
+    dispatch({ type: KatasActionTypes.FETCH_KATAS });
+    const randomKatas = await KataAPI.getRandom(30);
+    dispatch({ type: KatasActionTypes.SET_RANDOM_KATAS, payload: { randomKatas } });
+  };
+}
