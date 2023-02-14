@@ -1,7 +1,7 @@
 import { API_URL } from '.';
 import { FollowerInterface } from '../types/followers';
 
-const URL = `${API_URL}/followers`;
+const URL = `${API_URL}/social`;
 
 export class FollowersAPI {
   static async getFollowing(username: string): Promise<FollowerInterface[]> {
