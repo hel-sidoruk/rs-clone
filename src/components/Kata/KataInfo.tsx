@@ -27,7 +27,7 @@ export const KataInfo = ({ data }: { data: KataInterface }) => {
       <div className="kata__info-top">
         <Rank rank={data.rank} />
         <h4 className="kata__info-title">
-          <Link to={`/kata/${data.id}`}>{data.name}</Link>
+          <Link to={`/kata/${data.id}/`}>{data.name}</Link>
         </h4>
       </div>
       <div className="kata__info-bottom">
