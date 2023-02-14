@@ -6,6 +6,7 @@ import * as AccountActionCreators from './account';
 import * as FiltersActionCreators from './filters';
 import * as NotificationsActionCreators from './notifications';
 import * as CommentsActionCreators from './comments';
+import * as UserActionCreators from './user';
 
 export default {
   ...KatasActionCreators,
@@ -16,4 +17,5 @@ export default {
   ...FiltersActionCreators,
   ...NotificationsActionCreators,
   ...CommentsActionCreators,
+  ...UserActionCreators,
 };
