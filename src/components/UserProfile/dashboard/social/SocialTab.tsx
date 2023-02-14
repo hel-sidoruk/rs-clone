@@ -5,7 +5,7 @@ import FollowItem from './FollowItem';
 
 export const SocialTab = ({ list }: { list: 'following' | 'followers' }) => {
   const [opened, setOpened] = useState('completed');
-  const { currentUser, following } = useTypedSelector((state) => state.user);
+  const { currentUser, following, followers } = useTypedSelector((state) => state.user);
 
   return (
     <div className="dashboard-wrapper social">
@@ -22,7 +22,7 @@ export const SocialTab = ({ list }: { list: 'following' | 'followers' }) => {
           className={opened === 'authored' ? '_opened' : ''}
           onClick={() => setOpened('authored')}
         >
-          Followers
+          Followers ({followers.length})
         </Link>
       </div>
       <div className="dashboard-wrapper__content">
@@ -31,13 +31,19 @@ export const SocialTab = ({ list }: { list: 'following' | 'followers' }) => {
             {following.length ? (
               following.map((item) => <FollowItem key={item.id} user={item} />)
             ) : (
-              <span>You have not started to follow any users yet.</span>
+              <span className="follow-list__no-content">
+                You have not started to follow any users yet.
+              </span>
             )}
           </div>
         )}
         {list === 'followers' && (
           <div className="follow-list">
-            <span className="follow-list__no-content">You do not have any followers yet.</span>
+            {followers.length ? (
+              followers.map((item) => <FollowItem isFollower key={item.id} user={item} />)
+            ) : (
+              <span className="follow-list__no-content">You do not have any followers yet.</span>
+            )}
           </div>
         )}
       </div>
