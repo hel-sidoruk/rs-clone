@@ -15,6 +15,8 @@ export interface TestsStats {
 export interface SolutionInterface {
   id: string;
   kataId: string;
+  kataRank: string;
+  kataName: string;
   username: string;
   solution: string;
   createdAt: string;

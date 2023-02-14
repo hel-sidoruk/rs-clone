@@ -1,25 +1,17 @@
+import React from 'react';
 import dayjs from 'dayjs';
-import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { KataAPI } from '../../../../api';
 import { SolutionInterface } from '../../../../types';
-import { KataInterface } from '../../../../types/kata';
 import { Rank } from '../../../Kata/Rank';
 import { CodeHighlight } from '../../../Solution/CodeHighlight';
 
 const SolutionItem = ({ solution }: { solution: SolutionInterface }) => {
-  const [kata, setKata] = useState<KataInterface | null>(null);
-
-  useEffect(() => {
-    KataAPI.getOne(solution.kataId).then((res) => setKata(res));
-  }, []);
-
   return (
     <div className="solutions-one">
       <div className="solutions-one__header">
-        <Rank rank={kata?.rank || '0'}></Rank>
-        <Link to={`/kata/${kata?.id}`} className="solutions-one__name">
-          {kata?.name}
+        <Rank rank={solution.kataRank}></Rank>
+        <Link to={`/kata/${solution.kataId}`} className="solutions-one__name">
+          {solution.kataName}
         </Link>
       </div>
       <div className="solutions-one__lang">JavaScript:</div>
@@ -28,10 +20,10 @@ const SolutionItem = ({ solution }: { solution: SolutionInterface }) => {
       </div>
       <div className="solutions-one__footer">
         <div className="solutions-one__time">{dayjs(solution.createdAt).fromNow()}</div>
-        <Link to={`/kata/${kata?.id}/train`} className="solutions-one__link">
+        <Link to={`/kata/${solution.kataId}/train`} className="solutions-one__link">
           Refactor
         </Link>
-        <Link to={`/kata/${kata?.id}/discuss`} className="solutions-one__link">
+        <Link to={`/kata/${solution.kataId}/discuss`} className="solutions-one__link">
           Discuss
         </Link>
       </div>
