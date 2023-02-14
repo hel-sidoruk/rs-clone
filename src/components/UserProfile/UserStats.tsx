@@ -27,7 +27,7 @@ const UserStats = () => {
         </Link>
         {isAuth && (
           <Link
-            to={`/users/${user.username}/solutions`}
+            to={`/users/${currentUser?.username}/solutions`}
             className={`user-stats__tab${openedTab === 'solutions' ? ' _opened-tab' : ''}`}
             onClick={() => setOpenedTab('solutions')}
           >

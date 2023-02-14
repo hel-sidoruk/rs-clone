@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SolutionsAPI } from '../../../../api/SolutionsAPI';
 import useTypedSelector from '../../../../hooks/useTypedSelector';
+import { SolutionInterface } from '../../../../types';
+import SolutionItem from './SolutionItem';
 
 export const SolutionsTab = () => {
   const [opened, setOpened] = useState('completed');
   const { currentUser } = useTypedSelector((state) => state.user);
+  const [solutions, setSolutions] = useState<SolutionInterface[] | undefined>([]);
 
   useEffect(() => {
-    SolutionsAPI.getUserSolutions();
-  });
+    SolutionsAPI.getUserSolutions().then((res) => setSolutions(res.solutions));
+  }, []);
 
   return (
     <div className="dashboard-wrapper solutions-tab">
@@ -29,7 +32,15 @@ export const SolutionsTab = () => {
           Unfinished
         </Link>
       </div>
-      <div className="dashboard-wrapper__content">solutions-list</div>
+      <div className="dashboard-wrapper__content">
+        <div className="solutions-tab__list">
+          {solutions && solutions.length
+            ? solutions.map((solution) => (
+                <SolutionItem key={solution.id} solution={solution}></SolutionItem>
+              ))
+            : 'No solutions found'}
+        </div>
+      </div>
     </div>
   );
 };
