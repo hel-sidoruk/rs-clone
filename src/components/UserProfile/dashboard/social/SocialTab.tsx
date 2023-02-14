@@ -1,20 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import useActions from '../../../../hooks/useActions';
 import useTypedSelector from '../../../../hooks/useTypedSelector';
 import FollowItem from './FollowItem';
 
-export const SocialTab = (/* { list }: { list: UserInterface[] } */) => {
-  //! тестовые данные ----начало
-  const { users } = useTypedSelector((state) => state.leaders);
-  const { fetchLeaders } = useActions();
-  useEffect(() => {
-    fetchLeaders();
-  }, []);
-  //! тестовые данные ----конец
-
+export const SocialTab = () => {
   const [opened, setOpened] = useState('completed');
-  const { currentUser } = useTypedSelector((state) => state.user);
+  const { currentUser, following } = useTypedSelector((state) => state.user);
 
   return (
     <div className="dashboard-wrapper social">
@@ -24,7 +15,7 @@ export const SocialTab = (/* { list }: { list: UserInterface[] } */) => {
           className={opened === 'completed' ? '_opened' : ''}
           onClick={() => setOpened('completed')}
         >
-          Following
+          Following ({following.length})
         </Link>
         <Link
           to={`/users/${currentUser?.username}/social`}
@@ -36,7 +27,7 @@ export const SocialTab = (/* { list }: { list: UserInterface[] } */) => {
       </div>
       <div className="dashboard-wrapper__content">
         <div className="follow-list">
-          {users.slice(0, 9).map((item) => (
+          {following.map((item) => (
             <FollowItem key={item.id} user={item} />
           ))}
         </div>

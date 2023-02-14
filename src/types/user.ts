@@ -1,3 +1,5 @@
+import { FollowerInterface } from './followers';
+
 export interface UserInterface {
   id: string;
   name: string | null;
@@ -12,6 +14,7 @@ export interface UserInterface {
 
 export interface UserState {
   currentUser: UserInterface | null;
+  following: FollowerInterface[];
 }
 
 export enum UserActionTypes {
@@ -22,6 +25,7 @@ interface SetUserAction {
   type: UserActionTypes.SET_CURRENT_USER;
   payload: {
     currentUser: UserInterface;
+    following: FollowerInterface[];
   };
 }
 

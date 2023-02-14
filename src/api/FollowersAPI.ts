@@ -4,12 +4,10 @@ import { FollowerInterface } from '../types/followers';
 const URL = `${API_URL}/followers`;
 
 export class FollowersAPI {
-  static async getAll(): Promise<{ followers?: FollowerInterface[]; message?: string }> {
-    const savedToken = localStorage.getItem('token');
-    if (!savedToken) return { message: 'No token found' };
-    const response = await fetch(URL, { headers: { Authorization: `Bearer ${savedToken}` } });
+  static async getFollowing(username: string): Promise<FollowerInterface[]> {
+    const response = await fetch(`${URL}/${username}`);
     const followers = await response.json();
-    return { followers };
+    return followers;
   }
 
   static async create(
