@@ -3,6 +3,7 @@ import { UserAction, UserActionTypes, UserState } from '../../types/user';
 const initialState: UserState = {
   currentUser: null,
   following: [],
+  followers: [],
 };
 
 export const userReducer = (state = initialState, action: UserAction): UserState => {
@@ -12,6 +13,7 @@ export const userReducer = (state = initialState, action: UserAction): UserState
         ...state,
         currentUser: action.payload.currentUser,
         following: action.payload.following,
+        followers: action.payload.followers,
       };
     default:
       return state;

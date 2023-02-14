@@ -1,5 +1,8 @@
 .follow-list {
   width: 100%;
+  &__no-content {
+    font-size: 16px;
+  }
   &__item:not(:last-child) {
     border-bottom: 1px solid rgba(255,255,255,0.125);
   }

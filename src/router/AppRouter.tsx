@@ -35,8 +35,9 @@ export default function AppRouter() {
         <Route path="/users/:id/completed" element={<KataTab />} />
         <Route path="/users/:id/collections" element={<CollectionsTab />} />
         <Route path="/users/:id/comments" element={<DiscourseTab />} />
-        <Route path="/users/:id/social" element={<SocialTab />} />
         <Route path="/users/:id/solutions" element={<SolutionsTab />} />
+        <Route path="/users/:id/following" element={<SocialTab list="following" />} />
+        <Route path="/users/:id/followers" element={<SocialTab list="followers" />} />
       </Route>
       <Route path="/users/leaderboard" element={<Leaderboard title="Leaders | Codewars Clone" />} />
       <Route

@@ -5,13 +5,19 @@ const URL = `${API_URL}/followers`;
 
 export class FollowersAPI {
   static async getFollowing(username: string): Promise<FollowerInterface[]> {
-    const response = await fetch(`${URL}/${username}`);
+    const response = await fetch(`${URL}/${username}/following`);
+    const following = await response.json();
+    return following;
+  }
+
+  static async getFollowers(username: string): Promise<FollowerInterface[]> {
+    const response = await fetch(`${URL}/${username}/followers`);
     const followers = await response.json();
     return followers;
   }
 
   static async create(
-    user: Omit<FollowerInterface, 'id'>
+    user: Omit<FollowerInterface, 'id' | 'username'>
   ): Promise<{ follower?: FollowerInterface; message?: string }> {
     const savedToken = localStorage.getItem('token');
     if (!savedToken) return { message: 'No token found' };
