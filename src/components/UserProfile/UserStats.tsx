@@ -40,7 +40,7 @@ const UserStats = () => {
           Discourse
         </Link>
         <Link
-          to={`/users/${currentUser?.username}/social`}
+          to={`/users/${currentUser?.username}/following`}
           className={`user-stats__tab${openedTab === 'social' ? ' _opened-tab' : ''}`}
           onClick={() => setOpenedTab('social')}
         >

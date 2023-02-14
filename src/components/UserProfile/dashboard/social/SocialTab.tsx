@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import useTypedSelector from '../../../../hooks/useTypedSelector';
 import FollowItem from './FollowItem';
 
-export const SocialTab = () => {
+export const SocialTab = ({ list }: { list: 'following' | 'followers' }) => {
   const [opened, setOpened] = useState('completed');
   const { currentUser, following } = useTypedSelector((state) => state.user);
 
@@ -11,14 +11,14 @@ export const SocialTab = () => {
     <div className="dashboard-wrapper social">
       <div className="dashboard-wrapper__sidebar">
         <Link
-          to={`/users/${currentUser?.username}/social`}
+          to={`/users/${currentUser?.username}/following`}
           className={opened === 'completed' ? '_opened' : ''}
           onClick={() => setOpened('completed')}
         >
           Following ({following.length})
         </Link>
         <Link
-          to={`/users/${currentUser?.username}/social`}
+          to={`/users/${currentUser?.username}/followers`}
           className={opened === 'authored' ? '_opened' : ''}
           onClick={() => setOpened('authored')}
         >
@@ -26,11 +26,20 @@ export const SocialTab = () => {
         </Link>
       </div>
       <div className="dashboard-wrapper__content">
-        <div className="follow-list">
-          {following.map((item) => (
-            <FollowItem key={item.id} user={item} />
-          ))}
-        </div>
+        {list === 'following' && (
+          <div className="follow-list">
+            {following.length ? (
+              following.map((item) => <FollowItem key={item.id} user={item} />)
+            ) : (
+              <span>You have not started to follow any users yet.</span>
+            )}
+          </div>
+        )}
+        {list === 'followers' && (
+          <div className="follow-list">
+            <span className="follow-list__no-content">You do not have any followers yet.</span>
+          </div>
+        )}
       </div>
     </div>
   );
