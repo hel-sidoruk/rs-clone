@@ -6,6 +6,7 @@ import {
   CollectionsTab,
   DiscourseTab,
   SocialTab,
+  SolutionsTab,
 } from '../components/UserProfile/dashboard';
 import {
   Authorization,
@@ -34,6 +35,7 @@ export default function AppRouter() {
         <Route path="/users/:id/completed" element={<KataTab />} />
         <Route path="/users/:id/collections" element={<CollectionsTab />} />
         <Route path="/users/:id/comments" element={<DiscourseTab />} />
+        <Route path="/users/:id/solutions" element={<SolutionsTab />} />
         <Route path="/users/:id/following" element={<SocialTab list="following" />} />
         <Route path="/users/:id/followers" element={<SocialTab list="followers" />} />
       </Route>

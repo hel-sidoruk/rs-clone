@@ -25,6 +25,15 @@ const UserStats = () => {
         >
           Kata
         </Link>
+        {isAuth && (
+          <Link
+            to={`/users/${currentUser?.username}/solutions`}
+            className={`user-stats__tab${openedTab === 'solutions' ? ' _opened-tab' : ''}`}
+            onClick={() => setOpenedTab('solutions')}
+          >
+            Solutions
+          </Link>
+        )}
         <Link
           to={`/users/${currentUser?.username}/collections`}
           className={`user-stats__tab${openedTab === 'collections' ? ' _opened-tab' : ''}`}
