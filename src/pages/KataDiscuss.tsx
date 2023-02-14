@@ -1,17 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import LeftBarForSolutions from '../components/Kata/leftBarForSolutions';
 import { CommentForm } from '../components/KataDiscuss/CommentForm';
 import { CommentsList } from '../components/KataDiscuss/CommentsList';
-import useActions from '../hooks/useActions';
 
 export const KataDiscuss = () => {
   const { id } = useParams();
-  const { fetchComments } = useActions();
-
-  useEffect(() => {
-    if (id) fetchComments(id);
-  }, [id]);
 
   return (
     <>
