@@ -15,7 +15,7 @@ const UserStats = () => {
   return (
     <div className="user-profile__stats user-stats">
       <div className="user-stats__tabs">
-        <NavLink to={`${path}/stats`} className={getActiveClass}>
+        <NavLink to={`${path}/`} className={getActiveClass}>
           Stats
         </NavLink>
         <NavLink to={`${path}/completed`} className={getActiveClass}>

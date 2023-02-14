@@ -31,7 +31,7 @@ export default function AppRouter() {
       </Route>
       <Route path="/kata/:id/train" element={<KataTraining />} />
       <Route path="/users/:id/" element={<UserProfile />}>
-        <Route path="/users/:id/stats" element={<StatsTab />} />
+        <Route path="/users/:id/" element={<StatsTab />} />
         <Route path="/users/:id/completed" element={<KataTab />} />
         <Route path="/users/:id/collections" element={<CollectionsTab />} />
         <Route path="/users/:id/comments" element={<DiscourseTab />} />

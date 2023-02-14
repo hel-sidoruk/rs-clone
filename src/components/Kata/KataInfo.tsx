@@ -39,7 +39,7 @@ export const KataInfo = ({ data }: { data: KataInterface }) => {
           <i className="icon-moon icon-moon-bullseye"></i>
           {`${data.totalCompleted} of ${data.totalAttempts}`}
         </span>
-        <Link to={`/users/${data.createdBy}`} className="kata__info-text link">
+        <Link to={`/users/${data.createdBy}/`} className="kata__info-text link">
           <i className="icon-moon icon-moon-user"></i>
           {data.createdBy}
         </Link>

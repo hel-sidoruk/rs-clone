@@ -9,13 +9,11 @@ import useTypedSelector from '../hooks/useTypedSelector';
 
 export const UserProfile = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const { setCurrentUser } = useActions();
   const { currentUser } = useTypedSelector((state) => state.user);
 
   useEffect(() => {
     if (id) setCurrentUser(id);
-    navigate(`/users/${id}/stats`);
   }, [id]);
 
   return (

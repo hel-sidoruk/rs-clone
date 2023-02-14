@@ -14,7 +14,7 @@ export const UserMenu = ({ username }: { username: string }) => {
     <div className="header__menu-body">
       <ul>
         <li className="border-bottom">
-          <Link className="header__menu-item" to={`/users/${username}`}>
+          <Link className="header__menu-item" to={`/users/${username}/`}>
             <i className="icon-moon icon-moon-user "></i>View Profile
           </Link>
         </li>
