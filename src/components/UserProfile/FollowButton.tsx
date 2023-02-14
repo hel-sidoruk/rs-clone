@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { FollowersAPI } from '../../api/FollowersAPI';
-import { UserInterface } from '../../types/user';
+import useTypedSelector from '../../hooks/useTypedSelector';
 
-export const FollowButton = ({ user }: { user: UserInterface }) => {
+export const FollowButton = () => {
   const [followedUser, setFollowedUser] = useState<string | false>(false);
+  const { currentUser } = useTypedSelector((state) => state.user);
 
   const handleClick = async () => {
-    if (!followedUser) {
-      const { username, honor, rank, clan } = user;
+    if (!followedUser && currentUser) {
+      const { username, honor, rank, clan } = currentUser;
       const followUser = { followUser: username, honor, clan, rank };
       const { follower } = await FollowersAPI.create(followUser);
       if (follower) setFollowedUser(follower.id);
@@ -20,10 +21,11 @@ export const FollowButton = ({ user }: { user: UserInterface }) => {
   };
 
   useEffect(() => {
-    FollowersAPI.checkIsFollowed(user.username).then(({ isFollowed }) =>
-      setFollowedUser(isFollowed || false)
-    );
-  }, [user]);
+    if (currentUser)
+      FollowersAPI.checkIsFollowed(currentUser.username).then(({ isFollowed }) =>
+        setFollowedUser(isFollowed || false)
+      );
+  }, [currentUser]);
 
   return (
     <button

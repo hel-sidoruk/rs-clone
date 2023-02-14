@@ -1,25 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { UsersAPI } from '../../../../api';
+import React from 'react';
 import useTypedSelector from '../../../../hooks/useTypedSelector';
-import { UserInterface } from '../../../../types/user';
 import Breakdown from '../breakdown/Breakdown';
 import Contributions from './Contributions';
 import Progress from './Progress';
 
 const Indicators = () => {
-  const [user, setUser] = useState<UserInterface | null>(null);
-  const { id } = useParams();
   const { username } = useTypedSelector((state) => state.authorizedUser);
-  const isAuth = user && user.username === username;
-
-  useEffect(() => {
-    UsersAPI.getOne(id as string).then((data) => setUser(data));
-  }, [id]);
+  const { currentUser } = useTypedSelector((state) => state.user);
+  const isAuth = currentUser && currentUser.username === username;
 
   return (
     <div className="stats__indicators">
-      {user && <Progress user={user} />}
+      {currentUser && <Progress />}
       {isAuth && <Breakdown />}
       <Contributions />
     </div>
