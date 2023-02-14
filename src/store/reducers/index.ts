@@ -7,6 +7,7 @@ import leaderReducer from './leadersReducer';
 import { notificationsReducer } from './notificationsReducer';
 import { solutionReducer } from './solutionReducer';
 import filtersReducer from './filtersReducer';
+import { userReducer } from './userReducer';
 
 export const rootReducer = combineReducers({
   katas: kataReducer,
@@ -17,6 +18,7 @@ export const rootReducer = combineReducers({
   filters: filtersReducer,
   notifications: notificationsReducer,
   comments: commentsReducer,
+  user: userReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

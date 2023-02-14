@@ -1,7 +1,9 @@
 import React from 'react';
-import { UserInterface } from '../../../../types/user';
+import useTypedSelector from '../../../../hooks/useTypedSelector';
 
-const Languages = ({ user }: { user: UserInterface }) => {
+const Languages = () => {
+  const { currentUser } = useTypedSelector((state) => state.user);
+
   return (
     <div className="stats__langs">
       <div className="stats__subtitle">
@@ -12,7 +14,7 @@ const Languages = ({ user }: { user: UserInterface }) => {
         <b>Total Languages Trained:</b>51
       </div>
       <div>
-        <b>Highest Trained:</b>JavaScript ({user.rank})
+        <b>Highest Trained:</b>JavaScript ({currentUser?.rank})
       </div>
       <div>
         <b>Most Recent:</b>Groovy

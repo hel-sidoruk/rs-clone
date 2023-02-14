@@ -6,6 +6,7 @@ import { KataDescription } from '../components/Kata/KataDescription';
 import { KataStats } from '../components/Kata/KataStats';
 import { SimilarKatas } from '../components/Kata/SimilarKatas';
 import { KataInstructions } from '../components/KataTraining/KataInstructions';
+import useActions from '../hooks/useActions';
 import { useFetchKata } from '../hooks/useFetchKata';
 
 export const Kata = () => {
@@ -14,11 +15,16 @@ export const Kata = () => {
   const [shouldHide, setShouldHide] = useState(false);
   const [isHidden, setIsHidden] = useState(true);
   const [kata] = useFetchKata(id as string);
+  const { fetchComments } = useActions();
 
   useEffect(() => {
     setShouldHide(pathname.endsWith('/discuss') || pathname.endsWith('/solutions'));
     setIsHidden(true);
   }, [pathname]);
+
+  useEffect(() => {
+    if (id) fetchComments(id);
+  }, [id]);
 
   useEffect(() => {
     if (kata) document.title = `${kata.name} | Codewars Clone`;

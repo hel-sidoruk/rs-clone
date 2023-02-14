@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { SolutionsAPI } from '../../api/SolutionsAPI';
 import useTypedSelector from '../../hooks/useTypedSelector';
-import { UserInterface } from '../../types/user';
 import { FakeAvatar, Shield } from '../Icons';
 import { Rank } from '../Kata/Rank';
+import { FollowButton } from './FollowButton';
 
-const UserInfo = ({ user }: { user: UserInterface }) => {
-  const [isFollowed, setIsFollowed] = useState(false);
+const UserInfo = () => {
   const { username } = useTypedSelector((state) => state.authorizedUser);
-  const isAuth = user.username === username;
+  const { currentUser } = useTypedSelector((state) => state.user);
+  const isAuth = currentUser && currentUser.username === username;
 
   useEffect(() => {
     SolutionsAPI.getUserSolutions().then(console.log);
@@ -19,13 +19,15 @@ const UserInfo = ({ user }: { user: UserInterface }) => {
       <div className="user-info__avatar">
         <FakeAvatar />
       </div>
-      <div className="user-info__badge">
-        <div className="user-info__badge-box">
-          <Rank rank={user.rank}></Rank>
-          {user.username}
+      {currentUser && (
+        <div className="user-info__badge">
+          <div className="user-info__badge-box">
+            <Rank rank={currentUser.rank}></Rank>
+            {currentUser.username}
+          </div>
+          <div className="user-info__honor">{currentUser.honor}</div>
         </div>
-        <div className="user-info__honor">{user.honor}</div>
-      </div>
+      )}
       <div className="user-info__shield">
         <Shield />
         <div>mod</div>
@@ -33,11 +35,11 @@ const UserInfo = ({ user }: { user: UserInterface }) => {
       <div className="user-info__col user-info__col_1">
         <div>
           <b>Name:</b>
-          {user.name}
+          {currentUser ? currentUser.name : ''}
         </div>
         <div>
           <b>Clan:</b>
-          {user.clan}
+          {currentUser ? currentUser.clan : ''}
         </div>
       </div>
       <div className="user-info__col user-info__col_2">
@@ -67,17 +69,7 @@ const UserInfo = ({ user }: { user: UserInterface }) => {
           1,556
         </div>
       </div>
-      <div className="user-info__controls">
-        {!isAuth && (
-          <button
-            className={`user-info__follow btn ${isFollowed ? 'unfollow' : 'follow'}`}
-            onClick={() => setIsFollowed(!isFollowed)}
-          >
-            <i className="icon-moon-follow icon-moon"></i>
-            {isFollowed ? 'Unfollow' : 'Follow'}
-          </button>
-        )}
-      </div>
+      <div className="user-info__controls">{!isAuth && <FollowButton />}</div>
     </div>
   );
 };

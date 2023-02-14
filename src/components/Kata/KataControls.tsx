@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
+import useTypedSelector from '../../hooks/useTypedSelector';
 
 const options = ['details', 'solutions', 'discuss'];
 
@@ -7,6 +8,7 @@ export const KataControls = () => {
   const { pathname } = useLocation();
   const [active, setActive] = useState('details');
   const { id } = useParams();
+  const { comments } = useTypedSelector((state) => state.comments);
 
   const getClassname = (i: number) => {
     return `controls__btn ${active === options[i] ? 'active' : ''}`;
@@ -29,7 +31,7 @@ export const KataControls = () => {
       </Link>
       <Link to={`/kata/${id}/discuss`} className={getClassname(2)}>
         <i className="icon-moon-comments icon-moon"></i>
-        Discourse
+        Discourse ({comments.length})
       </Link>
     </div>
   );
