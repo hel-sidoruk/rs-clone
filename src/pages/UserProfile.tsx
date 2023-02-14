@@ -7,20 +7,8 @@ import UserStats from '../components/UserProfile/UserStats';
 import { useNavigate, useParams } from 'react-router-dom';
 import { UsersAPI } from '../api';
 
-export const initialUser: UserInterface = {
-  username: '',
-  clan: '',
-  honor: 0,
-  id: '',
-  leaderboardPosition: 1,
-  rank: '',
-  name: '',
-  score: 0,
-  totalCompleted: 0,
-};
-
 export const UserProfile = () => {
-  const [user, setUser] = useState(initialUser);
+  const [user, setUser] = useState<UserInterface | null>(null);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -29,17 +17,17 @@ export const UserProfile = () => {
       setUser(data);
       navigate(`/users/${id}/stats`);
     });
-  }, []);
+  }, [id]);
 
   return (
     <main className="play-view user-profile">
       <div className="user-profile__container">
-        <UserInfo user={user} />
+        {user && <UserInfo user={user} />}
         <div className="user-profile__promo-block">
           <ReferalBlock />
           <Article />
         </div>
-        <UserStats user={user} />
+        {user && <UserStats user={user} />}
       </div>
     </main>
   );

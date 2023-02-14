@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { SolutionsAPI } from '../../api/SolutionsAPI';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { UserInterface } from '../../types/user';
 import { FakeAvatar, Shield } from '../Icons';
 import { Rank } from '../Kata/Rank';
+import { FollowButton } from './FollowButton';
 
 const UserInfo = ({ user }: { user: UserInterface }) => {
-  const [isFollowed, setIsFollowed] = useState(false);
   const { username } = useTypedSelector((state) => state.authorizedUser);
   const isAuth = user.username === username;
 
@@ -67,17 +67,7 @@ const UserInfo = ({ user }: { user: UserInterface }) => {
           1,556
         </div>
       </div>
-      <div className="user-info__controls">
-        {!isAuth && (
-          <button
-            className={`user-info__follow btn ${isFollowed ? 'unfollow' : 'follow'}`}
-            onClick={() => setIsFollowed(!isFollowed)}
-          >
-            <i className="icon-moon-follow icon-moon"></i>
-            {isFollowed ? 'Unfollow' : 'Follow'}
-          </button>
-        )}
-      </div>
+      <div className="user-info__controls">{!isAuth && <FollowButton user={user} />}</div>
     </div>
   );
 };
