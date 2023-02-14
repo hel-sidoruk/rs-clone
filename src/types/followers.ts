@@ -1,5 +1,6 @@
 export interface FollowerInterface {
   id: string;
+  username: string;
   followUser: string;
   rank: string;
   honor: number;

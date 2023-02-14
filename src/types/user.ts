@@ -15,6 +15,7 @@ export interface UserInterface {
 export interface UserState {
   currentUser: UserInterface | null;
   following: FollowerInterface[];
+  followers: FollowerInterface[];
 }
 
 export enum UserActionTypes {
@@ -26,6 +27,7 @@ interface SetUserAction {
   payload: {
     currentUser: UserInterface;
     following: FollowerInterface[];
+    followers: FollowerInterface[];
   };
 }
 
