@@ -5,4 +5,3 @@ export * from './articles';
 export * from './getRandomIndex';
 export * from './getPercentScore';
 export * from './rankColorSelector';
-export * from './getDateString';

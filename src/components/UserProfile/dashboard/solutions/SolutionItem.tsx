@@ -1,9 +1,9 @@
+import dayjs from 'dayjs';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { KataAPI } from '../../../../api';
 import { SolutionInterface } from '../../../../types';
 import { KataInterface } from '../../../../types/kata';
-import { getDateString } from '../../../../utils';
 import { Rank } from '../../../Kata/Rank';
 import { CodeHighlight } from '../../../Solution/CodeHighlight';
 
@@ -27,7 +27,7 @@ const SolutionItem = ({ solution }: { solution: SolutionInterface }) => {
         <CodeHighlight>{solution.solution}</CodeHighlight>
       </div>
       <div className="solutions-one__footer">
-        <div className="solutions-one__time">{getDateString(solution.createdAt)}</div>
+        <div className="solutions-one__time">{dayjs(solution.createdAt).fromNow()}</div>
         <Link to={`/kata/${kata?.id}/train`} className="solutions-one__link">
           Refactor
         </Link>
