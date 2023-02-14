@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useTypedSelector from '../../../../hooks/useTypedSelector';
-import { getNextRank, getPercentScore, scoreNeededForRankingUp } from '../../../../utils';
+import { getPercentScore, scoreNeededForRankingUp } from '../../../../utils';
 import HonorBreakdown from './HonorBreakdown';
 import RankBreakdown from './RankBreakdown';
 
@@ -10,7 +10,7 @@ const Breakdown = () => {
   const { rank, score, honor } = useTypedSelector((state) => state.account);
 
   useEffect(() => {
-    setNextRank(getNextRank(rank || '0'));
+    setNextRank(parseInt(rank || '0') - 1);
     setPercent(getPercentScore(scoreNeededForRankingUp[nextRank], score || 0, 1));
   });
 
