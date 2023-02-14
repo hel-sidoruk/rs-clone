@@ -22,7 +22,7 @@ export const SolutionsTab = () => {
           className={opened === 'completed' ? '_opened' : ''}
           onClick={() => setOpened('completed')}
         >
-          Completed
+          {`Completed${opened === 'completed' ? `(${solutions?.length})` : ''}`}
         </Link>
         <Link
           to={`/users/${currentUser?.username}/solutions`}
