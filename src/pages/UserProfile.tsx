@@ -3,7 +3,7 @@ import Article from '../components/Article';
 import ReferalBlock from '../components/UserProfile/ReferalBlock';
 import UserInfo from '../components/UserProfile/UserInfo';
 import UserStats from '../components/UserProfile/UserStats';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import useActions from '../hooks/useActions';
 import useTypedSelector from '../hooks/useTypedSelector';
 
