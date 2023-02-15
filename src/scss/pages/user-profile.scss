@@ -31,13 +31,9 @@
   grid-template-rows: repeat(3, auto);
   gap: 10px;
 
-  &__avatar {
+  .avatar {
     grid-column: 1/2;
     grid-row: 1/3;
-    width: 75px;
-    height: 75px;
-    border-radius: 3px;
-    overflow: hidden;
   }
 
   &__badge-box {

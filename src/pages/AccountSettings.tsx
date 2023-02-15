@@ -1,5 +1,6 @@
 import React from 'react';
 import { DeleteAccountButton } from '../components/AccountSettings/DeleteAccountButton';
+import { InformationForm } from '../components/AccountSettings/InformationForm';
 
 export const AccountSettings = () => {
   return (
@@ -7,12 +8,7 @@ export const AccountSettings = () => {
       <h1 className="page-title">Account Settings</h1>
       <div className="account-settings">
         <div className="section account-settings__section">
-          <form>
-            <h3 className="title">INFORMATION</h3>
-            <input className="input" type="text" />
-            <input className="input" type="text" />
-            <input className="input" type="text" />
-          </form>
+          <InformationForm />
         </div>
         <div className="section account-settings__section">
           <form>

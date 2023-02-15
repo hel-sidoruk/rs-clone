@@ -16,6 +16,48 @@
   .delete-btn {
     margin: 12px 0;
   }
+  .input {
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 16px;
+    transition: background-color .2s ease-in-out;
+    background-color: rgba(#000, 0.1);
+    padding: 7px;
+    color: $light;
+    height: 34px;
+    outline: none;
+    display: block;
+    width: 100%;
+    &:hover {
+      background-color: #000;
+    }
+    &:focus {
+      background-color: $dark;
+      border: 1px solid rgba(#000, 0.4);
+      box-shadow: 0 0 2px $light;
+    }
+  }
+  .label {
+    border-radius: 4px;
+    padding: 4px;
+    cursor: pointer;
+    margin-bottom: 8px;
+    background-color:$scroll;
+    color: #ebebeb;
+    line-height: 21px;
+    font-size: 14px;
+    display: inline-block;
+  }
+  .file-upload {
+    display: flex;
+    gap: 12px;
+  }
+  .form__content {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 14px;
+    grid-template-columns: repeat(2, 1fr);
+  }
   &__section {
     &:not(:last-child) {
       margin-bottom: 24px;

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { UserInterface } from '../../types/user';
 import { Rank } from '../Kata/Rank';
+import { Avatar } from '../UI/Avatar';
 
 const LeaderItem = ({ user, index }: { user: UserInterface; index: number }) => {
   return (
@@ -10,9 +11,7 @@ const LeaderItem = ({ user, index }: { user: UserInterface; index: number }) => 
       <div className="leader-table__td">
         <Rank rank={user.rank}></Rank>
         <Link className="leader-table__link" to={`/users/${user.username}/`}>
-          <div className="leader-table__avatar">
-            <img src={user.avatar} alt="User avatar" />
-          </div>
+          <Avatar src={user.avatar} />
           <div className="leader-table__username">{user.username}</div>
         </Link>
       </div>
