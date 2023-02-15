@@ -1,9 +1,21 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AccountAPI } from '../../api/AccountAPI';
+import useActions from '../../hooks/useActions';
 import { Dialog } from '../UI/Dialog';
 import { Modal } from '../UI/Modal';
 
 export const DeleteAccountButton = () => {
   const [isOpened, setIsOpened] = useState(false);
+  const { signOut, signOutAccount } = useActions();
+  const navigate = useNavigate();
+
+  const deleteAccount = async () => {
+    await AccountAPI.delete();
+    signOut();
+    signOutAccount();
+    navigate('/');
+  };
 
   return (
     <>
@@ -13,7 +25,7 @@ export const DeleteAccountButton = () => {
       {isOpened && (
         <Modal onClose={() => setIsOpened(false)}>
           <Dialog
-            onConfirm={() => setIsOpened(false)}
+            onConfirm={deleteAccount}
             title="Are you sure?"
             text="Yep, I'm serious about doing this"
             cancelBtnText="Nooo stop! I was just kidding!"

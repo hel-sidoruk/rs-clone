@@ -13,6 +13,18 @@ export class AccountAPI {
     return { account: info };
   }
 
+  static async delete(): Promise<{ status?: string; message?: string }> {
+    const savedToken = localStorage.getItem('token');
+    if (!savedToken) return { message: 'No token found' };
+    const data = await fetch(`${API_URL}/account`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${savedToken}` },
+    });
+    const { status, message } = await data.json();
+    if (message) return { message };
+    return { status };
+  }
+
   static async addTrainedKata(kataId: string): Promise<{ status?: string; error?: string }> {
     const savedToken = localStorage.getItem('token');
     if (!savedToken) return { error: 'No token found' };
