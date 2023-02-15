@@ -11,11 +11,6 @@ export const AccountSettings = () => {
           <InformationForm />
         </div>
         <div className="section account-settings__section">
-          <form>
-            <h3 className="title">PASSWORD</h3>
-          </form>
-        </div>
-        <div className="section account-settings__section">
           <h3 className="title">Delete Account</h3>
           <p className="text">
             If you wish you can delete your account. Your authored kata, solutions and comments will

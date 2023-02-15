@@ -8,7 +8,11 @@ export interface AccountInterface {
   starredKatas: string[];
   forfeitedKatas: string[];
 }
-
+export interface AccountInfo {
+  newUsername: string;
+  clan: string;
+  name: string;
+}
 export interface AccountState {
   username: string | null;
   avatar: string | null;
@@ -19,10 +23,13 @@ export interface AccountState {
   rank: string | null;
   score: number | null;
   honor: number | null;
+  clan: string | null;
+  name: string | null;
 }
 
 export enum AccountActionTypes {
   SET_ACCOUNT = 'SET_ACCOUNT',
+  EDIT_INFO = 'EDIT_INFO',
   SIGN_OUT_ACCOUNT = 'SIGN_OUT_ACCOUNT',
   MARK_AS_TRAINED = 'MARK_AS_TRAINED',
   MARK_AS_SOLVED = 'MARK_AS_SOLVED',
@@ -42,6 +49,16 @@ interface SetAccount {
     rank: string;
     honor: number;
     score: number;
+    clan: string | null;
+    name: string | null;
+  };
+}
+interface EditInfo {
+  type: AccountActionTypes.EDIT_INFO;
+  payload: {
+    username: string;
+    clan: string;
+    name: string;
   };
 }
 interface SignOut {
@@ -80,8 +97,10 @@ interface UpdateUserProgress {
     honor: number;
   };
 }
+
 export type AccountAction =
   | SetAccount
+  | EditInfo
   | SignOut
   | MarkAsTrained
   | MarkAsSolved

@@ -10,6 +10,8 @@ const initialState: AccountState = {
   rank: null,
   score: null,
   honor: null,
+  clan: null,
+  name: null,
 };
 
 export default function accountReducer(state: AccountState = initialState, action: AccountAction) {
@@ -26,6 +28,15 @@ export default function accountReducer(state: AccountState = initialState, actio
         rank: action.payload.rank,
         honor: action.payload.honor,
         score: action.payload.score,
+        clan: action.payload.clan,
+        name: action.payload.name,
+      };
+    case AccountActionTypes.EDIT_INFO:
+      return {
+        ...state,
+        username: action.payload.username,
+        clan: action.payload.clan,
+        name: action.payload.name,
       };
     case AccountActionTypes.SIGN_OUT_ACCOUNT:
       return {
@@ -39,6 +50,8 @@ export default function accountReducer(state: AccountState = initialState, actio
         rank: null,
         honor: null,
         score: null,
+        clan: null,
+        name: null,
       };
     case AccountActionTypes.MARK_AS_TRAINED:
       return {

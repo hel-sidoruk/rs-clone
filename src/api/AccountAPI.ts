@@ -1,5 +1,5 @@
 import { API_URL } from '.';
-import { AccountInterface } from '../types/account';
+import { AccountInfo, AccountInterface } from '../types/account';
 
 export class AccountAPI {
   static async getInfo(): Promise<{ account?: AccountInterface; error?: string }> {
@@ -22,6 +22,19 @@ export class AccountAPI {
     });
     const { status, message } = await data.json();
     if (message) return { message };
+    return { status };
+  }
+
+  static async editInfo(info: AccountInfo): Promise<{ status?: string; error?: string }> {
+    const savedToken = localStorage.getItem('token');
+    if (!savedToken) return { error: 'No token found' };
+    const data = await fetch(`${API_URL}/account/edit`, {
+      method: 'PATCH',
+      headers: { Authorization: `Bearer ${savedToken}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(info),
+    });
+    const { status, message } = await data.json();
+    if (message) return { error: message };
     return { status };
   }
 
