@@ -6,7 +6,7 @@ import { TagsBlock } from './TagsBlock';
 
 export const KataPreview = ({ kata }: { kata: KataInterface }) => {
   return (
-    <div key={kata.id} className="katas__item kata-item">
+    <div key={kata.id} className="katas__item kata-item section">
       <div className="kata-item__wrap">
         <KataInfo data={kata} />
         <TagsBlock tags={kata.tags} />

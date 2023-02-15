@@ -17,7 +17,7 @@ export const StarredKatasList = () => {
               <div>You have not starred any kata</div>
               <div>
                 To add some, just click the{' '}
-                <i style={{ color: '#ffffff' }} className="icon-moon icon-moon-star-empty"></i>
+                <i style={{ color: 'inherit' }} className="icon-moon icon-moon-star-empty"></i>
                 next to any kata title
               </div>
             </li>

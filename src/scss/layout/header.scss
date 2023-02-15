@@ -4,11 +4,11 @@
   right: 0;
   top: 0;
   height: 64px;
-  background-color: $sidebar-bg;
+  background-color: var(--similar-color);
   border-bottom-left-radius: 8px;
-  color: $light;
+  color: var(--contrast-text);
   svg {
-    fill: $light;
+    fill: var(--contrast-text);
     transition: all .2s ease-in-out;
   }
   &__list {
@@ -27,7 +27,7 @@
     @include scrollBar(6px);
     &-body {
       margin-top: 10px;
-      background-color: $sidebar-bg;
+      background-color: var(--similar-color);
     }
     &-item {
       padding: 10px 15px;
@@ -38,15 +38,15 @@
     display: flex;
     gap: 20px;
     .btn {
-      border-color: #fff;
-      color: #fff;
+      border-color: var(--contrast-text);
+      color: var(--contrast-text);
       &:hover {
         filter: brightness(0.7);
       }
     }
     .btn-fill {
-      background-color: #bb432c;
-      border-color: #bb432c;
+      background-color: $red;
+      border-color: $red;
       &:hover {
         filter: brightness(1.2);
       }
@@ -57,7 +57,7 @@
       display: flex;
       gap: 15px;
       align-items: center;
-      color: #fff;
+      color:  var(--contrast-text);
       &:hover {
         .link-title {
           filter: brightness(0.6)
@@ -71,7 +71,7 @@
   .notifications-menu {
     .notification {
       &:not(:last-child) {
-        border-bottom: 1px solid rgba(#fff, 0.15);
+        border-bottom: 1px solid var(--border-color);
       }
       &__top {
         display: flex;
@@ -88,7 +88,7 @@
         justify-content: space-between;
         align-items: center;
         .btn {
-          color: #bb432c;
+          color: $red;
           &:hover {
             filter: brightness(1.2)
           }
@@ -108,7 +108,7 @@
     }
     &:hover {
       i {
-        color: #bb432c;
+        color: $red;
       }
       svg {
         filter: brightness(0.7);
@@ -159,7 +159,7 @@
       }
     }
     .border-bottom {
-      border-bottom: 1px solid rgba(#fff, 0.15);
+      border-bottom: 1px solid var(--border-color);
     }
     button {
       color: inherit;
@@ -184,8 +184,8 @@
   background-size: 200px;
   z-index: 1000;
   &__btn {
-    box-shadow: inset 0 0 0 1px #fff;
-    color: #fff;
+    box-shadow: inset 0 0 0 1px $light;
+    color: $light;
     font-family: 'InputSans';
     padding: 8px 20px 6px;
     border-radius: 4px;
@@ -199,7 +199,7 @@
       opacity: 0.6;
     }
     &.red {
-      box-shadow: inset 0 0 0 1px #ff4d4d;
+      box-shadow: inset 0 0 0 1px $red;
     }
   }
   &__logo {
@@ -214,7 +214,7 @@
 }
 .header-dropdown {
   padding: 8px 16px;
-  color: #a2a2a4;
+  color: $grey;
   font-size: 14px;
   position: relative;
   line-height: 21px;
@@ -231,14 +231,14 @@
       transition: all .2s ease-in-out;
     }
     svg {
-      fill: #a2a2a4;
+      fill: $grey;
     }
     &:hover {
       span {
-        color: #fff;
+        color: $light;
       }
       svg {
-        fill: #fff;
+        fill: $light;
       }
     }
   }
@@ -252,7 +252,7 @@
     background-size: 200px;
     border-radius: 16px;
     width: 320px;
-    background-color: #222326;
+    background-color: var(--bg-section);
     transform: translate3d(0px, -0.5rem, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
     transform-style: preserve-3d;
     opacity: 0;
@@ -269,7 +269,7 @@
     svg {
       width: 24px;
       height: 24px;
-      fill: #fff;
+      fill: var(--contrast-text);
       transition: transform .2s ease-in-out;
     }
     &:hover {
@@ -280,14 +280,17 @@
       flex-direction: column;
       align-items: start;
       justify-content: center;
-      color: rgba(#fff, 0.6);
+      color: var(--grey-text);
       font-size: 14px;
       line-height: 21px;
     }
     .text-bold {
       letter-spacing: 0.6px;
       font-weight: 700;
-      color: #fff;
+      color: var(--contrast-text);
+    }
+    .icon-moon-star-empty {
+      color: var(--grey-text);
     }
   }
   &--active {

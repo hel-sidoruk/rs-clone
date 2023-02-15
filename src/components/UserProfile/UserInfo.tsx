@@ -15,7 +15,7 @@ const UserInfo = () => {
   }, []);
 
   return (
-    <div className="user-profile__info user-info">
+    <div className="user-profile__info user-info section">
       <div className="user-info__avatar">
         <FakeAvatar />
       </div>

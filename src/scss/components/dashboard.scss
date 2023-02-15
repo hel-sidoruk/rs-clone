@@ -2,7 +2,7 @@
   display: flex;
   &__sidebar {
    width: 160px;
-    border-right: 1px solid rgba(255, 255, 255, 0.125);
+    border-right: 1px solid var(--border-color);
     padding-right: 20px;
     display: flex;
     flex-direction: column;
@@ -34,12 +34,12 @@
     transition: color 0.3s;
 
     &:not(._opened-tab):hover {
-      color: $blue;
+      color: var(--blue);
     }
   }
 
   &__stats {
-    background: $section;
+    background: var(--bg-section);
     border-radius: 10px;
     padding: 20px 12px;
     display: flex;
@@ -70,7 +70,7 @@
   }
 
   &__refresh {
-    background: #ffffff25;
+    background: var(--border-color);
     padding: 8px;
     border-radius: 3px;
     margin-bottom: 25px;
@@ -132,6 +132,5 @@
 
 ._opened-tab {
     cursor: default;
-    background: $section;
-    border-radius: 10px;
+    background: var(--bg-section)
 }

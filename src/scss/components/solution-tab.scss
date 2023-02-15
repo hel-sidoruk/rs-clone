@@ -24,7 +24,7 @@
   }
 
   &__code {
-    background: $dark;
+    background: var(--bg-textarea);
     overflow-x: auto;
     font-weight: 400;
     font-size: 14px;

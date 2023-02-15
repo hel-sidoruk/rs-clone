@@ -1,8 +1,8 @@
 .user-profile {
-  color: white;
+  color: var(--contrast-text);
 
   b {
-    color: #b0b0b0;
+    color: var(--grey-text);
     padding-right: 8px;
   }
 
@@ -22,7 +22,6 @@
 }
 
 .user-info {
-  background: #1d1d1f;
   border-radius: 10px;
   padding: 15px;
   display: grid;
@@ -43,7 +42,7 @@
   &__badge-box {
     height: 40px;
     clip-path: polygon(100% 0%, 95% 50%, 100% 100%, 4% 100%, 0 50%, 4% 0);
-    background: #333333;
+    background: var(--dropdown-hover);
     display: flex;
     align-items: center;
     padding: 8px;
@@ -92,8 +91,8 @@
     }
 
     &.unfollow {
-      color: $red-text;
-      border-color: $red-text;
+      color: $red;
+      border-color: $red;
     }
   }
 
@@ -107,7 +106,7 @@
       height: 32px;
 
       path {
-        stroke: #c9c9c9;
+        stroke: var(--grey-text);
       }
     }
   }
@@ -118,23 +117,19 @@
   border-radius: 10px;
   gap: 10px;
   padding: 20px;
-  background: linear-gradient(to right, rgb(39, 39, 42), rgba(0, 0, 0, 0));
+  background: linear-gradient(to right, var(--border-color), rgba(0, 0, 0, 0));
   line-height: 160%;
 
   &__icon {
     width: 83px;
   }
-  &__content {
-
-  }
+ 
   &__title {
     font-size: 18px;
     font-weight: 700;
 
   }
-  &__text {
-
-  }
+ 
   &__btn {
     margin-top: 10px;
   }

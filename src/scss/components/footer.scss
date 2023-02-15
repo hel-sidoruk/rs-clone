@@ -3,17 +3,17 @@
   justify-content: center;
   width: 100%;
   padding: 0 68px;
-  border-top: 1px solid hsla(0, 0%, 100%, 0.1);
-  background-color: #16171b;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-color);
   background-image: url($noise);
   background-position: 0 0;
   background-size: 200px;
-  color: $light;
+  color: var(--contrast-text);
 
   &__githubs {
     display: flex;
     gap: 1.5rem;
-    color: #a2a2a4;
+    color: var(--grey-text);
     margin-left: 1rem;
     a {
       display: flex;
@@ -21,7 +21,7 @@
       gap: 7px;
     }
     svg {
-      fill: #a2a2a4;
+      fill: var(--grey-text);
     }
   }
 

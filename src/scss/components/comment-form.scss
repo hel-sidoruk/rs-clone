@@ -29,10 +29,10 @@
     display: flex;
     width: 256px;
     height: 40px;
-    border: 1px solid grey;
+    border: 1px solid var(--border-color);
     border-radius: 2px;
     padding: 10px;
-    color: white;
+    color:var(--contrast-text);
     background: transparent;
     resize: none;
     transition: 0.4s;
@@ -43,7 +43,7 @@
     width: 100%;
     &.active {
       .comment-form__input {
-        background: $dark;
+        background: var(--bg-textarea);
         height: 150px;
         width: 100%;
         border: 1px solid transparent;
@@ -63,31 +63,33 @@
     position: relative;
     padding: 10px;
     margin-right: 15px;
-    background-color: rgba(#000, 0.1);
+    background-color: var(--dropdown-hover);
     cursor: pointer;
     transition: all .2s ease-in-out;
     &:hover {
-      background-color: rgba(#000, 0.2);
+      background-color: transparent;
     }
     &-list {
-      background-color: #151616;
+      background-color:  var(--bg-textarea);
       display: none;
       z-index: 11;
       position: absolute;
       top: 100%;
       left: 0;
       width: 100%;
-      border: 1px solid rgba(#fff, 0.15);
+      border: 1px solid var(--border-color);
       border-top: none;
     }
     &-item {
+      backdrop-filter: invert(2%);
       padding: 10px;
-      color: #c9c9c9;
+      color: var(--contrast-text);
       position: relative;
       cursor: pointer;
       transition: all .2s ease-in-out;
       &:hover {
-        background-color: rgba(#fff, 0.1);
+        background-color: var(--dropdown-hover);
+       
       }
     }
     .info-flyout {
@@ -97,9 +99,9 @@
       padding: 10px;
     }
     .placeholder {
-      border: 1px solid rgba(#fff, 0.15);
+      border: 1px solid var(--border-color);
       border-bottom: none;
-      background-color: #151616;
+      background-color:  var(--bg-textarea);
       position: absolute;
       top: 0;
       right: 0;
