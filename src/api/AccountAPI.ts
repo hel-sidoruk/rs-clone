@@ -1,5 +1,6 @@
 import { API_URL } from '.';
 import { AccountInfo, AccountInterface } from '../types/account';
+import axios from 'axios';
 
 export class AccountAPI {
   static async getInfo(): Promise<{ account?: AccountInterface; error?: string }> {
@@ -25,17 +26,20 @@ export class AccountAPI {
     return { status };
   }
 
-  static async editInfo(info: AccountInfo): Promise<{ status?: string; error?: string }> {
+  static async editInfo(info: FormData): Promise<{ data?: AccountInfo; error?: string }> {
     const savedToken = localStorage.getItem('token');
     if (!savedToken) return { error: 'No token found' };
-    const data = await fetch(`${API_URL}/account/edit`, {
-      method: 'PATCH',
-      headers: { Authorization: `Bearer ${savedToken}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify(info),
-    });
-    const { status, message } = await data.json();
-    if (message) return { error: message };
-    return { status };
+    try {
+      const { data } = await axios.patch(`${API_URL}/account/edit`, info, {
+        headers: {
+          'Content-type': 'multipart/form-data',
+          Authorization: `Bearer ${savedToken}`,
+        },
+      });
+      return { data };
+    } catch (error) {
+      return { error: `${error}` };
+    }
   }
 
   static async addTrainedKata(kataId: string): Promise<{ status?: string; error?: string }> {

@@ -10,6 +10,7 @@ export const InformationForm = () => {
   const [nameValue, setNameValue] = useState('');
   const [clanValue, setClanValue] = useState('');
   const [success, setSuccess] = useState(false);
+  const [avatarImage, setAvatarImage] = useState<File | null>(null);
   const { editAccountInfo } = useActions();
 
   useEffect(() => {
@@ -21,13 +22,20 @@ export const InformationForm = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSuccess(false);
-    const info = { newUsername: usernameValue, name: nameValue, clan: clanValue };
-    const { status } = await AccountAPI.editInfo(info);
-    if (status) {
+    const formData = new FormData();
+    formData.append('newUsername', usernameValue);
+    formData.append('name', nameValue);
+    formData.append('clan', clanValue);
+    if (avatarImage) formData.append('avatarImage', avatarImage);
+    const { data } = await AccountAPI.editInfo(formData);
+    if (data) {
+      editAccountInfo(data);
       setSuccess(true);
       setTimeout(() => setSuccess(false), 4000);
-      editAccountInfo(info);
     }
+  };
+  const selectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) setAvatarImage(e.target.files[0]);
   };
 
   return (
@@ -44,7 +52,13 @@ export const InformationForm = () => {
           </label>
           <div className="file-upload">
             <Avatar src={avatar || ''} size="65px" />
-            <input type="file" className="input" id="avatar" />
+            <input
+              type="file"
+              className="input"
+              onChange={selectFile}
+              id="avatar"
+              accept="image/*"
+            />
           </div>
         </div>
         <div className="field">

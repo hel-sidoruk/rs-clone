@@ -9,9 +9,10 @@ export interface AccountInterface {
   forfeitedKatas: string[];
 }
 export interface AccountInfo {
-  newUsername: string;
+  username: string;
   clan: string;
   name: string;
+  avatar?: string;
 }
 export interface AccountState {
   username: string | null;
@@ -59,6 +60,7 @@ interface EditInfo {
     username: string;
     clan: string;
     name: string;
+    avatar?: string;
   };
 }
 interface SignOut {

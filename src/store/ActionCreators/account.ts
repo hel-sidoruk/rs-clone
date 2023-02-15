@@ -32,10 +32,10 @@ export function setAccount(): ThunkActionType {
 
 export function editAccountInfo(info: AccountInfo): ThunkActionType {
   return async (dispatch: Dispatch<AccountAction>) => {
-    const { newUsername, clan, name } = info;
+    const { username, clan, name, avatar } = info;
     dispatch({
       type: AccountActionTypes.EDIT_INFO,
-      payload: { username: newUsername, clan, name },
+      payload: avatar ? { username, clan, name, avatar } : { username, clan, name },
     });
   };
 }
