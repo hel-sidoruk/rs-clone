@@ -1,0 +1,24 @@
+.account-settings {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding-top: 50px;
+  .title {
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 21px;
+    font-size: 14px;
+    color: $light;
+    margin-bottom: 16px;
+  }
+  .text {
+    line-height: 1.6;
+  }
+  .delete-btn {
+    margin: 12px 0;
+  }
+  &__section {
+    &:not(:last-child) {
+      margin-bottom: 24px;
+    }
+  }
+}

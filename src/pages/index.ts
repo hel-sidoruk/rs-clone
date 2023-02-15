@@ -7,3 +7,4 @@ export * from './Authorization';
 export * from './KataSolutions';
 export * from './KataDiscuss';
 export * from './Leaderboard';
+export * from './AccountSettings';

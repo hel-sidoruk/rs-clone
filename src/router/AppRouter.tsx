@@ -8,29 +8,20 @@ import {
   SocialTab,
   SolutionsTab,
 } from '../components/UserProfile/dashboard';
-import {
-  Authorization,
-  Home,
-  Kata,
-  KataDiscuss,
-  KataLibrary,
-  KataSolutions,
-  KataTraining,
-  Leaderboard,
-  UserProfile,
-} from '../pages';
+import * as Pages from '../pages';
 
 export default function AppRouter() {
   return (
     <Routes>
-      <Route path="/" element={<Home title="Codewars Clone - Achieve mastery" />} />
-      <Route path="/kata" element={<KataLibrary title="Kata Practice | Codewars Clone" />} />
-      <Route path="/kata/:id" element={<Kata />}>
-        <Route path="/kata/:id/discuss" element={<KataDiscuss />} />
-        <Route path="/kata/:id/solutions" element={<KataSolutions />} />
+      <Route path="/" element={<Pages.Home title="Codewars Clone - Achieve mastery" />} />
+      <Route path="/kata" element={<Pages.KataLibrary title="Kata Practice | Codewars Clone" />} />
+      <Route path="/kata/:id" element={<Pages.Kata />}>
+        <Route path="/kata/:id/discuss" element={<Pages.KataDiscuss />} />
+        <Route path="/kata/:id/solutions" element={<Pages.KataSolutions />} />
       </Route>
-      <Route path="/kata/:id/train" element={<KataTraining />} />
-      <Route path="/users/:id/" element={<UserProfile />}>
+      <Route path="/kata/:id/train" element={<Pages.KataTraining />} />
+      <Route path="/users/edit" element={<Pages.AccountSettings />} />
+      <Route path="/users/:id/" element={<Pages.UserProfile />}>
         <Route path="/users/:id/" element={<StatsTab />} />
         <Route path="/users/:id/completed" element={<KataTab />} />
         <Route path="/users/:id/collections" element={<CollectionsTab />} />
@@ -39,14 +30,17 @@ export default function AppRouter() {
         <Route path="/users/:id/following" element={<SocialTab list="following" />} />
         <Route path="/users/:id/followers" element={<SocialTab list="followers" />} />
       </Route>
-      <Route path="/users/leaderboard" element={<Leaderboard title="Leaders | Codewars Clone" />} />
+      <Route
+        path="/users/leaderboard"
+        element={<Pages.Leaderboard title="Leaders | Codewars Clone" />}
+      />
       <Route
         path="/login"
-        element={<Authorization option="login" title="Sign in | Codewars Clone" />}
+        element={<Pages.Authorization option="login" title="Sign in | Codewars Clone" />}
       />
       <Route
         path="/registration"
-        element={<Authorization option="registration" title="Sign up | Codewars Clone" />}
+        element={<Pages.Authorization option="registration" title="Sign up | Codewars Clone" />}
       />
     </Routes>
   );
