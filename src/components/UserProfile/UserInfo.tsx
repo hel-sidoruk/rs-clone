@@ -7,7 +7,7 @@ import { FollowButton } from './FollowButton';
 
 const UserInfo = () => {
   const { username } = useTypedSelector((state) => state.authorizedUser);
-  const { currentUser } = useTypedSelector((state) => state.user);
+  const { currentUser, followers, following } = useTypedSelector((state) => state.user);
   const isAuth = currentUser && currentUser.username === username;
 
   useEffect(() => {
@@ -45,28 +45,21 @@ const UserInfo = () => {
       <div className="user-info__col user-info__col_2">
         <div>
           <b>Member Since:</b>
-          Oct 2014
+          Oct 2023
         </div>
         <div>
           <b>Last Seen:</b>
           Feb 2023
         </div>
-        <div>
-          <b>Profiles:</b>
-        </div>
       </div>
       <div className="user-info__col user-info__col_3">
         <div>
           <b>Following:</b>
-          1,624
+          {following.length}
         </div>
         <div>
           <b>Followers:</b>
-          6,468
-        </div>
-        <div>
-          <b>Allies</b>
-          1,556
+          {followers.length}
         </div>
       </div>
       <div className="user-info__controls">{!isAuth && <FollowButton />}</div>
