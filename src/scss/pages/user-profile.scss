@@ -34,11 +34,10 @@
   &__avatar {
     grid-column: 1/2;
     grid-row: 1/3;
-    .fake-avatar {
-      display: block;
-      width: 75px;
-      height: 75px;
-    }
+    width: 75px;
+    height: 75px;
+    border-radius: 3px;
+    overflow: hidden;
   }
 
   &__badge-box {
@@ -125,15 +124,9 @@
   &__icon {
     width: 83px;
   }
-  &__content {
-
-  }
   &__title {
     font-size: 18px;
     font-weight: 700;
-
-  }
-  &__text {
 
   }
   &__btn {

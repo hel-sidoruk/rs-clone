@@ -17,7 +17,6 @@ export * from './GithubIcon';
 export * from './LeadersIcon';
 export * from './PasswordIcon';
 export * from './Shield';
-export * from './FakeAvatar';
 export * from './TagIcon';
 export * from './FingerIcon';
 export * from './HonorIcon';

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { SolutionsAPI } from '../../api/SolutionsAPI';
 import useTypedSelector from '../../hooks/useTypedSelector';
-import { FakeAvatar, Shield } from '../Icons';
+import { Shield } from '../Icons';
 import { Rank } from '../Kata/Rank';
 import { FollowButton } from './FollowButton';
 
@@ -17,7 +17,7 @@ const UserInfo = () => {
   return (
     <div className="user-profile__info user-info">
       <div className="user-info__avatar">
-        <FakeAvatar />
+        <img src={currentUser?.avatar} alt="User avatar" />
       </div>
       {currentUser && (
         <div className="user-info__badge">

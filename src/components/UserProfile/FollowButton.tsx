@@ -5,11 +5,19 @@ import useTypedSelector from '../../hooks/useTypedSelector';
 export const FollowButton = () => {
   const [followedUser, setFollowedUser] = useState<string | false>(false);
   const { currentUser } = useTypedSelector((state) => state.user);
+  const { avatar } = useTypedSelector((state) => state.account);
 
   const handleClick = async () => {
     if (!followedUser && currentUser) {
       const { username, honor, rank, clan } = currentUser;
-      const followUser = { followUser: username, honor, clan, rank };
+      const followUser = {
+        followUser: username,
+        honor,
+        clan,
+        rank,
+        followerAvatar: avatar as string,
+        followingAvatar: currentUser.avatar,
+      };
       const { follower } = await FollowersAPI.create(followUser);
       if (follower) setFollowedUser(follower.id);
     } else {
