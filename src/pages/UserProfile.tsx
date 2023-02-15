@@ -3,19 +3,17 @@ import Article from '../components/Article';
 import ReferalBlock from '../components/UserProfile/ReferalBlock';
 import UserInfo from '../components/UserProfile/UserInfo';
 import UserStats from '../components/UserProfile/UserStats';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import useActions from '../hooks/useActions';
 import useTypedSelector from '../hooks/useTypedSelector';
 
 export const UserProfile = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const { setCurrentUser } = useActions();
   const { currentUser } = useTypedSelector((state) => state.user);
 
   useEffect(() => {
     if (id) setCurrentUser(id);
-    navigate(`/users/${id}/stats`);
   }, [id]);
 
   return (

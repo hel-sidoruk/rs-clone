@@ -1,60 +1,40 @@
-import React, { useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import React from 'react';
+import { NavLink, Outlet } from 'react-router-dom';
 import useTypedSelector from '../../hooks/useTypedSelector';
 
+const getActiveClass = ({ isActive }: { isActive: boolean }) =>
+  `user-stats__tab ${isActive ? 'active' : ''}`;
+
 const UserStats = () => {
-  const [openedTab, setOpenedTab] = useState('stats');
   const { username } = useTypedSelector((state) => state.authorizedUser);
   const { currentUser } = useTypedSelector((state) => state.user);
   const isAuth = currentUser && currentUser.username === username;
 
+  const path = `/users/${currentUser?.username}`;
+
   return (
     <div className="user-profile__stats user-stats">
       <div className="user-stats__tabs">
-        <Link
-          to={`/users/${currentUser?.username}/stats`}
-          className={`user-stats__tab${openedTab === 'stats' ? ' _opened-tab' : ''}`}
-          onClick={() => setOpenedTab('stats')}
-        >
+        <NavLink to={`${path}/`} className={getActiveClass}>
           Stats
-        </Link>
-        <Link
-          to={`/users/${currentUser?.username}/completed`}
-          className={`user-stats__tab${openedTab === 'kata' ? ' _opened-tab' : ''}`}
-          onClick={() => setOpenedTab('kata')}
-        >
+        </NavLink>
+        <NavLink to={`${path}/completed`} className={getActiveClass}>
           Kata
-        </Link>
+        </NavLink>
         {isAuth && (
-          <Link
-            to={`/users/${currentUser?.username}/solutions`}
-            className={`user-stats__tab${openedTab === 'solutions' ? ' _opened-tab' : ''}`}
-            onClick={() => setOpenedTab('solutions')}
-          >
+          <NavLink to={`${path}/solutions`} className={getActiveClass}>
             Solutions
-          </Link>
+          </NavLink>
         )}
-        <Link
-          to={`/users/${currentUser?.username}/collections`}
-          className={`user-stats__tab${openedTab === 'collections' ? ' _opened-tab' : ''}`}
-          onClick={() => setOpenedTab('collections')}
-        >
+        <NavLink to={`${path}/collections`} className={getActiveClass}>
           Collections
-        </Link>
-        <Link
-          to={`/users/${currentUser?.username}/comments`}
-          className={`user-stats__tab${openedTab === 'discourse' ? ' _opened-tab' : ''}`}
-          onClick={() => setOpenedTab('discourse')}
-        >
+        </NavLink>
+        <NavLink to={`${path}/comments`} className={getActiveClass}>
           Discourse
-        </Link>
-        <Link
-          to={`/users/${currentUser?.username}/following`}
-          className={`user-stats__tab${openedTab === 'social' ? ' _opened-tab' : ''}`}
-          onClick={() => setOpenedTab('social')}
-        >
+        </NavLink>
+        <NavLink to={`${path}/following`} className={getActiveClass}>
           Social
-        </Link>
+        </NavLink>
       </div>
       <div className="user-stats__stats">
         <Outlet />

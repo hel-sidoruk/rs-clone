@@ -24,13 +24,6 @@ export const SolutionsTab = () => {
         >
           {`Completed${opened === 'completed' ? `(${solutions?.length})` : ''}`}
         </Link>
-        <Link
-          to={`/users/${currentUser?.username}/solutions`}
-          className={opened === 'unfinished' ? '_opened' : ''}
-          onClick={() => setOpened('unfinished')}
-        >
-          Unfinished
-        </Link>
       </div>
       <div className="dashboard-wrapper__content">
         <div className="solutions-tab__list">
