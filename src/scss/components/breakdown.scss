@@ -1,9 +1,9 @@
 .rank-breakdown {
- 
-  &__chart { 
-    position: relative; 
+
+  &__chart {
+    position: relative;
     width: 200px;
-    
+
     &.white {
       .pie-color {
         stroke: $light;
@@ -56,7 +56,30 @@
   }
 
   &__item {
+    position: relative;
     padding: 4px 8px;
     background: $scroll;
+    .progress {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 0;
+      transform-origin: left;
+      background-color: #bb432c;
+      animation: filling 1.4s ease-in-out;
+    }
+    .text {
+      position: relative;
+      z-index: 1;
+    }
+  }
+}
+@keyframes filling {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
   }
 }
