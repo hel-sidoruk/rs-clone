@@ -11,7 +11,7 @@ const HonorBreakdown = ({ honor }: { honor: number }) => {
     if (currentUser) {
       const achievementsHonor = getAchievementsHonor(parseInt(currentUser.rank));
       setAchievementsPercent(getPercentScore(honor, achievementsHonor, 0));
-      setKataPercent(achievementsPercent ? 100 - achievementsPercent : 0);
+      setKataPercent(honor ? 100 - achievementsPercent : 0);
     }
   }, [currentUser, honor, achievementsPercent]);
 
