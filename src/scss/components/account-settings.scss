@@ -51,9 +51,33 @@
   .file-upload {
     display: flex;
     gap: 12px;
-    align-items: center;
     .avatar {
       flex-shrink: 0;
+    }
+    .input {
+      display: none;
+    }
+    .btn {
+      cursor: pointer;
+    }
+    &__field {
+      height: 65px;
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+      gap: 16px;
+      border-radius: 4px;
+      border: 1px dashed rgba(#fff, 0.6);
+      &.active {
+        background-color: rgba(#fff, 0.1);
+      }
+    }
+    &__image {
+      width: 55px;
+      height: 55px;
+      object-fit: cover;
     }
   }
   .form {
