@@ -7,6 +7,7 @@ import { SolutionInterface } from '../types';
 import { nanoid } from 'nanoid';
 import useTypedSelector from '../hooks/useTypedSelector';
 import { LockedSolutions } from '../components/Kata/LockedSolutions';
+import { HiddenDescription } from '../components/Kata/HiddenDescription';
 
 export const KataSolutions = () => {
   const { id } = useParams();
@@ -20,15 +21,18 @@ export const KataSolutions = () => {
   }, []);
 
   return (
-    <div className="section solution-main">
-      <LeftBarForSolutions sol />
-      <div>
-        {shouldShowSolutions ? (
-          solutions.map((item) => <KataSolutionItem solution={item} key={nanoid()} />)
-        ) : (
-          <LockedSolutions kataId={id as string} />
-        )}
+    <>
+      <HiddenDescription />
+      <div className="section solution-main">
+        <LeftBarForSolutions sol />
+        <div>
+          {shouldShowSolutions ? (
+            solutions.map((item) => <KataSolutionItem solution={item} key={nanoid()} />)
+          ) : (
+            <LockedSolutions kataId={id as string} />
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };

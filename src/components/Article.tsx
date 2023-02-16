@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { articleList, getRandomIndex } from '../utils';
 
-const Article = () => {
+const Article = memo(function Article() {
   const { title, description, previewImg, url } =
     articleList[getRandomIndex(0, articleList.length)];
 
@@ -19,5 +19,6 @@ const Article = () => {
       </Link>
     </div>
   );
-};
+});
+
 export default Article;

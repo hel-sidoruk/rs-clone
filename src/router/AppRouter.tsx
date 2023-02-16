@@ -16,6 +16,7 @@ export default function AppRouter() {
       <Route path="/" element={<Pages.Home title="Codewars Clone - Achieve mastery" />} />
       <Route path="/kata" element={<Pages.KataLibrary title="Kata Practice | Codewars Clone" />} />
       <Route path="/kata/:id" element={<Pages.Kata />}>
+        <Route path="/kata/:id" element={<Pages.KataDetails />} />
         <Route path="/kata/:id/discuss" element={<Pages.KataDiscuss />} />
         <Route path="/kata/:id/solutions" element={<Pages.KataSolutions />} />
       </Route>
