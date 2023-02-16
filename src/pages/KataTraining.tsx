@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { KataLoader } from '../components/KataTraining/KataLoader';
 import { KataTrainingDescription } from '../components/KataTraining/KataTrainingDescription';
 import { KataTrainingInfo } from '../components/KataTraining/KataTrainingInfo';
 import { Solution } from '../components/Solution/Solution';
@@ -15,7 +16,8 @@ export const KataTraining = () => {
   const handleClick = () => setIsHidden((value) => !value);
   const [isSolved, setIsSolved] = useState(false);
   const { trainedKatas, solvedKatas } = useTypedSelector((state) => state.account);
-  const [kata, error] = useFetchKata(id as string);
+  const { loading } = useTypedSelector((state) => state.katas);
+  const [kata, error, isLoading] = useFetchKata(id as string);
 
   useEffect(() => {
     if (id) {
@@ -31,6 +33,7 @@ export const KataTraining = () => {
   if (error) return <Page404 />;
   return (
     <main className={`play-view kata-training ${isHidden ? 'hidden' : ''}`}>
+      {(loading || isLoading) && <KataLoader />}
       {!isHidden && (
         <>
           <h1 className="page-title">Kata Training</h1>
