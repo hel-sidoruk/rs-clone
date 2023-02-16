@@ -5,4 +5,6 @@ export interface FollowerInterface {
   rank: string;
   honor: number;
   clan: string | null;
+  followerAvatar: string;
+  followingAvatar: string;
 }
