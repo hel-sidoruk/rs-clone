@@ -3,19 +3,18 @@ import React, { useEffect, useState } from 'react';
 import useActions from '../../hooks/useActions';
 import { CloseIcon, DropIcon } from '../Icons';
 import FilterItem from './FilterItem';
+import { DropProps } from './Filters';
 import Label from './Label';
 
-const DropdownMultiple = ({ list, filterType }: { list: string[]; filterType: string }) => {
-  const [isOpen, setOpen] = useState(false);
+const DropdownMultiple = ({ list, filterType, status, handler }: DropProps) => {
   const [selected, setSelected] = useState<string[]>([]);
-
   const { changeFilters } = useActions();
 
   const handleOpen = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     const elem = e.target as HTMLButtonElement;
     if (!elem.closest('.drop-down__label') && !elem.closest('.drop-down__reset')) {
-      setOpen((state) => !state);
+      handler(!status ? filterType : 'none');
     }
   };
 
@@ -35,15 +34,13 @@ const DropdownMultiple = ({ list, filterType }: { list: string[]; filterType: st
   };
 
   useEffect(() => {
-    const handler = () => setOpen(false);
-    document.body.addEventListener('click', handler);
-    return () => {
-      document.body.removeEventListener('click', handler);
-    };
+    const close = () => handler('none');
+    document.body.addEventListener('click', close);
+    return () => document.body.removeEventListener('click', close);
   });
 
   return (
-    <div className={isOpen ? `drop-down drop-down_open` : `drop-down`}>
+    <div className={status ? `drop-down drop-down_open` : `drop-down`}>
       <button className={`drop-down__top ${selected.length ? 'active' : ''}`} onClick={handleOpen}>
         <div>
           {selected.length

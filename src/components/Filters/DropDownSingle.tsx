@@ -2,32 +2,32 @@ import React, { useEffect, useState } from 'react';
 import useActions from '../../hooks/useActions';
 import { DropIcon } from '../Icons';
 import FilterItem from './FilterItem';
+import { DropProps } from './Filters';
 
-const DropdownSingle = ({ list, type }: { list: string[]; type: string }) => {
-  const [isOpen, setOpen] = useState(false);
+const DropdownSingle = ({ list, filterType, status, handler }: DropProps) => {
   const [selected, setSelected] = useState(list[0]);
   const { changeFilters } = useActions();
 
   const handleOpen = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    setOpen(!isOpen);
+    handler(!status ? filterType : 'none');
   };
 
   const selectHandler = (param: string) => {
     setSelected(param);
     const filterValue = param.toLowerCase();
-    changeFilters(type, filterValue);
+    changeFilters(filterType, filterValue);
   };
 
   useEffect(() => {
-    const handler = () => setOpen(false);
-    document.body.addEventListener('click', handler);
-    return () => document.body.removeEventListener('click', handler);
+    const close = () => handler('none');
+    document.body.addEventListener('click', close);
+    return () => document.body.removeEventListener('click', close);
   });
 
   return (
-    <div className={`drop-down ${isOpen ? 'drop-down_open' : ''}`}>
-      <button className={`drop-down__top ${selected ? 'active' : ''}`} onClick={handleOpen}>
+    <div className={`drop-down ${status ? 'drop-down_open' : ''}`}>
+      <button className={`drop-down__top ${status ? 'active' : ''}`} onClick={handleOpen}>
         {selected}
         <DropIcon />
       </button>
