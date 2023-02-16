@@ -26,7 +26,7 @@ export const KataSolutions = () => {
       <div className="section solution-main">
         <div className="left-bar">
           <div className="sort">
-            <SortBlock title="View" items={['All', 'Issue', 'Questions', 'Suggestions']} />
+            <SortBlock title="View" items={['All', 'Following', 'Mine']} />
             <SortBlock title="SORT BY" items={['Best Practice', 'Clever', 'Newest', 'Oldest']} />
           </div>
           <Article />

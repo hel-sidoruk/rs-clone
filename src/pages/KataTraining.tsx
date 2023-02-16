@@ -6,6 +6,7 @@ import { Solution } from '../components/Solution/Solution';
 import useActions from '../hooks/useActions';
 import { useFetchKata } from '../hooks/useFetchKata';
 import useTypedSelector from '../hooks/useTypedSelector';
+import { Page404 } from './Page404';
 
 export const KataTraining = () => {
   const [isHidden, setIsHidden] = useState(false);
@@ -14,7 +15,7 @@ export const KataTraining = () => {
   const handleClick = () => setIsHidden((value) => !value);
   const [isSolved, setIsSolved] = useState(false);
   const { trainedKatas, solvedKatas } = useTypedSelector((state) => state.account);
-  const [kata] = useFetchKata(id as string);
+  const [kata, error] = useFetchKata(id as string);
 
   useEffect(() => {
     if (id) {
@@ -27,6 +28,7 @@ export const KataTraining = () => {
     if (kata) document.title = `Training on ${kata.name} | Codewars Clone`;
   }, [kata]);
 
+  if (error) return <Page404 />;
   return (
     <main className={`play-view kata-training ${isHidden ? 'hidden' : ''}`}>
       {!isHidden && (

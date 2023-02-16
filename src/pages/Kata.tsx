@@ -4,11 +4,12 @@ import { KataControls } from '../components/Kata/KataControls';
 import { KataDescription } from '../components/Kata/KataDescription';
 import useActions from '../hooks/useActions';
 import { useFetchKata } from '../hooks/useFetchKata';
+import { Page404 } from './Page404';
 
 export const Kata = () => {
   const { id } = useParams();
 
-  const [kata] = useFetchKata(id as string);
+  const [kata, error] = useFetchKata(id as string);
   const { fetchComments } = useActions();
 
   useEffect(() => {
@@ -19,6 +20,7 @@ export const Kata = () => {
     if (kata) document.title = `${kata.name} | Codewars Clone`;
   }, [kata]);
 
+  if (error) return <Page404 />;
   return (
     <main className="play-view">
       <h1 className="page-title">Kata</h1>
