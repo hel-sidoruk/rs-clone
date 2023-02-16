@@ -1,5 +1,4 @@
 import React, { memo } from 'react';
-import { Link } from 'react-router-dom';
 import { articleList, getRandomIndex } from '../utils';
 
 const Article = memo(function Article() {
@@ -8,7 +7,7 @@ const Article = memo(function Article() {
 
   return (
     <div className="article">
-      <Link className="article__link" to={url}>
+      <a className="article__link" href={url} target="_blank" rel="noreferrer">
         <div className="article__preview">
           <img src={previewImg} alt="preview" />
         </div>
@@ -16,7 +15,7 @@ const Article = memo(function Article() {
           <div className="article__title">{title}</div>
           <div className="article__description">{description}</div>
         </div>
-      </Link>
+      </a>
     </div>
   );
 });
