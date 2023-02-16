@@ -8,14 +8,12 @@ export const KataDiscuss = () => {
   const { id } = useParams();
 
   return (
-    <>
-      <div className="section solution-main">
-        <LeftBarForSolutions sol={false} />
-        <div className="section comments-section">
-          <CommentForm kataId={id as string} />
-          <CommentsList kataId={id as string} />
-        </div>
+    <div className="section solution-main">
+      <LeftBarForSolutions sol={false} />
+      <div className="section comments-section">
+        <CommentForm kataId={id as string} />
+        <CommentsList kataId={id as string} />
       </div>
-    </>
+    </div>
   );
 };

@@ -1,5 +1,6 @@
 import { API_URL } from '.';
-import { AccountInterface } from '../types/account';
+import { AccountInfo, AccountInterface } from '../types/account';
+import axios from 'axios';
 
 export class AccountAPI {
   static async getInfo(): Promise<{ account?: AccountInterface; error?: string }> {
@@ -11,6 +12,34 @@ export class AccountAPI {
     const info = await data.json();
     if (info.message) return { error: info.message };
     return { account: info };
+  }
+
+  static async delete(): Promise<{ status?: string; message?: string }> {
+    const savedToken = localStorage.getItem('token');
+    if (!savedToken) return { message: 'No token found' };
+    const data = await fetch(`${API_URL}/account`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${savedToken}` },
+    });
+    const { status, message } = await data.json();
+    if (message) return { message };
+    return { status };
+  }
+
+  static async editInfo(info: FormData): Promise<{ data?: AccountInfo; error?: string }> {
+    const savedToken = localStorage.getItem('token');
+    if (!savedToken) return { error: 'No token found' };
+    try {
+      const { data } = await axios.patch(`${API_URL}/account/edit`, info, {
+        headers: {
+          'Content-type': 'multipart/form-data',
+          Authorization: `Bearer ${savedToken}`,
+        },
+      });
+      return { data };
+    } catch (error) {
+      return { error: `${error}` };
+    }
   }
 
   static async addTrainedKata(kataId: string): Promise<{ status?: string; error?: string }> {

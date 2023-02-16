@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FollowerInterface } from '../../../../types/followers';
 import { Rank } from '../../../Kata/Rank';
+import { Avatar } from '../../../UI/Avatar';
 
 const FollowItem = ({ user, isFollower }: { user: FollowerInterface; isFollower?: boolean }) => {
   const username = isFollower ? user.username : user.followUser;
@@ -10,9 +11,7 @@ const FollowItem = ({ user, isFollower }: { user: FollowerInterface; isFollower?
   return (
     <div className="follow-list__item follow-user">
       <Rank rank={user.rank} />
-      <div className="follow-list__avatar">
-        <img src={avatar} alt="User avatar" />
-      </div>
+      <Avatar src={avatar} />
       <Link to={`/users/${username}/`} className="follow-user__name link">
         {username}
       </Link>

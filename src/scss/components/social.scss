@@ -6,12 +6,6 @@
   &__item:not(:last-child) {
     border-bottom: 1px solid rgba(255,255,255,0.125);
   }
-  &__avatar {
-    width: 30px;
-    height: 30px;
-    border-radius: 3px;
-    overflow: hidden;
-  }
 }
 
 .follow-user {
@@ -22,7 +16,7 @@
   padding: 8px 5px 8px 16px;
 
   &__name {
-     flex: 0 0 50%;
+    flex: 0 0 50%;
   }
 
   &__clan {
