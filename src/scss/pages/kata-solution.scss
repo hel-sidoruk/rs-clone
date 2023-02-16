@@ -9,35 +9,31 @@
 
 }
 .left-bar {
-  &__items {
-    position: sticky;
-    top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    width: 260px;
-    max-width: 260px;
+  .article__preview {
+    max-width: 90px;
   }
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 260px;
+  max-width: 260px;
   .sort {
     display: flex;
     flex-direction: column;
     background: var(--bg-section);
     padding: 16px;
-    border-radius: $mini-border-radius;
+    border-radius: 10px;
     align-items: flex-start;
     color: var(--grey-text);
-
-    .title {
-      margin: 0 0 10px;
-      line-height: 22px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .025em;
-
-      &.bottom {
-        margin: 14px 0 10px;
-      }
-    }
+    gap: 14px;
+  }
+  .title {
+    line-height: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .025em;
+    margin-bottom: 8px;
   }
 }
 .locked-solutions {
@@ -63,20 +59,14 @@
   cursor: pointer;
   margin-bottom: 4px;
   .item {
-    $wh: 14px;
     display: flex;
-    width: $wh;
-    height: $wh;
     border: 1px solid var(--border-color);
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
     position: relative;
     transition: .3s;
   }
-  &.square {
-      .item {
-        border-radius: 2px;
-      }
-    }
   &.current {
     .item {
       border: 5px solid $filters-accent;
@@ -87,20 +77,6 @@
     -webkit-font-smoothing: antialiased;
     user-select: none;
     font-weight: 400;
-  }
-  &.square.current {
-    .item {
-      background: $filters-accent;
-      &:after {
-        position: absolute;
-        top: 30%;
-        left: 60%;
-        transform: translate(-50%, -50%);
-        content: '✔';
-        font-size: 11px;
-        color: var(--bg-color);
-      }
-    }
   }
   .text {
     font-size: 14px;
@@ -129,48 +105,6 @@
   }
 }
 
-.adds {
-  a {
-    display: flex;
-    border-radius: $mini-border-radius * 2;
-    padding: 12px;
-    background: #ffffff10;
-    gap: 16px;
-    &:last-child {
-      background: #ffffff05;
-    }
-    .image {
-      width: 35%;
-      overflow: hidden;
-      position: relative;
-      img {
-        width: 100%;
-      }
-    }
-    .info {
-      display: flex;
-      width: 65%;
-      flex-direction: column;
-      gap: 5px;
-      span {
-        font-size: 13px;
-        line-height: 1.1em;
-        transition: .2s;
-        font-weight: 400;
-      }
-      .title {
-        color: $blue;
-        font-weight: 700;
-        line-height: 1.5em;
-      }
-    }
-    &:hover {
-      span {
-        color: var(--blue);
-      }
-    }
-  }
-}
 .solution-item {
   background: var(--bg-section);
   border-radius: $mini-border-radius * 2;

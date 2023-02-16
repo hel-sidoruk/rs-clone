@@ -5,9 +5,10 @@ interface Props {
   title: string;
   text: string;
   children: React.ReactNode;
+  cancelBtnText?: string;
 }
 
-export const Dialog = ({ onConfirm, title, text, children }: Props) => {
+export const Dialog = ({ onConfirm, title, text, children, cancelBtnText }: Props) => {
   return (
     <div className="modal__content">
       <div className="modal__header">
@@ -18,7 +19,7 @@ export const Dialog = ({ onConfirm, title, text, children }: Props) => {
       </div>
       <div className="modal__body">{children}</div>
       <div className="modal__footer">
-        <button className="btn btn-fill">Cancel</button>
+        <button className="btn btn-fill">{cancelBtnText || 'Cancel'}</button>
         <button className="btn success" onClick={onConfirm}>
           {text}
         </button>

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import KataSolutionItem from '../components/Kata/kataSolutionItem';
-import LeftBarForSolutions from '../components/Kata/leftBarForSolutions';
 import { SolutionsAPI } from '../api/SolutionsAPI';
 import { useParams } from 'react-router';
 import { SolutionInterface } from '../types';
-import { nanoid } from 'nanoid';
 import useTypedSelector from '../hooks/useTypedSelector';
 import { LockedSolutions } from '../components/Kata/LockedSolutions';
+import { HiddenDescription } from '../components/Kata/HiddenDescription';
+import Article from '../components/Article';
+import { SortBlock } from '../components/Kata/SortBlock';
 
 export const KataSolutions = () => {
   const { id } = useParams();
@@ -20,15 +21,25 @@ export const KataSolutions = () => {
   }, []);
 
   return (
-    <div className="section solution-main">
-      <LeftBarForSolutions sol />
-      <div>
-        {shouldShowSolutions ? (
-          solutions.map((item) => <KataSolutionItem solution={item} key={nanoid()} />)
-        ) : (
-          <LockedSolutions kataId={id as string} />
-        )}
+    <>
+      <HiddenDescription />
+      <div className="section solution-main">
+        <div className="left-bar">
+          <div className="sort">
+            <SortBlock title="View" items={['All', 'Issue', 'Questions', 'Suggestions']} />
+            <SortBlock title="SORT BY" items={['Best Practice', 'Clever', 'Newest', 'Oldest']} />
+          </div>
+          <Article />
+          <Article />
+        </div>
+        <div>
+          {shouldShowSolutions ? (
+            solutions.map((item) => <KataSolutionItem solution={item} key={item.id} />)
+          ) : (
+            <LockedSolutions kataId={id as string} />
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };

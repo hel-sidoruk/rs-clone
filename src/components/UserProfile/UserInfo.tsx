@@ -3,6 +3,7 @@ import { SolutionsAPI } from '../../api/SolutionsAPI';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { Shield } from '../Icons';
 import { Rank } from '../Kata/Rank';
+import { Avatar } from '../UI/Avatar';
 import { FollowButton } from './FollowButton';
 
 const UserInfo = () => {
@@ -16,9 +17,7 @@ const UserInfo = () => {
 
   return (
     <div className="user-profile__info user-info section">
-      <div className="user-info__avatar">
-        <img src={currentUser?.avatar} alt="User avatar" />
-      </div>
+      <Avatar src={currentUser?.avatar || ''} size="75px" />
       {currentUser && (
         <div className="user-info__badge">
           <div className="user-info__badge-box">

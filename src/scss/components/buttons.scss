@@ -37,4 +37,8 @@
 .btn-dark {
   background-color: rgba(#000, 0.2);
   border-color: transparent;
+  &.red {
+    border-color: #bb432c;
+    color: #bb432c;
+  }
 }

@@ -2,14 +2,14 @@ import { ActionCreator, Dispatch } from 'redux';
 import { UsersAPI } from '../../api';
 import { AccountAPI } from '../../api/AccountAPI';
 import { ThunkActionType } from '../../types';
-import { AccountAction, AccountActionTypes } from '../../types/account';
+import { AccountAction, AccountActionTypes, AccountInfo } from '../../types/account';
 
 export function setAccount(): ThunkActionType {
   return async (dispatch: Dispatch<AccountAction>) => {
     const { account } = await AccountAPI.getInfo();
     if (account) {
       const { username, trainedKatas, solvedKatas, starredKatas, forfeitedKatas } = account;
-      const { rank, honor, score, avatar } = await UsersAPI.getOne(username);
+      const { rank, honor, score, avatar, clan, name } = await UsersAPI.getOne(username);
       dispatch({
         type: AccountActionTypes.SET_ACCOUNT,
         payload: {
@@ -22,9 +22,21 @@ export function setAccount(): ThunkActionType {
           honor,
           score,
           forfeitedKatas,
+          clan,
+          name,
         },
       });
     }
+  };
+}
+
+export function editAccountInfo(info: AccountInfo): ThunkActionType {
+  return async (dispatch: Dispatch<AccountAction>) => {
+    const { username, clan, name, avatar } = info;
+    dispatch({
+      type: AccountActionTypes.EDIT_INFO,
+      payload: avatar ? { username, clan, name, avatar } : { username, clan, name },
+    });
   };
 }
 
