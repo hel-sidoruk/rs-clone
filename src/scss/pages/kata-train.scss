@@ -13,8 +13,8 @@
   &__descr {
     flex-grow: 1;
     border-radius: 8px;
-    background-color: $section;
-    color: $light;
+    background-color: var(--bg-section);
+    color: var(--contrast-text);
     padding: 16px;
     overflow-y: auto;
     @include scrollBar(10px);
@@ -30,19 +30,19 @@
   flex-grow: 1;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  background-color: $dark;
+  height: 546px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
   &__top {
-    background-color: $section;
+    background-color: var(--bg-section);
     padding: 8px;
     &-text {
       font-size: 14px;
       font-weight: 700;
       line-height: 20px;
-      color: $light;
+      color: var(--contrast-text);
     }
   }
 }
@@ -52,13 +52,14 @@
   flex-grow: 1;
   padding: 5px 0;
   font-family: 'CamingoCode', monospace;
+  background: var(--bg-textarea);
   &__line-counter {
     width: 40px;
     height: 100%;
     font-size: 14px;
     line-height: 17.5px;
-    color: #515151;
-    border-right: 1px solid #222222;
+    color: var(--grey-text);
+    border-right: 1px solid var(--border-color);
     span {
       text-align: right;
       width: 29px;
@@ -71,7 +72,7 @@
     flex-grow: 1;
     position: relative;
     padding: 0 5px;
-    color: $light;
+    color: var(--contrast-text);
     overflow-x: auto;
     @include scrollBar(8px);
     &::-webkit-scrollbar {
@@ -85,7 +86,7 @@
     font-size: inherit;
     padding: 0 5px;
     line-height: inherit;
-    caret-color: $light;
+    caret-color: var(--contrast-text);
     background-color: transparent;
     outline: none;
     border: none;
@@ -119,6 +120,6 @@
 .past-solutions {
   pre {
     border-radius: 0;
-    border: 1px solid rgba(#ccc, 0.5);
+    border: 1px solid var(--border-color);
   }
 }

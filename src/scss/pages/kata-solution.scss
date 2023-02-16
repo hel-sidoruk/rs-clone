@@ -21,11 +21,11 @@
   .sort {
     display: flex;
     flex-direction: column;
-    background: #ffffff05;
+    background: var(--bg-section);
     padding: 16px;
     border-radius: 10px;
     align-items: flex-start;
-    color: $grey;
+    color: var(--grey-text);
     gap: 14px;
   }
   .title {
@@ -42,11 +42,11 @@
     line-height: 1.4;
     font-size: 16px;
     font-weight: 400;
-    color: #f1f3f5;
+    color: var(--contrast-text);
   }
   &__text {
     line-height: 22px;
-    color: $light;
+    color: var(--contrast-text);
     margin-bottom: 16px;
   }
 }
@@ -60,9 +60,9 @@
   margin-bottom: 4px;
   .item {
     display: flex;
+    border: 1px solid var(--border-color);
     width: 14px;
     height: 14px;
-    border: 1px solid $scroll;
     border-radius: 50%;
     position: relative;
     transition: .3s;
@@ -94,7 +94,7 @@
     min-width: 18px;
     height: 18px;
     border-radius: 50%;
-    background: #8e8e99;
+    background: var(--border-color);
     font-size: 12px;
     color: $dark;
     margin-left: auto;
@@ -106,7 +106,7 @@
 }
 
 .solution-item {
-  background: $section;
+  background: var(--bg-section);
   border-radius: $mini-border-radius * 2;
   padding: 8px 16px 16px;
   margin-bottom: 10px;
@@ -131,13 +131,13 @@
     .best-practice {
       display: flex;
       align-items: center;
-      background: #3e3f42;
+      background: var(--border-color);
       font-size: 12px;
-      color: $grey;
+      color: var(--grey-text);
       border-radius: 2px;
       overflow: hidden;
       cursor: pointer;
-      transition: .2s;
+      transition: 0.2s;
       .text {
         padding: 5px 5px 5px 0;
       }
@@ -145,13 +145,13 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #56575a;
+        background: var(--border-color);
         height: 100%;
         width: 21px;
-        transition: inherit;
+        transition: 0.2s;
       }
       &:hover {
-        background: #555559;
+        background: var(--grey-text);
         color: lighten($grey, 10);
         .count {
           background: #6f7073;
@@ -165,11 +165,11 @@
         align-items: center;
         gap: 3px;
         cursor: pointer;
-        color: $grey;
-        transition: .2s;
+        color: var(--grey-text);
+        transition: 0.2s;
 
         &:hover {
-          color: $blue;
+          color: var(--blue);
         }
       }
     }

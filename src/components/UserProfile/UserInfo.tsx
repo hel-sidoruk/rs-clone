@@ -16,7 +16,7 @@ const UserInfo = () => {
   }, []);
 
   return (
-    <div className="user-profile__info user-info">
+    <div className="user-profile__info user-info section">
       <Avatar src={currentUser?.avatar || ''} size="75px" />
       {currentUser && (
         <div className="user-info__badge">

@@ -1,11 +1,11 @@
 .hljs {
   overflow-x: auto;
-  color: $light;
+  color: var(--contrast-text);
 }
 
 .hljs-comment,
 .hljs-quote {
-  color: $grey-text;
+  color: var(--grey-text);
 }
 
 .hljs-number,

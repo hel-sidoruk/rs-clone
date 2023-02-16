@@ -1,8 +1,9 @@
 .filters {
-  border: 1px solid $scroll;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 14px;
   min-width: 300px;
+  background: var(--bg-section);
 
   &__drop-down{
     margin-bottom: 15px;
@@ -10,12 +11,13 @@
 
   &__search {
     margin-bottom: 20px;
-    border: 1px solid $input-bdr;
+    border: 1px solid var(--border-color);
     width: 100%;
-    background: $input-bg;
+    background: var(--bg-textarea);
+ 
     height: 30px;
     border-radius: 5px;
-    color: $input-text;
+    color: var(--grey-text);
     display: flex;
     justify-content: space-between;
     align-items: center;

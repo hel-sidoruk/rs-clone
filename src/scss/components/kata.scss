@@ -1,4 +1,5 @@
 .kata {
+
   &__info {
     &-top {
       display: flex;
@@ -7,15 +8,15 @@
       align-items: center;
     }
     &-title {
+      color: var(--contrast-text);
       margin-left: 8px;
       font-size: 16px;
       font-weight: 700;
-      color: $light;
       line-height: 1.4;
       transition: color 0.5s;
 
       &:hover {
-        color: $blue;
+        color: var(--blue);
       }
     }
     &-bottom {
@@ -23,7 +24,7 @@
       align-items: center;
     }
     &-text {
-      color: $grey;
+      color: var(--grey-text);
       display: flex;
       align-items: center;
       &:not(:last-child) {
@@ -34,7 +35,7 @@
         cursor: pointer;
         transition: all .3s ease-in-out;
         &:hover {
-          color: $blue;
+          color: var(--blue);
         }
       }
     }
@@ -57,7 +58,6 @@
   justify-content: space-between;
   margin-bottom: 12px;
   &.section {
-    background-color: $section;
     padding: 8px 16px;
     border-radius: 8px;
     .kata__info-bottom {
@@ -72,22 +72,22 @@
   justify-content: center;
   padding: 12px;
   font-size: 14px;
-  border: 1px solid rgba(#fff, 0.2);
-  background-color: rgba(#000, 0.2);
-  color: $light;
+  border: 1px solid var(--border-color);
+  background-color: var(--dropdown-hover);
+  color: var(--contrast-text);
   line-height: 21px;
 }
 .icon-container {
-  background-color: rgba(#fff, 0.125);
+  background-color: var(--dropdown-hover);
   height: 50px;
   width: 50px;
-  color: $grey;
+  color: var(--grey-text);
   text-align: center;
   cursor: pointer;
   transition: all .2s ease-in-out;
   &:hover {
     background-color: rgba(#fff, 0.05);
-    color: $blue;
+    color: var(--blue);
   }
   .icon-moon::before {
     line-height: 51px;
@@ -99,17 +99,17 @@
   align-items: center;
   &__btn {
     padding: 8px 16px;
-    color: $grey;
+    color: var(--grey-text);
     border-radius: 8px;
     transition: all .2s ease-in-out;
     font-size: 14px;
     line-height: 21px;
     &:hover {
-      color: $blue;
+      color: var(--blue);
     }
     &.active {
-      background-color: #ffffff10;
-      color: #ebebeb;
+      background-color: var(--bg-section);
+      color: var(--contrast-text);
       pointer-events: none;
     }
     &.centered {
@@ -140,7 +140,7 @@
 .kata-details {
   margin-bottom: 15px;
   &__title {
-    color: $grey;
+    color: var(--grey-text);
     margin-bottom: 18px;
     font-size: 14px;
     line-height: 22px;
@@ -170,7 +170,7 @@
 
   &.kata-hide {
     max-width: unset;
-    border: 1px solid $scroll;
+    border: 1px solid var(--border-color);
     padding: 0;
     transition: height .3s ease-in-out;
     .description {
@@ -200,7 +200,7 @@
     justify-content: space-between;
     cursor: pointer;
     svg {
-      fill: $light;
+      fill: var(--contrast-text);
       transition: transform .2s ease-in-out;
       transform: rotate(90deg);
     }
@@ -208,6 +208,6 @@
   &__title {
     font-size: 16px;
     line-height: 24px;
-    color: $light;
+    color: var(--contrast-text);
   }
 }

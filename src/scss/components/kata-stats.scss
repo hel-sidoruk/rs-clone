@@ -3,7 +3,7 @@
   grid-template-columns: repeat(2, 1fr);
   &__block {
     line-height: 23px;
-    color: $light;
+    color: var(--contrast-text);
     padding: 4px;
   }
   &__item {
@@ -12,7 +12,7 @@
     justify-content: space-between;
     align-items: center;
     &:not(:last-child) {
-      border-bottom: 1px solid rgba(#fff, 0.15);
+      border-bottom: 1px solid var(--border-color);
     }
   }
 }

@@ -1,8 +1,9 @@
 .comments-section {
   position: relative;
+  color: var(--contrast-text);
 }
 .comment {
-  color: $grey;
+  color: var(--text);
   display: flex;
   margin-bottom: 20px;
   gap: 15px;
@@ -17,7 +18,7 @@
     display: block;
   }
   .bullet {
-    background-color: rgba(#fff, 0.3);
+    background-color: var(--grey-text);
     border-radius: 50%;
     width: 3px;
     height: 3px;
@@ -29,14 +30,12 @@
     margin-bottom: 8px;
   }
   &__body {
-    color: $light;
     padding: 4px 0;
     font-size: 16px;
     line-height: 28px;
     margin-bottom: 5px;
   }
   &__rank {
-    color: $light;
     margin-left: 5px;
   }
   &__actions {
@@ -50,7 +49,7 @@
     }
   }
   .spoiler {
-    color: #bb432c;
+    color: $red;
   }
   .keyword-tag {
     line-height: 14px;
@@ -58,16 +57,14 @@
     padding: 1px 6px;
     margin-left: 5px;
     &.issue {
-      background-color: #b1361e;
+      background-color: $red;
     }
     &.question {
-      color: #efefef;
-      border: 1px solid #efefef;
+      border: 1px solid var(--contrast-text);
       background-color: transparent;
     }
     &.suggestion {
-      background-color: #ffffff30;
-      color: #efefef;
+      background-color: var(--border-color);
     }
   }
 }
@@ -76,8 +73,5 @@
   align-items: center;
   &.disabled {
     pointer-events: none;
-  }
-  &__score {
-    color: $light;
   }
 }

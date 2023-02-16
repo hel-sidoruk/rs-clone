@@ -3,7 +3,7 @@
     max-width: 1044px;
     padding: 0px 10px;
     margin: 0 auto;
-    color: #efefef;
+    color: var(--contrast-text);
   }
 
   &__list {
@@ -12,7 +12,7 @@
 
   &__tab {
   border-radius: 10px;
-  background: $section;
+  background: var(--bg-section);
   display: inline-block;
   padding: 12px 22px;
   margin-bottom: 20px;
@@ -20,7 +20,7 @@
 }
 
 .leader-table {
-  background: $section;
+  background: var(--bg-section);
   border-radius: 10px;
   padding: 15px;
   line-height: 1.6;
@@ -64,7 +64,6 @@
     }
   }
 
-
   &__username {
     transition: all 0.5s;
   }
@@ -80,7 +79,7 @@
   &__tr {
     padding: 5px;
     &:not(:last-child) {
-      border-bottom: 1px solid #ffffff20;
+      border-bottom: 1px solid var(--border-color);
     }
   }
 }
