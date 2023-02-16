@@ -1,13 +1,22 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDragAndDrop } from '../../hooks/useDragAndDrop';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { Avatar } from '../UI/Avatar';
 
-export const FileInput = ({ setImage }: { setImage: (f: File | null) => void }) => {
+interface Props {
+  setImage: (f: File | null) => void;
+  success: boolean;
+}
+
+export const FileInput = ({ setImage, success }: Props) => {
   const { avatar } = useTypedSelector((state) => state.account);
   const inputRef = useRef<HTMLInputElement>(null);
   const [uploadedImage, dragActive, selectFile, handleDrag, handleDrop, resetImage] =
     useDragAndDrop(setImage);
+
+  useEffect(() => {
+    if (success) resetImage();
+  }, [success]);
 
   return (
     <div className="field">

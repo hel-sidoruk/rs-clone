@@ -44,7 +44,7 @@ export const InformationForm = () => {
       </div>
       <h3 className="title">INFORMATION</h3>
       <div className="form__content">
-        <FileInput setImage={setAvatarImage} />
+        <FileInput setImage={setAvatarImage} success={success} />
         <InputField title="Username" value={usernameValue} setValue={setUsernameValue} />
         <InputField title="Name" value={nameValue} setValue={setNameValue} />
         <InputField title="Clan" value={clanValue} setValue={setClanValue} />

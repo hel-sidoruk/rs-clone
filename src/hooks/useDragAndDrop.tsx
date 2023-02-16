@@ -9,7 +9,7 @@ type FnReturn = [
   (e: React.ChangeEvent<HTMLInputElement>) => void,
   (e: React.DragEvent<HTMLDivElement>) => void,
   (e: React.DragEvent<HTMLDivElement>) => void,
-  (e: React.MouseEvent<HTMLDivElement>) => void
+  (e?: React.MouseEvent<HTMLDivElement>) => void
 ];
 
 export function useDragAndDrop(setImage: (f: File | null) => void): FnReturn {
@@ -54,9 +54,9 @@ export function useDragAndDrop(setImage: (f: File | null) => void): FnReturn {
     }
   };
 
-  const resetImage = (e: React.MouseEvent<HTMLDivElement>) => {
+  const resetImage = (e?: React.MouseEvent<HTMLDivElement>) => {
     if (!uploadedImage) return;
-    e.stopPropagation();
+    if (e) e.stopPropagation();
     setUploadedImage(null);
     setImage(null);
   };

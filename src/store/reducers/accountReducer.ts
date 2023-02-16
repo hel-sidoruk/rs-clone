@@ -37,6 +37,7 @@ export default function accountReducer(state: AccountState = initialState, actio
         username: action.payload.username,
         clan: action.payload.clan,
         name: action.payload.name,
+        avatar: action.payload.avatar ? action.payload.avatar : state.avatar,
       };
     case AccountActionTypes.SIGN_OUT_ACCOUNT:
       return {
