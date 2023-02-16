@@ -78,20 +78,6 @@
     user-select: none;
     font-weight: 400;
   }
-  &.square.current {
-    .item {
-      background: $filters-accent;
-      &:after {
-        position: absolute;
-        top: 30%;
-        left: 60%;
-        transform: translate(-50%, -50%);
-        content: '✔';
-        font-size: 11px;
-        color: $bg-color;
-      }
-    }
-  }
   .text {
     font-size: 14px;
     line-height: 1.5em;

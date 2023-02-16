@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 export const SortBlock = ({ title, items }: { title: string; items: string[] }) => {
-  const [checked, setChecked] = useState('All');
+  const [checked, setChecked] = useState(items[0]);
 
   return (
     <div>
