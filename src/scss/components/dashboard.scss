@@ -38,7 +38,7 @@
     }
     &.active {
       pointer-events: none;
-      background: $section;
+      background: var(--bg-section);
       border-radius: 10px;
     }
   }

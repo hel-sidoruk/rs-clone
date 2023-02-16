@@ -10,6 +10,9 @@ body._light {
     --dropdown-hover: rgba(0, 0, 0, 0.1);
     --similar-color: #efefef; //light
     --rank-white:#bdbdbd;
+    --modal-overlay:  rgba(239, 239, 239, 0.8);
+    --scroll: #969696;
+   
 
     .kata-item {
       --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);
@@ -31,7 +34,9 @@ body._light {
     --border-color: #383737;
     --dropdown-hover: rgba(255, 255, 255, 0.1);
     --similar-color: #131414; //dark
-    --rank-white:#e6e6e6;
+    --rank-white:#e6e6e6; 
+    --modal-overlay: rgba(19, 20, 20, 0.8);
+    --scroll: #404040;
   }
 
 // ------------- header-home
@@ -39,7 +44,7 @@ $light: #efefef; // оставить, для кнопок и дропдауна 
 $grey: #c0c0c0;
 // --------------
 
-$scroll: #404040;
+//$scroll: #404040;
 $dark: #131414;
 
 $sidebar-bg: #121216;
@@ -77,7 +82,7 @@ $noise: 'https://uploads-ssl.webflow.com/62e3ee10882dc50bcae8d07a/631a5d4631d4c5
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background: $scroll;
+    background: var(--scroll);
   }
 }
 

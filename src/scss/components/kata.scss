@@ -1,5 +1,5 @@
 .kata {
-  color: var(--contrast-text);
+
   &__info {
     &-top {
       display: flex;
@@ -8,6 +8,7 @@
       align-items: center;
     }
     &-title {
+      color: var(--contrast-text);
       margin-left: 8px;
       font-size: 16px;
       font-weight: 700;
