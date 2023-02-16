@@ -15,7 +15,7 @@ export const KataDiscuss = () => {
       <div className="section solution-main">
         <div className="left-bar">
           <div className="sort">
-            <SortBlock title="View" items={['All', 'Following', 'Mine']} />
+            <SortBlock title="View" items={['All', 'Issue', 'Questions', 'Suggestions']} />
           </div>
           <Article />
           <Article />

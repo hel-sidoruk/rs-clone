@@ -43,6 +43,7 @@ export default function AppRouter() {
         path="/registration"
         element={<Pages.Authorization option="registration" title="Sign up | Codewars Clone" />}
       />
+      <Route path="*" element={<Pages.Page404 />} />
     </Routes>
   );
 }
