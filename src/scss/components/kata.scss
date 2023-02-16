@@ -121,6 +121,22 @@
     margin-right: 5px;
   }
 }
+.kata-page {
+  display: flex;
+  gap: 16px;
+  &__content {
+    width: 84%;
+  }
+  &__articles {
+    color: $light;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    .article__preview {
+      max-width: 85px;
+    }
+  }
+}
 .kata-details {
   margin-bottom: 15px;
   &__title {
