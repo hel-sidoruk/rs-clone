@@ -1,52 +1,13 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
+import { useDragAndDrop } from '../../hooks/useDragAndDrop';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { Avatar } from '../UI/Avatar';
 
 export const FileInput = ({ setImage }: { setImage: (f: File | null) => void }) => {
   const { avatar } = useTypedSelector((state) => state.account);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [dragActive, setDragActive] = useState(false);
-  const [uploadedImage, setUploadedImage] = useState<{
-    src: string | ArrayBuffer;
-    name: string;
-  } | null>(null);
-
-  const selectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) setImage(e.target.files[0]);
-  };
-
-  const handleClick = () => {
-    inputRef.current?.click();
-  };
-
-  const handleDrag = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (!uploadedImage) setDragActive(true);
-  };
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (uploadedImage) return;
-    setDragActive(false);
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      const file = e.dataTransfer.files[0];
-      setImage(file);
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        if (e.target && e.target.result)
-          setUploadedImage({ src: e.target.result, name: file.name });
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const resetImage = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!uploadedImage) return;
-    e.stopPropagation();
-    setUploadedImage(null);
-    setImage(null);
-  };
+  const [uploadedImage, dragActive, selectFile, handleDrag, handleDrop, resetImage] =
+    useDragAndDrop(setImage);
 
   return (
     <div className="field">
@@ -66,10 +27,10 @@ export const FileInput = ({ setImage }: { setImage: (f: File | null) => void }) 
         <div
           className={`file-upload__field ${dragActive ? 'active' : ''}`}
           onDragEnter={handleDrag}
-          onDragLeave={() => setDragActive(false)}
+          onDragLeave={handleDrag}
           onDragOver={handleDrag}
           onDrop={handleDrop}
-          onClick={handleClick}
+          onClick={() => inputRef.current?.click()}
         >
           {!uploadedImage && 'Drag your file here or'}
           <div className="btn" onClick={resetImage}>
