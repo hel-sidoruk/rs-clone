@@ -27,3 +27,4 @@ export * from './FlagIcon';
 export * from './JoystickIcon';
 export * from './ShuffleIcon';
 export * from './UndoIcon';
+export * from './SunIcon';
