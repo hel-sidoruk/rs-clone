@@ -24,7 +24,7 @@ export class SolutionsAPI {
 
   static async addSolution(
     kataId: string,
-    solution: { username: string; solution: string }
+    solution: { username: string; solution: string; name: string; rank: string }
   ): Promise<SolutionInterface> {
     const response = await fetch(`${API_URL}/kata/${kataId}/solutions`, {
       method: 'POST',

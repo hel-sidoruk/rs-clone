@@ -3,11 +3,12 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { SolutionsAPI } from '../../api/SolutionsAPI';
 import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
+import { KataInterface } from '../../types/kata';
 import { ResetSolutionButton } from './ResetSolutionButton';
 import { ShowSolutionsButton } from './ShowSolutionsButton';
 import { SkipKataButton } from './SkipKataButton';
 
-export const CodeActionsButtons = ({ initialSolution }: { initialSolution: string }) => {
+export const CodeActionsButtons = ({ kata }: { kata: KataInterface }) => {
   const { startTesting, updateSolution, setSuccess } = useActions();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -25,6 +26,8 @@ export const CodeActionsButtons = ({ initialSolution }: { initialSolution: strin
       await SolutionsAPI.addSolution(id, {
         username,
         solution,
+        name: kata.name,
+        rank: kata.rank,
       }).then(console.log);
     updateSolution('');
     navigate(`/kata/${id}/solutions`);
@@ -39,7 +42,7 @@ export const CodeActionsButtons = ({ initialSolution }: { initialSolution: strin
           <i className="icon-moon icon-moon-comments"></i>
           <span className="btn-text">discuss</span>
         </Link>
-        <ResetSolutionButton initialSolution={initialSolution} />
+        <ResetSolutionButton initialSolution={kata.initialSolution} />
       </div>
       <div className={`code__btns-tests ${isTestsStarted ? 'disabled' : ''}`}>
         <button className="btn" onClick={() => startTests('fixed')}>

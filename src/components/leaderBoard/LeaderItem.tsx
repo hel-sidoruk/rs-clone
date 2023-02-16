@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { UserInterface } from '../../types/user';
-import { FakeAvatar } from '../Icons';
 import { Rank } from '../Kata/Rank';
 
 const LeaderItem = ({ user, index }: { user: UserInterface; index: number }) => {
@@ -10,9 +9,9 @@ const LeaderItem = ({ user, index }: { user: UserInterface; index: number }) => 
       <div className="leader-table__td leader-table__td_position">#{index + 1}</div>
       <div className="leader-table__td">
         <Rank rank={user.rank}></Rank>
-        <Link className="leader-table__link" to={`/users/${user.username}/stats`}>
+        <Link className="leader-table__link" to={`/users/${user.username}/`}>
           <div className="leader-table__avatar">
-            <FakeAvatar />
+            <img src={user.avatar} alt="User avatar" />
           </div>
           <div className="leader-table__username">{user.username}</div>
         </Link>

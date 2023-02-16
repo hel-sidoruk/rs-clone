@@ -13,7 +13,7 @@ const Indicators = () => {
     <div className="stats__indicators">
       {currentUser && <Progress />}
       {isAuth && <Breakdown />}
-      <Contributions />
+      {!isAuth && <Contributions />}
     </div>
   );
 };

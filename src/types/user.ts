@@ -10,6 +10,7 @@ export interface UserInterface {
   totalCompleted: number;
   rank: string;
   score: number;
+  avatar: string;
 }
 
 export interface UserState {

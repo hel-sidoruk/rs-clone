@@ -33,11 +33,15 @@
     cursor: pointer;
     transition: color 0.3s;
 
-    &:not(._opened-tab):hover {
+    &:hover {
       color: var(--blue);
     }
+    &.active {
+      pointer-events: none;
+      background: $section;
+      border-radius: 10px;
+    }
   }
-
   &__stats {
     background: var(--bg-section);
     border-radius: 10px;
@@ -45,7 +49,6 @@
     display: flex;
     flex-direction: column;
   }
-
 }
 
 .stats {

@@ -12,12 +12,12 @@ const Breakdown = () => {
   useEffect(() => {
     setNextRank(parseInt(rank || '0') - 1);
     setPercent(getPercentScore(scoreNeededForRankingUp[nextRank], score || 0, 1));
-  });
+  }, [nextRank, rank, score]);
 
   return (
     <div className="stats__breakdowns">
       <div className="stats__honor-breakdown">
-        <HonorBreakdown />
+        <HonorBreakdown honor={honor || 0} />
       </div>
       <div className="stats__rank-breakdown">
         <RankBreakdown percent={percent} nextRank={nextRank} />

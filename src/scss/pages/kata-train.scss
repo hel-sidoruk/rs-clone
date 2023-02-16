@@ -1,12 +1,14 @@
 .kata-train {
   display: flex;
   flex-grow: 1;
-  padding-bottom: 30px;
+  height: calc(100% - 116px);
   &__info {
     width: 42%;
     margin-right: 16px;
     display: flex;
     flex-direction: column;
+    height: 100%;
+    overflow: hidden;
   }
   &__descr {
     flex-grow: 1;
@@ -14,18 +16,21 @@
     background-color: var(--bg-section);
     color: var(--contrast-color);
     padding: 16px;
+    overflow-y: auto;
+    @include scrollBar(10px);
   }
   &__code {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    max-width: 58%;
   }
 }
 .solution {
   flex-grow: 1;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  background-color: var(--bg-textarea);
+  background-color: $dark;
   height: 546px;
   overflow: hidden;
   display: flex;
@@ -68,6 +73,11 @@
     position: relative;
     padding: 0 5px;
     color: var(--contrast-color);
+    overflow-x: auto;
+    @include scrollBar(8px);
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
     white-space: break-spaces;
     line-height: 17.5px;
   }
@@ -83,9 +93,10 @@
     resize: none;
     position: absolute;
     top: 0;
-    bottom: 0;
+    width: 100%;
+    height: 100%;
     left: 0;
-    right: 0;
+    overflow: hidden;
   }
   &__btns {
     display: flex;
@@ -106,10 +117,6 @@
     }
   }
 }
-.purple-text {
-  color: $purple-text;
-}
-
 .past-solutions {
   pre {
     border-radius: 0;

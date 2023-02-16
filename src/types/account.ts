@@ -2,7 +2,6 @@ export interface AccountInterface {
   id: string;
   username: string;
   password: string | null;
-  avatar: string | null;
   github: string | null;
   solvedKatas: string[];
   trainedKatas: string[];

@@ -6,6 +6,12 @@
   &__item:not(:last-child) {
     border-bottom: 1px solid var(--border-color);
   }
+  &__avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    overflow: hidden;
+  }
 }
 
 .follow-user {

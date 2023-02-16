@@ -8,8 +8,8 @@ export function setAccount(): ThunkActionType {
   return async (dispatch: Dispatch<AccountAction>) => {
     const { account } = await AccountAPI.getInfo();
     if (account) {
-      const { username, avatar, trainedKatas, solvedKatas, starredKatas, forfeitedKatas } = account;
-      const { rank, honor, score } = await UsersAPI.getOne(username);
+      const { username, trainedKatas, solvedKatas, starredKatas, forfeitedKatas } = account;
+      const { rank, honor, score, avatar } = await UsersAPI.getOne(username);
       dispatch({
         type: AccountActionTypes.SET_ACCOUNT,
         payload: {

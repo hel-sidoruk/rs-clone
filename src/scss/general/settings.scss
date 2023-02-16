@@ -70,9 +70,12 @@ input {
   width: calc(100% - 55px);
   margin-left: 55px;
   flex-grow: 1;
+  padding-bottom: 40px;
   &.kata-training {
     display: flex;
     flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
   }
   &.hidden {
     padding: 16px;
