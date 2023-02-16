@@ -7,7 +7,7 @@
     text-transform: uppercase;
     line-height: 21px;
     font-size: 14px;
-    color: $light;
+    color: var(--contrast-text);
     margin-bottom: 16px;
   }
   .text {
@@ -23,7 +23,7 @@
     transition: background-color .2s ease-in-out;
     background-color: rgba(#000, 0.1);
     padding: 7px;
-    color: $light;
+    color: var(--contrast-text);
     height: 34px;
     outline: none;
     display: block;
@@ -34,7 +34,7 @@
     &:focus {
       background-color: $dark;
       border: 1px solid rgba(#000, 0.4);
-      box-shadow: 0 0 2px $light;
+      box-shadow: 0 0 2px var(--contrast-text);
     }
   }
   .label {
@@ -42,7 +42,7 @@
     padding: 4px;
     cursor: pointer;
     margin-bottom: 8px;
-    background-color:$scroll;
+    background-color:var(--scroll);
     color: #ebebeb;
     line-height: 21px;
     font-size: 14px;
