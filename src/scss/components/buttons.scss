@@ -31,7 +31,9 @@
   background-color: var(--blue);
   color: var(--bg-color);
   &:hover {
-    background-color: $light-blue;
+    color: var(--bg-color);
+    background-color: var(--blue);
+    filter: brightness(1.2);
   }
 }
 .btn-dark {
