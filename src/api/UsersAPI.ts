@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { API_URL } from '.';
 import { UserInterface } from '../types/user';
 
@@ -9,8 +10,7 @@ export class UsersAPI {
   }
 
   static async getOne(id: string): Promise<UserInterface> {
-    const response = await fetch(`${API_URL}/user/${id}`);
-    const data = await response.json();
+    const { data } = await axios.get(`${API_URL}/user/${id}`);
     return data;
   }
 

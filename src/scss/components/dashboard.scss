@@ -1,5 +1,6 @@
 .dashboard-wrapper {
   display: flex;
+  min-height: 180px;
   &__sidebar {
    width: 160px;
     border-right: 1px solid var(--border-color);
@@ -16,8 +17,14 @@
   }
 
   &__content {
+    position: relative;
     padding-left: 20px;
-    width: 100%;
+    flex-grow: 1;
+    .kata-item {
+      &:not(:last-child) {
+        margin-bottom: 24px;
+      }
+    }
   }
 }
 
@@ -53,7 +60,11 @@
 
 .stats {
   line-height: 150%;
-
+  min-height: 240px;
+  position: relative;
+  .loader {
+    transform: translate(-50%, -35%);
+  }
   &__progress,
   &__contributions,
   &__breakdowns {

@@ -1,6 +1,7 @@
 .solutions-tab {
   &__list {
     display: flex;
+    max-width: calc(1024px - 172px);
     flex-direction: column;
     gap: 20px;
   }
@@ -32,6 +33,7 @@
     margin-bottom: 15px;
     border-radius: 6px;
     padding: 10px 15px;
+    @include scrollBar(10px);
   }
 
   &__footer {
@@ -42,7 +44,6 @@
   &__link {
     color: $light-blue;
   }
-
   a {
     transition: color 0.3s;
   }

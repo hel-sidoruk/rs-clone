@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { AccountAPI } from '../../api/AccountAPI';
 import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
+import Loader from '../UI/Loader';
 import { FileInput } from './FileInput';
 import { InputField } from './InputField';
 
@@ -13,6 +14,7 @@ export const InformationForm = () => {
   const [success, setSuccess] = useState(false);
   const [avatarImage, setAvatarImage] = useState<File | null>(null);
   const { editAccountInfo } = useActions();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (username) setUsernameValue(username);
@@ -28,16 +30,26 @@ export const InformationForm = () => {
     formData.append('name', nameValue);
     formData.append('clan', clanValue);
     if (avatarImage) formData.append('avatarImage', avatarImage);
-    const { data } = await AccountAPI.editInfo(formData);
-    if (data) {
-      editAccountInfo(data);
-      setSuccess(true);
-      setTimeout(() => setSuccess(false), 4000);
+    try {
+      setLoading(true);
+      const { data } = await AccountAPI.editInfo(formData);
+      if (data) {
+        editAccountInfo(data);
+        setSuccess(true);
+        setTimeout(() => setSuccess(false), 4000);
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <form className="form" onSubmit={onSubmit}>
+      {loading && (
+        <div className="form__loader">
+          <Loader />
+        </div>
+      )}
       <div className={`form__success ${success ? '' : 'hidden'}`}>
         <i className="icon-moon icon-moon-user"></i>
         Info updated successfully

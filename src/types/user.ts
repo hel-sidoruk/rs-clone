@@ -17,12 +17,19 @@ export interface UserState {
   currentUser: UserInterface | null;
   following: FollowerInterface[];
   followers: FollowerInterface[];
+  loading: boolean;
+  error: boolean;
 }
 
 export enum UserActionTypes {
+  FETCH_USER = 'FETCH_USER',
+  FETCH_USER_ERROR = 'FETCH_USER_ERROR',
   SET_CURRENT_USER = 'SET_CURRENT_USER',
 }
 
+interface FetchUser {
+  type: UserActionTypes.FETCH_USER | UserActionTypes.FETCH_USER_ERROR;
+}
 interface SetUserAction {
   type: UserActionTypes.SET_CURRENT_USER;
   payload: {
@@ -32,4 +39,4 @@ interface SetUserAction {
   };
 }
 
-export type UserAction = SetUserAction;
+export type UserAction = FetchUser | SetUserAction;

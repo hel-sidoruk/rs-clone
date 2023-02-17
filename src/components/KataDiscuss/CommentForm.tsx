@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { CommentLabel } from '../../types/comments';
+import { Avatar } from '../UI/Avatar';
 import { FormDropdown } from './FormDropdown';
 
 export const CommentForm = ({ kataId }: { kataId: string }) => {
@@ -48,9 +49,7 @@ export const CommentForm = ({ kataId }: { kataId: string }) => {
 
   return (
     <div className="comment-form">
-      <div className="avatar">
-        <img src={avatar as string} alt="avatar" />
-      </div>
+      <Avatar src={avatar as string} size="40px" />
       <div className={`input-field ${isActive ? 'active' : ''}`}>
         <textarea
           className="comment-form__input"
