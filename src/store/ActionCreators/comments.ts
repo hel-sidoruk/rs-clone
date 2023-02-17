@@ -7,7 +7,7 @@ export function fetchComments(kataId: string, label?: CommentLabel): ThunkAction
   return async (dispatch: Dispatch<CommentsAction>, getState) => {
     const { totalCount } = getState().comments;
     dispatch({ type: CommentsActionTypes.LOADING_COMMENTS });
-    const { rows, count } = await CommentsAPI.getComments(kataId, label);
+    const { rows, count } = await CommentsAPI.getComments(kataId, label ? `?label=${label}` : '');
     dispatch({
       type: CommentsActionTypes.FETCH_COMMENTS,
       payload: { comments: rows, totalCount: label ? totalCount : count },

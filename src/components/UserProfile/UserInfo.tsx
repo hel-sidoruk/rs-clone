@@ -8,7 +8,7 @@ import { FollowButton } from './FollowButton';
 
 const UserInfo = () => {
   const { username } = useTypedSelector((state) => state.authorizedUser);
-  const { currentUser, followers, following } = useTypedSelector((state) => state.user);
+  const { currentUser, followers, following, loading } = useTypedSelector((state) => state.user);
   const isAuth = currentUser && currentUser.username === username;
 
   useEffect(() => {
@@ -17,16 +17,14 @@ const UserInfo = () => {
 
   return (
     <div className="user-profile__info user-info section">
-      <Avatar src={currentUser?.avatar || ''} size="75px" />
-      {currentUser && (
-        <div className="user-info__badge">
-          <div className="user-info__badge-box">
-            <Rank rank={currentUser.rank}></Rank>
-            {currentUser.username}
-          </div>
-          <div className="user-info__honor">{currentUser.honor}</div>
+      <Avatar src={loading ? '' : (currentUser?.avatar as string)} size="75px" />
+      <div className="user-info__badge">
+        <div className="user-info__badge-box">
+          {!loading && currentUser && <Rank rank={currentUser.rank}></Rank>}
+          {!loading && currentUser && currentUser.username}
         </div>
-      )}
+        <div className="user-info__honor">{currentUser?.honor || ''}</div>
+      </div>
       <div className="user-info__shield">
         <Shield />
         <div>mod</div>
@@ -34,11 +32,11 @@ const UserInfo = () => {
       <div className="user-info__col user-info__col_1">
         <div>
           <b>Name:</b>
-          {currentUser ? currentUser.name : ''}
+          {currentUser && !loading ? currentUser.name : ''}
         </div>
         <div>
           <b>Clan:</b>
-          {currentUser ? currentUser.clan : ''}
+          {currentUser && !loading ? currentUser.clan : ''}
         </div>
       </div>
       <div className="user-info__col user-info__col_2">

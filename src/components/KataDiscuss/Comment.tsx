@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { CommentInterface } from '../../types/comments';
+import { Avatar } from '../UI/Avatar';
 import { CommentVoter } from './CommentVoter';
 import { EditCommentButton } from './EditCommentButton';
 import { RemoveCommentButton } from './RemoveCommentButton';
@@ -17,7 +18,7 @@ export const Comment = ({ kataId, comment }: { kataId: string; comment: CommentI
   return (
     <div className={`comment ${comment.id === updatingComment?.id ? 'hidden' : ''}`}>
       <Link className="avatar" to={`/users/${comment.username}`}>
-        <img src={comment.avatar} alt="avatar" />
+        <Avatar src={comment.avatar} size="40px" />
       </Link>
       <div className="comment__content">
         <div className="comment__header">
