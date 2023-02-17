@@ -9,7 +9,6 @@ export function fetchKatas(): ThunkActionType {
     try {
       dispatch({ type: KatasActionTypes.FETCH_KATAS });
       const { rows, count } = await KataAPI.getAll(1, query);
-      if (!rows) return;
       const katasByID: KatasById = {};
 
       rows.forEach((el) => {
@@ -33,8 +32,6 @@ export function fetchNextKatas(): ThunkActionType {
     try {
       dispatch({ type: KatasActionTypes.FETCH_KATAS });
       const { rows } = await KataAPI.getAll(nextPage, filters);
-      if (!rows) return;
-
       const katasById: KatasById = {};
 
       rows.forEach((el) => {

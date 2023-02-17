@@ -23,10 +23,12 @@ export const KataLibrary = ({ title }: { title: string }) => {
             <i className="icon-moon icon-moon-compare"></i>
             Library
           </div>
-          <div className="library__controls">
-            <span>{randomKatas ? randomKatas.length : totalCount} Kata Found</span>
-            <ShuffleControls />
-          </div>
+          {!loading && (
+            <div className="library__controls">
+              <span>{randomKatas ? randomKatas.length : totalCount} Kata Found</span>
+              <ShuffleControls />
+            </div>
+          )}
           <div className="library__bar">
             <Filters />
             <Article />
