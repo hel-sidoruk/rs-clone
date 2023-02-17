@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { SolutionInterface } from '../../types';
 import { CodeHighlight } from '../Solution/CodeHighlight';
-import { SolutionControls } from './SolutionControls';
 
 const KataSolutionItem = ({ solution }: { solution: SolutionInterface }) => {
   return (
@@ -16,7 +15,6 @@ const KataSolutionItem = ({ solution }: { solution: SolutionInterface }) => {
       <div className="markdown solution-item__code">
         <CodeHighlight>{solution.solution}</CodeHighlight>
       </div>
-      <SolutionControls bestPractices={solution.bestPracticesVotes} clever={solution.cleverVotes} />
     </div>
   );
 };
