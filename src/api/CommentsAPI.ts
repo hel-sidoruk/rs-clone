@@ -9,8 +9,11 @@ interface CommentUpdates {
 }
 
 export class CommentsAPI {
-  static async getComments(id: string): Promise<CommentInterface[]> {
-    const response = await fetch(`${API_URL}/kata/${id}/discuss`);
+  static async getComments(
+    id: string,
+    label?: CommentLabel
+  ): Promise<{ rows: CommentInterface[]; count: number }> {
+    const response = await fetch(`${API_URL}/kata/${id}/discuss${label ? `?label=${label}` : ''}`);
     const data = await response.json();
     return data;
   }

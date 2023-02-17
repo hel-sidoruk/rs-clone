@@ -7,7 +7,7 @@ const getActiveClass = ({ isActive }: { isActive: boolean }) =>
 
 export const KataControls = () => {
   const { id } = useParams();
-  const { comments } = useTypedSelector((state) => state.comments);
+  const { totalCount } = useTypedSelector((state) => state.comments);
 
   return (
     <div className="controls">
@@ -20,7 +20,7 @@ export const KataControls = () => {
       </NavLink>
       <NavLink to={`/kata/${id}/discuss`} className={getActiveClass}>
         <i className="icon-moon-comments icon-moon"></i>
-        Discourse ({comments.length})
+        Discourse ({totalCount})
       </NavLink>
     </div>
   );

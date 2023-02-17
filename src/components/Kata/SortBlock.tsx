@@ -1,7 +1,18 @@
 import React, { useState } from 'react';
 
-export const SortBlock = ({ title, items }: { title: string; items: string[] }) => {
+interface Props {
+  title: string;
+  items: string[];
+  handler?: (s: string) => void;
+}
+
+export const SortBlock = ({ title, items, handler }: Props) => {
   const [checked, setChecked] = useState(items[0]);
+
+  const handleClick = (el: string) => {
+    setChecked(el);
+    if (handler) handler(el);
+  };
 
   return (
     <div>
@@ -10,7 +21,7 @@ export const SortBlock = ({ title, items }: { title: string; items: string[] }) 
         <span
           key={el}
           className={checked === el ? 'check-box current' : 'check-box'}
-          onClick={() => setChecked(el)}
+          onClick={() => handleClick(el)}
         >
           <span className="item"></span>
           <span className="text">{el}</span>

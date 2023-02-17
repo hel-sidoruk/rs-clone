@@ -17,6 +17,7 @@ export interface CommentsState {
   comments: CommentInterface[];
   updatingComment: CommentInterface | null;
   loading: boolean;
+  totalCount: number;
 }
 
 export enum CommentsActionTypes {
@@ -35,8 +36,14 @@ interface CommentsActions {
   type:
     | CommentsActionTypes.FETCH_COMMENTS
     | CommentsActionTypes.ADD_COMMENT
-    | CommentsActionTypes.DELETE_COMMENT
-    | CommentsActionTypes.UPDATE_COMMENT_TEXT;
+    | CommentsActionTypes.DELETE_COMMENT;
+  payload: {
+    comments: CommentInterface[];
+    totalCount: number;
+  };
+}
+interface UpdateComment {
+  type: CommentsActionTypes.UPDATE_COMMENT_TEXT;
   payload: {
     comments: CommentInterface[];
   };
@@ -47,4 +54,4 @@ interface UpdateCommentText {
     updatingComment: CommentInterface | null;
   };
 }
-export type CommentsAction = LoadingComments | CommentsActions | UpdateCommentText;
+export type CommentsAction = LoadingComments | CommentsActions | UpdateCommentText | UpdateComment;

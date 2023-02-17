@@ -4,6 +4,7 @@ const initialState: CommentsState = {
   comments: [],
   loading: false,
   updatingComment: null,
+  totalCount: 0,
 };
 
 export const commentsReducer = (state = initialState, action: CommentsAction): CommentsState => {
@@ -11,11 +12,16 @@ export const commentsReducer = (state = initialState, action: CommentsAction): C
     case CommentsActionTypes.LOADING_COMMENTS:
       return { ...state, loading: true };
     case CommentsActionTypes.FETCH_COMMENTS:
-      return { ...state, comments: action.payload.comments, loading: false };
+      return {
+        ...state,
+        comments: action.payload.comments,
+        loading: false,
+        totalCount: action.payload.totalCount,
+      };
     case CommentsActionTypes.ADD_COMMENT:
-      return { ...state, comments: action.payload.comments };
+      return { ...state, comments: action.payload.comments, totalCount: action.payload.totalCount };
     case CommentsActionTypes.DELETE_COMMENT:
-      return { ...state, comments: action.payload.comments };
+      return { ...state, comments: action.payload.comments, totalCount: action.payload.totalCount };
     case CommentsActionTypes.UPDATE_COMMENT_TEXT:
       return { ...state, comments: action.payload.comments };
     case CommentsActionTypes.SET_UPDATING_COMMENT:
