@@ -5,24 +5,33 @@ import { SolutionsAPI } from '../../api/SolutionsAPI';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { SolutionInterface } from '../../types';
 import { CodeHighlight } from '../Solution/CodeHighlight';
+import Loader from '../UI/Loader';
 
 export const PastSolutions = () => {
   const { id } = useParams();
   const [solutions, setSolutions] = useState<SolutionInterface[]>([]);
   const { username } = useTypedSelector((state) => state.account);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    id && username && SolutionsAPI.getSolutions(id, username).then((res) => setSolutions(res));
+    if (id && username) {
+      setLoading(true);
+      SolutionsAPI.getSolutions(id, username)
+        .then((res) => setSolutions(res))
+        .finally(() => setLoading(false));
+    }
   }, []);
 
   return (
-    <div className="kata-train__descr">
-      {solutions.length &&
-        solutions.map(({ solution }) => (
-          <div className="markdown past-solutions" key={nanoid()}>
-            <CodeHighlight>{solution}</CodeHighlight>
-          </div>
-        ))}
+    <div className="kata-train__descr past-solutions">
+      {loading && <Loader />}
+      {solutions.length
+        ? solutions.map(({ solution }) => (
+            <div className="markdown past-solutions__item" key={nanoid()}>
+              <CodeHighlight>{solution}</CodeHighlight>
+            </div>
+          ))
+        : null}
     </div>
   );
 };

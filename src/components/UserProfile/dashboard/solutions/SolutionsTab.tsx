@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { SolutionsAPI } from '../../../../api/SolutionsAPI';
-import useTypedSelector from '../../../../hooks/useTypedSelector';
 import { SolutionInterface } from '../../../../types';
 import Loader from '../../../UI/Loader';
 import SolutionItem from './SolutionItem';
 
 export const SolutionsTab = () => {
-  const { currentUser } = useTypedSelector((state) => state.user);
   const [solutions, setSolutions] = useState<SolutionInterface[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -20,7 +18,7 @@ export const SolutionsTab = () => {
   return (
     <div className="dashboard-wrapper solutions-tab">
       <div className="dashboard-wrapper__sidebar">
-        <div className="completed_opened">Completed{!loading && `(${solutions?.length})`}</div>
+        <div className="completed_opened">Completed{!loading && `(${solutions.length})`}</div>
       </div>
       <div className="dashboard-wrapper__content">
         {loading ? (

@@ -30,7 +30,7 @@
   flex-grow: 1;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  height: 546px;
+  height: inherit;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -48,6 +48,7 @@
 }
 
 .code {
+  height:calc(100% - 36px);
   display: flex;
   flex-grow: 1;
   padding: 5px 0;
@@ -56,10 +57,12 @@
   &__line-counter {
     width: 40px;
     height: 100%;
+    overflow-y: scroll;
     font-size: 14px;
     line-height: 17.5px;
     color: var(--grey-text);
     border-right: 1px solid var(--border-color);
+    padding-bottom: 10px;
     span {
       text-align: right;
       width: 29px;
@@ -71,32 +74,34 @@
   &__editor-wrapper {
     flex-grow: 1;
     position: relative;
-    padding: 0 5px;
     color: var(--contrast-text);
     overflow-x: auto;
     @include scrollBar(8px);
     &::-webkit-scrollbar {
       height: 8px;
     }
-    white-space: break-spaces;
     line-height: 17.5px;
   }
   &__editor {
     color: transparent;
     font-size: inherit;
-    padding: 0 5px;
     line-height: inherit;
     caret-color: var(--contrast-text);
     background-color: transparent;
     outline: none;
     border: none;
     resize: none;
+    @include scrollBar(10px);
+  }
+  .code__editor, pre {
+    padding: 0 5px;
+    overflow-y: auto;
     position: absolute;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    left: 0;
-    overflow: hidden;
+    padding-bottom: 10px;
   }
   &__btns {
     display: flex;
@@ -118,6 +123,7 @@
   }
 }
 .past-solutions {
+  position: relative;
   pre {
     border-radius: 0;
     border: 1px solid var(--border-color);
