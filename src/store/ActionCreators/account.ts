@@ -6,8 +6,8 @@ import { AccountAction, AccountActionTypes, AccountInfo } from '../../types/acco
 
 export function setAccount(): ThunkActionType {
   return async (dispatch: Dispatch<AccountAction>) => {
-    const { account } = await AccountAPI.getInfo();
-    if (account) {
+    try {
+      const account = await AccountAPI.getInfo();
       const { username, trainedKatas, solvedKatas, starredKatas, forfeitedKatas } = account;
       const { rank, honor, score, avatar, clan, name } = await UsersAPI.getOne(username);
       dispatch({
@@ -26,6 +26,8 @@ export function setAccount(): ThunkActionType {
           name,
         },
       });
+    } catch (error) {
+      console.log(error);
     }
   };
 }
@@ -42,29 +44,37 @@ export function editAccountInfo(info: AccountInfo): ThunkActionType {
 
 export function markAsTrained(kataId: string): ThunkActionType {
   return async (dispatch: Dispatch<AccountAction>, getState) => {
-    const { trainedKatas } = getState().account;
-    const { status } = await AccountAPI.addTrainedKata(kataId);
-    if (status && trainedKatas && !trainedKatas.includes(kataId)) {
-      dispatch({
-        type: AccountActionTypes.MARK_AS_TRAINED,
-        payload: { trainedKatas: [...trainedKatas, kataId] },
-      });
+    try {
+      const { trainedKatas } = getState().account;
+      await AccountAPI.addTrainedKata(kataId);
+      if (trainedKatas && !trainedKatas.includes(kataId)) {
+        dispatch({
+          type: AccountActionTypes.MARK_AS_TRAINED,
+          payload: { trainedKatas: [...trainedKatas, kataId] },
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 }
 
 export function markAsSolved(kataId: string): ThunkActionType {
   return async (dispatch: Dispatch<AccountAction>, getState) => {
-    const { solvedKatas, trainedKatas } = getState().account;
-    const { status } = await AccountAPI.addSolvedKata(kataId);
-    if (status && solvedKatas && trainedKatas) {
-      dispatch({
-        type: AccountActionTypes.MARK_AS_SOLVED,
-        payload: {
-          solvedKatas: [...solvedKatas, kataId],
-          trainedKatas: trainedKatas.filter((id) => id !== kataId),
-        },
-      });
+    try {
+      const { solvedKatas, trainedKatas } = getState().account;
+      await AccountAPI.addSolvedKata(kataId);
+      if (solvedKatas && trainedKatas) {
+        dispatch({
+          type: AccountActionTypes.MARK_AS_SOLVED,
+          payload: {
+            solvedKatas: [...solvedKatas, kataId],
+            trainedKatas: trainedKatas.filter((id) => id !== kataId),
+          },
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 }
@@ -72,22 +82,26 @@ export function markAsSolved(kataId: string): ThunkActionType {
 export function addToStarred(kataId: string, stars: number): ThunkActionType {
   return async (dispatch: Dispatch<AccountAction>, getState) => {
     const { starredKatas } = getState().account;
-    const { status } = await AccountAPI.addStarredKata(kataId, stars);
-    if (status && starredKatas) {
-      if (!starredKatas.includes(kataId))
-        dispatch({
-          type: AccountActionTypes.ADD_TO_STARRED,
-          payload: {
-            starredKatas: [...starredKatas, kataId],
-          },
-        });
-      else
-        dispatch({
-          type: AccountActionTypes.ADD_TO_STARRED,
-          payload: {
-            starredKatas: starredKatas.filter((id) => id !== kataId),
-          },
-        });
+    try {
+      await AccountAPI.addStarredKata(kataId, stars);
+      if (starredKatas) {
+        if (!starredKatas.includes(kataId))
+          dispatch({
+            type: AccountActionTypes.ADD_TO_STARRED,
+            payload: {
+              starredKatas: [...starredKatas, kataId],
+            },
+          });
+        else
+          dispatch({
+            type: AccountActionTypes.ADD_TO_STARRED,
+            payload: {
+              starredKatas: starredKatas.filter((id) => id !== kataId),
+            },
+          });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 }
@@ -96,15 +110,19 @@ export function addToForfeited(kataId: string): ThunkActionType {
   return async (dispatch: Dispatch<AccountAction>, getState) => {
     const { forfeitedKatas } = getState().account;
     if (forfeitedKatas?.includes(kataId)) return;
-    const { status } = await AccountAPI.addForfeitedKata(kataId);
+    try {
+      await AccountAPI.addForfeitedKata(kataId);
 
-    if (status && forfeitedKatas) {
-      dispatch({
-        type: AccountActionTypes.ADD_TO_FORFEITED,
-        payload: {
-          forfeitedKatas: [...forfeitedKatas, kataId],
-        },
-      });
+      if (forfeitedKatas) {
+        dispatch({
+          type: AccountActionTypes.ADD_TO_FORFEITED,
+          payload: {
+            forfeitedKatas: [...forfeitedKatas, kataId],
+          },
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 }
@@ -116,24 +134,26 @@ export function updateUserProgress(
 ): ThunkActionType {
   return async (dispatch: Dispatch<AccountAction>, getState) => {
     const { username, rank } = getState().account;
-    if (username && rank) {
-      const { totalCompleted } = await UsersAPI.getOne(username);
-      const count = totalCompleted + 1;
-      const updates = newRank
-        ? {
-            totalCompleted: count,
-            rank: newRank,
-            honor,
-            score,
-          }
-        : { totalCompleted: count, honor, score };
-      const { status } = await UsersAPI.update(username, updates);
-      if (status) {
+    try {
+      if (username && rank) {
+        const { totalCompleted } = await UsersAPI.getOne(username);
+        const count = totalCompleted + 1;
+        const updates = newRank
+          ? {
+              totalCompleted: count,
+              rank: newRank,
+              honor,
+              score,
+            }
+          : { totalCompleted: count, honor, score };
+        await UsersAPI.update(username, updates);
         dispatch({
           type: AccountActionTypes.UPDATE_USER_PROGRESS,
           payload: { rank: newRank ? newRank : rank, honor, score },
         });
       }
+    } catch (error) {
+      console.log(error);
     }
   };
 }
