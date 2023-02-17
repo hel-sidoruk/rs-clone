@@ -9,7 +9,7 @@ const KataSolutionItem = ({ solution }: { solution: SolutionInterface }) => {
     <div className="solution-item">
       <div className="solution-item__head">
         <i className="icon-moon-users icon-moon"></i>
-        <Link className="link" to={`/users/${solution.username}`}>
+        <Link className="link" to={`/users/${solution.username}/`}>
           {solution.username}
         </Link>
       </div>
