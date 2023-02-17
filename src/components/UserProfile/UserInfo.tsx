@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { SolutionsAPI } from '../../api/SolutionsAPI';
+import React from 'react';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { Shield } from '../Icons';
 import { Rank } from '../Kata/Rank';
@@ -10,10 +9,6 @@ const UserInfo = () => {
   const { username } = useTypedSelector((state) => state.authorizedUser);
   const { currentUser, followers, following, loading } = useTypedSelector((state) => state.user);
   const isAuth = currentUser && currentUser.username === username;
-
-  useEffect(() => {
-    SolutionsAPI.getUserSolutions().then(console.log);
-  }, []);
 
   return (
     <div className="user-profile__info user-info section">

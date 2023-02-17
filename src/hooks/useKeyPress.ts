@@ -7,12 +7,11 @@ import useTypedSelector from './useTypedSelector';
 type FnType = (
   ref: React.RefObject<HTMLTextAreaElement>,
   setPosition: (n: number) => void
-) => [number, (e: React.KeyboardEvent<HTMLTextAreaElement>) => void];
+) => [(e: React.KeyboardEvent<HTMLTextAreaElement>) => void];
 
 export const useKeyPress: FnType = (ref, setCaretPosition) => {
   const [isNewBlock, setIsNewBlock] = useState(false);
   const [doubleKey] = useDoubleKey(ref, setCaretPosition);
-  const [rowsCount, setRowsCount] = useState(3);
 
   const { solution } = useTypedSelector((state) => state.solution);
   const { updateSolution, startTesting } = useActions();
@@ -29,7 +28,6 @@ export const useKeyPress: FnType = (ref, setCaretPosition) => {
     }
 
     if (e.key === 'Enter') {
-      setRowsCount((state) => state + (isNewBlock ? 2 : 1));
       if (ref.current) {
         const { selectionStart, selectionEnd } = ref.current as HTMLTextAreaElement;
         const blocksCount = getBlocksCount(solution, selectionEnd);
@@ -47,5 +45,5 @@ export const useKeyPress: FnType = (ref, setCaretPosition) => {
       }
     }
   };
-  return [rowsCount, handleKeyDown];
+  return [handleKeyDown];
 };

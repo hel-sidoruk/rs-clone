@@ -81,6 +81,9 @@ input {
     padding: 16px;
     margin-left: 0;
     width: 100%;
+    position: relative;
+    z-index: 2000;
+    background-color: var(--bg-color);
   }
 }
 .page-title {

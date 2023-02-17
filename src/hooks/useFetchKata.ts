@@ -15,9 +15,8 @@ export function useFetchKata(id: string): [KataInterface | null, boolean, boolea
       else {
         setIsLoading(true);
         KataAPI.getOne(id)
-          .then((kata) => {
-            kata ? setKata(kata) : setError(true);
-          })
+          .then((kata) => setKata(kata))
+          .catch(() => setError(true))
           .finally(() => setIsLoading(false));
       }
     }

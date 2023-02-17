@@ -32,7 +32,7 @@ export const InformationForm = () => {
     if (avatarImage) formData.append('avatarImage', avatarImage);
     try {
       setLoading(true);
-      const { data } = await AccountAPI.editInfo(formData);
+      const data = await AccountAPI.editInfo(formData);
       if (data) {
         editAccountInfo(data);
         setSuccess(true);

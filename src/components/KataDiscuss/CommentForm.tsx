@@ -23,7 +23,6 @@ export const CommentForm = ({ kataId }: { kataId: string }) => {
     reset();
     if (updatingComment) setUpdatingComment(null);
   };
-  const openInput = () => !isActive && setIsActive(true);
 
   const postComment = () => {
     const label = option === 'No label' ? null : option;
@@ -55,7 +54,7 @@ export const CommentForm = ({ kataId }: { kataId: string }) => {
           className="comment-form__input"
           placeholder="Leave feedback..."
           onChange={(e) => setComment(e.target.value)}
-          onClick={openInput}
+          onClick={() => !isActive && setIsActive(true)}
           value={comment}
           spellCheck={false}
         />

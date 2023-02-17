@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { DeleteAccountButton } from '../components/AccountSettings/DeleteAccountButton';
 import { InformationForm } from '../components/AccountSettings/InformationForm';
 
 export const AccountSettings = () => {
+  useEffect(() => {
+    document.title = 'Edit Account | Codewars';
+  }, []);
+
   return (
     <main className="play-view">
       <h1 className="page-title">Account Settings</h1>

@@ -18,7 +18,6 @@ export const DiscourseTab = () => {
         .then(({ rows, count }) => {
           setComments(rows);
           setCount(count);
-          console.log(rows);
         })
         .finally(() => setLoading(false));
     }

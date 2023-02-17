@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import SearchInput from './SearchInput';
 import { filterLists } from '../../utils';
 import DropdownMultiple from './DropdownMultiple';
@@ -18,9 +18,7 @@ const Filters = () => {
   const { fetchKatas } = useActions();
   const [active, setActive] = useState('none');
 
-  const activeHandler = (dropType: string) => {
-    setActive(dropType);
-  };
+  const activeHandler = (dropType: string) => setActive(dropType);
 
   return (
     <div className="library__filters filters">

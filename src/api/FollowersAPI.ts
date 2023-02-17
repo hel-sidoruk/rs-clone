@@ -1,63 +1,33 @@
-import { API_URL } from '.';
+import { authHost, host } from '.';
 import { FollowerInterface } from '../types/followers';
 
-const URL = `${API_URL}/social`;
+const URL = `/social`;
 
 export class FollowersAPI {
   static async getFollowing(username: string): Promise<FollowerInterface[]> {
-    const response = await fetch(`${URL}/${username}/following`);
-    const following = await response.json();
-    return following;
+    const { data } = await host.get(`${URL}/${username}/following`);
+    return data;
   }
 
   static async getFollowers(username: string): Promise<FollowerInterface[]> {
-    const response = await fetch(`${URL}/${username}/followers`);
-    const followers = await response.json();
-    return followers;
+    const { data } = await host.get(`${URL}/${username}/followers`);
+    return data;
   }
 
   static async create(
     user: Omit<FollowerInterface, 'id' | 'username'>
-  ): Promise<{ follower?: FollowerInterface; message?: string }> {
-    const savedToken = localStorage.getItem('token');
-    if (!savedToken) return { message: 'No token found' };
-    const response = await fetch(URL, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${savedToken}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(user),
-    });
-    const follower = await response.json();
-    return { follower };
-  }
-
-  static async delete(id: string): Promise<{ status?: 'ok'; message?: string }> {
-    const savedToken = localStorage.getItem('token');
-    if (!savedToken) return { message: 'No token found' };
-    const response = await fetch(`${URL}/${id}`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${savedToken}`,
-      },
-    });
-    const data = await response.json();
+  ): Promise<FollowerInterface> {
+    const { data } = await authHost.post(URL, user);
     return data;
   }
 
-  static async checkIsFollowed(
-    username: string
-  ): Promise<{ isFollowed?: string | false; message?: string }> {
-    const savedToken = localStorage.getItem('token');
-    if (!savedToken) return { message: 'No token found' };
-    const response = await fetch(`${URL}/check?follow=${username}`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${savedToken}`,
-      },
-    });
-    const data = await response.json();
+  static async delete(id: string): Promise<{ status: 'ok' }> {
+    const { data } = await authHost.delete(`${URL}/${id}`);
+    return data;
+  }
+
+  static async checkIsFollowed(username: string): Promise<{ isFollowed?: string | false }> {
+    const { data } = await authHost.get(`${URL}/check?follow=${username}`);
     return data;
   }
 }

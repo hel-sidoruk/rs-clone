@@ -6,9 +6,10 @@ hljs.registerLanguage('javascript', javascript);
 
 interface Props {
   children: React.ReactNode;
+  codeRef?: React.RefObject<HTMLPreElement>;
 }
 
-export const CodeHighlight = ({ children }: Props) => {
+export const CodeHighlight = ({ children, codeRef }: Props) => {
   const ref = useRef<HTMLPreElement>(null);
 
   useEffect(() => {
@@ -16,7 +17,7 @@ export const CodeHighlight = ({ children }: Props) => {
   });
 
   return (
-    <pre>
+    <pre ref={codeRef}>
       <code ref={ref} className="language-javascript">
         {children}
       </code>

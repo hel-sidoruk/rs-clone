@@ -11,13 +11,7 @@ const Languages = () => {
         Languages:
       </div>
       <div>
-        <b>Total Languages Trained:</b>51
-      </div>
-      <div>
         <b>Highest Trained:</b>JavaScript ({currentUser?.rank})
-      </div>
-      <div>
-        <b>Most Recent:</b>Groovy
       </div>
     </div>
   );

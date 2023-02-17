@@ -11,11 +11,15 @@ import { Page404 } from './Page404';
 export const UserProfile = () => {
   const { id } = useParams();
   const { setCurrentUser } = useActions();
-  const { error } = useTypedSelector((state) => state.user);
+  const { error, currentUser } = useTypedSelector((state) => state.user);
 
   useEffect(() => {
     if (id) setCurrentUser(id);
   }, [id]);
+
+  useEffect(() => {
+    if (currentUser) document.title = `${currentUser.username} | Codewars`;
+  }, [currentUser]);
 
   if (error) return <Page404 />;
   return (
