@@ -22,6 +22,7 @@ export function useTesting(kataId: string, kataRank: string): ReturnType {
 
     socket.onopen = function () {
       setFailure(false);
+      setTestsStats(null);
       setOutput('');
       socket.send(JSON.stringify({ kataId, solution, testSuites }));
     };

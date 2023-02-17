@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid';
 import React, { useEffect, useState } from 'react';
 import { KataAPI } from '../../api';
 import { KataInterface } from '../../types/kata';
@@ -27,7 +26,7 @@ export const SimilarKatas = ({ data }: { data: KataInterface | null }) => {
         {isLoading && <Loader />}
         {similarKatas.length
           ? similarKatas.map((kata) => (
-              <div key={nanoid()} className="kata-details__similar-item">
+              <div key={kata.id} className="kata-details__similar-item">
                 <div className="top">
                   <KataInfo data={kata} />
                   <KataLanguage kataId={kata.id} />
