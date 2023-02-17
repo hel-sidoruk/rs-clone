@@ -5,14 +5,20 @@ import Filters from '../components/Filters/Filters';
 import { KataList } from '../components/Kata/KataList';
 import { ShuffleControls } from '../components/Kata/ShuffleControls';
 import Loader from '../components/UI/Loader';
+import useActions from '../hooks/useActions';
 import useTypedSelector from '../hooks/useTypedSelector';
 
 export const KataLibrary = ({ title }: { title: string }) => {
   const { katas, totalCount, loading, randomKatas } = useTypedSelector((state) => state.katas);
-
+  const { fetchKatas, resetFilters } = useActions();
   useEffect(() => {
     document.title = title;
   }, [title]);
+
+  useEffect(() => {
+    resetFilters();
+    fetchKatas();
+  }, []);
 
   return (
     <main className="play-view">
