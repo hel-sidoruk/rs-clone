@@ -1,4 +1,4 @@
-import { API_URL } from '.';
+import { host } from '.';
 import { CommentInterface, CommentLabel } from '../types/comments';
 
 interface CommentUpdates {
@@ -7,19 +7,16 @@ interface CommentUpdates {
   text?: string;
   label?: CommentLabel | null;
 }
+type ApiResponse = Promise<{ rows: CommentInterface[]; count: number }>;
 
 export class CommentsAPI {
-  static async getComments(
-    id: string,
-    query?: string
-  ): Promise<{ rows: CommentInterface[]; count: number }> {
-    const response = await fetch(`${API_URL}/kata/${id}/discuss${query || ''}`);
-    const data = await response.json();
+  static async getComments(id: string, query?: string): ApiResponse {
+    const { data } = await host.get(`/kata/${id}/discuss${query || ''}`);
     return data;
   }
-  static async getUserComments(id: string): Promise<{ rows: CommentInterface[]; count: number }> {
-    const response = await fetch(`${API_URL}/discuss/${id}`);
-    const data = await response.json();
+
+  static async getUserComments(id: string): ApiResponse {
+    const { data } = await host.get(`/discuss/${id}`);
     return data;
   }
 
@@ -27,34 +24,17 @@ export class CommentsAPI {
     id: string,
     comment: Omit<CommentInterface, 'id' | 'kataId' | 'votes' | 'createdAt' | 'spoiler'>
   ): Promise<CommentInterface> {
-    const response = await fetch(`${API_URL}/kata/${id}/discuss`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(comment),
-    });
-    const data = await response.json();
+    const { data } = await host.post(`/kata/${id}/discuss`, comment);
     return data;
   }
 
   static async update(id: string, commentId: number, comment: CommentUpdates) {
-    const response = await fetch(`${API_URL}/kata/${id}/discuss/${commentId}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(comment),
-    });
-    const data = await response.json();
+    const { data } = await host.patch(`/kata/${id}/discuss/${commentId}`, comment);
     return data;
   }
 
-  static async delete(id: string, commentId: number): Promise<{ status?: 'ok'; message?: string }> {
-    const response = await fetch(`${API_URL}/kata/${id}/discuss/${commentId}`, {
-      method: 'DELETE',
-    });
-    const data = await response.json();
+  static async delete(id: string, commentId: number) {
+    const { data } = await host.delete(`/kata/${id}/discuss/${commentId}`);
     return data;
   }
 }

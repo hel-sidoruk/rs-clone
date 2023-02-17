@@ -5,13 +5,17 @@ import { CommentLabel, CommentsAction, CommentsActionTypes } from '../../types/c
 
 export function fetchComments(kataId: string, label?: CommentLabel): ThunkActionType {
   return async (dispatch: Dispatch<CommentsAction>, getState) => {
-    const { totalCount } = getState().comments;
-    dispatch({ type: CommentsActionTypes.LOADING_COMMENTS });
-    const { rows, count } = await CommentsAPI.getComments(kataId, label ? `?label=${label}` : '');
-    dispatch({
-      type: CommentsActionTypes.FETCH_COMMENTS,
-      payload: { comments: rows, totalCount: label ? totalCount : count },
-    });
+    try {
+      const { totalCount } = getState().comments;
+      dispatch({ type: CommentsActionTypes.LOADING_COMMENTS });
+      const { rows, count } = await CommentsAPI.getComments(kataId, label ? `?label=${label}` : '');
+      dispatch({
+        type: CommentsActionTypes.FETCH_COMMENTS,
+        payload: { comments: rows, totalCount: label ? totalCount : count },
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
 
@@ -23,20 +27,24 @@ export function addComment(
   return async (dispatch: Dispatch<CommentsAction>, getState) => {
     const { comments, totalCount } = getState().comments;
     const { username, rank, avatar } = getState().account;
-    if (!username || !rank || !avatar) return;
-    const comment = await CommentsAPI.create(kataId, { username, rank, label, text, avatar });
-    dispatch({
-      type: CommentsActionTypes.ADD_COMMENT,
-      payload: { comments: [comment, ...comments], totalCount: totalCount + 1 },
-    });
+    if (!username || !rank || !avatar || !text) return;
+    try {
+      const comment = await CommentsAPI.create(kataId, { username, rank, label, text, avatar });
+      dispatch({
+        type: CommentsActionTypes.ADD_COMMENT,
+        payload: { comments: [comment, ...comments], totalCount: totalCount + 1 },
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
 
 export function deleteComment(kataId: string, commentId: number): ThunkActionType {
   return async (dispatch: Dispatch<CommentsAction>, getState) => {
     const { comments, totalCount } = getState().comments;
-    const { status } = await CommentsAPI.delete(kataId, commentId);
-    if (status) {
+    try {
+      await CommentsAPI.delete(kataId, commentId);
       dispatch({
         type: CommentsActionTypes.DELETE_COMMENT,
         payload: {
@@ -44,12 +52,14 @@ export function deleteComment(kataId: string, commentId: number): ThunkActionTyp
           totalCount: totalCount - 1,
         },
       });
+    } catch (error) {
+      console.log(error);
     }
   };
 }
 
 export function setUpdatingComment(commentId: number | null): ThunkActionType {
-  return async (dispatch: Dispatch<CommentsAction>, getState) => {
+  return (dispatch: Dispatch<CommentsAction>, getState) => {
     if (commentId === null) {
       dispatch({
         type: CommentsActionTypes.SET_UPDATING_COMMENT,
@@ -76,16 +86,21 @@ export function updateCommentText(
 ): ThunkActionType {
   return async (dispatch: Dispatch<CommentsAction>, getState) => {
     const { comments } = getState().comments;
-    const { status } = await CommentsAPI.update(kataId, commentId, { label, text });
-    const idx = comments.findIndex((el) => el.id === commentId);
-    const comment = comments[idx];
-    if (comment && status) {
-      comment.label = label;
-      comment.text = text;
-      dispatch({
-        type: CommentsActionTypes.UPDATE_COMMENT_TEXT,
-        payload: { comments: [...comments.slice(0, idx), comment, ...comments.slice(idx + 1)] },
-      });
+    if (!text) return;
+    try {
+      await CommentsAPI.update(kataId, commentId, { label, text });
+      const idx = comments.findIndex((el) => el.id === commentId);
+      const comment = comments[idx];
+      if (comment) {
+        comment.label = label;
+        comment.text = text;
+        dispatch({
+          type: CommentsActionTypes.UPDATE_COMMENT_TEXT,
+          payload: { comments: [...comments.slice(0, idx), comment, ...comments.slice(idx + 1)] },
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 }

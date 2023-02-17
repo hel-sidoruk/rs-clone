@@ -4,7 +4,7 @@ export * from './UsersAPI';
 import axios, { InternalAxiosRequestConfig } from 'axios';
 
 export const API_URL = 'http://localhost:5000/api';
-export const AUTH_URL = `${API_URL}/auth`;
+export const AUTH_URL = 'http://localhost:5000/api/auth';
 
 export const host = axios.create({
   baseURL: API_URL,

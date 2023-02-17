@@ -18,7 +18,7 @@ export const FollowButton = () => {
         followerAvatar: avatar as string,
         followingAvatar: currentUser.avatar,
       };
-      const { follower } = await FollowersAPI.create(followUser);
+      const follower = await FollowersAPI.create(followUser);
       if (follower) setFollowedUser(follower.id);
     } else {
       if (followedUser) {
