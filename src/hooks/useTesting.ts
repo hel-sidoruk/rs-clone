@@ -46,7 +46,7 @@ export function useTesting(kataId: string, kataRank: string): ReturnType {
     };
 
     socket.onerror = function (error) {
-      setOutput((state) => state + `\n[error] ${error}\n`);
+      setOutput((state) => state + `\n[error] ${error.toString()}\n`);
     };
   };
 
