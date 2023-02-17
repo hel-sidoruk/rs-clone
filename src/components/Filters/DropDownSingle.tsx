@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useActions from '../../hooks/useActions';
+import useTypedSelector from '../../hooks/useTypedSelector';
 import { DropIcon } from '../Icons';
 import FilterItem from './FilterItem';
 import { DropProps } from './Filters';
@@ -7,6 +8,11 @@ import { DropProps } from './Filters';
 const DropdownSingle = ({ list, filterType, status, handler }: DropProps) => {
   const [selected, setSelected] = useState(list[0]);
   const { changeFilters } = useActions();
+  const { query } = useTypedSelector((state) => state.filters);
+
+  useEffect(() => {
+    if (!query) setSelected(list[0]);
+  }, [query]);
 
   const handleOpen = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
