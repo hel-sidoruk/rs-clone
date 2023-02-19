@@ -22,7 +22,7 @@ const LeaderTable = () => {
       <div className="leader-table__header">
         <div>Position</div>
         <div>User</div>
-        <div>Clan</div>
+        <div className="leader-table__header_clan">Clan</div>
         <div>Honor</div>
       </div>
       {loading ? (

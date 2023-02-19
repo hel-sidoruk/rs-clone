@@ -15,7 +15,7 @@ const LeaderItem = ({ user, index }: { user: UserInterface; index: number }) => 
           <div className="leader-table__username">{user.username}</div>
         </Link>
       </div>
-      <div className="leader-table__td">{user.clan}</div>
+      <div className="leader-table__td leader-table__td_clan">{user.clan}</div>
       <div className="leader-table__td">{user.honor}</div>
     </div>
   );
