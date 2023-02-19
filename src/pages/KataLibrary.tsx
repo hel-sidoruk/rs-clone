@@ -30,12 +30,12 @@ export const KataLibrary = ({ title }: { title: string }) => {
             Library
           </div>
           <div className="library__controls">
-            {!loading && (
-              <>
-                <span>{randomKatas ? randomKatas.length : totalCount} Kata Found</span>
-                <ShuffleControls />
-              </>
-            )}
+            <span>
+              {loading
+                ? 'Loading...'
+                : `${randomKatas ? randomKatas.length : totalCount} Kata Found`}
+            </span>
+            {!loading && <ShuffleControls />}
           </div>
           <div className="library__bar">
             <Filters />
