@@ -6,16 +6,15 @@ interface Props {
   title: string;
   text: string;
   src: string;
-  pos: string;
 }
 
-export const HomeBlock = ({ icon, title, text, src, pos }: Props) => {
+export const HomeBlock = ({ icon, title, text, src }: Props) => {
   return (
     <div className="cells__item">
       <TextBlock title={title} icon={icon}>
         <p className="text">{text}</p>
       </TextBlock>
-      <div className={`noise-image ${pos}`}>
+      <div className={`noise-image`}>
         <img src={src} alt="content image" />
       </div>
     </div>
