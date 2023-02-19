@@ -6,7 +6,25 @@
   padding: 0;
   margin-top: 20px;
 
-
+  @media (max-width: $s) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .left-bar {
+      width: 100%;
+      max-width: 100%;
+      .article {
+        max-width: 100%;
+      }
+      .sort {
+        flex-direction: row;
+        gap: 60px;
+        justify-content: start;
+      }
+    }
+    
+  }
+ 
 }
 .left-bar {
   .article__preview {
