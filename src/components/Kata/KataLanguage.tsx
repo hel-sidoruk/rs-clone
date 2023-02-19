@@ -14,7 +14,7 @@ export const KataLanguage = ({ kataId }: { kataId: string }) => {
   return (
     <div className="kata-language">
       <i className={`icon-moon icon-moon-javascript ${status}`}></i>
-      Javascript
+      <span>Javascript</span>
     </div>
   );
 };
