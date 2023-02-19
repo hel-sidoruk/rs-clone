@@ -5,7 +5,7 @@ import { CloseIcon, SearchIcon } from '../Icons';
 const SearchInput = () => {
   const [searchValue, setSearchValue] = useState('');
   const [isFocus, setIsFocus] = useState(false);
-  const { changeFilters } = useActions();
+  const { changeFilters, fetchKatas } = useActions();
 
   const reset = () => {
     setSearchValue('');
@@ -15,6 +15,7 @@ const SearchInput = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     changeFilters('search', searchValue.trim());
+    fetchKatas();
   };
 
   useEffect(() => {
