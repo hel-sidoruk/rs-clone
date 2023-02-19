@@ -18,6 +18,8 @@
 
     @media (max-width: $s){
       flex-direction: column;
+      border-left: 1px solid var(--border-color);
+      padding-left: 15px;
     }
 
     a {
@@ -39,9 +41,9 @@
     align-items: center;
     gap: 20px;
     
-  @media (max-width: $m){
-    flex-direction: column;
-  }
+    @media (max-width: $m){
+      flex-direction: column;
+    }
   }
   &__block {
     display: flex;
@@ -53,6 +55,13 @@
     transition: .3s;
     &:hover {
       filter: brightness(1.4);
+    }
+
+    @media (max-width: $s){
+      svg {
+        width: 80px;
+      }
+      
     }
   }
 }

@@ -22,6 +22,10 @@ body {
   @include scrollBar(12px);
 }
 
+#root {
+  padding-top: calc($header-height + 20px);
+}
+
 button {
   border: none;
   cursor: pointer;

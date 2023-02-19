@@ -34,6 +34,15 @@
     border-radius: 6px;
     padding: 10px 15px;
     @include scrollBar(10px);
+
+    code {
+
+    @media (max-width: $m) {
+      overflow-x: scroll;
+    }
+    }
+
+
   }
 
   &__footer {
