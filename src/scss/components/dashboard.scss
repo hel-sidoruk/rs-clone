@@ -105,9 +105,16 @@
 
   &__progress,
   &__contributions {
-    @media (max-width: $s) {
-      grid-template-columns: 100%;
+    @media (max-width: $m) {
       grid-template-rows: auto;
+    }
+    @media (max-width: $s) {
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: $xs) {
+      grid-template-columns: 100%;
       gap: 20px;
     }
   }
@@ -138,7 +145,7 @@
     grid-column: 3/4;
     grid-row: 2/3;
 
-    @media (max-width: $s) {
+    @media (max-width: $xs) {
       grid-column: 1/2;
       grid-row: 3/4;
     }
@@ -196,6 +203,10 @@
       grid-column: 1/2;
       grid-row: 2/3;
     }
+    @media (max-width: $xs) {
+      grid-column: 1/2;
+      grid-row: 2/3;
+    }
     
   }
 
@@ -203,7 +214,7 @@
     grid-column: 3 / 4;
     grid-row: 2 / 3;
 
-    @media (max-width: $s) {
+    @media (max-width: $xs) {
       grid-column: 1/2;
       grid-row: 3/4;
     }
