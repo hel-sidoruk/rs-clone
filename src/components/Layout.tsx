@@ -19,9 +19,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    if (isAuthorized) {
-      setAccount();
-    }
+    if (isAuthorized) setAccount();
   }, [isAuthorized]);
 
   if (pathname === '/login' || pathname === '/registration') return <>{children}</>;

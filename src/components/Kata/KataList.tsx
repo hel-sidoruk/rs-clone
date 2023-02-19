@@ -6,7 +6,7 @@ import Loader from '../UI/Loader';
 import { KataPreview } from './KataPreview';
 
 export const KataList = () => {
-  const { katas, loading, randomKatas } = useTypedSelector((state) => state.katas);
+  const { katas, nextKatasLoading, randomKatas } = useTypedSelector((state) => state.katas);
   const [intersectedRef] = useInfiniteList();
 
   const renderKata = (kata: KataInterface) => <KataPreview kata={kata} key={kata.id} />;
@@ -16,7 +16,7 @@ export const KataList = () => {
       {randomKatas ? randomKatas.map(renderKata) : katas.map(renderKata)}
       {!randomKatas && (
         <div className="library__loader" ref={intersectedRef}>
-          {loading && <Loader />}
+          {nextKatasLoading && <Loader />}
         </div>
       )}
     </div>

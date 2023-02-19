@@ -10,7 +10,7 @@
     display: grid;
     margin: 0 auto;
     grid-template-columns: 1fr 3fr;
-    grid-template-rows:repeat(3, auto);
+    grid-template-rows: 32px 60px 38px;
     gap: 15px;
     max-width: 1560px;
     padding: 0 10px;

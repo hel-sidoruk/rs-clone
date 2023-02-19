@@ -30,7 +30,7 @@ export function fetchNextKatas(): ThunkActionType {
     if (page > totalCount / 10) return;
     const nextPage = page + 1;
     try {
-      dispatch({ type: KatasActionTypes.FETCH_KATAS });
+      dispatch({ type: KatasActionTypes.FETCH_NEXT_KATAS });
       const { rows } = await KataAPI.getAll(nextPage, filters);
       const katasById: KatasById = {};
 
@@ -38,7 +38,7 @@ export function fetchNextKatas(): ThunkActionType {
         katasById[el.id] = el;
       });
       dispatch({
-        type: KatasActionTypes.FETCH_NEXT_KATAS,
+        type: KatasActionTypes.FETCH_NEXT_KATAS_SUCCESS,
         payload: {
           katasByID: { ...katasByID, ...katasById },
           katas: [...katas, ...rows],

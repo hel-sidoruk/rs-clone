@@ -5,24 +5,22 @@ import { CryptoIcon, DebugIcon, GameIcon, ScienceIcon, TutorIcon } from './Icons
 
 export const FeaturedTags = () => {
   const [selected, setSelected] = useState<string[]>([]);
-  const { addFeatureTags } = useActions();
+  const { addFeatureTags, fetchKatas, changeFilters } = useActions();
   const { features } = useTypedSelector((state) => state.filters);
 
   function checkTag(tag: string) {
-    if (selected.includes(tag)) {
-      const index = selected.indexOf(tag);
-      const push = [...selected.slice(0, index), ...selected.slice(index + 1)];
-      setSelected([...push]);
-    } else setSelected([...selected, tag]);
+    const newState = selected.includes(tag)
+      ? selected.filter((item) => tag !== item)
+      : [...selected, tag];
+    setSelected(newState);
+    addFeatureTags(newState);
+    changeFilters('tags', newState.map((filter) => filter.toLowerCase()).join('*'));
+    fetchKatas();
   }
 
   function addActive(tag: string) {
     return selected.includes(tag) ? ' _active' : '';
   }
-
-  useEffect(() => {
-    addFeatureTags(selected);
-  }, [selected]);
 
   useEffect(() => {
     setSelected(features);

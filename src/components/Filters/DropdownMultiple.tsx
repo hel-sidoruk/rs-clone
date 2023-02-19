@@ -18,12 +18,6 @@ const DropdownMultiple = ({ list, filterType, status, handler }: DropProps) => {
     if (!query) setSelected([]);
   }, [query]);
 
-  useEffect(() => {
-    if (filterType === 'tags') {
-      changeFilters(filterType, features.map((filter) => filter.toLowerCase()).join('*'));
-    }
-  }, [features, query]);
-
   const handleOpen = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     const elem = e.target as HTMLButtonElement;
@@ -36,11 +30,8 @@ const DropdownMultiple = ({ list, filterType, status, handler }: DropProps) => {
     const newState = selectTags.includes(param)
       ? selectTags.filter((item) => param !== item)
       : [...selectTags, param];
-    if (filterType === 'tags') {
-      addFeatureTags(newState);
-    } else {
-      setSelected(newState);
-    }
+    if (filterType === 'tags') addFeatureTags(newState);
+    else setSelected(newState);
     const filters = newState.map((filter) => filter.toLowerCase()).join('*');
     changeFilters(filterType, filters);
   };

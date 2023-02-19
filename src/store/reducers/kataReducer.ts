@@ -6,6 +6,7 @@ const initialState: KataState = {
   starredKatasList: [],
   randomKatas: null,
   loading: false,
+  nextKatasLoading: false,
   error: null,
   totalCount: 0,
   page: 1,
@@ -16,6 +17,8 @@ export default function kataReducer(state: KataState = initialState, action: Kat
   switch (action.type) {
     case KatasActionTypes.FETCH_KATAS:
       return { ...state, loading: true };
+    case KatasActionTypes.FETCH_NEXT_KATAS:
+      return { ...state, nextKatasLoading: true };
     case KatasActionTypes.FETCH_KATAS_SUCCESS:
       return {
         ...state,
@@ -32,10 +35,10 @@ export default function kataReducer(state: KataState = initialState, action: Kat
         loading: false,
         error: action.payload.error,
       };
-    case KatasActionTypes.FETCH_NEXT_KATAS:
+    case KatasActionTypes.FETCH_NEXT_KATAS_SUCCESS:
       return {
         ...state,
-        loading: false,
+        nextKatasLoading: false,
         katas: action.payload.katas,
         katasByID: action.payload.katasByID,
         page: action.payload.page,
