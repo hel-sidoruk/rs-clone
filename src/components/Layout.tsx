@@ -10,7 +10,7 @@ import { Popup } from './UI/Popup';
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { pathname } = useLocation();
-  const { fetchKatas, checkUser, setAccount } = useActions();
+  const { checkUser, setAccount } = useActions();
   const { isAuthorized } = useTypedSelector((state) => state.authorizedUser);
   const { newItems } = useTypedSelector((state) => state.notifications);
 
@@ -21,7 +21,6 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     if (isAuthorized) {
       setAccount();
-      fetchKatas();
     }
   }, [isAuthorized]);
 

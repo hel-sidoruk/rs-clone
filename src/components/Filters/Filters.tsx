@@ -15,7 +15,7 @@ export type DropProps = {
 
 const Filters = () => {
   const { isAuthorized } = useTypedSelector((state) => state.authorizedUser);
-  const { fetchKatas } = useActions();
+  const { fetchKatas, resetFilters } = useActions();
   const [active, setActive] = useState('none');
 
   const activeHandler = (dropType: string) => setActive(dropType);
@@ -61,9 +61,20 @@ const Filters = () => {
           handler={activeHandler}
         />
       </div>
-      <button className="btn" onClick={fetchKatas}>
-        Search
-      </button>
+      <div className="filters__controls">
+        <button className="btn" onClick={fetchKatas}>
+          APPLY
+        </button>
+        <button
+          className="btn"
+          onClick={() => {
+            resetFilters();
+            fetchKatas();
+          }}
+        >
+          RESET
+        </button>
+      </div>
     </div>
   );
 };
