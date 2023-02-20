@@ -137,6 +137,10 @@
     transition: all .2s ease-in-out;
     font-size: 14px;
     line-height: 21px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
     &:hover {
       color: var(--blue);
     }
@@ -144,6 +148,10 @@
       background-color: var(--bg-section);
       color: var(--contrast-text);
       pointer-events: none;
+      @media (max-width: $m) {
+        pointer-events: auto;
+        
+      }
     }
     &.centered {
       display: flex;
@@ -152,6 +160,22 @@
   }
   .icon-moon-comments {
     margin-right: 5px;
+  }
+  &__icon-wrap {
+      display: none;
+      .drop-icon {
+        display: flex;
+        align-items: center;
+      }
+     
+      @media (max-width: $m) {
+        display: flex;
+        transform: rotate(0);
+        transition: transform 0.3s;
+        &.rotate {
+          transform: rotate(-180deg);
+        }
+      }
   }
 }
 .kata-page {

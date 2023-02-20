@@ -80,6 +80,11 @@ input {
     flex-direction: column;
     height: 100vh;
     overflow: hidden;
+
+    @media (max-width: $m) {
+      height: auto;
+      overflow: auto;
+    }
   }
   &.hidden {
     padding: 16px;
