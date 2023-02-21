@@ -2,13 +2,23 @@
   display: flex;
   flex-grow: 1;
   height: calc(100% - 136px);
+  gap: 16px;
+
+  @media (max-width: $m) {
+    flex-direction: column;
+    height: auto;
+  }
+
   &__info {
     width: 42%;
-    margin-right: 16px;
     display: flex;
     flex-direction: column;
     height: 100%;
     overflow: hidden;
+
+    @media (max-width: $m) {
+      width: 100%;
+    }
   }
   &__descr {
     flex-grow: 1;
@@ -19,11 +29,32 @@
     overflow-y: auto;
     @include scrollBar(10px);
   }
+
+  &__descr,
+  &__tests {
+    @media (max-width: $m) {
+      opacity: 0;
+      max-height: 0;
+      padding: 0;
+      transition: max-height 0.5s, opacity 0.5s, padding 0.5s;
+      &._open {
+        opacity: 1;
+        max-height: 100vh;
+        padding: 16px;
+        
+      }
+    }
+  }
   &__code {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     max-width: 58%;
+    
+    @media (max-width: $m) {
+      max-width: 100%;
+      flex-shrink: 0;
+    }
   }
 }
 .solution {
@@ -106,9 +137,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .btn:not(:last-child) {
-      margin-right: 5px;
+    gap: 5px;
+    flex-wrap: wrap;
+
+    &-actions, 
+    &-tests {
+      display: flex;
+      gap: 5px;
     }
+
     &-tests {
       .btn {
         width: 80px;

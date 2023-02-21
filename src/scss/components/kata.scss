@@ -1,11 +1,12 @@
 .kata {
 
-  &__info {
+  &__info { 
     &-top {
       display: flex;
-      padding: 11px 0;
-      margin-bottom: 4px;
       align-items: center;
+      gap: 15px;
+      padding: 11px 0;
+      margin-bottom: 4px;      
     }
     &-title {
       color: var(--contrast-text);
@@ -17,11 +18,14 @@
 
       &:hover {
         color: var(--blue);
+
       }
     }
     &-bottom {
       display: flex;
       align-items: center;
+      flex-wrap: wrap; 
+      gap: 8px;
     }
     &-text {
       color: var(--grey-text);
@@ -48,8 +52,17 @@
 }
 .kata-page {
   display: flex;
+
+  @media (max-width: $l) {
+    flex-direction: column;
+  }
+  
   .kata-page__content {
     width: 84%;
+
+    @media (max-width: $l) {
+      width: 100%;
+    }
   }
 }
 .kata-description {
@@ -60,6 +73,13 @@
   &.section {
     padding: 8px 16px;
     border-radius: 8px;
+
+    @media (max-width: $s) {
+      flex-direction: column;
+      align-items: start;
+      gap: 15px;
+    }
+
     .kata__info-bottom {
       margin-bottom: 12px;
     }
@@ -76,6 +96,19 @@
   background-color: var(--dropdown-hover);
   color: var(--contrast-text);
   line-height: 21px;
+
+  @media (max-width: $s) {
+    order: -1;
+    width: 60px;
+    height: 60px;
+    font-size: 42px;
+    background: none;
+    border: none;
+    align-self: start;
+    span {
+      display: none;
+    }
+  }
 }
 .icon-container {
   background-color: var(--dropdown-hover);
@@ -104,6 +137,10 @@
     transition: all .2s ease-in-out;
     font-size: 14px;
     line-height: 21px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
     &:hover {
       color: var(--blue);
     }
@@ -111,6 +148,10 @@
       background-color: var(--bg-section);
       color: var(--contrast-text);
       pointer-events: none;
+      @media (max-width: $m) {
+        pointer-events: auto;
+        
+      }
     }
     &.centered {
       display: flex;
@@ -119,6 +160,22 @@
   }
   .icon-moon-comments {
     margin-right: 5px;
+  }
+  &__icon-wrap {
+      display: none;
+      .drop-icon {
+        display: flex;
+        align-items: center;
+      }
+     
+      @media (max-width: $m) {
+        display: flex;
+        transform: rotate(0);
+        transition: transform 0.3s;
+        &.rotate {
+          transform: rotate(-180deg);
+        }
+      }
   }
 }
 .kata-page {
@@ -132,6 +189,13 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+
+    @media (max-width: $l) {
+      .article {
+        max-width: 100%;
+      }
+    }
+
     .article__preview {
       max-width: 85px;
     }
@@ -139,6 +203,11 @@
 }
 .kata-details {
   margin-bottom: 15px;
+
+  @media (max-width: $s) {
+    overflow-x: scroll;
+  }
+
   &__title {
     color: var(--grey-text);
     margin-bottom: 18px;
@@ -155,6 +224,11 @@
     grid-row-gap: 16px;
     grid-column-gap: 32px;
     min-height: 300px;
+
+    @media (max-width: $m) {
+     display: flex;
+     flex-direction: column;
+    }
   }
   &__similar-item {
     padding: 16px;
@@ -165,6 +239,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 20px;
+
+      @media (max-width: $s) {
+        justify-content: start;
+      }
     }
   }
 
