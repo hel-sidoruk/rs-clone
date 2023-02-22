@@ -82,7 +82,7 @@
   7. [Решение каты (редактор)](modules/kata-train.md)
   8. [Профиль пользователя](modules/user-profile.md)
   9. [Таблица лидеров](modules/leaderboard.md)
-  10. [Общая разметка](modules/layout.md)
+  10. [Общая разметка (хэдер, футер, сайдбар)](modules/layout.md)
 
 ***
 
