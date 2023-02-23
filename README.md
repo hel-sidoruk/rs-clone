@@ -49,16 +49,21 @@
 ## Стек технологий
 
   - Backend
-    - Express
+    - Express.js
+    - Node.js
     - Mocha
+    - PostgreSQL
+    - WebSocket
     - ...
   - Frontend
     - Typescript
     - React
     - Redux
+    - JSX
     - Vite
+    - HTML
     - SCSS
-    ...
+    - ...
 
 ***
 
@@ -88,11 +93,13 @@
 
 ## Структурная схема
 
-*здесь будет картиночка
+![Alt text](images/RS%20clone%20(2).jpeg)
 
 ***
 
 ## Библиотеки
+
+*перечень и вкратце, для чего использовали*
 
   - nanoid
   - styled-components
