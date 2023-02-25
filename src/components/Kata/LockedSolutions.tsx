@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useActions from '../../hooks/useActions';
+import { Dialog } from '../UI/Dialog';
+import { Modal } from '../UI/Modal';
 
 export const LockedSolutions = ({ kataId }: { kataId: string }) => {
   const { addToForfeited } = useActions();
+  const [isModalOpened, setIsModalOpened] = useState(false);
+
+  const onConfirm = () => {
+    addToForfeited(kataId);
+    setIsModalOpened(false);
+  };
 
   return (
     <div className="section locked-solutions">
@@ -12,9 +20,17 @@ export const LockedSolutions = ({ kataId }: { kataId: string }) => {
         to view the solutions you will forfeit your eligibility to earn honor/rank progress for this
         kata.
       </p>
-      <button className="btn btn-fill" onClick={() => addToForfeited(kataId)}>
+      <button className="btn btn-fill" onClick={() => setIsModalOpened(true)}>
         <i className="icon-moon icon-moon-unlock"></i>Unlock Solutions (forfeit eligibility)
       </button>
+      {isModalOpened && (
+        <Modal onClose={() => setIsModalOpened(false)}>
+          <Dialog title="Unlock Solutions" text="Yes, show me the solutions" onConfirm={onConfirm}>
+            This will cause you to forfeit your ability to earn honor/rank for this kata. Are you
+            sure?
+          </Dialog>
+        </Modal>
+      )}
     </div>
   );
 };
