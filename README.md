@@ -81,13 +81,15 @@
 
   1. [Главная](modules/home.md)
   2. [Авторизация/регистрация](modules/authorization.md)
-  3. [Описание каты](modules/kata.md)
+  3. [Библиотека кат](modules/library.md)
+  4. [Описание каты](modules/kata.md)
   5. [Решения каты](modules/kata-solutions.md)
   6. [Комментарии к кате](modules/kata-discuss.md)
   7. [Решение каты (редактор)](modules/kata-train.md)
   8. [Профиль пользователя](modules/user-profile.md)
-  9. [Таблица лидеров](modules/leaderboard.md)
-  10. [Общая разметка (хэдер, футер, сайдбар)](modules/layout.md)
+  9. [Настройки аккаунта](modules/account-settings.md)
+  10. [Таблица лидеров](modules/leaderboard.md)
+  11. [Общая разметка (хэдер, футер, сайдбар)](modules/layout.md)
 
 ***
 
