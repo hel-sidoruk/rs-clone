@@ -90,7 +90,9 @@ input {
     padding: 16px;
     margin-left: 0;
     width: 100%;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     z-index: 2000;
     background-color: var(--bg-color);
   }
