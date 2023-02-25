@@ -3,17 +3,23 @@ import { Link } from 'react-router-dom';
 import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { KataInterface } from '../../types/kata';
+import { CheckIcon } from '../Icons';
 import { Rank } from './Rank';
 
 export const KataInfo = ({ data }: { data: KataInterface }) => {
   const { addToStarred } = useActions();
   const [isStarred, setIsStarred] = useState(false);
-  const { starredKatas } = useTypedSelector((state) => state.account);
+  const { starredKatas, solvedKatas } = useTypedSelector((state) => state.account);
   const [starsCount, setStarsCount] = useState(data.totalStars);
+  const [isSolved, setIsSolved] = useState(false);
 
   useEffect(() => {
     starredKatas?.includes(data.id) && setIsStarred(true);
   }, [starredKatas, data.id]);
+
+  useEffect(() => {
+    if (solvedKatas && solvedKatas.includes(data.id)) setIsSolved(true);
+  }, [solvedKatas, data.id]);
 
   const handleClick = () => {
     const isInStarred = starredKatas?.includes(data.id);
@@ -29,6 +35,7 @@ export const KataInfo = ({ data }: { data: KataInterface }) => {
         <h4 className="kata__info-title">
           <Link to={`/kata/${data.id}/`}>{data.name}</Link>
         </h4>
+        {isSolved && <CheckIcon />}
       </div>
       <div className="kata__info-bottom">
         <span className="kata__info-text star" onClick={handleClick}>

@@ -29,3 +29,4 @@ export * from './ShuffleIcon';
 export * from './UndoIcon';
 export * from './SunIcon';
 export * from './TestArrowIcon';
+export * from './CheckIcon';

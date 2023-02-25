@@ -1,12 +1,12 @@
 .kata {
 
-  &__info { 
+  &__info {
     &-top {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 6px;
       padding: 11px 0;
-      margin-bottom: 4px;      
+      margin-bottom: 4px;
     }
     &-title {
       color: var(--contrast-text);
@@ -21,10 +21,13 @@
 
       }
     }
+    svg {
+      fill: var(--contrast-text);
+    }
     &-bottom {
       display: flex;
       align-items: center;
-      flex-wrap: wrap; 
+      flex-wrap: wrap;
       gap: 8px;
     }
     &-text {
@@ -56,7 +59,7 @@
   @media (max-width: $l) {
     flex-direction: column;
   }
-  
+
   .kata-page__content {
     width: 84%;
 
@@ -150,7 +153,7 @@
       pointer-events: none;
       @media (max-width: $m) {
         pointer-events: auto;
-        
+
       }
     }
     &.centered {
@@ -167,7 +170,7 @@
         display: flex;
         align-items: center;
       }
-     
+
       @media (max-width: $m) {
         display: flex;
         transform: rotate(0);
