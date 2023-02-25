@@ -10,8 +10,8 @@ export function useFetchKata(id: string): [KataInterface | null, boolean, boolea
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (id && katasByID) {
-      if (katasByID[id]) setKata(katasByID[id]);
+    if (id) {
+      if (katasByID && katasByID[id]) setKata(katasByID[id]);
       else {
         setIsLoading(true);
         KataAPI.getOne(id)

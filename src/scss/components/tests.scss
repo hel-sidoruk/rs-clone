@@ -5,7 +5,7 @@
   color:var(--contrast-text);
   border-radius: 8px;
   overflow: hidden;
-  max-height: calc(100vh - 202px);
+  max-height: calc(100vh - 250px);
   &.success {
     border-color: $success;
   }

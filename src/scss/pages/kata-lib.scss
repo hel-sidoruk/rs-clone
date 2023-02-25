@@ -10,7 +10,7 @@
     display: grid;
     margin: 0 auto;
     grid-template-columns: minmax(150px, 25%) 75%;
-    grid-template-rows: auto;
+    grid-template-rows: 36px 58px 38px;
     gap: 15px;
     max-width: 1560px;
     padding: 0 10px;
@@ -28,7 +28,7 @@
     display: inline-block;
     width: 75px;
     justify-self: center;
-    
+
     @media (max-width: $m) {
       grid-row:  1 / 2;
       grid-column: 1 / 2;
@@ -84,7 +84,7 @@
       }
       @media (max-width: $l) {
         display: none;
-        
+
       }
     }
   }
@@ -97,7 +97,7 @@
       grid-column: 1/2;
       grid-row: 2/3;
     }
-    
+
     &>span {
       font-size: 12px;
       display: inline-block;
@@ -205,7 +205,7 @@
    justify-content: space-between;
    gap: 20px;
    align-items: center;
-   
+
    @media (max-width: $s) {
     justify-content: start;
    }

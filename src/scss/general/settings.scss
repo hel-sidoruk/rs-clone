@@ -22,10 +22,6 @@ body {
   @include scrollBar(12px);
 }
 
-#root {
-  padding-top: calc($header-height + 20px);
-}
-
 button {
   border: none;
   cursor: pointer;
@@ -75,10 +71,11 @@ input {
   margin-left: 55px;
   flex-grow: 1;
   padding-bottom: 40px;
+  padding-top: calc($header-height + 20px);
   &.kata-training {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: calc(100vh - 84px);
     overflow: hidden;
 
     @media (max-width: $m) {

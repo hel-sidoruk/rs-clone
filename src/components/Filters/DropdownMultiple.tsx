@@ -9,7 +9,7 @@ import Label from './Label';
 
 const DropdownMultiple = ({ list, filterType, status, handler }: DropProps) => {
   const [selected, setSelected] = useState<string[]>([]);
-  const { changeFilters, addFeatureTags } = useActions();
+  const { changeFilters, addFeatureTags, fetchKatas } = useActions();
   const { query, features } = useTypedSelector((state) => state.filters);
 
   const selectTags = filterType === 'tags' ? features : selected;
@@ -34,6 +34,7 @@ const DropdownMultiple = ({ list, filterType, status, handler }: DropProps) => {
     else setSelected(newState);
     const filters = newState.map((filter) => filter.toLowerCase()).join('*');
     changeFilters(filterType, filters);
+    fetchKatas();
   };
 
   const reset = () => {

@@ -7,7 +7,7 @@ import { DropProps } from './Filters';
 
 const DropdownSingle = ({ list, filterType, status, handler }: DropProps) => {
   const [selected, setSelected] = useState(list[0]);
-  const { changeFilters } = useActions();
+  const { changeFilters, fetchKatas } = useActions();
   const { query } = useTypedSelector((state) => state.filters);
 
   useEffect(() => {
@@ -23,6 +23,7 @@ const DropdownSingle = ({ list, filterType, status, handler }: DropProps) => {
     setSelected(param);
     const filterValue = param.toLowerCase();
     changeFilters(filterType, filterValue);
+    fetchKatas();
   };
 
   useEffect(() => {
