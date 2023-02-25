@@ -8,7 +8,7 @@
 
   &__container {
     max-width: 1044px;
-    padding: 60px 10px;
+    padding: 0 10px;
     padding-bottom: 0;
     display: flex;
     margin: 0 auto;
@@ -19,6 +19,14 @@
   &__promo-block {
    display: flex;
    justify-content: space-between;
+
+   @media (max-width: $s) {
+    flex-direction: column;
+    gap: 10px;
+    .article {
+      max-width: 100%;
+    }
+   }
   }
 }
 
@@ -29,6 +37,10 @@
   grid-template-columns: 0.3fr repeat(3, 1fr);
   grid-template-rows: repeat(3, auto);
   gap: 10px;
+
+  @media (max-width: $s) {
+    grid-template-columns: 0.3fr repeat(2, 1fr);
+  }
 
   .avatar {
     grid-column: 1/2;
@@ -71,6 +83,12 @@
     &_3 {
       grid-column: 4/5;
       grid-row: 2/3;
+
+      @media (max-width: $s) {
+        grid-column: 3/4;
+        grid-row: 3/4;
+      }
+      
     }
 }
 
@@ -96,6 +114,12 @@
     grid-column: 4/5;
     grid-row: 1/2;
     justify-self: end;
+
+    @media (max-width: $s) {
+      grid-column: 1/2;
+      grid-row: 2/3;
+      justify-self: start;
+    }
 
     svg {
       width: 32px;

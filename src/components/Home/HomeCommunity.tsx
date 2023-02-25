@@ -9,7 +9,7 @@ const content = [
 export const HomeCommunity = () => {
   return (
     <>
-      <div className="container-small">
+      <div className="container container_small">
         <h2 className="block-title">An engaged software development community</h2>
         <p className="text block-text">
           Codewars is a collective effort by its users. They are creators—authoring kata to teach

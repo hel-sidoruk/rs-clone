@@ -22,6 +22,10 @@ body {
   @include scrollBar(12px);
 }
 
+#root {
+  padding-top: calc($header-height + 20px);
+}
+
 button {
   border: none;
   cursor: pointer;
@@ -76,6 +80,11 @@ input {
     flex-direction: column;
     height: 100vh;
     overflow: hidden;
+
+    @media (max-width: $m) {
+      height: auto;
+      overflow: auto;
+    }
   }
   &.hidden {
     padding: 16px;
@@ -97,6 +106,9 @@ input {
   margin-bottom: 22px;
   padding: 14px;
   width: fit-content;
+  position: absolute;
+  top: 0;
+  left: 60px;
 }
 
 .mb-32 {

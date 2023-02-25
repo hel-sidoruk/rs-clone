@@ -9,11 +9,15 @@
   &__container {
     display: grid;
     margin: 0 auto;
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: 32px 60px 38px;
+    grid-template-columns: minmax(150px, 25%) 75%;
+    grid-template-rows: auto;
     gap: 15px;
     max-width: 1560px;
     padding: 0 10px;
+
+    @media (max-width: $m) {
+      grid-template-columns: 100%;
+    }
   }
 
   &__header {
@@ -24,6 +28,11 @@
     display: inline-block;
     width: 75px;
     justify-self: center;
+    
+    @media (max-width: $m) {
+      grid-row:  1 / 2;
+      grid-column: 1 / 2;
+    }
 
     i {
       margin-right: 5px;
@@ -36,6 +45,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: $m) {
+      grid-column: 1/2;
+      grid-row: 4/5;
+    }
   }
 
   &__bar {
@@ -46,14 +60,44 @@
     flex-direction: column;
     gap: 15px;
 
+    @media (max-width: $m) {
+      @media (max-width: $m) {
+        grid-column: 1/2;
+        grid-row: 3/4;
+      }
+    }
+
     .article {
       max-width: 100%;
+      display: block;
+      &__preview {
+        float: left;
+      }
+      &__description {
+        display: none;
+      }
+
+      @media (max-width: $l) {
+        &__link {
+          flex-direction: column;
+        }
+      }
+      @media (max-width: $l) {
+        display: none;
+        
+      }
     }
   }
 
   &__tags {
     grid-column: 2 / 3;
     min-height: 66px;
+
+    @media (max-width: $m) {
+      grid-column: 1/2;
+      grid-row: 2/3;
+    }
+    
     &>span {
       font-size: 12px;
       display: inline-block;
@@ -63,6 +107,11 @@
 
   &__katas {
     grid-column: 2 / 3;
+
+    @media (max-width: $m) {
+      grid-column: 1/2;
+      grid-row: 5/65;
+    }
   }
   &__loader {
     position: relative;
@@ -154,7 +203,13 @@
    color: var(--contrast-text);
    display: flex;
    justify-content: space-between;
+   gap: 20px;
    align-items: center;
+   
+   @media (max-width: $s) {
+    justify-content: start;
+   }
+
 
   &__language {
     align-self: auto;

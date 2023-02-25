@@ -18,18 +18,18 @@ export const Home = ({ title }: { title: string }) => {
       <HomeHero />
       <div className="container">
         <HomeSharpen isAuthorized={isAuthorized} />
-        <div className="home__cells">
-          {homeContentTop.map(({ title, text, src, pos, icon }) => (
-            <HomeBlock key={title} title={title} text={text} src={src} pos={pos} icon={icon} />
+        <div className="home__cells cells">
+          {homeContentTop.map(({ title, text, src, icon }) => (
+            <HomeBlock key={title} title={title} text={text} src={src} icon={icon} />
           ))}
         </div>
         <HomeCommunity />
-        <div className="home__cells bottom">
-          {homeContentBottom.map(({ title, text, src, pos, icon }) => (
-            <HomeBlock key={title} title={title} text={text} src={src} pos={pos} icon={icon} />
+        <div className="home__cells cells cells_bottom">
+          {homeContentBottom.map(({ title, text, src, icon }) => (
+            <HomeBlock key={title} title={title} text={text} src={src} icon={icon} />
           ))}
         </div>
-        <div className="container-small">
+        <div className="container container_small">
           <h2 className="block-title">{'What can I use\nCodewars for?'}</h2>
           <p className="text block-text">From beginner to expert and beyond...</p>
         </div>
