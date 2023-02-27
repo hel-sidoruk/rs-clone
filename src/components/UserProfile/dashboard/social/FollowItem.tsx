@@ -23,9 +23,11 @@ const FollowItem = ({ user, isFollower }: { user: FollowerInterface; isFollower?
         {username}
       </Link>
       <div className="follow-user__clan">
-        {user.clan && <i title="Clan" className="icon-moon-clan icon-moon"></i>}
         {!isFollower ? (
-          user.clan
+          <>
+            <i title="Clan" className="icon-moon-clan icon-moon"></i>
+            {user.clan}
+          </>
         ) : follower ? (
           <>
             <i title="Clan" className="icon-moon-clan icon-moon"></i>
