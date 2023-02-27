@@ -17,6 +17,7 @@
 
     @media (max-width: $m) {
       grid-template-columns: 100%;
+      grid-template-rows: auto;
     }
   }
 

@@ -96,6 +96,10 @@
     color: var(--grey-text);
     border-right: 1px solid var(--border-color);
     padding-bottom: 10px;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 0;
+    }
     span {
       text-align: right;
       width: 29px;
@@ -125,6 +129,11 @@
     border: none;
     resize: none;
     @include scrollBar(10px);
+  }
+  pre {
+    &::-webkit-scrollbar {
+      width: 0;
+    }
   }
   .code__editor, pre {
     padding: 0 5px;
